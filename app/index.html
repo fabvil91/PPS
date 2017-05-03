@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<head lang ="en">
+
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Cine</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="app.js"></script>
+        
+    <link rel = "stylesheet" type = "text/css" href = "style.css" />
+
+    <script type="text/javascript" src="indexCtrl.js"></script>
+    <script type="text/javascript" src="mainCtrl.js"></script>
+
+
+</head>
+
+<body>
+  <!-- HEADER -->
+    <div ng-app="cine" ng-controller="indexCtrl" class="container-fluid">
+
+        <div class="row text-center header">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <h1 class="text-uppercase">Cine</h1>
+            </div>
+            <div class="col-sm-2 btn-group-vertical">
+                <a href="#" class="btn btn-info" role="button">Log In</a>
+                <a href="#" class="btn btn-info" role="button">Registrarse</a>
+            </div>
+        </div>
+
+        <!--inyeccion-->        
+        <div ng-include src="'main.html'"></div>
+
+        <div class="row footer">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6 footer-content">
+
+                <div class="foot-section">
+                    <div>
+                        <img src="./images/icons/ticket.png" alt="imagen de un ticket" class="icon">
+                    </div>  
+                    <div class="text-center links">
+                        <h3>Promociones</h3>
+                        <a href="#">Promociones Vigentes</a>
+                    </div>
+                </div>
+
+                 <div class="foot-section">
+                    <div>
+                        <img src="./images/icons/reel.png" alt="imagen de un rollo de pelicula" class="icon">
+                    </div>  
+                    <div class="text-center links">
+                        <h3>Cine</h3>
+                        <a href="#">Quienes Somos</a>
+                        <a href="#">Contactanos</a>
+                    </div>
+                </div>
+
+                <div class="foot-section">
+                    <div>
+                        <img src="./images/icons/history.png" alt="imagen de un reloj" class="icon">
+                    </div>  
+                    <div class="text-center links">
+                        <h3>Ingresa a tu Historial de Compras</h3>
+                        <a href="#">Historial</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+    </div>
+    
+</body>

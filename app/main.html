@@ -1,0 +1,222 @@
+  <!-- CAROUSEL -->
+  <div ng-controller="mainCtrl">
+        <div id="slides_control">
+            <div class="col-sm-12">
+             <carousel interval="myInterval">
+                <slide ng-repeat="slide in slides" active="slide.active">
+                 <img ng-src="{{slide.imageUrl}}" style="max-height:300px; margin:0 auto">
+                <div class="carousel-caption">
+                   <h4><a href>{{slide.nombre}}</a></h4>
+                   <h4>{{slide.descripcion}}</h4>
+                </div>
+                </slide>
+             </carousel>        
+            </div>          
+        </div>
+    <!-- BREAK -->
+   
+    <div class="row">
+        <div class="col-sm-12 break"></div>   
+    </div>
+    
+        <!-- FILTROS -->
+        <div class="row panel panel-default">
+            <div class="col-sm-2"></div>
+            <form>
+            <!-- COMPLEJO -->
+            <div class="col-sm-10 panel-heading">
+                <div class="col-xs-3 form-group">
+                    <label for="selComplejo">Complejo: </label>                   
+                     <select class="form-control" id="selComplejo" ng-model="filtro.complejo" ng-options="x for x in complejos">            
+                     </select> 
+                </div>
+      
+            <!-- FORMATO --> 
+                <div class="col-xs-2 form-group">
+                    <label for="btngroup-formato">Formato:</label>
+                    <div class="btngroup" id="btngroup-formato">
+                        <button class="btn btn-primary filter-button" data-filter="2d">2D</button>
+                        <button class="btn btn-primary filter-button" data-filter="3d">3D</button>
+                    </div>
+                </div>
+                <!-- IDIOMA -->
+                <div class="col-xs-3 form-group">
+                    <label for="btngroup-idioma">Idioma:</label>
+                    <div class="btngroup" id="btngroup-idioma">
+                        <button class="btn btn-primary filter-button" data-filter="español">Español</button>
+                        <button class="btn btn-primary filter-button" data-filter="subtitulado">Subtitulado</button>
+                    </div>
+                </div>
+                <!-- TODO -->
+                <div class="col-xs-2 form-group">
+                    <label for="btngroup-todo" style="color:transparent">todo</label>
+                    <div class="btngroup" id="btngroup-todo">
+                        <button class="btn btn-primary filter-button" data-filter="todo">Ver Todo</button>
+                    </div>
+                </div>
+            </div>
+            </form>
+            <div class="col-sm-2"></div>
+        </div>
+
+    <!-- LISTA DE PELICULAS -->
+
+        <div class="row">
+            <div class="col-sm-2"></div>
+           <div class="col-sm-8 panel panel-default">
+              
+             
+                 <div class="panel-body">
+                     <!-- FILTRO DIAS -->
+                     <form class="form-inline">
+                         <div class="btngroup" id="btngroup-dias">
+                              <button class="btn btn-primary filter-button" data-filter="lunes">Lunes</button>
+                              <button class="btn btn-primary filter-button" data-filter="martes">Martes</button>
+                              <button class="btn btn-primary filter-button" data-filter="miercoles">Miercoles</button>
+                              <button class="btn btn-primary filter-button" data-filter="jueves">Jueves</button>
+                              <button class="btn btn-primary filter-button" data-filter="viernes">Viernes</button>
+                              <button class="btn btn-primary filter-button" data-filter="sabado">Sabado</button>
+                              <button class="btn btn-primary filter-button" data-filter="domingo">Domingo</button>
+                         </div>
+                     </form> 
+                   
+                     <!-- PELICULAS-->
+                 <ul class="list-inline">
+                  <li ng-repeat="funcion in funciones">
+                            <div class="movie text-center">
+                                <a href="#">
+                                    <img ng-src="{{funcion.pelicula.imageUrl}}" alt="poster"  class="img-thumbnail img-poster">                                   
+                                    <p>{{funcion.pelicula.nombre}}</p>
+                                </a>
+                            </div>
+                        </li>
+                 </ul>
+
+
+                   <!--     <li>
+                            <div class="movie text-center">
+                                <a href="#">
+                                    <img src="./images/BeautyAndTheBeast.jpg" alt="poster" class="img-thumbnail img-poster">
+                                    <p>Bella y la Bestia</p>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="movie text-center">
+                                <a href="#">
+                                    <img src="./images/Logan.jpg" alt="poster" class="img-thumbnail img-poster">
+                                    <p>Logan</p>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="movie text-center">
+                                <a href="#">
+                                    <img src="./images/StarWars.jpg" alt="poster" class="img-thumbnail img-poster">
+                                    <p>Star Wars: The Force Awakens</p>
+                                </a>
+                            </div>
+                        </li>  -->
+                    <!--</ul>-->
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+
+        <!-- BREAK -->
+   
+        <div class="row">
+            <div class="col-sm-12 break"></div>   
+        </div>
+
+        <!-- MAS VISTAS -->
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8 panel panel-default">
+               
+                <div class="panel-heading">
+                    <h2>Las Mas Vistas</h2>
+                </div>
+                 <div class="panel-body">
+
+                     <!-- PELICULAS -->
+                    <ul class="list-inline">
+                        <li>
+                            <div class="movie text-center">
+                                <a href="#">
+                                    <img src="./images/BeautyAndTheBeast.jpg" alt="poster" class="img-thumbnail img-poster">
+                                    <p>Bella y la Bestia</p>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="movie text-center">
+                                <a href="#">
+                                    <img src="./images/Logan.jpg" alt="poster" class="img-thumbnail img-poster">
+                                    <p>Logan</p>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="movie text-center">
+                                <a href="#">
+                                    <img src="./images/StarWars.jpg" alt="poster" class="img-thumbnail img-poster">
+                                    <p>Star Wars: The Force Awakens</p>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+        <!-- BREAK -->
+   
+        <div class="row">
+            <div class="col-sm-12 break"></div>   
+        </div>
+         <!-- PROXIMAMENTE -->
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8 panel panel-default">
+               
+                <div class="panel-heading">
+                    <h2>Proximos Estrenos</h2>
+                </div>
+                 <div class="panel-body">
+
+                     <!-- PELICULAS -->
+                    <ul class="list-inline">
+                        <li>
+                            <div class="movie text-center">
+                                <a href="#">
+                                    <img src="./images/BeautyAndTheBeast.jpg" alt="poster" class="img-thumbnail img-poster">
+                                    <p>Bella y la Bestia</p>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="movie text-center">
+                                <a href="#">
+                                    <img src="./images/Logan.jpg" alt="poster" class="img-thumbnail img-poster">
+                                    <p>Logan</p>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="movie text-center">
+                                <a href="#">
+                                    <img src="./images/StarWars.jpg" alt="poster" class="img-thumbnail img-poster">
+                                    <p>Star Wars: The Force Awakens</p>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+       
+    </div>
+    
+

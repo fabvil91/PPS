@@ -1,0 +1,154 @@
+.img-poster {
+    height:230pt;
+    width:auto;
+}
+
+.header {
+     background-color: #00438E;
+     color:azure;
+}
+
+.movie{
+    height: 250pt;
+    width: 160pt;
+    border: 2px solid #00438E;
+    border-radius: 5px;
+}
+
+#movie-title{
+    padding: 2pt;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+.btn-group-vertical{
+    float: right;
+    padding: 10pt 30pt;
+}
+
+
+.carousel-inner{
+    max-height: 650px;
+    width: 100%;
+}
+
+.carousel-inner > .item > img {
+    margin: 0 auto;
+    max-height: 650px;
+}
+
+.break{
+    background-color: #00346D;
+    height: 10pt;
+}
+.grey{
+    background-color: black;
+}
+
+.btn{
+    background-color: #7BB9FF;
+    color: black;
+    border: solid #00438E 1px;
+}
+.btn:hover{
+    background-color: #1367c4;
+    color: white;
+    border: solid #00438E 1px;
+}
+
+.carousel-caption{
+    width: 400px;
+    height: 300px;
+    text-align: left;
+    left: 20%;
+    right: inherit;
+
+}
+.carousel-caption > p, h2{
+    background-color:rgba(24,29,48,0.5);
+
+}
+
+.carousel-indicators{
+    text-align: left;
+    left: 50%;
+    right: inherit;
+    
+}
+
+#btngroup-dias{
+    margin: 0px 0px 15px 0px;
+}
+
+.btn-group-vertical > a{
+    margin: 0px 0px 5px 0px
+}
+
+.panel-heading{
+    text-align: center;
+}
+
+.panel-body{
+    margin: 0px;
+}
+.footer{
+     background-color: #00346D;
+}
+.footer-content{
+    padding: 20px;
+    display: inline-flex;
+
+}
+
+.foot-section{
+    padding: 20px 5px 20px 5px;
+    width: 150pt;
+    height: 190pt;
+    background-color: #fff3dd;
+    margin: 0px 20px;
+
+}
+
+.icon{
+    width: 44pt;
+    height: 44pt;
+    display: block;
+    margin:auto;
+
+   
+}
+
+.links{
+    margin: 10px 0px 0px 0px;
+}
+.links > a:link, a:visited {
+    background-color: #7BB9FF;
+    color: black;
+    padding: 5px 10px;
+    text-align: center; 
+    font-size: medium;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 3px;
+    margin: 3px;
+    border: solid #00438E 1px;
+}
+
+.links > a:hover, a:active {
+    color: white;
+    background-color: #1367c4;
+    border-radius: 3px;
+}
+
+/*#slides_control > div{
+  height: 100px;
+}
+
+#slides_control {
+  position:absolute;
+  width: 500px;
+  left:50%;
+  top:20px;
+  margin-left:-200px;
+}*/
