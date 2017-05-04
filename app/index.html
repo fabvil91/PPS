@@ -16,6 +16,9 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
+
+    <script type="text/javascript" src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+
     <script src="app.js"></script>
         
     <link rel = "stylesheet" type = "text/css" href = "style.css" />
@@ -36,13 +39,14 @@
                 <h1 class="text-uppercase">Cine</h1>
             </div>
             <div class="col-sm-2 btn-group-vertical">
-                <a href="#" class="btn btn-info" role="button">Log In</a>
+                <a href="#" ui-sref="login" class="btn btn-info" role="button">Log In</a>
                 <a href="#" class="btn btn-info" role="button">Registrarse</a>
             </div>
         </div>
 
-        <!--inyeccion-->        
-        <div ng-include src="'main.html'"></div>
+       
+        <div ui-view></div>
+        <!--inyeccion <div ng-include src="'main.html'"></div> -->
 
         <div class="row footer">
             <div class="col-sm-3"></div>

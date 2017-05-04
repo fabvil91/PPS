@@ -1,13 +1,12 @@
 (function(){
 	'use strict';
 	angular.module('cine')
-	.controller('mainCtrl', function($scope){
+	.controller('mainCtrl', function($scope){		
 		$scope.complejos = ["Cinemar Avellaneda", "Cinemar Lanus"];
 		$scope.formatos = ["2D","3D"];
+		$scope.idiomas = ["Español", "Subtitulado"];
 
-		 $scope.filtro = {
-      //  complejo : $scope.complejos[0]
-       };
+		$scope.filtro = {};
 
 		$scope.myInterval = 3000;
 		
@@ -39,7 +38,8 @@
 				complejo: {
 						   nombre: "Cinemar Avellaneda"
 						  },
-				idioma: "Español"
+				idioma: "Español",
+				dia: "5/5/2017"
 			},
 			{
 				pelicula: {imageUrl: "http://www.foxlatina.com/custom-pages/logan-es/img/backgrounds_logan_outer.jpg",
@@ -49,13 +49,42 @@
 				complejo: {
 						   nombre: "Cinemar Lanus"
 						  },
-				idioma: "Subtitulado"
+				idioma: "Subtitulado",
+				dia: "5/7/2017"
 			}
 		];
 
 		$scope.funciones = funciones;
 		$scope.funcionesFiltradas = funciones;
 		
+		Date.prototype.addDays = function(days) {
+        var dat = new Date(this.valueOf())
+        dat.setDate(dat.getDate() + days);
+        return dat;
+   		}
+
+   		function getDates(startDate, stopDate) {
+      	var dateArray = new Array();
+      	var currentDate = startDate;
+      	while (currentDate <= stopDate) {
+        	dateArray.push(currentDate)
+        	currentDate = currentDate.addDays(1);
+      	}
+      	return dateArray;
+    	}
+
+		$scope.dias = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+		$scope.fechas = getDates(new Date(), (new Date()).addDays(6));
+		$scope.fechasDias = [];
+
+		(function (){			
+			console.log($scope.fechas);			
+			for (var i = 0; i < $scope.fechas.length; i++ ) {	   
+       		  $scope.fechasDias.push($scope.dias[$scope.fechas[i].getDay()]);    
+			}
+			console.log($scope.fechasDias);
+		})();  
+
 		function checkComplejo(funcion){
 			return funcion.complejo.nombre == $scope.filtro.complejo.nombre;
 		}
@@ -70,6 +99,34 @@
 
 		$scope.filtrarFormato = function (){
 			$scope.funcionesFiltradas = $scope.funciones.filter(checkFormato);
+		}
+
+		function checkIdioma(funcion){
+			return funcion.idioma == $scope.filtro.idioma;
+		}
+
+		$scope.filtrarIdioma = function (){
+			$scope.funcionesFiltradas = $scope.funciones.filter(checkIdioma);
+		}
+
+		$scope.limpiarFiltro = function (){
+			$scope.filtro = {};
+			$scope.funcionesFiltradas = funciones;
+		}
+
+		function checkDia(funcion){
+			return funcion.dia == $scope.filtro.diaLocale;
+		}
+
+		$scope.filtrarDia = function(){
+			console.log($scope.filtro);
+			var indice = $scope.fechasDias.indexOf($scope.filtro.dia);
+			var dia = $scope.fechas[indice];
+			console.log(dia);
+			console.log(new Date(dia).toLocaleDateString());
+			$scope.filtro.diaLocale = new Date(dia).toLocaleDateString();
+			console.log(indice);
+			$scope.funcionesFiltradas = $scope.funciones.filter(checkDia);
 		}
 		
 	});

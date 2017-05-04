@@ -39,24 +39,36 @@
                         <button class="btn btn-primary filter-button" data-filter="3d" ng-click="filtro.formato = '3D'">3D</button>
                     </div>-->
                     <div class="col-xs-1 form-group">
-                    <label for="selComplejo">Formato: </label>                   
+                    <label for="selFormato">Formato: </label>                   
                      <select class="form-control" id="selFormato" ng-model="filtro.formato" ng-options="x for x in formatos" ng-change="filtrarFormato()">        
                      </select> 
                     </div>
                <!-- </div>
-                 IDIOMA -->
+                 IDIOMA 
                 <div class="col-xs-3 form-group">
                     <label for="btngroup-idioma">Idioma:</label>
                     <div class="btngroup" id="btngroup-idioma">
                         <button class="btn btn-primary filter-button" data-filter="español">Español</button>
                         <button class="btn btn-primary filter-button" data-filter="subtitulado">Subtitulado</button>
                     </div>
-                </div>
+                </div>-->
+                 <div class="col-xs-2 form-group">
+                    <label for="selIdioma">Formato: </label>                   
+                     <select class="form-control" id="selIdioma" ng-model="filtro.idioma" ng-options="x for x in idiomas" ng-change="filtrarIdioma()">        
+                     </select> 
+                 </div>
+
+                <div class="col-xs-2 form-group">
+                    <label for="selDia">Dia: </label>                   
+                     <select class="form-control" id="selDia" ng-model="filtro.dia" ng-options="x for x in fechasDias" ng-change="filtrarDia()">        
+                     </select> 
+                 </div>
+
                 <!-- TODO -->
                 <div class="col-xs-2 form-group">
                     <label for="btngroup-todo" style="color:transparent">todo</label>
                     <div class="btngroup" id="btngroup-todo">
-                        <button class="btn btn-primary filter-button" data-filter="todo">Ver Todo</button>
+                        <button class="btn btn-primary filter-button" data-filter="todo" ng-click="limpiarFiltro()">Ver Todo</button>
                     </div>
                 </div>
             </div>
@@ -75,7 +87,7 @@
                      <!-- FILTRO DIAS -->
                      <form class="form-inline">
                          <div class="btngroup" id="btngroup-dias">
-                              <button class="btn btn-primary filter-button" data-filter="lunes">Lunes</button>
+                              <button class="btn btn-primary filter-button" data-filter="lunes" ng-click="filtrarDia()">Lunes</button>
                               <button class="btn btn-primary filter-button" data-filter="martes">Martes</button>
                               <button class="btn btn-primary filter-button" data-filter="miercoles">Miercoles</button>
                               <button class="btn btn-primary filter-button" data-filter="jueves">Jueves</button>
@@ -87,7 +99,9 @@
                    
                      <!-- PELICULAS-->
                  <ul class="list-inline">
+                 <span ng-show="funcionesFiltradas.length === 0">No hay funciones disponibles</span>
                   <li ng-repeat="funcion in funcionesFiltradas">
+
                             <div class="movie text-center">
                                 <a href="#">
                                     <img ng-src="{{funcion.pelicula.imageUrl}}" alt="poster"  class="img-thumbnail img-poster">                                   
