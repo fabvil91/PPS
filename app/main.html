@@ -27,19 +27,24 @@
             <div class="col-sm-10 panel-heading">
                 <div class="col-xs-3 form-group">
                     <label for="selComplejo">Complejo: </label>                   
-                     <select class="form-control" id="selComplejo" ng-model="filtro.complejo" ng-options="x for x in complejos">            
+                     <select class="form-control" id="selComplejo" ng-model="filtro.complejo.nombre" ng-options="x for x in complejos" ng-change="filtrarComplejo()">            
                      </select> 
                 </div>
       
-            <!-- FORMATO --> 
-                <div class="col-xs-2 form-group">
-                    <label for="btngroup-formato">Formato:</label>
+            <!-- FORMATO 
+                <div class="col-xs-2 form-group"> -->
+                 <!--   <label for="btngroup-formato">Formato:</label>
                     <div class="btngroup" id="btngroup-formato">
-                        <button class="btn btn-primary filter-button" data-filter="2d">2D</button>
-                        <button class="btn btn-primary filter-button" data-filter="3d">3D</button>
+                        <button class="btn btn-primary filter-button" data-filter="2d" ng-click="filtro.formato = '2D'">2D</button>
+                        <button class="btn btn-primary filter-button" data-filter="3d" ng-click="filtro.formato = '3D'">3D</button>
+                    </div>-->
+                    <div class="col-xs-1 form-group">
+                    <label for="selComplejo">Formato: </label>                   
+                     <select class="form-control" id="selFormato" ng-model="filtro.formato" ng-options="x for x in formatos" ng-change="filtrarFormato()">        
+                     </select> 
                     </div>
-                </div>
-                <!-- IDIOMA -->
+               <!-- </div>
+                 IDIOMA -->
                 <div class="col-xs-3 form-group">
                     <label for="btngroup-idioma">Idioma:</label>
                     <div class="btngroup" id="btngroup-idioma">
@@ -82,7 +87,7 @@
                    
                      <!-- PELICULAS-->
                  <ul class="list-inline">
-                  <li ng-repeat="funcion in funciones">
+                  <li ng-repeat="funcion in funcionesFiltradas">
                             <div class="movie text-center">
                                 <a href="#">
                                     <img ng-src="{{funcion.pelicula.imageUrl}}" alt="poster"  class="img-thumbnail img-poster">                                   

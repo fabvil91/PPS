@@ -3,9 +3,10 @@
 	angular.module('cine')
 	.controller('mainCtrl', function($scope){
 		$scope.complejos = ["Cinemar Avellaneda", "Cinemar Lanus"];
+		$scope.formatos = ["2D","3D"];
 
 		 $scope.filtro = {
-        complejo : $scope.complejos[0]
+      //  complejo : $scope.complejos[0]
        };
 
 		$scope.myInterval = 3000;
@@ -36,7 +37,7 @@
 			 			   descripcion: "Episodio 7"},
 				formato: "2D",
 				complejo: {
-						   nombre: "Cinemar Centro"
+						   nombre: "Cinemar Avellaneda"
 						  },
 				idioma: "Español"
 			},
@@ -46,14 +47,30 @@
 			 			   descripcion: "Vuelve de nuevo a la accion"},
 				formato: "3D",
 				complejo: {
-						   nombre: "Cinemar Centro"
+						   nombre: "Cinemar Lanus"
 						  },
 				idioma: "Subtitulado"
 			}
 		];
 
 		$scope.funciones = funciones;
+		$scope.funcionesFiltradas = funciones;
 		
+		function checkComplejo(funcion){
+			return funcion.complejo.nombre == $scope.filtro.complejo.nombre;
+		}
+
+		$scope.filtrarComplejo = function (){
+			$scope.funcionesFiltradas = $scope.funciones.filter(checkComplejo);
+		}
+
+		function checkFormato(funcion){
+			return funcion.formato == $scope.filtro.formato;
+		}
+
+		$scope.filtrarFormato = function (){
+			$scope.funcionesFiltradas = $scope.funciones.filter(checkFormato);
+		}
 		
 	});
 })();
