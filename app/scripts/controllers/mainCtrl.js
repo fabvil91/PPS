@@ -39,7 +39,7 @@
 						   nombre: "Cinemar Avellaneda"
 						  },
 				idioma: "Español",
-				dia: "5/5/2017"
+				dia: new Date("5/5/2017")
 			},
 			{
 				pelicula: {imageUrl: "http://www.foxlatina.com/custom-pages/logan-es/img/backgrounds_logan_outer.jpg",
@@ -50,7 +50,7 @@
 						   nombre: "Cinemar Lanus"
 						  },
 				idioma: "Subtitulado",
-				dia: "5/7/2017"
+				dia: new Date("5/7/2017")
 			}
 		];
 
@@ -74,7 +74,14 @@
     	}
 
 		$scope.dias = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
-		$scope.fechas = getDates(new Date(), (new Date()).addDays(6));
+		var hoy = new Date();
+		hoy.setHours(0,0,0,0);
+		var proxSem = (new Date()).addDays(6);
+		proxSem.setHours(0,0,0,0);
+		console.log(hoy);
+		console.log(proxSem);
+		//$scope.fechas = getDates(new Date(), (new Date()).addDays(6));
+		$scope.fechas = getDates(hoy,proxSem);
 		$scope.fechasDias = [];
 
 		(function (){			
@@ -83,6 +90,7 @@
        		  $scope.fechasDias.push($scope.dias[$scope.fechas[i].getDay()]);    
 			}
 			console.log($scope.fechasDias);
+			console.log(funciones[1].dia);
 		})();  
 
 		function checkComplejo(funcion){
@@ -115,17 +123,17 @@
 		}
 
 		function checkDia(funcion){
-			return funcion.dia == $scope.filtro.diaLocale;
+			return funcion.dia.getTime() === $scope.filtro.diaLocale.getTime();
 		}
 
 		$scope.filtrarDia = function(){
 			console.log($scope.filtro);
 			var indice = $scope.fechasDias.indexOf($scope.filtro.dia);
-			var dia = $scope.fechas[indice];
-			console.log(dia);
-			console.log(new Date(dia).toLocaleDateString());
-			$scope.filtro.diaLocale = new Date(dia).toLocaleDateString();
 			console.log(indice);
+			var dia = $scope.fechas[indice];
+			console.log(dia);			
+			$scope.filtro.diaLocale = dia;//new Date(dia).toLocaleDateString();
+			console.log($scope.filtro.diaLocale);
 			$scope.funcionesFiltradas = $scope.funciones.filter(checkDia);
 		}
 		

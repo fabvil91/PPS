@@ -2,9 +2,9 @@
     'use strict';
  
     angular
-        .module('app')
+        .module('cine')
      //   .controller('loginCtrl', ['$location', 'AuthenticationService', 'FlashService',function($location, AuthenticationService, FlashService) {
-          .controller('loginCtrl', ['$location',function($location) { 
+          .controller('loginCtrl', ['$location','$scope', function($location, $scope) { 
  
         $scope.login = {};
  		$scope.dataLoading = {};
@@ -13,17 +13,17 @@
             AuthenticationService.ClearCredentials();
         })();*/
  
-        function login() {
+    /*    function login() {
             $scope.dataLoading = true;
             AuthenticationService.Login($scope.login.username, $scope.login.password, function (response) {
                 if (response.success) {
-                    AuthenticationService.SetCredentials($scope.login.username, $scope.login.password);
+                  //  AuthenticationService.SetCredentials($scope.login.username, $scope.login.password);
                     $location.path('/main');
                 } else {
-                    FlashService.Error(response.message);
+                   // FlashService.Error(response.message);
                     $scope.dataLoading = false;
                 }
             };
-        )};
+        )};*/
     }]) 
-}();
+})();

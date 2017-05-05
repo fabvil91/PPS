@@ -7,14 +7,14 @@
         {
         url:'/main',              
         controller: 'mainCtrl',
-        templateUrl:'main.html'
+        templateUrl:'views/main.html'
         })
     $stateProvider
       .state('login',
         {
         url:'/login',
-        controller: 'LoginCtrl',
-        templateUrl:'login.html'
+        controller: 'loginCtrl',
+        templateUrl:'views/login.html'
         })/*
     $stateProvider
       .state('consultas',

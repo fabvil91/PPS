@@ -92,7 +92,8 @@
 .panel-body{
     margin: 0px;
 }
-.footer{
+.footer{   
+
      background-color: #00346D;
 }
 .footer-content{
@@ -152,3 +153,5 @@
   top:20px;
   margin-left:-200px;
 }*/
+
+
