@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <head lang ="en">
 
     <meta charset="utf-8"> 
@@ -35,6 +36,7 @@
 </head>
 
 <body>
+<div id="container">
   <!-- HEADER -->
     <div ng-app="cine" ng-controller="indexCtrl" class="container-fluid">
 
@@ -52,14 +54,16 @@
        
         <div ui-view></div>
         <!--inyeccion <div ng-include src="'main.html'"></div> -->
-
-        <div class="row footer">
-            <div class="col-sm-3"></div>
-            <div class="col-sm-6 footer-content">
+        <div id="clearfooter"></div>
+    </div>
+ </div>
+ <div class="row footer">
+     <div class="col-sm-3"></div>
+           <div class="col-sm-6 footer-content">
 
                 <div class="foot-section">
                     <div>
-                        <img src="./images/icons/ticket.png" alt="imagen de un ticket" class="icon">
+                        <img ng-src="././images/icons/ticket.png" alt="imagen de un ticket" class="icon">
                     </div>  
                     <div class="text-center links">
                         <h3>Promociones</h3>
@@ -69,7 +73,7 @@
 
                  <div class="foot-section">
                     <div>
-                        <img src="./images/icons/reel.png" alt="imagen de un rollo de pelicula" class="icon">
+                        <img ng-src="././images/icons/reel.png" alt="imagen de un rollo de pelicula" class="icon">
                     </div>  
                     <div class="text-center links">
                         <h3>Cine</h3>
@@ -80,7 +84,7 @@
 
                 <div class="foot-section">
                     <div>
-                        <img src="./images/icons/history.png" alt="imagen de un reloj" class="icon">
+                        <img ng-src="././images/icons/history.png" alt="imagen de un reloj" class="icon">
                     </div>  
                     <div class="text-center links">
                         <h3>Ingresa a tu Historial de Compras</h3>
@@ -88,9 +92,8 @@
                     </div>
                 </div>
 
-            </div>
-            <div class="col-sm-3"></div>
         </div>
-    </div>
-    
+         <div class="col-sm-3"></div>
+</div>
 </body>
+</html>
