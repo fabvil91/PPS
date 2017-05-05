@@ -25,13 +25,19 @@
 
     <script type="text/javascript" src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
 
+    <script src="//code.angularjs.org/1.6.4/angular-cookies.min.js"></script>
+
     <script src="scripts/app.js"></script>
         
     <link rel = "stylesheet" type = "text/css" href = "css/style.css" />
+    
+    <script src="scripts/services/user.service.local-storage.js"></script>
+    <script src="scripts/services/authentication.service.js"></script>    
 
     <script type="text/javascript" src="scripts/controllers/indexCtrl.js"></script>
     <script type="text/javascript" src="scripts/controllers/mainCtrl.js"></script>
     <script type="text/javascript" src="scripts/controllers/loginCtrl.js"></script>
+    <script type="text/javascript" src="scripts/controllers/registroCtrl.js"></script>
 
 </head>
 
@@ -47,7 +53,8 @@
             </div>
             <div class="col-sm-2 btn-group-vertical">
                 <a href="#" ui-sref="login" class="btn btn-info" role="button">Log In</a>
-                <a href="#" class="btn btn-info" role="button">Registrarse</a>
+                <a href="#" ng-if="$rootScope.globals != null" ui-sref="login" class="btn btn-info" role="button">Usuario</a>
+                <a href="#" ui-sref="registro" class="btn btn-info" role="button">Registrarse</a>
             </div>
         </div>
 

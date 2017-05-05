@@ -1,6 +1,6 @@
 (function(){
 	'use strict';
-	angular.module('cine', ['ui.bootstrap','ui.router'])
+	angular.module('cine', ['ui.bootstrap','ui.router','ngCookies'])
 	.config(function($stateProvider,$urlRouterProvider){
     $stateProvider
       .state('main',
@@ -15,14 +15,14 @@
         url:'/login',
         controller: 'loginCtrl',
         templateUrl:'views/login.html'
-        })/*
+        })
     $stateProvider
-      .state('consultas',
+      .state('registro',
         {
-        url:'/consultas',        
-        controller: 'CalculosCtrl',
-        templateUrl:'views/calculos.html'        
-        }) */
+        url:'/registro',        
+        controller: 'registroCtrl',
+        templateUrl:'views/registro.html'        
+        }) 
     $urlRouterProvider.otherwise('main');           
   });
 })();

@@ -1,29 +1,32 @@
 (function () {
-    'use strict';
- 
-    angular
-        .module('cine')
-     //   .controller('loginCtrl', ['$location', 'AuthenticationService', 'FlashService',function($location, AuthenticationService, FlashService) {
-          .controller('loginCtrl', ['$location','$scope', function($location, $scope) { 
- 
-        $scope.login = {};
- 		$scope.dataLoading = {};
-    /*    (function initController() {
-            // reset login status
-            AuthenticationService.ClearCredentials();
-        })();*/
- 
-    /*    function login() {
-            $scope.dataLoading = true;
-            AuthenticationService.Login($scope.login.username, $scope.login.password, function (response) {
-                if (response.success) {
-                  //  AuthenticationService.SetCredentials($scope.login.username, $scope.login.password);
-                    $location.path('/main');
-                } else {
-                   // FlashService.Error(response.message);
-                    $scope.dataLoading = false;
-                }
-            };
-        )};*/
-    }]) 
-})();
+    'use strict';
+ 
+    angular
+        .module('cine')
+        .controller('loginCtrl', ['$scope','$location', 'AuthenticationService',
+        function ($scope,$location, AuthenticationService) {
+        
+        // $scope.dataLoading = {};
+         $scope.loginForm = {};
+         $scope.mensaje = null;
+
+        (function () {
+            // reset login status
+            AuthenticationService.ClearCredentials();
+        })();
+ 
+        $scope.login = function login() {
+        //    $scope.dataLoading = true;
+            AuthenticationService.Login($scope.login.username, $scope.loginForm.password, function (response) {
+                if (response.success) {
+                    AuthenticationService.SetCredentials($scope.loginForm.username, $scope.loginForm.password);
+                    $location.path('/main');
+                } else {
+                    console.log("error");
+                    $scope.mensaje = response.message;
+             //       $scope.dataLoading = false;
+                }
+            });
+        };     
+}]);
+}) ();
