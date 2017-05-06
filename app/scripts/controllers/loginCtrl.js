@@ -3,10 +3,9 @@
  
     angular
         .module('cine')
-        .controller('loginCtrl', ['$scope','$location', 'AuthenticationService',
-        function ($scope,$location, AuthenticationService) {
-        
-        // $scope.dataLoading = {};
+        .controller('loginCtrl', ['$rootScope','$scope','$location', 'AuthenticationService',
+        function ($rootScope,$scope,$location, AuthenticationService) {
+                
          $scope.loginForm = {};
          $scope.mensaje = null;
 
@@ -15,18 +14,22 @@
             AuthenticationService.ClearCredentials();
         })();
  
-        $scope.login = function login() {
-        //    $scope.dataLoading = true;
+        $scope.login = function login() {        
             AuthenticationService.Login($scope.login.username, $scope.loginForm.password, function (response) {
                 if (response.success) {
                     AuthenticationService.SetCredentials($scope.loginForm.username, $scope.loginForm.password);
+ 					console.log($rootScope);
                     $location.path('/main');
+
+
+                $rootScope.$emit('myOwnEvent', $scope.loginForm.username);
+
                 } else {
                     console.log("error");
-                    $scope.mensaje = response.message;
-             //       $scope.dataLoading = false;
+                    $scope.mensaje = response.message;             
                 }
             });
-        };     
+        }; 
+		 
 }]);
 }) ();

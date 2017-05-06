@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
 	angular.module('cine')
-	.controller('mainCtrl', function($scope){		
+	.controller('mainCtrl', function($rootScope,$scope){		
 		$scope.complejos = ["Cinemar Avellaneda", "Cinemar Lanus"];
 		$scope.formatos = ["2D","3D"];
 		$scope.idiomas = ["Español", "Subtitulado"];
@@ -78,19 +78,19 @@
 		hoy.setHours(0,0,0,0);
 		var proxSem = (new Date()).addDays(6);
 		proxSem.setHours(0,0,0,0);
-		console.log(hoy);
-		console.log(proxSem);
+		//console.log(hoy);
+		//console.log(proxSem);
 		//$scope.fechas = getDates(new Date(), (new Date()).addDays(6));
 		$scope.fechas = getDates(hoy,proxSem);
 		$scope.fechasDias = [];
 
 		(function (){			
-			console.log($scope.fechas);			
+			//console.log($scope.fechas);			
 			for (var i = 0; i < $scope.fechas.length; i++ ) {	   
        		  $scope.fechasDias.push($scope.dias[$scope.fechas[i].getDay()]);    
 			}
-			console.log($scope.fechasDias);
-			console.log(funciones[1].dia);
+			//console.log($scope.fechasDias);
+			//console.log(funciones[1].dia);
 		})();  
 
 		function checkComplejo(funcion){
@@ -118,6 +118,7 @@
 		}
 
 		$scope.limpiarFiltro = function (){
+			console.log($rootScope);
 			$scope.filtro = {};
 			$scope.funcionesFiltradas = funciones;
 		}

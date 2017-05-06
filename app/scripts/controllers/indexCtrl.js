@@ -1,19 +1,19 @@
 (function(){
 	'use strict';
 	angular.module('cine')
-	.controller('indexCtrl', ['$rootScope', '$scope', function($rootScope,$scope){
-		$rootScope.globals = {};
+	.controller('indexCtrl', ['$rootScope', '$scope','AuthenticationService', function($rootScope,$scope,AuthenticationService){
+		
+		$scope.nombreUser = null;
+		$rootScope.$on('myOwnEvent', function(newData,data) {
+    		console.log(data);
+    		$scope.nombreUser = data;
+		});
+		
+		$scope.logout = function logout() {
+			AuthenticationService.ClearCredentials();
+			console.log($rootScope);			
+			$scope.nombreUser = null;
+		}  
 
-		$scope.peliculaList = [];
-		console.log($rootScope);
-		$scope.logueado = $rootScope.globals.currentUser != null;
-		$scope.userName = {};
-		console.log($scope.logueado);
-
-		if($scope.logueado){
-			userName = $rootScope.globals.currentUser.username;
-			console.log(userName);
-		}
-		console.log($scope.logueado);		
 	}]);
 }) ();
