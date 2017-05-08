@@ -11,27 +11,27 @@
 		$scope.myInterval = 3000;
 		
 		$scope.slides = [
-			{imageUrl: "https://lh3.googleusercontent.com/-H1KqX5HicIU/AAAAAAAAAAI/AAAAAAABSs8/XItaPYUOWX4/photo.jpg",
+			{imageUrl: "images/peliculas/StarWars.jpg",
 			 nombre: "Star Wars",
 			 descripcion: "Episodio 7"
 			},
-			{imageUrl: "http://www.foxlatina.com/custom-pages/logan-es/img/backgrounds_logan_outer.jpg",
+			{imageUrl: "images/peliculas/Logan.jpg",
 			 nombre: "Logan",
-			 descripcion: "1231111132 434"
+			 descripcion: "Vuelve de nuevo a la accion"
 			},
-			{imageUrl: "http://lacarbonifera.com/wp-content/uploads/2016/05/Steven_Rogers_Earth-616_0007.jpg",
+			{imageUrl: "images/peliculas/America.jpg",
 			 nombre: "Capitan America",
-			 descripcion: "Effffffffffffffffffffffffffffffffffff"
+			 descripcion: "El heroe de estados unidos"
 			},
-			{imageUrl: "https://4.bp.blogspot.com/-JtQOvKt1hJE/WIiAKGp9xEI/AAAAAAAAUCc/hzwIrs8f050GTVA6JQpMRyD5lQs0ibcwQCLcB/s400/posterchino.jpg",
+			{imageUrl: "images/peliculas/BeautyAndTheBeast.jpg",
 			 nombre: "Bella y Bestia",
-			 descripcion: "Episod234dsfgdfgdfg 34534 234523 123123 io 7 sdfsd "
+			 descripcion: "Un romance diferente" 
 			}
 		];
 
 		$scope.funciones = [
 			{
-				pelicula: {imageUrl: "https://lh3.googleusercontent.com/-H1KqX5HicIU/AAAAAAAAAAI/AAAAAAABSs8/XItaPYUOWX4/photo.jpg",
+				pelicula: {imageUrl: "images/peliculas/StarWars.jpg",
 			 			   nombre: "Star Wars",
 			 			   descripcion: "Episodio 7"},
 				formato: "2D",
@@ -42,7 +42,7 @@
 				dia: new Date("5/8/2017")
 			},
 			{
-				pelicula: {imageUrl: "http://www.foxlatina.com/custom-pages/logan-es/img/backgrounds_logan_outer.jpg",
+				pelicula: {imageUrl: "images/peliculas/Logan.jpg",
 			 			   nombre: "Logan",
 			 			   descripcion: "Vuelve de nuevo a la accion"},
 				formato: "3D",
@@ -53,7 +53,7 @@
 				dia: new Date("5/10/2017")
 			},
 			{
-				pelicula: {imageUrl: "http://lacarbonifera.com/wp-content/uploads/2016/05/Steven_Rogers_Earth-616_0007.jpg",
+				pelicula: {imageUrl: "images/peliculas/America.jpg",
 			 			   nombre: "Capitan America",
 			 			   descripcion: "El heroe de estados unidos"},
 				formato: "3D",
@@ -62,6 +62,17 @@
 						  },
 				idioma: "Español",
 				dia: new Date("5/10/2017")
+			},
+			{
+				pelicula: {imageUrl: "images/peliculas/BeautyAndTheBeast.jpg",
+			 			   nombre: "Bella y Bestia",
+			 			   descripcion: "Un romance diferente"},
+				formato: "2D",
+				complejo: {
+						   nombre: "Cinemar Lanus"
+						  },
+				idioma: "Español",
+				dia: new Date("5/11/2017")
 			}
 		];
 
