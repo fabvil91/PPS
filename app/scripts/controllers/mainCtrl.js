@@ -39,7 +39,7 @@
 						   nombre: "Cinemar Avellaneda"
 						  },
 				idioma: "Español",
-				dia: new Date("5/5/2017")
+				dia: new Date("5/8/2017")
 			},
 			{
 				pelicula: {imageUrl: "http://www.foxlatina.com/custom-pages/logan-es/img/backgrounds_logan_outer.jpg",
@@ -50,7 +50,7 @@
 						   nombre: "Cinemar Lanus"
 						  },
 				idioma: "Subtitulado",
-				dia: new Date("5/7/2017")
+				dia: new Date("5/10/2017")
 			}
 		];
 
