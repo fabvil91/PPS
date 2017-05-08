@@ -27,44 +27,32 @@
             <div class="col-sm-10 panel-heading">
                 <div class="col-xs-3 form-group">
                     <label for="selComplejo">Complejo: </label>                   
-                     <select class="form-control" id="selComplejo" ng-model="filtro.complejo.nombre" ng-options="x for x in complejos" ng-change="filtrarComplejo()">            
+                     <select class="form-control" id="selComplejo" ng-model="filtro.complejo.nombre" ng-options="x for x in complejos" >            
                      </select> 
                 </div>
       
-            <!-- FORMATO 
-                <div class="col-xs-2 form-group"> -->
-                 <!--   <label for="btngroup-formato">Formato:</label>
-                    <div class="btngroup" id="btngroup-formato">
-                        <button class="btn btn-primary filter-button" data-filter="2d" ng-click="filtro.formato = '2D'">2D</button>
-                        <button class="btn btn-primary filter-button" data-filter="3d" ng-click="filtro.formato = '3D'">3D</button>
-                    </div>-->
-                    <div class="col-xs-1 form-group">
+            <!-- FORMATO  -->                                
+                <div class="col-xs-1 form-group">
                     <label for="selFormato">Formato: </label>                   
-                     <select class="form-control" id="selFormato" ng-model="filtro.formato" ng-options="x for x in formatos" ng-change="filtrarFormato()">        
-                     </select> 
-                    </div>
-               <!-- </div>
-                 IDIOMA 
-                <div class="col-xs-3 form-group">
-                    <label for="btngroup-idioma">Idioma:</label>
-                    <div class="btngroup" id="btngroup-idioma">
-                        <button class="btn btn-primary filter-button" data-filter="español">Español</button>
-                        <button class="btn btn-primary filter-button" data-filter="subtitulado">Subtitulado</button>
-                    </div>
-                </div>-->
+                    <select class="form-control" id="selFormato" ng-model="filtro.formato" ng-options="x for x in formatos" >        
+                    </select> 
+                </div>
+
+            <!-- IDIOMA -->                
                  <div class="col-xs-2 form-group">
-                    <label for="selIdioma">Formato: </label>                   
-                     <select class="form-control" id="selIdioma" ng-model="filtro.idioma" ng-options="x for x in idiomas" ng-change="filtrarIdioma()">        
+                    <label for="selIdioma">Idioma: </label>                   
+                     <select class="form-control" id="selIdioma" ng-model="filtro.idioma" ng-options="x for x in idiomas" >        
                      </select> 
                  </div>
 
+            <!-- DIA -->      
                 <div class="col-xs-2 form-group">
                     <label for="selDia">Dia: </label>                   
                      <select class="form-control" id="selDia" ng-model="filtro.dia" ng-options="x for x in fechasDias" ng-change="filtrarDia()">        
                      </select> 
                  </div>
 
-                <!-- TODO -->
+            <!-- TODO -->
                 <div class="col-xs-2 form-group">
                     <label for="btngroup-todo" style="color:transparent">todo</label>
                     <div class="btngroup" id="btngroup-todo">
@@ -79,64 +67,23 @@
     <!-- LISTA DE PELICULAS -->
 
         <div class="row">
-            <div class="col-sm-2"></div>
+           <div class="col-sm-2"></div>
            <div class="col-sm-8 panel panel-default">
-              
-             
-                 <div class="panel-body">
-                     <!-- FILTRO DIAS -->
-                     <form class="form-inline">
-                         <div class="btngroup" id="btngroup-dias">
-                              <button class="btn btn-primary filter-button" data-filter="lunes" ng-click="filtrarDia()">Lunes</button>
-                              <button class="btn btn-primary filter-button" data-filter="martes">Martes</button>
-                              <button class="btn btn-primary filter-button" data-filter="miercoles">Miercoles</button>
-                              <button class="btn btn-primary filter-button" data-filter="jueves">Jueves</button>
-                              <button class="btn btn-primary filter-button" data-filter="viernes">Viernes</button>
-                              <button class="btn btn-primary filter-button" data-filter="sabado">Sabado</button>
-                              <button class="btn btn-primary filter-button" data-filter="domingo">Domingo</button>
-                         </div>
-                     </form> 
+                           
+                 <div class="panel-body">                                                            
+                  <!-- PELICULAS-->
+                  <ul class="list-inline">
+                  <span ng-show="funciones.length === 0">No hay funciones disponibles</span>
+                  <li ng-repeat="funcion in funciones | filter:{ formato: filtro.formato, idioma: filtro.idioma, complejo:{nombre: filtro.complejo.nombre},diaTime: filtro.diaLocale } | unique:'pelicula.nombre'">
+                      <div class="movie text-center">
+                        <a href="#">
+                          <img ng-src="{{funcion.pelicula.imageUrl}}" alt="poster"  class="img-thumbnail img-poster">                                   
+                          <p>{{funcion.pelicula.nombre}}</p>
+                        </a>
+                      </div>
+                  </li>
+                  </ul>
                    
-                     <!-- PELICULAS-->
-                 <ul class="list-inline">
-                 <span ng-show="funcionesFiltradas.length === 0">No hay funciones disponibles</span>
-                  <li ng-repeat="funcion in funcionesFiltradas">
-
-                            <div class="movie text-center">
-                                <a href="#">
-                                    <img ng-src="{{funcion.pelicula.imageUrl}}" alt="poster"  class="img-thumbnail img-poster">                                   
-                                    <p>{{funcion.pelicula.nombre}}</p>
-                                </a>
-                            </div>
-                        </li>
-                 </ul>
-
-
-                   <!--     <li>
-                            <div class="movie text-center">
-                                <a href="#">
-                                    <img src="./images/BeautyAndTheBeast.jpg" alt="poster" class="img-thumbnail img-poster">
-                                    <p>Bella y la Bestia</p>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="movie text-center">
-                                <a href="#">
-                                    <img src="./images/Logan.jpg" alt="poster" class="img-thumbnail img-poster">
-                                    <p>Logan</p>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="movie text-center">
-                                <a href="#">
-                                    <img src="./images/StarWars.jpg" alt="poster" class="img-thumbnail img-poster">
-                                    <p>Star Wars: The Force Awakens</p>
-                                </a>
-                            </div>
-                        </li>  -->
-                    <!--</ul>-->
                 </div>
             </div>
             <div class="col-sm-2"></div>

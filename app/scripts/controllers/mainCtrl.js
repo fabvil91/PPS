@@ -29,7 +29,7 @@
 			}
 		];
 
-		var funciones = [
+		$scope.funciones = [
 			{
 				pelicula: {imageUrl: "https://lh3.googleusercontent.com/-H1KqX5HicIU/AAAAAAAAAAI/AAAAAAABSs8/XItaPYUOWX4/photo.jpg",
 			 			   nombre: "Star Wars",
@@ -51,11 +51,29 @@
 						  },
 				idioma: "Subtitulado",
 				dia: new Date("5/10/2017")
+			},
+			{
+				pelicula: {imageUrl: "http://lacarbonifera.com/wp-content/uploads/2016/05/Steven_Rogers_Earth-616_0007.jpg",
+			 			   nombre: "Capitan America",
+			 			   descripcion: "El heroe de estados unidos"},
+				formato: "3D",
+				complejo: {
+						   nombre: "Cinemar Avellaneda"
+						  },
+				idioma: "Español",
+				dia: new Date("5/10/2017")
 			}
 		];
 
-		$scope.funciones = funciones;
-		$scope.funcionesFiltradas = funciones;
+				
+		(function(){			
+			var funcionesConTime = $scope.funciones;
+			for (var i = funcionesConTime.length - 1; i >= 0; i--) {				
+				funcionesConTime[i].diaTime = funcionesConTime[i].dia.getTime();				
+			}
+			console.log($scope.funciones);
+			console.log(funcionesConTime);			
+		})();
 		
 		Date.prototype.addDays = function(days) {
         var dat = new Date(this.valueOf())
@@ -78,65 +96,28 @@
 		hoy.setHours(0,0,0,0);
 		var proxSem = (new Date()).addDays(6);
 		proxSem.setHours(0,0,0,0);
-		//console.log(hoy);
-		//console.log(proxSem);
-		//$scope.fechas = getDates(new Date(), (new Date()).addDays(6));
+				
 		$scope.fechas = getDates(hoy,proxSem);
 		$scope.fechasDias = [];
 
-		(function (){			
-			//console.log($scope.fechas);			
+		(function (){							
 			for (var i = 0; i < $scope.fechas.length; i++ ) {	   
        		  $scope.fechasDias.push($scope.dias[$scope.fechas[i].getDay()]);    
-			}
-			//console.log($scope.fechasDias);
-			//console.log(funciones[1].dia);
+			}						
 		})();  
-
-		function checkComplejo(funcion){
-			return funcion.complejo.nombre == $scope.filtro.complejo.nombre;
+				
+		$scope.filtrarDia = function(){		
+			console.log($scope.filtro);
+				
+			var indice = $scope.fechasDias.indexOf($scope.filtro.dia);			
+			var dia = $scope.fechas[indice];
+			
+			$scope.filtro.diaLocale = dia.getTime();					
 		}
-
-		$scope.filtrarComplejo = function (){
-			$scope.funcionesFiltradas = $scope.funciones.filter(checkComplejo);
-		}
-
-		function checkFormato(funcion){
-			return funcion.formato == $scope.filtro.formato;
-		}
-
-		$scope.filtrarFormato = function (){
-			$scope.funcionesFiltradas = $scope.funciones.filter(checkFormato);
-		}
-
-		function checkIdioma(funcion){
-			return funcion.idioma == $scope.filtro.idioma;
-		}
-
-		$scope.filtrarIdioma = function (){
-			$scope.funcionesFiltradas = $scope.funciones.filter(checkIdioma);
-		}
-
+				
 		$scope.limpiarFiltro = function (){
 			console.log($rootScope);
-			$scope.filtro = {};
-			$scope.funcionesFiltradas = funciones;
-		}
-
-		function checkDia(funcion){
-			return funcion.dia.getTime() === $scope.filtro.diaLocale.getTime();
-		}
-
-		$scope.filtrarDia = function(){
-			console.log($scope.filtro);
-			var indice = $scope.fechasDias.indexOf($scope.filtro.dia);
-			console.log(indice);
-			var dia = $scope.fechas[indice];
-			console.log(dia);			
-			$scope.filtro.diaLocale = dia;//new Date(dia).toLocaleDateString();
-			console.log($scope.filtro.diaLocale);
-			$scope.funcionesFiltradas = $scope.funciones.filter(checkDia);
-		}
-		
+			$scope.filtro = {};			
+		}						
 	});
 })();

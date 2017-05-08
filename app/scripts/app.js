@@ -1,6 +1,6 @@
 (function(){
 	'use strict';
-	angular.module('cine', ['ui.bootstrap','ui.router','ngCookies'])
+	angular.module('cine', ['ui.bootstrap','ui.router','ngCookies','angular.filter'])
 	.config(function($stateProvider,$urlRouterProvider){
     $stateProvider
       .state('main',
