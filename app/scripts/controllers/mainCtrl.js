@@ -39,7 +39,7 @@
 						   nombre: "Cinemar Avellaneda"
 						  },
 				idioma: "Español",
-				dia: new Date("5/8/2017")
+				dia: new Date("5/9/2017")
 			},
 			{
 				pelicula: {imageUrl: "images/peliculas/Logan.jpg",
