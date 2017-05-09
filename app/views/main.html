@@ -69,6 +69,52 @@
         <div class="row">
            <div class="col-sm-2"></div>
            <div class="col-sm-8 panel panel-default">
+<<<<<<< HEAD
+              
+             
+                 <div class="panel-body">
+                    
+                   
+                     <!-- PELICULAS-->
+                 <ul class="list-inline">
+                 <span ng-show="funcionesFiltradas.length === 0">No hay funciones disponibles</span>
+                  <li ng-repeat="funcion in funcionesFiltradas">
+
+                            <div class="movie text-center">
+                                <a href="#" ui-sref="detallePelicula">
+                                    <img ng-src="{{funcion.pelicula.imageUrl}}" alt="poster"  class="img-thumbnail img-poster">                                   
+                                    <p>{{funcion.pelicula.nombre}}</p>
+                                </a>
+                            </div>
+                        </li>
+                 </ul>
+
+                   <!--     <li>
+                            <div class="movie text-center">
+                                <a href="#">
+                                    <img src="./images/BeautyAndTheBeast.jpg" alt="poster" class="img-thumbnail img-poster">
+                                    <p>Bella y la Bestia</p>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="movie text-center">
+                                <a href="#">
+                                    <img src="./images/Logan.jpg" alt="poster" class="img-thumbnail img-poster">
+                                    <p>Logan</p>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="movie text-center">
+                                <a href="#">
+                                    <img src="./images/StarWars.jpg" alt="poster" class="img-thumbnail img-poster">
+                                    <p>Star Wars: The Force Awakens</p>
+                                </a>
+                            </div>
+                        </li>  -->
+                    <!--</ul>-->
+=======
                            
                  <div class="panel-body">                                                            
                   <!-- PELICULAS-->
@@ -76,7 +122,7 @@
                   <span ng-show="funciones.length === 0">No hay funciones disponibles</span>
                   <li ng-repeat="funcion in funciones | filter:{ formato: filtro.formato, idioma: filtro.idioma, complejo:{nombre: filtro.complejo.nombre},diaTime: filtro.diaLocale } | unique:'pelicula.nombre'">
                       <div class="movie text-center">
-                        <a href="#">
+                        <a href="#" ui-sref="detallePelicula">
                           <img ng-src="{{funcion.pelicula.imageUrl}}" alt="poster"  class="img-thumbnail img-poster">                                   
                           <p>{{funcion.pelicula.nombre}}</p>
                         </a>
@@ -84,6 +130,7 @@
                   </li>
                   </ul>
                    
+>>>>>>> b8c691184bbb3879874d8565ee8182bdaffd0cd0
                 </div>
             </div>
             <div class="col-sm-2"></div>
@@ -110,7 +157,11 @@
                         <li>
                             <div class="movie text-center">
                                 <a href="#">
+<<<<<<< HEAD
+                                    <img src="/images/BeautyAndTheBeast.jpg" alt="poster" class="img-thumbnail img-poster">
+=======
                                     <img src="images/peliculas/BeautyAndTheBeast.jpg" alt="poster" class="img-thumbnail img-poster">
+>>>>>>> b8c691184bbb3879874d8565ee8182bdaffd0cd0
                                     <p>Bella y la Bestia</p>
                                 </a>
                             </div>
@@ -118,7 +169,11 @@
                         <li>
                             <div class="movie text-center">
                                 <a href="#">
+<<<<<<< HEAD
+                                    <img src="/images/Logan.jpg" alt="poster" class="img-thumbnail img-poster">
+=======
                                     <img src="images/peliculas/Logan.jpg" alt="poster" class="img-thumbnail img-poster">
+>>>>>>> b8c691184bbb3879874d8565ee8182bdaffd0cd0
                                     <p>Logan</p>
                                 </a>
                             </div>
@@ -126,8 +181,13 @@
                         <li>
                             <div class="movie text-center">
                                 <a href="#">
+<<<<<<< HEAD
+                                    <img src="/images/StarWars.jpg" alt="poster" class="img-thumbnail img-poster">
+                                    <p>Star Wars: The Force Awakens</p>
+=======
                                     <img src="images/peliculas/StarWars.jpg" alt="poster" class="img-thumbnail img-poster">
                                     <p>Star Wars</p>
+>>>>>>> b8c691184bbb3879874d8565ee8182bdaffd0cd0
                                 </a>
                             </div>
                         </li>
@@ -156,7 +216,11 @@
                         <li>
                             <div class="movie text-center">
                                 <a href="#">
+<<<<<<< HEAD
+                                    <img src="/images/BeautyAndTheBeast.jpg" alt="poster" class="img-thumbnail img-poster">
+=======
                                     <img src="images/peliculas/BeautyAndTheBeast.jpg" alt="poster" class="img-thumbnail img-poster">
+>>>>>>> b8c691184bbb3879874d8565ee8182bdaffd0cd0
                                     <p>Bella y la Bestia</p>
                                 </a>
                             </div>
@@ -164,7 +228,11 @@
                         <li>
                             <div class="movie text-center">
                                 <a href="#">
+<<<<<<< HEAD
+                                    <img src="/images/Logan.jpg" alt="poster" class="img-thumbnail img-poster">
+=======
                                     <img src="images/peliculas/Logan.jpg" alt="poster" class="img-thumbnail img-poster">
+>>>>>>> b8c691184bbb3879874d8565ee8182bdaffd0cd0
                                     <p>Logan</p>
                                 </a>
                             </div>
@@ -172,8 +240,13 @@
                         <li>
                             <div class="movie text-center">
                                 <a href="#">
+<<<<<<< HEAD
+                                    <img src="/images/StarWars.jpg" alt="poster" class="img-thumbnail img-poster">
+                                    <p>Star Wars: The Force Awakens</p>
+=======
                                     <img src="images/peliculas/StarWars.jpg" alt="poster" class="img-thumbnail img-poster">
                                     <p>Star Wars</p>
+>>>>>>> b8c691184bbb3879874d8565ee8182bdaffd0cd0
                                 </a>
                             </div>
                         </li>

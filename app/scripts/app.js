@@ -23,6 +23,13 @@
         controller: 'registroCtrl',
         templateUrl:'views/registro.html'        
         }) 
+       $stateProvider
+      .state('detallePelicula',
+        {
+        url:'/detallePelicula',              
+        controller: 'detallePeliculaCtrl',
+        templateUrl:'views/detallePelicula.html'
+        })
     $urlRouterProvider.otherwise('main');           
   })
   .run(['$rootScope', '$location', '$cookies', '$http',

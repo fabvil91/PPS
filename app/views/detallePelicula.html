@@ -1,0 +1,63 @@
+
+   <!-- BREAK -->
+   
+        <div class="row">
+            <div class="col-sm-12 break"></div>   
+        </div>
+        
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-4">
+            <!--Video-->
+            <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/duGqrYw4usE" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+            <!--Sinopsis-->
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#sinposis">Sinopsis</a></li>
+                <li><a data-toggle="tab" href="#ficha">Ficha Tecnica</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="sinopsis" class="tab-pane fade in active">
+                <h3>Sinopsis</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div id="ficha" class="tab-pane fade">
+                <h3>Ficha Tecnica</h3>
+                    <ul>
+                        <li>Titulo Original: </li>
+                        <li>Genero: </li>
+                        <li>Director: </li>
+                        <li>Calificacion: </li>
+                        <li>Duracion: </li>
+                    </ul>
+                </div>
+                
+            </div>          
+        </div>
+        <div class="col-md-6">
+            <!--Formato-->
+            <div class="form-group">
+                <label for="selFormato">Formato: </label>                   
+                <select class="form-control" id="selFormato" ng-model="filtro.formato" ng-options="x for x in formatos" ng-change="filtrarFormato()"></select> 
+            </div>
+            <!--idioma-->
+            <div class="form-group">
+                <label for="selIdioma">Formato: </label>                   
+                <select class="form-control" id="selIdioma" ng-model="filtro.idioma" ng-options="x for x in idiomas" ng-change="filtrarIdioma()"></select> 
+            </div>
+            <!--Dia-->
+            <div class="form-group">
+                <label for="selDia">Dia: </label>                   
+                <select class="form-control" id="selDia" ng-model="filtro.dia" ng-options="x for x in fechasDias" ng-change="filtrarDia()"></select> 
+            </div>
+            <!--Complejo-->
+            <div class="form-group">
+                <label for="selComplejo">Complejo: </label>                   
+                <select class="form-control" id="selComplejo" ng-model="filtro.complejo.nombre" ng-options="x for x in complejos" ng-change="filtrarComplejo()"></select> 
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
