@@ -15,7 +15,7 @@
         })();
  
         $scope.login = function login() {        
-            AuthenticationService.Login($scope.login.username, $scope.loginForm.password, function (response) {
+            AuthenticationService.Login($scope.loginForm.username, $scope.loginForm.password, function (response) {
                 if (response.success) {
                     AuthenticationService.SetCredentials($scope.loginForm.username, $scope.loginForm.password);
  					console.log($rootScope);

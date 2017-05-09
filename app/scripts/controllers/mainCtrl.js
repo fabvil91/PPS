@@ -17,11 +17,11 @@
 			},
 			{imageUrl: "images/peliculas/Logan.jpg",
 			 nombre: "Logan",
-			 descripcion: "Vuelve de nuevo a la accion"
+			 descripcion: "Vuelve de nuevo a la acción"
 			},
 			{imageUrl: "images/peliculas/America.jpg",
-			 nombre: "Capitan America",
-			 descripcion: "El heroe de estados unidos"
+			 nombre: "Capitán América",
+			 descripcion: "El héroe de Estados Unidos"
 			},
 			{imageUrl: "images/peliculas/BeautyAndTheBeast.jpg",
 			 nombre: "Bella y Bestia",
@@ -44,7 +44,7 @@
 			{
 				pelicula: {imageUrl: "images/peliculas/Logan.jpg",
 			 			   nombre: "Logan",
-			 			   descripcion: "Vuelve de nuevo a la accion"},
+			 			   descripcion: "Vuelve de nuevo a la acción"},
 				formato: "3D",
 				complejo: {
 						   nombre: "Cinemar Lanus"
@@ -54,8 +54,8 @@
 			},
 			{
 				pelicula: {imageUrl: "images/peliculas/America.jpg",
-			 			   nombre: "Capitan America",
-			 			   descripcion: "El heroe de estados unidos"},
+			 			   nombre: "Capitán América",
+			 			   descripcion: "El héroe de Estados Unidos"},
 				formato: "3D",
 				complejo: {
 						   nombre: "Cinemar Avellaneda"
