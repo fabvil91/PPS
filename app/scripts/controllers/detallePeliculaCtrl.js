@@ -128,10 +128,20 @@
 			console.log($rootScope);
 			$scope.filtro = {};			
 		}
-
-		if(Datos.listado() != null){
-			$scope.filtro = Datos.listado();
-			$scope.filtro.diaNombre = $scope.dias[$scope.filtro.dia.getDay()];
+		
+		$scope.filtro.pelicula = Datos.listado().pelicula;
+		if(Datos.listado().filtroDia){			
+			$scope.filtro.diaNombre = $scope.dias[Datos.listado().dia.getDay()];
+		}
+		if(Datos.listado().filtroFormato){			
+			$scope.filtro.formato = Datos.listado().formato;
+		}
+		if(Datos.listado().filtroIdioma){			
+			$scope.filtro.idioma = Datos.listado().idioma;
+		}
+		if(Datos.listado().filtroComplejo){
+			$scope.filtro.complejo = {};			
+			$scope.filtro.complejo.nombre = Datos.listado().complejo.nombre;
 		}
 		
 		$scope.tab = 1;

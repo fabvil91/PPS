@@ -32,7 +32,8 @@
                         <li>Duración: {{filtro.pelicula.duracion}} minutos</li>
                     </ul>
                 </div>                
-            </div>          
+            </div>  
+
         </div>
         <div class="col-md-6">
             <!--Formato-->
@@ -55,6 +56,15 @@
                 <label for="selComplejo">Complejo: </label>                   
                 <select class="form-control" id="selComplejo" ng-model="filtro.complejo.nombre" ng-options="x for x in complejos"></select> 
             </div>
+
+            <div>
+                <ul ng-repeat="(key, value) in funciones | groupBy: '[complejo.nombre]'">
+                    {{ key }}
+                    <li ng-repeat="funcion in value">
+                        {{ funcion.formato }} > {{ funcion.idioma }} > {{funcion.dia}} > 
+                    </li>
+                </ul>
+            </div>
         </div>
         <div class="col-md-1"></div>
-    </div>
+    </div>    

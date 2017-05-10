@@ -152,6 +152,12 @@
 		}
 
 		$scope.cargar = function(funcion){
+			console.log($scope.filtro);													
+			$scope.filtro.formato == null ? funcion.filtroFormato = false : funcion.filtroFormato = true;
+			$scope.filtro.idioma == null ? funcion.filtroIdioma = false : funcion.filtroIdioma = true;
+			$scope.filtro.complejo == null ? funcion.filtroComplejo = false : funcion.filtroComplejo = true;
+			$scope.filtro.diaLocale == null ? funcion.filtroDia = false : funcion.filtroDia = true;
+			
 			Datos.cargar(funcion);
 		}						
 	}]);
