@@ -74,7 +74,7 @@
                   <span ng-show="funciones.length === 0">No hay funciones disponibles</span>
                   <li ng-repeat="funcion in funciones | filter:{ formato: filtro.formato, idioma: filtro.idioma, complejo:{nombre: filtro.complejo.nombre},diaTime: filtro.diaLocale } | unique:'pelicula.nombre'">
                       <div class="movie text-center">
-                        <a href="#" ui-sref="detallePelicula">
+                        <a href="#" ng-click="cargar(funcion)" ui-sref="detallePelicula">
                           <img ng-src="{{funcion.pelicula.imageUrl}}" alt="poster"  class="img-thumbnail img-poster">                                   
                           <p>{{funcion.pelicula.nombre}}</p>
                         </a>

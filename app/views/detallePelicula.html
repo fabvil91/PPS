@@ -13,48 +13,47 @@
 
             <!--Sinopsis-->
             <ul class="nav nav-tabs" style="padding-top: 20px;">
-                <li class="active"><a data-toggle="tab" href="#sinopsis">Sinopsis</a></li>
-                <li><a data-toggle="tab" href="#ficha">Ficha Tecnica</a></li>
+                <li ng-class="{active:isSet(1)}"><a href ng-click="setTab(1)">Sinopsis</a></li>
+                <li ng-class="{active:isSet(2)}"><a href ng-click="setTab(2)">Ficha Técnica</a></li>
             </ul>
 
             <div class="tab-content">
-                <div id="sinopsis" class="tab-pane fade in active">
+                <div ng-show="isSet(1)" id="sinopsis"> <!--class="tab-pane fade">-->
                 <h3>Sinopsis</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>{{filtro.pelicula.descripcion}}</p>
                 </div>
-                <div id="ficha" class="tab-pane fade">
-                <h3>Ficha Tecnica</h3>
+                <div ng-show="isSet(2)" id="ficha"> <!-- class="tab-pane fade">-->
+                <h3>Ficha Técnica</h3>
                     <ul>
-                        <li>Titulo Original: </li>
-                        <li>Genero: </li>
-                        <li>Director: </li>
-                        <li>Calificacion: </li>
-                        <li>Duracion: </li>
+                        <li>Título Original: {{filtro.pelicula.tituloOriginal}}</li>
+                        <li>Género: {{filtro.pelicula.genero}}</li>
+                        <li>Director: {{filtro.pelicula.director}}</li>
+                        <li>Calificación: {{filtro.pelicula.calificacion}}</li>
+                        <li>Duración: {{filtro.pelicula.duracion}} minutos</li>
                     </ul>
-                </div>
-                
+                </div>                
             </div>          
         </div>
         <div class="col-md-6">
             <!--Formato-->
             <div class="form-group">
                 <label for="selFormato">Formato: </label>                   
-                <select class="form-control" id="selFormato" ng-model="filtro.formato" ng-options="x for x in formatos" ng-change="filtrarFormato()"></select> 
+                <select class="form-control" id="selFormato" ng-model="filtro.formato" ng-options="x for x in formatos"></select> 
             </div>
             <!--idioma-->
             <div class="form-group">
                 <label for="selIdioma">Idioma: </label>                   
-                <select class="form-control" id="selIdioma" ng-model="filtro.idioma" ng-options="x for x in idiomas" ng-change="filtrarIdioma()"></select> 
+                <select class="form-control" id="selIdioma" ng-model="filtro.idioma" ng-options="x for x in idiomas"></select> 
             </div>
             <!--Dia-->
             <div class="form-group">
-                <label for="selDia">Dia: </label>                   
-                <select class="form-control" id="selDia" ng-model="filtro.dia" ng-options="x for x in fechasDias" ng-change="filtrarDia()"></select> 
+                <label for="selDia">Día: </label>                   
+                <select class="form-control" id="selDia" ng-model="filtro.diaNombre" ng-options="x for x in fechasDias" ng-change="filtrarDia()"></select> 
             </div>
             <!--Complejo-->
             <div class="form-group">
                 <label for="selComplejo">Complejo: </label>                   
-                <select class="form-control" id="selComplejo" ng-model="filtro.complejo.nombre" ng-options="x for x in complejos" ng-change="filtrarComplejo()"></select> 
+                <select class="form-control" id="selComplejo" ng-model="filtro.complejo.nombre" ng-options="x for x in complejos"></select> 
             </div>
         </div>
         <div class="col-md-1"></div>

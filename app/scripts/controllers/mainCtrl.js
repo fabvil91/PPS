@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
 	angular.module('cine')
-	.controller('mainCtrl', function($rootScope,$scope){		
+	.controller('mainCtrl', ['$rootScope','$scope','Datos',function($rootScope,$scope,Datos){		
 		$scope.complejos = ["Cinemar Avellaneda", "Cinemar Lanus"];
 		$scope.formatos = ["2D","3D"];
 		$scope.idiomas = ["Español", "Subtitulado"];
@@ -33,7 +33,12 @@
 			{
 				pelicula: {imageUrl: "images/peliculas/StarWars.jpg",
 			 			   nombre: "Star Wars",
-			 			   descripcion: "Episodio 7"},
+			 			   descripcion: "Episodio 7",
+			 			   genero: "Space Opera",
+						   duracion: "98",
+						   tituloOriginal: "Star Wars",
+						   director: "JJ Abrams",
+						   calificacion: "+13"},						 			   
 				formato: "2D",
 				complejo: {
 						   nombre: "Cinemar Avellaneda"
@@ -44,7 +49,12 @@
 			{
 				pelicula: {imageUrl: "images/peliculas/Logan.jpg",
 			 			   nombre: "Logan",
-			 			   descripcion: "Vuelve de nuevo a la acción"},
+			 			   descripcion: "Vuelve de nuevo a la acción",
+			 			   genero: "Acción",
+						   duracion: "80",
+						   tituloOriginal: "Logan",
+						   director: "John Will",
+						   calificacion: "+16"},			 	
 				formato: "3D",
 				complejo: {
 						   nombre: "Cinemar Lanus"
@@ -55,7 +65,12 @@
 			{
 				pelicula: {imageUrl: "images/peliculas/America.jpg",
 			 			   nombre: "Capitán América",
-			 			   descripcion: "El héroe de Estados Unidos"},
+			 			   descripcion: "El héroe de Estados Unidos",
+			 			   genero: "Acción",
+						   duracion: "76",
+						   tituloOriginal: "Captain America",
+						   director: "Mary Weild",
+						   calificacion: "+13"},			 	
 				formato: "3D",
 				complejo: {
 						   nombre: "Cinemar Avellaneda"
@@ -66,7 +81,12 @@
 			{
 				pelicula: {imageUrl: "images/peliculas/BeautyAndTheBeast.jpg",
 			 			   nombre: "Bella y Bestia",
-			 			   descripcion: "Un romance diferente"},
+			 			   descripcion: "Un romance diferente",
+			 			   genero: "Romance",
+						   duracion: "71",
+						   tituloOriginal: "Beauty And The Beast",
+						   director: "Taliz Al Quilani",
+						   calificacion: "ATP"},							 			   
 				formato: "2D",
 				complejo: {
 						   nombre: "Cinemar Lanus"
@@ -129,6 +149,10 @@
 		$scope.limpiarFiltro = function (){
 			console.log($rootScope);
 			$scope.filtro = {};			
+		}
+
+		$scope.cargar = function(funcion){
+			Datos.cargar(funcion);
 		}						
-	});
+	}]);
 })();
