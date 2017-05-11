@@ -44,7 +44,8 @@
 						   nombre: "Cinemar Avellaneda"
 						  },
 				idioma: "Español",
-				dia: new Date("5/9/2017")
+				dia: new Date("5/11/2017"),
+				hora: new Date(2017,4,11,15,10,0,0)
 			},
 			{
 				pelicula: {imageUrl: "images/peliculas/Logan.jpg",
@@ -60,7 +61,8 @@
 						   nombre: "Cinemar Lanus"
 						  },
 				idioma: "Subtitulado",
-				dia: new Date("5/10/2017")
+				dia: new Date("5/12/2017"),
+				hora: new Date(2017,4,12,16,30,0,0)
 			},
 			{
 				pelicula: {imageUrl: "images/peliculas/America.jpg",
@@ -76,7 +78,8 @@
 						   nombre: "Cinemar Avellaneda"
 						  },
 				idioma: "Español",
-				dia: new Date("5/10/2017")
+				dia: new Date("5/12/2017"),
+				hora: new Date(2017,4,12,18,0,0,0)
 			},
 			{
 				pelicula: {imageUrl: "images/peliculas/BeautyAndTheBeast.jpg",
@@ -92,7 +95,8 @@
 						   nombre: "Cinemar Lanus"
 						  },
 				idioma: "Español",
-				dia: new Date("5/11/2017")
+				dia: new Date("5/13/2017"),
+				hora: new Date(2017,4,13,10,0,0,0)
 			}
 		];
 
@@ -133,17 +137,17 @@
 
 		(function (){							
 			for (var i = 0; i < $scope.fechas.length; i++ ) {	   
-       		  $scope.fechasDias.push($scope.dias[$scope.fechas[i].getDay()]);    
+       		  $scope.fechasDias.push($scope.dias[$scope.fechas[i].getDay()] + " - " + $scope.fechas[i].getDate() + "/" + ($scope.fechas[i].getMonth()+1));    
 			}						
 		})();  
 				
-		$scope.filtrarDia = function(){		
-			console.log($scope.filtro);
-				
+		$scope.filtrarDia = function(){									
 			var indice = $scope.fechasDias.indexOf($scope.filtro.dia);			
 			var dia = $scope.fechas[indice];
 			
-			$scope.filtro.diaLocale = dia.getTime();					
+			$scope.filtro.diaLocale = dia.getTime();	
+
+			console.log($scope.filtro);				
 		}
 				
 		$scope.limpiarFiltro = function (){
@@ -158,6 +162,7 @@
 			$scope.filtro.complejo == null ? funcion.filtroComplejo = false : funcion.filtroComplejo = true;
 			$scope.filtro.diaLocale == null ? funcion.filtroDia = false : funcion.filtroDia = true;
 			
+			console.log(funcion);
 			Datos.cargar(funcion);
 		}						
 	}]);

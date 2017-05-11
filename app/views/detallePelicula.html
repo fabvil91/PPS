@@ -10,7 +10,15 @@
             <div class="embed-responsive embed-responsive-16by9">
             <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/duGqrYw4usE" frameborder="0" allowfullscreen></iframe>
             </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="movie text-center">                        
+            <img ng-src="{{filtro.pelicula.imageUrl}}" alt="poster" class="img-thumbnail img-poster">                                   
+            <p>{{filtro.pelicula.nombre}}</p>                        
+            </div>
+        </div>
 
+        <div class="col-md-6">
             <!--Sinopsis-->
             <ul class="nav nav-tabs" style="padding-top: 20px;">
                 <li ng-class="{active:isSet(1)}"><a href ng-click="setTab(1)">Sinopsis</a></li>
@@ -33,7 +41,8 @@
                     </ul>
                 </div>                
             </div>  
-
+        </div>            
+    </div>
         </div>
         <div class="col-md-6">
             <!--Formato-->
@@ -58,10 +67,14 @@
             </div>
 
             <div>
-                <ul ng-repeat="(key, value) in funciones | groupBy: '[complejo.nombre]'">
-                    {{ key }}
+                <ul ng-repeat="(key, value) in funciones 
+                | filter: {formato: filtro.formato, idioma: filtro.idioma, complejo:{nombre: filtro.complejo.nombre},diaTime: filtro.diaLocale,pelicula:{nombre: filtro.pelicula.nombre}}
+                | groupBy: '[complejo.nombre,formato,idioma,diaFormateado]'">
+                    {{ formatear(key) }}                    
                     <li ng-repeat="funcion in value">
-                        {{ funcion.formato }} > {{ funcion.idioma }} > {{funcion.dia}} > 
+                    <a href="#" ng-click="cargar(funcion)"> <!-- ui-sref="detallePelicula">-->
+                        {{funcion.hora.getHours() + ":" + (funcion.hora.getMinutes() == "0"? "00" : funcion.hora.getMinutes()) }}
+                    </a>
                     </li>
                 </ul>
             </div>
