@@ -24,8 +24,8 @@
 						   nombre: "Cinemar Avellaneda"
 						  },
 				idioma: "Español",
-				dia: new Date("5/11/2017"),
-				hora: new Date(2017,4,11,15,10,0,0)
+				dia: new Date("5/12/2017"),
+				hora: new Date(2017,4,12,15,10,0,0)
 			},
 			{
 				pelicula: {imageUrl: "images/peliculas/Logan.jpg",
@@ -60,26 +60,8 @@
 						   nombre: "Cinemar Avellaneda"
 						  },
 				idioma: "Español",
-				dia: new Date("5/12/2017"),
-				hora: new Date(2017,4,12,18,0,0,0)
-			},
-			{
-				pelicula: {imageUrl: "images/peliculas/BeautyAndTheBeast.jpg",
-						   trailerUrl: "https://www.youtube.com/embed/SqQvZ_VUtg8",
-			 			   nombre: "Bella y Bestia",
-			 			   descripcion: "Un romance diferente",
-			 			   genero: "Romance",
-						   duracion: "71",
-						   tituloOriginal: "Beauty And The Beast",
-						   director: "Taliz Al Quilani",
-						   calificacion: "ATP"},							 			   
-				formato: "2D",
-				complejo: {
-						   nombre: "Cinemar Lanus"
-						  },
-				idioma: "Español",
 				dia: new Date("5/13/2017"),
-				hora: new Date(2017,4,13,10,0,0,0)
+				hora: new Date(2017,4,13,18,0,0,0)
 			},
 			{
 				pelicula: {imageUrl: "images/peliculas/BeautyAndTheBeast.jpg",
@@ -97,7 +79,25 @@
 						  },
 				idioma: "Español",
 				dia: new Date("5/14/2017"),
-				hora: new Date(2017,4,13,16,30,0,0)
+				hora: new Date(2017,4,14,10,0,0,0)
+			},
+			{
+				pelicula: {imageUrl: "images/peliculas/BeautyAndTheBeast.jpg",
+						   trailerUrl: "https://www.youtube.com/embed/SqQvZ_VUtg8",
+			 			   nombre: "Bella y Bestia",
+			 			   descripcion: "Un romance diferente",
+			 			   genero: "Romance",
+						   duracion: "71",
+						   tituloOriginal: "Beauty And The Beast",
+						   director: "Taliz Al Quilani",
+						   calificacion: "ATP"},							 			   
+				formato: "2D",
+				complejo: {
+						   nombre: "Cinemar Lanus"
+						  },
+				idioma: "Español",
+				dia: new Date("5/14/2017"),
+				hora: new Date(2017,4,14,16,30,0,0)
 			}
 		];
 	
@@ -157,6 +157,7 @@
 		$scope.filtro.pelicula = Datos.listado().pelicula;
 		if(Datos.listado().filtroDia){			
 			$scope.filtro.diaNombre = $scope.dias[Datos.listado().dia.getDay()] + " - " + Datos.listado().dia.getDate() + "/" + (Datos.listado().dia.getMonth()+1);
+			$scope.filtro.diaLocale = Datos.listado().dia.getTime();
 		}
 		if(Datos.listado().filtroFormato){			
 			$scope.filtro.formato = Datos.listado().formato;
