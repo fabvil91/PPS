@@ -1,6 +1,6 @@
 (function(){
 	'use strict';
-	angular.module('cine', ['ui.bootstrap','ui.router','ngCookies','angular.filter'])
+	angular.module('cine', ['ui.bootstrap','ui.router','ngCookies','angular.filter','ngSanitize'])
 	.config(function($stateProvider,$urlRouterProvider){
     $stateProvider
       .state('main',
@@ -31,7 +31,12 @@
         templateUrl:'views/detallePelicula.html'
         })
     $urlRouterProvider.otherwise('main');           
-  })
+  }) 
+  .filter('trusted', ['$sce', function ($sce) {
+        return function(url) {
+            return $sce.trustAsResourceUrl(url);
+        };
+  }])
   .run(['$rootScope', '$location', '$cookies', '$http',
     function run($rootScope, $location, $cookies, $http) {
         // keep user logged in after page refresh

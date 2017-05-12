@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
 	angular.module('cine')
-	.controller('detallePeliculaCtrl', ['$rootScope','$scope','Datos',function($rootScope,$scope,Datos){	
+	.controller('detallePeliculaCtrl', ['$rootScope','$scope','Datos','$sce',function($rootScope,$scope,Datos,$sce){	
 		$scope.complejos = ["Cinemar Avellaneda", "Cinemar Lanus"];
 		$scope.formatos = ["2D","3D"];
 		$scope.idiomas = ["Español", "Subtitulado"];
@@ -11,6 +11,7 @@
 		$scope.funciones = [
 			{
 				pelicula: {imageUrl: "images/peliculas/StarWars.jpg",
+						   trailerUrl: "https://www.youtube.com/embed/sGbxmsDFVnE",
 			 			   nombre: "Star Wars",
 			 			   descripcion: "Episodio 7",
 			 			   genero: "Space Opera",
@@ -28,6 +29,7 @@
 			},
 			{
 				pelicula: {imageUrl: "images/peliculas/Logan.jpg",
+						   trailerUrl: "https://www.youtube.com/embed/Div0iP65aZo",
 			 			   nombre: "Logan",
 			 			   descripcion: "Vuelve de nuevo a la acción",
 			 			   genero: "Acción",
@@ -45,6 +47,7 @@
 			},
 			{
 				pelicula: {imageUrl: "images/peliculas/America.jpg",
+						   trailerUrl: "https://www.youtube.com/embed/uVdV-lxRPFo",
 			 			   nombre: "Capitán América",
 			 			   descripcion: "El héroe de Estados Unidos",
 			 			   genero: "Acción",
@@ -62,6 +65,7 @@
 			},
 			{
 				pelicula: {imageUrl: "images/peliculas/BeautyAndTheBeast.jpg",
+						   trailerUrl: "https://www.youtube.com/embed/SqQvZ_VUtg8",
 			 			   nombre: "Bella y Bestia",
 			 			   descripcion: "Un romance diferente",
 			 			   genero: "Romance",
@@ -79,6 +83,7 @@
 			},
 			{
 				pelicula: {imageUrl: "images/peliculas/BeautyAndTheBeast.jpg",
+						   trailerUrl: "https://www.youtube.com/embed/SqQvZ_VUtg8",
 			 			   nombre: "Bella y Bestia",
 			 			   descripcion: "Un romance diferente",
 			 			   genero: "Romance",
@@ -95,7 +100,7 @@
 				hora: new Date(2017,4,13,16,30,0,0)
 			}
 		];
-
+	
 		(function(){			
 			var funcionesConTime = $scope.funciones;
 			for (var i = funcionesConTime.length - 1; i >= 0; i--) {				
@@ -131,8 +136,7 @@
 		$scope.fechasDias = [];
 
 		(function (){							
-			for (var i = 0; i < $scope.fechas.length; i++ ) {	   
-       		  //$scope.fechasDias.push($scope.dias[$scope.fechas[i].getDay()]);    
+			for (var i = 0; i < $scope.fechas.length; i++ ) {	          		  
        		  $scope.fechasDias.push($scope.dias[$scope.fechas[i].getDay()] + " - " + $scope.fechas[i].getDate() + "/" + ($scope.fechas[i].getMonth()+1)); 
 			}						
 		})();  

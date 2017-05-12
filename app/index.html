@@ -29,6 +29,8 @@
 
     <script type="text/javascript" src="lib/angular/angular-filter.min.js"></script>
 
+    <script type="text/javascript" src="lib/angular/angular-sanitize.min.js"></script>
+
     <script src="scripts/app.js"></script>
         
     <link rel = "stylesheet" type = "text/css" href = "css/style.css" />
@@ -53,7 +55,9 @@
         <div class="row text-center header">
             <div class="col-sm-2"></div>
             <div class="col-sm-8">
-                <h1 class="text-uppercase">Cinemar</h1>
+            <a ui-sref="main">
+                <h1 class="text-uppercase" style="color:#5BC0DE;">Cinemar</h1>
+            </a>    
             </div>
             <div class="col-sm-2 btn-group-vertical">
                 <a href="#" ng-if="!nombreUser" ui-sref="login" class="btn btn-info" role="button">Ingresar</a>
