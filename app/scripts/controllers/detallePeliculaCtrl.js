@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
 	angular.module('cine')
-	.controller('detallePeliculaCtrl', ['$rootScope','$scope','Datos','$sce',function($rootScope,$scope,Datos,$sce){	
+	.controller('detallePeliculaCtrl', ['$rootScope','$scope','Datos','$sce','Salas',function($rootScope,$scope,Datos,$sce,Salas){	
 		$scope.complejos = ["Cinemar Avellaneda", "Cinemar Lanus"];
 		$scope.formatos = ["2D","3D"];
 		$scope.idiomas = ["Español", "Subtitulado"];
@@ -196,6 +196,7 @@
 
         $scope.cargar = function(funcion){
         	console.log(funcion);
+        	console.log(Salas.crear(2,4));
         }
     }])
 })();
