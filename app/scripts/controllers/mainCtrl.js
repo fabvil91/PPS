@@ -97,6 +97,23 @@
 				idioma: "Español",
 				dia: new Date("5/13/2017"),
 				hora: new Date(2017,4,13,10,0,0,0)
+			},
+			{
+				pelicula: {imageUrl: "images/peliculas/BeautyAndTheBeast.jpg",
+			 			   nombre: "Bella y Bestia",
+			 			   descripcion: "Un romance diferente",
+			 			   genero: "Romance",
+						   duracion: "71",
+						   tituloOriginal: "Beauty And The Beast",
+						   director: "Taliz Al Quilani",
+						   calificacion: "ATP"},							 			   
+				formato: "2D",
+				complejo: {
+						   nombre: "Cinemar Lanus"
+						  },
+				idioma: "Español",
+				dia: new Date("5/14/2017"),
+				hora: new Date(2017,4,14,16,30,0,0)
 			}
 		];
 

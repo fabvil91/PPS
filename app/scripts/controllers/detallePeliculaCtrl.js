@@ -92,7 +92,7 @@
 						  },
 				idioma: "Español",
 				dia: new Date("5/14/2017"),
-				hora: new Date(2017,4,13,16,30,0,0)
+				hora: new Date(2017,4,14,16,30,0,0)
 			}
 		];
 
@@ -153,6 +153,7 @@
 		$scope.filtro.pelicula = Datos.listado().pelicula;
 		if(Datos.listado().filtroDia){			
 			$scope.filtro.diaNombre = $scope.dias[Datos.listado().dia.getDay()] + " - " + Datos.listado().dia.getDate() + "/" + (Datos.listado().dia.getMonth()+1);
+			$scope.filtro.diaLocale = Datos.listado().dia.getTime();
 		}
 		if(Datos.listado().filtroFormato){			
 			$scope.filtro.formato = Datos.listado().formato;
