@@ -1,0 +1,32 @@
+<div class="col-md-12 container-fluid"  ng-controller="promosVigentesCtrl" style="padding-top: 100px;">
+    <h1>CINES</h1>
+    <h2>Promos Vigentes</h2>
+    <p>Disfrutar una buena pelicula y ahorrar es posible en complejo cinemar, encontra la promo mas conveniente</p>
+    <p>Aqui se puede consultar bases y condiciones de las promociones vigentes para entradas</p>
+    
+<div class="promos">
+    <div class="panel panel-default"  ng-repeat="promocion in promociones">
+        <div id="pro1" class="panel-heading" >
+            <h3>{{promocion.nombre}}</h3>
+        </div>
+        <div id="pro1" class="panel-body">
+            <p>{{promocion.descripcion}}</p> 
+        </div>
+    </div>
+</div>
+    
+    
+    
+    <div id="pro2">
+        <h3>2X1 BANCO SANTADER RIO - VISA</h3>
+        <p>Abonando con tu tarjeta Visa - Santander Rio, obtene el beneficio 2x1 en salas 2D todos los dias y 2x1 en salas 3D de lunes a jueves Valido  hasta el 31/05/2017</p> 
+    </div>
+     <div id="pro2">
+        <h3>PROMO BOLETERIA CON RECARGO DE POCHOCLO</h3>
+        <p>La Promo ideal para vos para que disfrutes y ahorres en Cinemar Quilmes</p> 
+    </div>
+    <div id="pro2">
+        <h3>CLUB LA NACION PREMIUM Y BLACK - SALAS 2D y 3D</h3>
+        <p>2x1 en entradas todos los dias en 3d y 2d Lunes a Jueves para todos los complejos, excepto Cinermar Temperley</p> 
+    </div>
+</div>

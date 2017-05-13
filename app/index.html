@@ -46,14 +46,15 @@
     <script type="text/javascript" src="scripts/controllers/registroCtrl.js"></script>
     <script type="text/javascript" src="scripts/controllers/detallePeliculaCtrl.js"></script>
     <script type="text/javascript" src="scripts/controllers/salasCtrl.js"></script>
-    <script type="text/javascript" src="scripts/controllers/seleccionEntradasCtrl.js"></script>
+    <script type="text/javascript" src="scripts/controllers/seleccionEntradasCtrl.js"></script>    
+    <script type="text/javascript" src="scripts/controllers/promosVigentesCtrl.js"></script>
 
 </head>
 
-<body>
+<body ng-app="cine" ng-controller="indexCtrl">
 <div id="container">
   <!-- HEADER -->
-    <div ng-app="cine" ng-controller="indexCtrl" class="container-fluid">
+    <div  class="container-fluid">
 
         <div class="row text-center header">
             <div class="col-sm-2"></div>
@@ -86,7 +87,7 @@
                     </div>  
                     <div class="text-center links">
                         <h3>Promociones</h3>
-                        <a href="#">Promociones Vigentes</a>
+                        <a href="#" ui-sref="promosVigentes">Promociones Vigentes</a>
                     </div>
                 </div>
 

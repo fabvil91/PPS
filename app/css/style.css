@@ -190,6 +190,9 @@ height: 50px;
 .white{
     background-color: white;
 }
+.promos{
+    display:flex;
+}
 /*#slides_control > div{
   height: 100px;
 }

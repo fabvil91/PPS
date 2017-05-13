@@ -44,6 +44,13 @@
         controller: 'seleccionEntradasCtrl',
         templateUrl:'views/seleccionEntradas.html'        
         }) 
+      $stateProvider
+        .state('promosVigentes',
+        {
+        url:'/promosVigentes',              
+        controller: 'promosVigentesCtrl',
+        templateUrl:'views/promosVigentes.html'
+        })
     $urlRouterProvider.otherwise('main');           
   }) 
   .filter('trusted', ['$sce', function ($sce) {
