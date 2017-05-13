@@ -29,7 +29,14 @@
         url:'/detallePelicula',              
         controller: 'detallePeliculaCtrl',
         templateUrl:'views/detallePelicula.html'
-        })
+      })
+      $stateProvider
+      .state('seleccionEntradas',
+        {
+        url:'/seleccionEntradas',        
+        controller: 'seleccionEntradasCtrl',
+        templateUrl:'views/seleccionEntradas.html'        
+        }) 
     $urlRouterProvider.otherwise('main');           
   }) 
   .filter('trusted', ['$sce', function ($sce) {

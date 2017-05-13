@@ -1,0 +1,93 @@
+<div class="row">
+     <div class="col-md-2">
+    </div>
+    <div class = "col-md-8">
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">1. Entradas</a></li>
+                    <li><a href="#">2. Ubicaciones</a></li>
+                    <li><a href="#">3. Pago</a></li> 
+                    <li><a href="#">4. Confirmacion</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+     <div class="col-md-2">
+    </div>
+</div>
+
+<div class = "row">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-8 container white">
+    
+        <div class="detallesFuncion">
+            <p>Pelicula: {{filtro.pelicula.nombre}} {{filtro.idioma}}</p>
+            <p>Funcion: dia hora</p>
+            <p>{{filtro.complejo.nombre}}</p>
+        </div>
+        <div> 
+            <h3>SELECCIONE SUS ENTRADAS</h3>
+            <p>Seleccione la cantidad y el tipo de tickets a comprar.</p>
+            <p>Usted puede comprar un maximo de 6 tickets por transaccion.</p>
+            <p>El ticket Niño se considera para niños de 3 a 12 años.</p>
+        </div> 
+        <div>
+            <form action="" class="entradas">
+                <div>
+                    <label class="radio-inline"><input type="radio" name="radioCompra">Compra</label>
+                    <label class="radio-inline"><input type="radio" name="radioReserva">Reserva</label>
+                </div>
+                <table class="table ">
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Costo</th>
+                            <th>Cantidad</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Hay que fijarse como manejamos esto -->
+                        <tr>
+                            <td>Entrada General</td> 
+                            <td>$220</td>
+                            <td>
+                                <input type="button" class="btn btn-info" value="+">
+                                1
+                                <input type="button" class="btn btn-info" value="-">
+                            </td>
+                            <td>
+                                <p>$220</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Niños</td> 
+                            <td>$170</td>
+                            <td>
+                                <input type="button" class="btn btn-info" value="+">
+                                2
+                                <input type="button" class="btn btn-info" value="-">
+                            </td>
+                            <td>
+                                <p>$340</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="form-group form-inline centered">
+                    <label for="total">Total:</label>
+                    <input type="text" name="total" class="form-control" value="$560">
+                
+                    <input type="button" class="btn btn-info" value="Cancelar">
+              
+                   <input type="button" class="btn btn-info" value="Continuar">
+               </div>
+                
+            </form>
+        </div>
+    </div>
+    <div class="col-md-2">
+    </div>
+</div>
