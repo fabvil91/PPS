@@ -18,14 +18,14 @@
 </div>
 
 <div class = "row">
-    <div class="col-md-2">
+    <div class="col-sx-1 col-md-2">
     </div>
-    <div class="col-md-8 container white">
+    <div class="col-sx-10 col-md-8 container white">
     
         <div class="detallesFuncion">
-            <p>Pelicula: {{filtro.pelicula.nombre}} {{filtro.idioma}}</p>
-            <p>Funcion: dia hora</p>
-            <p>{{filtro.complejo.nombre}}</p>
+            <p>Pelicula: {{funcion.pelicula.nombre}} - {{funcion.idioma}}</p>
+            <p>Funcion: {{funcion.diaFormateado}} -  {{funcion.hora.getHours() + ":" + (funcion.hora.getMinutes() == "0"? "00" : funcion.hora.getMinutes()) }}</p>
+            <p>Complejo: {{funcion.complejo.nombre}}</p>
         </div>
         <div> 
             <h3>SELECCIONE SUS ENTRADAS</h3>
@@ -50,30 +50,16 @@
                     </thead>
                     <tbody>
                         <!-- Hay que fijarse como manejamos esto -->
-                        <tr>
-                            <td>Entrada General</td> 
-                            <td>$220</td>
+                        <tr ng-repeat="precios in preciosFiltrados">
+                            <td>{{precios.tipo}}</td> 
+                            <td>${{precios.monto}}</td>
                             <td>
-                                <input type="button" class="btn btn-info" value="+">
-                                1
-                                <input type="button" class="btn btn-info" value="-">
+                                <input type="number" name="quantity" min="1" max="6">
                             </td>
                             <td>
                                 <p>$220</p>
                             </td>
-                        </tr>
-                        <tr>
-                            <td>Niños</td> 
-                            <td>$170</td>
-                            <td>
-                                <input type="button" class="btn btn-info" value="+">
-                                2
-                                <input type="button" class="btn btn-info" value="-">
-                            </td>
-                            <td>
-                                <p>$340</p>
-                            </td>
-                        </tr>
+                        </tr>                       
                     </tbody>
                 </table>
                 <div class="form-group form-inline centered">
@@ -88,6 +74,6 @@
             </form>
         </div>
     </div>
-    <div class="col-md-2">
+    <div class="col-sx-1 col-md-2">
     </div>
 </div>

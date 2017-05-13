@@ -211,17 +211,25 @@ ol {
 }
 </style>
 
-<div class="plane">
- 
-  <ol class="cabin fuselage">
-    <li class="row row">
-      <ol class="seats" type="A" ng-repeat="filas in sala">
-        <li class="seat" ng-repeat="columna in filas">
-          <input type="checkbox" id="1A" />
-          <label for="1A">1A</label>
-        </li>       
-      </ol>
-    </li>    
-  </ol>
+<div class="row">
+  <div class="col-md-2"> </div>
+    <div class="col-md-8 fuselage container"
+        <div class="plane ">
 
+        
+          <ol class="cabin ">
+            <li class="row row">
+              <ol class="seats" type="A" ng-repeat="filas in sala">
+                <li class="seat" ng-repeat="columna in filas">
+                  <input type="checkbox" id="1A" />
+                  <label for="1A">1A</label>
+                </li>       
+              </ol>
+            </li>    
+          </ol>
+
+        </div>
+    </div>
+    
+  <div class="col-md-2"> </div>
 </div>

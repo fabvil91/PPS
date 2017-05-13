@@ -73,9 +73,9 @@
                     {{ formatear(key) }}                    
                     <li ng-repeat="funcion in value">
 
-              <!--     <a href="#" ui-sref="salas" ng-click="cargar(funcion)">   ui-sref="detallePelicula"> -->
+                   <!--  <a href="#" ui-sref="salas" ng-click="cargar(funcion)">   -->
 
-                     <a href="#" ng-click="cargar(funcion)" ui-sref="seleccionEntradas"> 
+                   <a href="#" ng-click="cargar(funcion)" ui-sref="seleccionEntradas"> 
 
                         {{funcion.hora.getHours() + ":" + (funcion.hora.getMinutes() == "0"? "00" : funcion.hora.getMinutes()) }}
                     </a>
