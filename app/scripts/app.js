@@ -30,6 +30,12 @@
         controller: 'detallePeliculaCtrl',
         templateUrl:'views/detallePelicula.html'
         })
+      .state('salas',
+        {
+        url:'/salas',              
+        controller: 'salasCtrl',
+        templateUrl:'views/salas.html'
+        })
     $urlRouterProvider.otherwise('main');           
   }) 
   .filter('trusted', ['$sce', function ($sce) {
