@@ -7,7 +7,8 @@ angular
       id: 0,
       caption: 0,
       checked: false,
-      booked: false
+      booked: false,
+      pasillo: false
     };
 
     function createSeats(rows, cols) {
@@ -19,7 +20,8 @@ angular
               var seat = angular.extend({}, seatProps, {
                     id: seatIndex,
                     caption: seatIndex,
-                    booked: seatIndex < 5 // 0 to 5 booked
+                    booked: seatIndex < 5, // 0 to 5 booked
+                    pasillo: col == 2 //ejemplo pasillo 2
                 });
               arr[row][col] = seat;
                 seatIndex++;
