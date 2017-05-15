@@ -24,8 +24,8 @@
 						   nombre: "Cinemar Avellaneda"
 						  },
 				idioma: "Español",
-				dia: new Date("5/12/2017"),
-				hora: new Date(2017,4,12,15,10,0,0)
+				dia: new Date("5/15/2017"),
+				hora: new Date(2017,4,15,15,10,0,0)
 			},
 			{
 				pelicula: {imageUrl: "images/peliculas/Logan.jpg",
@@ -42,8 +42,8 @@
 						   nombre: "Cinemar Lanus"
 						  },
 				idioma: "Subtitulado",
-				dia: new Date("5/12/2017"),
-				hora: new Date(2017,4,12,16,30,0,0)
+				dia: new Date("5/15/2017"),
+				hora: new Date(2017,4,15,16,30,0,0)
 			},
 			{
 				pelicula: {imageUrl: "images/peliculas/America.jpg",
@@ -60,8 +60,8 @@
 						   nombre: "Cinemar Avellaneda"
 						  },
 				idioma: "Español",
-				dia: new Date("5/13/2017"),
-				hora: new Date(2017,4,13,18,0,0,0)
+				dia: new Date("5/16/2017"),
+				hora: new Date(2017,4,16,18,0,0,0)
 			},
 			{
 				pelicula: {imageUrl: "images/peliculas/BeautyAndTheBeast.jpg",
@@ -78,8 +78,8 @@
 						   nombre: "Cinemar Lanus"
 						  },
 				idioma: "Español",
-				dia: new Date("5/14/2017"),
-				hora: new Date(2017,4,14,10,0,0,0)
+				dia: new Date("5/17/2017"),
+				hora: new Date(2017,4,17,10,0,0,0)
 			},
 			{
 				pelicula: {imageUrl: "images/peliculas/BeautyAndTheBeast.jpg",
@@ -96,18 +96,23 @@
 						   nombre: "Cinemar Lanus"
 						  },
 				idioma: "Español",
-				dia: new Date("5/14/2017"),
-				hora: new Date(2017,4,14,16,30,0,0)
+				dia: new Date("5/17/2017"),
+				hora: new Date(2017,4,17,16,30,0,0)
 			}
 		];
 	
-		(function(){			
-			var funcionesConTime = $scope.funciones;
-			for (var i = funcionesConTime.length - 1; i >= 0; i--) {				
-				funcionesConTime[i].diaTime = funcionesConTime[i].dia.getTime();				
+		(function(){						
+			var funcionesDesdeAhora = [];
+
+			for (var i = $scope.funciones.length - 1; i >= 0; i--) {				
+				$scope.funciones[i].diaTime = $scope.funciones[i].dia.getTime();
+				if($scope.funciones[i].hora.getTime() >= new Date().getTime()){
+					funcionesDesdeAhora.push($scope.funciones[i]);
+				}
 			}
+			$scope.funciones = funcionesDesdeAhora;
 			console.log($scope.funciones);
-			console.log(funcionesConTime);			
+			console.log(funcionesDesdeAhora);
 		})();
 		
 		Date.prototype.addDays = function(days) {
