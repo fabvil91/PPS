@@ -58,6 +58,11 @@
             return $sce.trustAsResourceUrl(url);
         };
   }])
+  .filter('secondsToDateTime', [function() {
+    return function(seconds) {
+        return new Date(1970, 0, 1).setSeconds(seconds);
+    };
+  }])
   .run(['$rootScope', '$location', '$cookies', '$http',
     function run($rootScope, $location, $cookies, $http) {
         // keep user logged in after page refresh
