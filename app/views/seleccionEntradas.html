@@ -34,7 +34,7 @@
             <p>El ticket Niño se considera para niños de 3 a 12 años.</p>
         </div> 
         <div>
-            <form action="" class="entradas">
+            <form class="entradas">
                 <div>
                     <label class="radio-inline"><input type="radio" name="tipoTransaccion" ng-click="transaccion.tipoTransaccion = 'compra'">Compra</label>
                     <label class="radio-inline"><input type="radio" name="tipoTransaccion" ng-click="transaccion.tipoTransaccion = 'reserva'">Reserva</label>
@@ -54,9 +54,9 @@
                             <td>{{precios.tipo}}</td> 
                             <td>${{precios.monto}}</td>
                             <td>
-                                <button type="submit" ng-click="agregarEntrada({{precios.monto}},{{precios.tipo}})" ><img src="./images/icons/plus.png" alt="Simbolo 'suma'" height="16px"></button>
+                                <button ng-click="agregarEntrada(precios.monto,precios.tipo)" ><img src="./images/icons/plus.png" alt="Simbolo 'suma'" height="16px"></button>
                                 <!--como filtras $scope.entradas para que te devuleva la cantidad por tipo?? -->
-                                <button type="submit" ng-click="restarEntrada({{precios.monto}},{{precios.tipo}})"><img src="./images/icons/minus.png" alt="Simbolo 'resta'" height="16px"></button>
+                                <button ng-click="restarEntrada(precios.monto,precios.tipo)"><img src="./images/icons/minus.png" alt="Simbolo 'resta'" height="16px"></button>
                                 
                             </td>
                             <td>
