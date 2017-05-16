@@ -24,8 +24,8 @@
 						   nombre: "Cinemar Avellaneda"
 						  },
 				idioma: "Español",
-				dia: new Date("5/15/2017"),
-				hora: new Date(2017,4,15,15,10,0,0)
+				dia: new Date("5/16/2017"),
+				hora: new Date(2017,4,16,15,10,0,0)
 			},
 			{
 				pelicula: {imageUrl: "images/peliculas/Logan.jpg",
@@ -42,8 +42,8 @@
 						   nombre: "Cinemar Lanus"
 						  },
 				idioma: "Subtitulado",
-				dia: new Date("5/15/2017"),
-				hora: new Date(2017,4,15,16,30,0,0)
+				dia: new Date("5/16/2017"),
+				hora: new Date(2017,4,16,16,30,0,0)
 			},
 			{
 				pelicula: {imageUrl: "images/peliculas/America.jpg",
@@ -60,8 +60,8 @@
 						   nombre: "Cinemar Avellaneda"
 						  },
 				idioma: "Español",
-				dia: new Date("5/16/2017"),
-				hora: new Date(2017,4,16,18,0,0,0)
+				dia: new Date("5/17/2017"),
+				hora: new Date(2017,4,17,18,0,0,0)
 			},
 			{
 				pelicula: {imageUrl: "images/peliculas/BeautyAndTheBeast.jpg",
@@ -78,8 +78,8 @@
 						   nombre: "Cinemar Lanus"
 						  },
 				idioma: "Español",
-				dia: new Date("5/17/2017"),
-				hora: new Date(2017,4,17,10,0,0,0)
+				dia: new Date("5/18/2017"),
+				hora: new Date(2017,4,18,10,0,0,0)
 			},
 			{
 				pelicula: {imageUrl: "images/peliculas/BeautyAndTheBeast.jpg",
@@ -96,8 +96,8 @@
 						   nombre: "Cinemar Lanus"
 						  },
 				idioma: "Español",
-				dia: new Date("5/17/2017"),
-				hora: new Date(2017,4,17,16,30,0,0)
+				dia: new Date("5/18/2017"),
+				hora: new Date(2017,4,18,16,30,0,0)
 			}
 		];
 	
