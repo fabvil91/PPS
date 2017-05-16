@@ -5,7 +5,7 @@
 		       
 		    $scope.sala = {};
         	(function(){
-        		$scope.sala = Salas.crear(5,5);
+        		$scope.sala = Salas.crear(10,10);
         		console.log($scope.sala);
         	})();
 

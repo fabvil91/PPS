@@ -5,8 +5,8 @@
         <nav class="navbar navbar-default">
             <div class="container">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">1. Entradas</a></li>
-                    <li><a href="#">2. Ubicaciones</a></li>
+                    <li><a href="#">1. Entradas</a></li>
+                    <li class="active"><a href="#">2. Ubicaciones</a></li>
                     <li><a href="#">3. Pago</a></li> 
                     <li><a href="#">4. Confirmacion</a></li>
                 </ul>
@@ -33,7 +33,7 @@
           <p>Cantidad de Asientos:</p>
       </div>
 
-      <div> 
+      <div class="container-fluid"> 
           <h3>SELECCIONE SUS ASIENTOS</h3>
           <div>
               <div class="pull-left">
@@ -55,41 +55,33 @@
                 </div>
           </div>
       </div> 
-    <div>
-     
-    </div>
+      
+
+      <div class="center-block">
+                
+              <div class="panel panel-default">
+              <div class="sala panel-body ">
+                <div class="pantalla center-block"> 
+                  Pantalla
+                </div>
+                <ol class="filas" ng-repeat="filas in sala">
+                  <li class="columna" ng-repeat="columna in filas">
+                    <label class="asiento ocupado" ng-if="columna.pasillo == false && columna.booked==true"> {{columna.id}} </label>
+                    <label class="asiento disponible" ng-if="columna.pasillo == false && columna.booked==false"> {{columna.id}} </label>
+                    <label class="asiento ocupado pasillo" ng-if="columna.pasillo == true && columna.booked == true"> {{columna.id}} </label>
+                    
+                    <label class="asiento disponible pasillo" ng-if="columna.pasillo == true && columna.booked == false"> {{columna.id}} </label>
+                    
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
         
-    </div>
+
+  
+   </div>
     
   <div class="col-md-2"> </div>
 </div>
 
-<div class="row">
-  <div class="col-md-2"> </div>
-  <div class="col-md-8 "> 
-
-    <div class="container white center-block asientos">
-      <div class="panel panel-default">
-        <div class="pantalla center-block">
-          Pantalla
-        </div>
-        <div class="plane ">
-
-
-          <ol class="cabin center-block">
-            <li>
-              <ol class="seats" type="A" ng-repeat="filas in sala">
-                <li class="seat" ng-repeat="columna in filas">
-                  <label for="1A">1A</label>
-                  <input type="checkbox" id="1A" />
-                </li>       
-              </ol>
-            </li>    
-          </ol>
-
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-2"> </div>
-</div>  

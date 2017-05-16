@@ -65,18 +65,19 @@
 		});
 
 		
-		$scope.agregarEntrada = function(tipo, precio){
+		$scope.agregarEntrada = function(precio){
 			var entrada = {
-				tipo:tipo,
-				precio:precio
+				tipo:precio.tipo,
+				precio:precio.monto
 			}
 			$scope.entradas.push(entrada);
-			
+			precio.contador=precio.contador+1;
+			console.log(precio);
 		};
 
-		$scope.restarEntrada = function(tipo,precio){
+		$scope.restarEntrada = function(precio){
 			for(var i = 0; i<$scope.entradas.length-1;i++){
-				if($scope.entradas[i].tipo==tipo){
+				if($scope.entradas[i].tipo==precio.tipo){
 					$scope.entradas.splice(i,1);
 					return;
 				}
