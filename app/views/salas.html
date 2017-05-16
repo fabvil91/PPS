@@ -1,25 +1,95 @@
-<script ></script>
+<div class="row">
+     <div class="col-md-2">
+    </div>
+    <div class = "col-md-8">
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">1. Entradas</a></li>
+                    <li><a href="#">2. Ubicaciones</a></li>
+                    <li><a href="#">3. Pago</a></li> 
+                    <li><a href="#">4. Confirmacion</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+     <div class="col-md-2">
+    </div>
+</div>
+
+
 
 <div class="row">
+  
 {{countDownLeft | secondsToDateTime | date:'HH:mm:ss'}}
+
   <div class="col-md-2"> </div>
-    <div class="col-md-8 fuselage container"
+    <div class="col-md-8  container white center-block">
+
+        <div class="detallesFuncion">
+          <p>Pelicula: {{funcion.pelicula.nombre}} - {{funcion.idioma}}</p>
+          <p>Funcion: {{funcion.diaFormateado}} -  {{funcion.hora.getHours() + ":" + (funcion.hora.getMinutes() == "0"? "00" : funcion.hora.getMinutes()) }}</p>
+          <p>Complejo: {{funcion.complejo.nombre}}</p>
+          <p>Cantidad de Asientos:</p>
+      </div>
+
+      <div> 
+          <h3>SELECCIONE SUS ASIENTOS</h3>
+          <div>
+              <div class="pull-left">
+                  <div class="legend" >
+                      <div>
+                        <img src="./images/icons/seleccionado.jpg" alt="seleccionado"> Su selección
+                      </div>
+                      <div>
+                        <img src="./images/icons/disponible.jpg" alt="disponible"> Disponible
+                      </div>
+                      <div>
+                        <img src="./images/icons/ocupado.jpg" alt="ocupado"> Ocupado
+                      </div>
+                  </div>
+              </div>
+              <div class="pull-right">
+                      <input type="button" class="btn btn-info" value="Cancelar">
+                      <input type="button" class="btn btn-info" value="Continuar" ui-sref="#">
+                </div>
+          </div>
+      </div> 
+    <div>
+     
+    </div>
+        
+    </div>
+    
+  <div class="col-md-2"> </div>
+</div>
+
+<div class="row">
+  <div class="col-md-2"> </div>
+  <div class="col-md-8 "> 
+
+    <div class="container white center-block asientos">
+      <div class="panel panel-default">
+        <div class="pantalla center-block">
+          Pantalla
+        </div>
         <div class="plane ">
 
-        
-          <ol class="cabin ">
-            <li class="row row">
+
+          <ol class="cabin center-block">
+            <li>
               <ol class="seats" type="A" ng-repeat="filas in sala">
                 <li class="seat" ng-repeat="columna in filas">
-                  <input type="checkbox" id="1A" />
                   <label for="1A">1A</label>
+                  <input type="checkbox" id="1A" />
                 </li>       
               </ol>
             </li>    
           </ol>
 
         </div>
+      </div>
     </div>
-    
+  </div>
   <div class="col-md-2"> </div>
-</div>
+</div>  

@@ -3,62 +3,10 @@
 }
 
 .plane {
-  margin: 20px auto;
-  max-width: 300px;
+  margin: 0px auto;
+  max-width: 650px;
 }
 
-.cockpit {
-  height: 250px;
-  position: relative;
-  overflow: hidden;
-  text-align: center;
-  border-bottom: 5px solid #d8d8d8;
-}
-.cockpit:before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 500px;
-  width: 100%;
-  border-radius: 50%;
-  border-right: 5px solid #d8d8d8;
-  border-left: 5px solid #d8d8d8;
-}
-.cockpit h1 {
-  width: 60%;
-  margin: 100px auto 35px auto;
-}
-
-.exit {
-  position: relative;
-  height: 50px;
-}
-.exit:before, .exit:after {
-  content: "EXIT";
-  font-size: 14px;
-  line-height: 18px;
-  padding: 0px 2px;
-  font-family: "Arial Narrow", Arial, sans-serif;
-  display: block;
-  position: absolute;
-  background: green;
-  color: white;
-  top: 50%;
-  transform: translate(0, -50%);
-}
-.exit:before {
-  left: 0;
-}
-.exit:after {
-  right: 0;
-}
-
-.fuselage {
-  border-right: 3px solid #0000FF;
-  border-left: 3px solid #0000FF;
-}
 
 ol {
   list-style: none;
@@ -78,6 +26,8 @@ ol {
   flex: 0 0 14.28571428571429%;
   padding: 5px;
   position: relative;
+   width: 0;
+   height: 100%;
 }
 /*.seat:nth-child(3) {
   margin-right: 14.28571428571429%;
@@ -87,14 +37,14 @@ ol {
   opacity: 0;
 }
 .seat input[type=checkbox]:checked + label {
-  background: #bada55;
+  background: #1b3b6c;
   -webkit-animation-name: rubberBand;
   animation-name: rubberBand;
   animation-duration: 300ms;
   animation-fill-mode: both;
 }
 .seat input[type=checkbox]:disabled + label {
-  background: #dddddd;
+  background: #5f6972;
   text-indent: -9999px;
   overflow: hidden;
 }
@@ -111,15 +61,16 @@ ol {
   cursor: not-allowed;
 }
 .seat label {
+    color:white;
   display: block;
   position: relative;
-  width: 100%;
+  width: 50%;
   text-align: center;
   font-size: 14px;
   font-weight: bold;
   line-height: 1.5rem;
   padding: 4px 0;
-  background: #F42536;
+  background: #60afe7;
   border-radius: 5px;
   animation-duration: 300ms;
   animation-fill-mode: both;
@@ -204,3 +155,28 @@ ol {
   -webkit-animation-name: rubberBand;
   animation-name: rubberBand;
 }
+
+
+.legend{
+    display: flex;
+    flex: 1; 
+    width: 100%;
+    
+}
+
+.legend > div > img {
+    max-height: 20px;
+    margin-left: 10px;
+}
+
+.pantalla{
+    height: 20px;
+    width: 80%;
+    background-color: black;
+    color:white;
+    text-align: center;
+}
+.asientos{
+    padding: 20px;
+}
+
