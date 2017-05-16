@@ -4,10 +4,12 @@
             <div class="col-sm-12">
              <carousel interval="myInterval">
                 <slide ng-repeat="slide in slides" active="slide.active">
-                 <img ng-src="{{slide.imageUrl}}" style="max-height:300px; margin:0 auto">
+                 <img class="img-responsive center-block"  ng-src="{{slide.imageUrl}}" >
                 <div class="carousel-caption">
-                   <h4><a href>{{slide.nombre}}</a></h4>
-                   <h4>{{slide.descripcion}}</h4>
+                    <div class="carouse- content">
+                        <h4><a href>{{slide.nombre}}</a></h4>
+                        <h4>{{slide.descripcion}}</h4>
+                    </div>
                 </div>
                 </slide>
              </carousel>        

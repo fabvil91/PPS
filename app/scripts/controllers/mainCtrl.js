@@ -11,19 +11,19 @@
 		$scope.myInterval = 3000;
 		
 		$scope.slides = [
-			{imageUrl: "images/peliculas/StarWars.jpg",
+			{imageUrl: "images/carousel/starWars.jpg",
 			 nombre: "Star Wars",
 			 descripcion: "Episodio 7"
 			},
-			{imageUrl: "images/peliculas/Logan.jpg",
+			{imageUrl: "images/carousel/logan.jpg",
 			 nombre: "Logan",
 			 descripcion: "Vuelve de nuevo a la acción"
 			},
-			{imageUrl: "images/peliculas/America.jpg",
+			{imageUrl: "images/carousel/cv2.jpg",
 			 nombre: "Capitán América",
 			 descripcion: "El héroe de Estados Unidos"
 			},
-			{imageUrl: "images/peliculas/BeautyAndTheBeast.jpg",
+			{imageUrl: "images/carousel/beautyAndBeast.jpeg",
 			 nombre: "Bella y Bestia",
 			 descripcion: "Un romance diferente" 
 			}
