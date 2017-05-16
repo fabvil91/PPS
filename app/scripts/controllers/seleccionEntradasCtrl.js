@@ -56,11 +56,32 @@
 			monto: 170
 			}
 		];
+		$scope.transaccion = {}
+		$scope.entradas = []
+
 		$scope.funcion = Datos.listado();
 		$scope.preciosFiltrados = $scope.precios.filter(function(element){
 				return (element.complejo.nombre === $scope.funcion.complejo.nombre && element.formato === $scope.funcion.formato);
 		});
+
 		
+		$scope.agregarEntrada = function(tipo, precio){
+			var entrada = {
+				tipo:tipo,
+				precio:precio
+			}
+			$scope.entradas.push(entrada);
+			
+		};
+
+		$scope.restarEntrada = function(tipo,precio){
+			for(var i = 0; i<$scope.entradas.length-1;i++){
+				if($scope.entradas[i].tipo==tipo){
+					$scope.entradas.splice(i,1);
+					return;
+				}
+			}
+		}
 
 		
     }])
