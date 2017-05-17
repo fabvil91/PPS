@@ -57,34 +57,52 @@
 			}
 		];
 		$scope.transaccion = {}
-		$scope.entradas = []
+		$scope.entradas = [];
+		$scope.total = 0;
+		$scope.cantidadTotal = 0;
 
 		$scope.funcion = Datos.listado();
+
 		$scope.preciosFiltrados = $scope.precios.filter(function(element){
 				return (element.complejo.nombre === $scope.funcion.complejo.nombre && element.formato === $scope.funcion.formato);
 		});
 
-		
-		$scope.agregarEntrada = function(precio){
-			var entrada = {
-				tipo:precio.tipo,
-				precio:precio.monto
+		(function(){
+			for (var i = $scope.preciosFiltrados.length - 1; i >= 0; i--) {
+				$scope.preciosFiltrados[i].cantidad = 0;
+				$scope.preciosFiltrados[i].subtotal = 0;
 			}
-			$scope.entradas.push(entrada);
-			precio.contador=precio.contador+1;
-			console.log(precio);
+			console.log($scope.preciosFiltrados);
+		})();
+
+		
+		$scope.agregarEntrada = function(precio){	
+			if($scope.cantidadTotal == 6){		
+				$scope.mensaje = "Puede seleccionar un máximo de 6 entradas"
+			}else{	
+				precio.cantidad = precio.cantidad + 1;
+				precio.subtotal = precio.cantidad * precio.monto;
+				$scope.total = $scope.total + precio.monto;				
+				$scope.cantidadTotal = $scope.cantidadTotal + 1;
+			}							
 		};
 
-		$scope.restarEntrada = function(precio){
-			for(var i = 0; i<$scope.entradas.length-1;i++){
-				if($scope.entradas[i].tipo==precio.tipo){
-					$scope.entradas.splice(i,1);
-					return;
-				}
+		$scope.restarEntrada = function(precio){				
+			if(precio.cantidad > 0){
+				precio.cantidad = precio.cantidad - 1;
+				precio.subtotal = precio.cantidad * precio.monto;
+				$scope.total = $scope.total - precio.monto;			
+				$scope.cantidadTotal = $scope.cantidadTotal - 1;
 			}
 		}
 
-		
+		$scope.cargar = function(funcion){
+        	funcion.cantidadAsientos = $scope.cantidadTotal;
+        	console.log(funcion);
+        	
+			Datos.cargar(funcion);
+        }	
+				
     }])
 })();
 
