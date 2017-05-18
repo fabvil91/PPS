@@ -30,7 +30,7 @@
           <p>Pelicula: {{funcion.pelicula.nombre}} - {{funcion.idioma}}</p>
           <p>Funcion: {{funcion.diaFormateado}} -  {{funcion.hora.getHours() + ":" + (funcion.hora.getMinutes() == "0"? "00" : funcion.hora.getMinutes()) }}</p>
           <p>Complejo: {{funcion.complejo.nombre}}</p>
-          <p>Cantidad de Asientos:</p>
+          <p>Cantidad de Asientos: {{funcion.cantidadAsientos}}</p>
       </div>
 
       <div class="container-fluid"> 
@@ -64,14 +64,15 @@
                 <div class="pantalla center-block"> 
                   Pantalla
                 </div>
-                <ol class="filas" ng-repeat="filas in sala">
+                <ol class="filas" ng-repeat="filas in funcion.sala">
                   <li class="columna" ng-repeat="columna in filas">
-                    <label class="asiento ocupado" ng-if="columna.pasillo == false && columna.booked==true"> {{columna.id}} </label>
-                    <label class="asiento disponible" ng-if="columna.pasillo == false && columna.booked==false"> {{columna.id}} </label>
-                    <label class="asiento ocupado pasillo" ng-if="columna.pasillo == true && columna.booked == true"> {{columna.id}} </label>
-                    
-                    <label class="asiento disponible pasillo" ng-if="columna.pasillo == true && columna.booked == false"> {{columna.id}} </label>
-                    
+                    <label class="asiento ocupado" ng-if="!columna.pasillo && columna.booked" ng-click="seleccionar(columna)"> {{columna.id}} </label>
+                    <label class="asiento disponible" ng-if="!columna.pasillo && !columna.booked && !columna.checked" ng-click="seleccionar(columna)"> {{columna.id}} </label>
+                    <label class="asiento ocupado pasillo" ng-if="columna.pasillo && columna.booked" ng-click="seleccionar(columna)"> {{columna.id}} </label>                    
+                    <label class="asiento disponible pasillo" ng-if="columna.pasillo && !columna.booked && !columna.checked" ng-click="seleccionar(columna)"> {{columna.id}} </label>         
+
+                    <label class="asiento seleccionado pasillo" ng-if="columna.pasillo && columna.checked" ng-click="seleccionar(columna)"> {{columna.id}} </label>                                
+                    <label class="asiento seleccionado" ng-if="!columna.pasillo && columna.checked" ng-click="seleccionar(columna)"> {{columna.id}} </label>                                       
                   </li>
                 </ol>
               </div>
