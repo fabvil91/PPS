@@ -54,11 +54,11 @@
                         <tr ng-repeat="precios in preciosFiltrados">
                             <td>{{precios.tipo}}</td>    
                             <td>${{precios.monto}}</td>
-                            <td>
+                            <td>                                
                                 <button ng-click="agregarEntrada(precios)" ><img src="./images/icons/plus.png" alt="Simbolo 'suma'" height="16px"></button>
                                 <!--como filtras $scope.entradas para que te devuleva la cantidad por tipo?? -->
-                                <button ng-click="restarEntrada(precios)"><img src="./images/icons/minus.png" alt="Simbolo 'resta'" height="16px"></button>
                                 {{precios.cantidad}}
+                                <button ng-click="restarEntrada(precios)"><img src="./images/icons/minus.png" alt="Simbolo 'resta'" height="16px"></button>                                   
                             </td>
                             <td>
                                 <p>$ {{precios.subtotal}}</p>
