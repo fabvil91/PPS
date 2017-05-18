@@ -21,8 +21,6 @@
 
 <div class="row">
   
-{{countDownLeft | secondsToDateTime | date:'HH:mm:ss'}}
-
   <div class="col-md-2"> </div>
     <div class="col-md-8  container white center-block">
 
@@ -48,10 +46,11 @@
                         <img src="./images/icons/ocupado.jpg" alt="ocupado"> Ocupado
                       </div>
                   </div>
+              <div style="color:red;">{{countDownLeft | secondsToDateTime | date:'HH:mm:ss'}}</div>
               </div>
               <div class="pull-right">
-                      <input type="button" class="btn btn-info" value="Cancelar">
-                      <input type="button" class="btn btn-info" value="Continuar" ui-sref="#">
+                      <input type="button" class="btn btn-info" value="Cancelar" ui-sref="main">
+                      <input type="button" class="btn btn-info" value="Continuar" ui-sref="#" ng-if="contarSeleccionados() == funcion.cantidadAsientos" ng-click="cargar(funcion)">
                 </div>
           </div>
       </div> 

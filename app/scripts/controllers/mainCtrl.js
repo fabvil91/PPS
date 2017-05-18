@@ -45,8 +45,8 @@
 						   nombre: "Cinemar Avellaneda"
 						  },
 				idioma: "Español",
-				dia: new Date("5/16/2017"),
-				hora: new Date(2017,4,16,15,10,0,0)
+				dia: new Date("5/19/2017"),
+				hora: new Date(2017,4,19,15,10,0,0)
 			},
 			{
 				pelicula: {imageUrl: "images/peliculas/Logan.jpg",
@@ -132,8 +132,7 @@
 				}
 			}
 			$scope.funciones = funcionesDesdeAhora;
-			console.log($scope.funciones);
-			console.log(funcionesDesdeAhora);
+			console.log($scope.funciones);			
 		})();
 		
 		Date.prototype.addDays = function(days) {

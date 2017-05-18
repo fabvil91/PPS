@@ -1,16 +1,17 @@
 (function(){
 	'use strict';
 	angular.module('cine')
-	.controller('salasCtrl', ['$rootScope','$scope','Datos','$sce','Salas','$timeout',function($rootScope,$scope,Datos,$sce,Salas,$timeout){	
+	.controller('salasCtrl', ['$rootScope','$scope','Datos','$sce','Salas','$timeout','$location',function($rootScope,$scope,Datos,$sce,Salas,$timeout,$location){
+			 $scope.mensaje = "";			
 			 $scope.funcion = Datos.listado();
 			 $scope.funcion.sala = Salas.crear(10,10);
 			            	
 	         var _startCountdown = function(){
-				var timerCount = 3660;
+				var timerCount = 300;
 
 				var countDown = function () {
 				 if (timerCount < 0) {					 
-					console.log("SE TERMINO EL TIEMPO");
+					$location.path('/main');
 				 } else {
 					$scope.countDownLeft = timerCount;
 					timerCount--;
@@ -23,12 +24,27 @@
 	        
 	         _startCountdown();
 
-	         $scope.seleccionar = function(asiento){
-	         	if(asiento.booked == false){	         		
-	         		asiento.checked = !asiento.checked;	
-	         		console.log(asiento);
-	         	}
-	         	
+	         $scope.contarSeleccionados = function(){
+	         	var cantidadSeleccionada = 0;
+	         	 for (var i = $scope.funcion.sala.length - 1; i >= 0; i--) {
+	         	 	for (var j = $scope.funcion.sala[i].length - 1; j >= 0; j--) {
+	         	 		if($scope.funcion.sala[i][j].checked == true){
+	         	 			cantidadSeleccionada = cantidadSeleccionada + 1;
+	         	 		}
+	         	 	}
+	         	 }
+	         	 return cantidadSeleccionada;
 	         }
+
+	         $scope.seleccionar = function(asiento){
+	         	if(asiento.booked == false){	         			         		
+	         			asiento.checked = !asiento.checked;	         			
+	         		}	         	
+	         }
+	       
+	         $scope.cargar = function(funcion){                
+        	   console.log(funcion);        	
+			   Datos.cargar(funcion);
+        	 }	       		         	         
     }])
 })();
