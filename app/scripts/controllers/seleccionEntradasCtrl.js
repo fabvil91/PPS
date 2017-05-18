@@ -98,6 +98,7 @@
 
 		$scope.cargar = function(funcion){
         	funcion.cantidadAsientos = $scope.cantidadTotal;
+        	funcion.entradas = $scope.preciosFiltrados;
         	console.log(funcion);
         	
 			Datos.cargar(funcion);
