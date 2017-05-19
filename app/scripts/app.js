@@ -54,8 +54,7 @@
          $stateProvider
         .state('quienesSomos',
         {
-        url:'/quienesSomos',
-        controller: 'quienesSomosCtrl',              
+        url:'/quienesSomos',        
         templateUrl:'views/quienesSomos.html'
         })
         $stateProvider

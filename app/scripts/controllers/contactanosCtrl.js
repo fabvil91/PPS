@@ -15,10 +15,7 @@
             Mensaje: null
          };
          $scope.mensaje = null;
-
-               
-		
-        };   
-}]);
-}) ();
+               		
+        }]);
+})();
 
