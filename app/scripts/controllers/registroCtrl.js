@@ -10,7 +10,8 @@
          	firstName: null,
          	lastName: null,
          	username: null,
-         	password: null
+         	password: null,
+         	tipoUsuario: "Usuario"
          };
          $scope.mensaje = null;
 

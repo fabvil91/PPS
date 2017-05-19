@@ -93,10 +93,22 @@
             var loggedIn = $rootScope.globals.currentUser;
             console.log(loggedIn);
             if(loggedIn){
-            $rootScope.$emit('myOwnEvent', $rootScope.globals.currentUser.username);}
-          //  if (restrictedPage && !loggedIn) {
-          //      $location.path('/login');
-          //  }
+              $rootScope.$emit('myOwnEvent', $rootScope.globals.currentUser.username);
+            }
+
+            if(loggedIn){
+              if($rootScope.globals.currentUser.tipoUsuario == 'Usuario'){
+                var restrictedPage = $.inArray($location.path(), ['/main', '/login','/registro','/detallePelicula','/salas','/seleccionEntradas','/promosVigentes','/quienesSomos']) === -1;
+              }
+              //Agregar los distintos tipos de usuario
+              if (restrictedPage) {
+                console.log("Pagina prohibida" + $location.path());
+               // $location.path('/login'); o Pagina de error?
+              }              
+            }else{
+              //si no estas logeado y vas a una que no sea main => // $location.path('/login');
+            }
+         
         });
     }])
     

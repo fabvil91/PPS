@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
 	angular.module('cine')
-	.controller('indexCtrl', ['$rootScope', '$scope','AuthenticationService', function($rootScope,$scope,AuthenticationService){
+	.controller('indexCtrl', ['$rootScope', '$scope','AuthenticationService','$location', function($rootScope,$scope,AuthenticationService,$location){
 		
 		$scope.nombreUser = null;
 		$rootScope.$on('myOwnEvent', function(newData,data) {
@@ -11,9 +11,11 @@
 		
 		$scope.logout = function logout() {
 			AuthenticationService.ClearCredentials();
-			console.log($rootScope);			
-			$scope.nombreUser = null;
-		}  
+			console.log($rootScope);
 
+			$scope.nombreUser = null;
+
+			$location.path('/main'); 
+		}  
 	}]);
 }) ();
