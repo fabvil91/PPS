@@ -51,6 +51,20 @@
         controller: 'promosVigentesCtrl',
         templateUrl:'views/promosVigentes.html'
         })
+         $stateProvider
+        .state('quienesSomos',
+        {
+        url:'/quienesSomos',
+        controller: 'quienesSomosCtrl',              
+        templateUrl:'views/quienesSomos.html'
+        })
+        $stateProvider
+        .state('contactanos',
+        {
+        url:'/contactanos',              
+        controller: 'contactanosCtrl',
+        templateUrl:'views/contactanos.html'
+        })
     $urlRouterProvider.otherwise('main');           
   }) 
   .filter('trusted', ['$sce', function ($sce) {
