@@ -1,0 +1,15 @@
+@media print {
+nav {
+    display: block;
+}
+body {
+    background-color: white;
+    font-family: 'Times New Roman', Times, serif;
+}
+aside {
+    background-color: white;
+    color: black;
+    padding: 10px;
+    margin: 5px;
+}
+}

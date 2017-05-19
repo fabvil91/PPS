@@ -1,0 +1,72 @@
+<div class="row">
+     <div class="col-md-2">
+    </div>
+    <div class = "col-md-8">
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">1. Entradas</a></li>
+                    <li><a href="#">2. Ubicaciones</a></li>
+                    <li><a href="#">3. Pago</a></li> 
+                    <li class="active"><a href="#">4. Confirmacion</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+     <div class="col-md-2">
+    </div>
+</div>
+
+<div class="row">
+     <div class="col-md-2">
+    </div>
+    <div class="col-md-8">
+        <div class="detallesFuncion">
+            <h3>Datos de Funcion</h3>
+            <p>Pelicula: {{funcion.pelicula.nombre}} - {{funcion.idioma}}</p>
+            <p>Funcion: {{funcion.diaFormateado}} -  {{funcion.hora.getHours() + ":" + (funcion.hora.getMinutes() == "0"? "00" : funcion.hora.getMinutes()) }}</p>
+            <p>Complejo: {{funcion.complejo.nombre}}</p>
+            <p>Cantidad de Asientos: {{funcion.cantidadAsientos}}</p>
+        </div>
+        <div class="panel panel-default" ng-if="transaccion.tipoTransaccion = 'compra'">
+            <div class="panel-heading">
+                <h3>Datos de Compra</h3>
+            </div>
+            <div class="panel-body">
+                <form action="">
+                    <div class="form-group">
+                        <label for="tarjeta">Tarjeta:</label>
+                        <input type="text" name="tarjeta" class="form-control" readonly="readonly" value="xxx">
+                    </div>
+                    <div class="form-group">
+                        <label for="banco">Banco:</label>
+                        <input type="text" name="banco" class="form-control" readonly="readonly" value="xxx">
+                    </div>
+                    <div class="form-group">
+                        <label for="titular">Titular:</label>
+                        <input type="text" name="titular" class="form-control" readonly="readonly" value="xxx">
+                    </div>
+                    <div class="form-group">
+                        <label for="dni">DNI:</label>
+                        <input type="text" name="dni" class="form-control" readonly="readonly" value="xxx">
+                    </div>
+                    <div class="form-group">
+                        <label for="vencimiento">Vencimiento:</label>
+                        <input type="text" name="vencimiento" class="form-control" readonly="readonly" value="xxx">
+                    </div>
+                    <div class="form-group">
+                        <label for="codigoSeguridad">Codigo de Seguridad:</label>
+                        <input type="text" name="codigoSeguridad" class="form-control" readonly="readonly" value="xxx">
+                    </div>
+                    <div class="form-group form-inline centered">
+                        <input type="button" class="btn btn-info" value="Confirmar" ui-sref="main">
+                        <input type="button" class="btn btn-info" value="Imprimir" ui-sref="main">
+                        <input type="button" class="btn btn-info" value="Cancelar" ui-sref="main">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+     <div class="col-md-2">
+    </div>
+</div>
