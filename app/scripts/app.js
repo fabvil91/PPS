@@ -51,18 +51,25 @@
         controller: 'promosVigentesCtrl',
         templateUrl:'views/promosVigentes.html'
         })
-         $stateProvider
+      $stateProvider
         .state('quienesSomos',
         {
         url:'/quienesSomos',        
         templateUrl:'views/quienesSomos.html'
         })
-        $stateProvider
+      $stateProvider
         .state('contactanos',
         {
         url:'/contactanos',              
         controller: 'contactanosCtrl',
         templateUrl:'views/contactanos.html'
+      })
+      $stateProvider
+        .state('finalizarOperacion',
+        {
+        url:'/finalizarOperacion',              
+        controller: 'finalizarOperacionCtrl.js',
+        templateUrl:'views/finalizarOperacion.html'
         })
     $urlRouterProvider.otherwise('main');           
   }) 
