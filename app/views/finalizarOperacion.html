@@ -28,7 +28,8 @@
             <p>Complejo: {{funcion.complejo.nombre}}</p>
             <p>Cantidad de Asientos: {{funcion.cantidadAsientos}}</p>
         </div>
-        <div class="panel panel-default" ng-if="transaccion.tipoTransaccion = 'compra'">
+    <!--    <div class="panel panel-default" ng-if="transaccion.tipoTransaccion = 'compra'">-->
+            <div class="panel panel-default">
             <div class="panel-heading">
                 <h3>Datos de Compra</h3>
             </div>
@@ -36,27 +37,27 @@
                 <form action="">
                     <div class="form-group">
                         <label for="tarjeta">Tarjeta:</label>
-                        <input type="text" name="tarjeta" class="form-control" readonly="readonly" value="xxx">
+                        <input type="text" name="tarjeta" class="form-control" readonly="readonly" ng-model="funcion.operacion.tarjeta.nombre">
                     </div>
                     <div class="form-group">
                         <label for="banco">Banco:</label>
-                        <input type="text" name="banco" class="form-control" readonly="readonly" value="xxx">
+                        <input type="text" name="banco" class="form-control" readonly="readonly" ng-model="funcion.operacion.banco.nombre">
                     </div>
                     <div class="form-group">
                         <label for="titular">Titular:</label>
-                        <input type="text" name="titular" class="form-control" readonly="readonly" value="xxx">
+                        <input type="text" name="titular" class="form-control" readonly="readonly" ng-model="funcion.operacion.titular">
                     </div>
                     <div class="form-group">
                         <label for="dni">DNI:</label>
-                        <input type="text" name="dni" class="form-control" readonly="readonly" value="xxx">
+                        <input type="text" name="dni" class="form-control" readonly="readonly" ng-model="funcion.operacion.dni">
                     </div>
                     <div class="form-group">
                         <label for="vencimiento">Vencimiento:</label>
-                        <input type="text" name="vencimiento" class="form-control" readonly="readonly" value="xxx">
+                        <input type="text" name="vencimiento" class="form-control" readonly="readonly" ng-model="funcion.operacion.vencimiento.mes + ' ' + funcion.operacion.vencimiento.year">
                     </div>
                     <div class="form-group">
                         <label for="codigoSeguridad">Codigo de Seguridad:</label>
-                        <input type="text" name="codigoSeguridad" class="form-control" readonly="readonly" value="xxx">
+                        <input type="text" name="codigoSeguridad" class="form-control" readonly="readonly" ng-model="funcion.operacion.codigoSeguridad">
                     </div>
                     <div class="form-group form-inline centered">
                         <input type="button" class="btn btn-info" value="Confirmar" ui-sref="main">

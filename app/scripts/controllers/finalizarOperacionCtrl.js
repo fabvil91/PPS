@@ -1,7 +1,10 @@
 (function(){
 	'use strict';
-	angular.module('cine')
-	.controller('finalizarOperacionCtrl', ['$rootScope','$scope','Datos',function($rootScope,$scope,Datos){		
+	angular
+	.module('cine')
+	.controller('finalizarOperacionCtrl', ['$scope','Datos', '$rootScope',
+	function($scope,Datos,$rootScope){		
 		$scope.funcion = Datos.listado();					
-	}]);
+	}])
 })();
+

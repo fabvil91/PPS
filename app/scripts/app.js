@@ -68,9 +68,10 @@
         .state('finalizarOperacion',
         {
         url:'/finalizarOperacion',              
-        controller: 'finalizarOperacionCtrl.js',
+        controller: 'finalizarOperacionCtrl',
         templateUrl:'views/finalizarOperacion.html'
         })
+      $stateProvider
         .state('datosOperacionCompra',
         {
         url:'/datosOperacionCompra',              
