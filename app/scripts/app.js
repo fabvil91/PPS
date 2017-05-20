@@ -71,6 +71,13 @@
         controller: 'finalizarOperacionCtrl.js',
         templateUrl:'views/finalizarOperacion.html'
         })
+        .state('datosOperacionCompra',
+        {
+        url:'/datosOperacionCompra',              
+        controller: 'datosOperacionCompraCtrl',
+        templateUrl:'views/datosOperacionCompra.html'
+        })
+
     $urlRouterProvider.otherwise('main');           
   }) 
   .filter('trusted', ['$sce', function ($sce) {
