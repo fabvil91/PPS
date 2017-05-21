@@ -56,6 +56,12 @@
 			monto: 170
 			}
 		];
+		$scope.promociones = [{nombre: "Miércoles de Cine",
+							   porcentaje: 50,
+							   diaSemana: 3
+							  }
+
+		];
 		$scope.transaccion = {}
 		$scope.entradas = [];
 		$scope.total = 0;
@@ -68,9 +74,27 @@
 		});
 
 		(function(){
+			var promocion = null;
+			for (var i = $scope.promociones.length - 1; i >= 0; i--) {
+				if ($scope.promociones[i].diaSemana == $scope.funcion.dia.getDay()){
+					promocion = $scope.promociones[i];
+					break;
+				}
+			}
+			console.log(promocion);
 			for (var i = $scope.preciosFiltrados.length - 1; i >= 0; i--) {
 				$scope.preciosFiltrados[i].cantidad = 0;
 				$scope.preciosFiltrados[i].subtotal = 0;
+
+				if($scope.preciosFiltrados[i].tipo == 'Entrada General' && promocion != null){
+					$scope.preciosFiltrados[i].tipoOriginal = 'Entrada General';
+					$scope.preciosFiltrados[i].tipo = promocion.nombre;
+
+					$scope.preciosFiltrados[i].montoOriginal = $scope.preciosFiltrados[i].monto;
+					$scope.preciosFiltrados[i].monto = $scope.preciosFiltrados[i].monto * (promocion.porcentaje / 100);
+
+					$scope.preciosFiltrados[i].promocion = promocion;
+				}
 			}
 			console.log($scope.preciosFiltrados);
 		})();
@@ -99,6 +123,7 @@
 		$scope.cargar = function(funcion){
         	funcion.cantidadAsientos = $scope.cantidadTotal;
         	funcion.entradas = $scope.preciosFiltrados;
+        	funcion.transaccion = $scope.transaccion;
         	console.log(funcion);
         	
 			Datos.cargar(funcion);

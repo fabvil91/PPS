@@ -45,6 +45,13 @@
 	         $scope.cargar = function(funcion){                
         	   console.log(funcion);        	
 			   Datos.cargar(funcion);
+
+			   if($scope.funcion.transaccion.tipoTransaccion == 'compra'){
+			   		$location.path('/datosOperacionCompra');
+			   }else if($scope.funcion.transaccion.tipoTransaccion == 'reserva'){
+			   		$location.path('/finalizarOperacion');
+			   }
+			   
         	 }	       		         	         
     }])
 })();
