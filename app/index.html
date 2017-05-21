@@ -35,7 +35,7 @@
         
     <link rel = "stylesheet" type = "text/css" href = "css/style.css" />
     <link rel = "stylesheet" type = "text/css" href = "css/salas.css" />
-    <link rel = "stylesheet" type = "text/css" href = "css/print.css" />
+    <link rel = "stylesheet" type = "text/css" href = "css/print.css" media="print"/>
     
     <script src="scripts/services/user.service.local-storage.js"></script>
     <script src="scripts/services/authentication.service.js"></script>    
@@ -59,9 +59,9 @@
 <body ng-app="cine" ng-controller="indexCtrl">
 <div id="container">
   <!-- HEADER -->
-    <div  class="container-fluid">
+    <div  class="container-fluid ">
 
-        <div class="row text-center header">
+        <div class="row text-center header hidden-print">
             <div class="col-sm-2"></div>
             <div class="col-sm-8">
             <a ui-sref="main">
@@ -82,7 +82,7 @@
         <div id="clearfooter"></div>
     </div>
  </div>
- <div class="row footer">
+ <div class="row footer hidden-print">
      <div class="col-sm-3 footer"></div>
            <div class="col-sm-6 footer-content">
 
