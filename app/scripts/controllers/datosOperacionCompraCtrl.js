@@ -23,13 +23,41 @@
                     {nombre:"Superville"}
                 ];
                 $scope.promociones = [
-                    {nombre:"Sin Promocion", id:0},
-                    {nombre:"2X1"},
-                    {nombre:"30% de Descuento comprando 1 entrada"},
-                    {nombre:"50% de Descuento comprando 2 entradas"},
-                    {nombre:"4x2 comprando 4 entradas pagan 2"},
-                    {nombre:"2x1 tarjeta de credito De cualquier banco"},
-                    {nombre:"40% de Descuento comprando 3 entradas"}
+                    {
+                        nombre:"Sin Promocion", id:0,
+                        banco:"Galicia",
+                        tarjeta:"Visa"
+                    },
+                    {
+                        nombre:"2X1",
+                        banco:"Galicia",
+                        tarjeta:"Visa"
+                    },
+                    {
+                        nombre:"30% de Descuento comprando 1 entrada",
+                        banco:"Galicia",
+                        tarjeta:"MasterCard"
+                    },
+                    {
+                        nombre:"50% de Descuento comprando 2 entradas",
+                        banco:"Santander Rio",
+                        tarjeta:"MasterCard"
+                    },
+                    {
+                        nombre:"4x2 comprando 4 entradas pagan 2",
+                        banco:"Santander Rio",
+                        tarjeta:"Visa"
+                    },
+                    {
+                        nombre:"2x1 tarjeta de credito De cualquier banco",
+                        banco:"Santander Rio",
+                        tarjeta:"MasterCard"
+                    },
+                    {
+                        nombre:"40% de Descuento comprando 3 entradas",                        
+                        banco:"Santander Rio",
+                        tarjeta:"MasterCard"
+                    }
                     
                 ];
                 $scope.mes = [
