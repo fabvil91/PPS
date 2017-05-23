@@ -22,8 +22,9 @@
                          <div class="col-sm-10">
                             <select class="form-control input-sm" ng-options="item.nombre for item in bancos" ng-model="funcion.operacion.banco" required>
                             </select>
+                            <span ng-show="form.banco.$dirty && form.banco.$error.required" class="help-block">Banco es requerido</span>
                          </div>
-                        <span ng-show="form.banco.$dirty && form.banco.$error.required" class="help-block">Banco es requerido</span>
+                        
                       </div>
 
                       <div class="form-group" ng-class="{ 'has-error': form.titular.$dirty && form.titular.$error.required }"> 
@@ -31,18 +32,20 @@
                          <div class="col-sm-10">
                             <select class="form-control input-sm" id="tarjeta" ng-options="item.nombre for item in tarjetas" ng-model="funcion.operacion.tarjeta" required>
                             </select>
+                            <span ng-show="form.tarjeta.$dirty && form.tarjeta.$error.required" class="help-block">Tarjeta es requerido</span>
                          </div>
-                         <span ng-show="form.tarjeta.$dirty && form.tarjeta.$error.required" class="help-block">Tarjeta es requerido</span>
+                         
                       </div>
                       <div ng-if="funcion.operacion.banco !=null && funcion.operacion.tarjeta!=null">
 
                         <div class="form-group" ng-class="{ 'has-error': form.promociones.$dirty && form.promociones.$error.required }"> 
                           <label class="control-label col-sm-2" for="tarjeta">Seleccione Promociones <span class="require">*</span></label>
                           <div class="col-sm-10">
-                              <select class="form-control input-sm" id="promociones" ng-options="item.nombre for item in promociones | filter :{banco:{{funcion.operacion.banco.nombre}}, tarjeta:{{funcion.operacion.tarjeta.nombre}}}" ng-model="funcion.operacion.promociones" required>
+                              <select class="form-control input-sm" id="promociones" ng-options="item.nombre for item in promociones | filter :{banco:funcion.operacion.banco.nombre, tarjeta:funcion.operacion.tarjeta.nombre}" ng-model="funcion.operacion.promociones" required>
                               </select>
+                              <span ng-show="form.promociones.$dirty && form.promociones.$error.required" class="help-block">Promocion es requerido</span>
                           </div>
-                          <span ng-show="form.promociones.$dirty && form.promociones.$error.required" class="help-block">Promocion es requerido</span>
+                          
                         </div>
                       </div>
 
@@ -50,8 +53,9 @@
                         <label class="control-label col-sm-2" for="titular">Titular</label>
                          <div class="col-sm-10">
                            <input type="text" id="titular" class="form-control" ng-model="funcion.operacion.titular" required>
+                            <span ng-show="form.titular.$dirty && form.titular.$error.required" class="help-block">Titular es requerido</span>
                          </div>
-                       <span ng-show="form.titular.$dirty && form.titular.$error.required" class="help-block">Titular es requerido</span>
+                      
                       </div>
 
                       <div class="form-group" ng-class="{ 'has-error': form.dni.$dirty && form.dni.$error.required }"> 
