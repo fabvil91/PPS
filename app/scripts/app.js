@@ -7,76 +7,76 @@
         {
         url:'/main',              
         controller: 'mainCtrl',
-        templateUrl:'views/main.html'
+        templateUrl:'views/flujoPrincipal/main.html'
         })
     $stateProvider
       .state('login',
         {
         url:'/login',
         controller: 'loginCtrl',
-        templateUrl:'views/login.html'
+        templateUrl:'views/flujoPrincipal/login.html'
         })
     $stateProvider
       .state('registro',
         {
         url:'/registro',        
         controller: 'registroCtrl',
-        templateUrl:'views/registro.html'        
+        templateUrl:'views/flujoPrincipal/registro.html'        
         }) 
        $stateProvider
       .state('detallePelicula',
         {
         url:'/detallePelicula',              
         controller: 'detallePeliculaCtrl',
-        templateUrl:'views/detallePelicula.html'
+        templateUrl:'views/flujoPrincipal/detallePelicula.html'
         })
       $stateProvider
       .state('salas',
         {
         url:'/salas',              
         controller: 'salasCtrl',
-        templateUrl:'views/salas.html'
+        templateUrl:'views/flujoPrincipal/salas.html'
         })
       $stateProvider
       .state('seleccionEntradas',
         {
         url:'/seleccionEntradas',        
         controller: 'seleccionEntradasCtrl',
-        templateUrl:'views/seleccionEntradas.html'        
+        templateUrl:'views/flujoPrincipal/seleccionEntradas.html'        
         }) 
       $stateProvider
         .state('promosVigentes',
         {
         url:'/promosVigentes',              
         controller: 'promosVigentesCtrl',
-        templateUrl:'views/promosVigentes.html'
+        templateUrl:'views/flujoPrincipal/promosVigentes.html'
         })
       $stateProvider
         .state('quienesSomos',
         {
         url:'/quienesSomos',        
-        templateUrl:'views/quienesSomos.html'
+        templateUrl:'views/flujoPrincipal/quienesSomos.html'
         })
       $stateProvider
         .state('contactanos',
         {
         url:'/contactanos',              
         controller: 'contactanosCtrl',
-        templateUrl:'views/contactanos.html'
+        templateUrl:'views/flujoPrincipal/contactanos.html'
       })
       $stateProvider
         .state('finalizarOperacion',
         {
         url:'/finalizarOperacion',              
         controller: 'finalizarOperacionCtrl',
-        templateUrl:'views/finalizarOperacion.html'
+        templateUrl:'views/flujoPrincipal/finalizarOperacion.html'
         })
       $stateProvider
         .state('datosOperacionCompra',
         {
         url:'/datosOperacionCompra',              
         controller: 'datosOperacionCompraCtrl',
-        templateUrl:'views/datosOperacionCompra.html'
+        templateUrl:'views/flujoPrincipal/datosOperacionCompra.html'
         })
 
     $urlRouterProvider.otherwise('main');           

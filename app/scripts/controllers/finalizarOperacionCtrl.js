@@ -10,12 +10,6 @@
 			$window.print();
 		};
 		
-		$scope.confirm = function () {   
-			$("#confirmarPop").on('hidden.bs.modal', function () {
-				$location.path("/");
-				$scope.$apply();
-			});
-		};
 		
 
 		$scope.generarCodigo= function(){
