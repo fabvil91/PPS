@@ -27,21 +27,21 @@
             <div class="col-sm-10 panel-heading">
                 <div class="col-xs-3 form-group">
                     <label for="selComplejo">Complejo: </label>                   
-                     <select class="form-control" id="selComplejo" ng-model="filtro.complejo.nombre" ng-options="x for x in complejos" >            
+                     <select class="form-control" id="selComplejo" ng-model="filtro.complejo" ng-options="x._id as x.nombre for x in complejos" ng-change="loguear()">            
                      </select> 
                 </div>
       
             <!-- FORMATO  -->                                
                 <div class="col-xs-1 form-group">
                     <label for="selFormato">Formato: </label>                   
-                    <select class="form-control" id="selFormato" ng-model="filtro.formato" ng-options="x for x in formatos" >        
+                    <select class="form-control" id="selFormato" ng-model="filtro.formato" ng-options="x._id as x.nombre for x in formatos" >        
                     </select> 
                 </div>
 
             <!-- IDIOMA -->                
                  <div class="col-xs-2 form-group">
                     <label for="selIdioma">Idioma: </label>                   
-                     <select class="form-control" id="selIdioma" ng-model="filtro.idioma" ng-options="x for x in idiomas" >        
+                     <select class="form-control" id="selIdioma" ng-model="filtro.idioma" ng-options="x._id as x.nombre for x in idiomas" >        
                      </select> 
                  </div>
 
@@ -72,7 +72,7 @@
                   <!-- PELICULAS-->
                   <ul class="list-inline">
                   <span ng-show="funciones.length === 0">No hay funciones disponibles</span>
-                  <li ng-repeat="funcion in funciones | filter:{ formato: filtro.formato, idioma: filtro.idioma, complejo:{nombre: filtro.complejo.nombre},diaTime: filtro.diaLocale } | unique:'pelicula.nombre'">
+                  <li ng-repeat="funcion in funciones | filter:{ formato:{_id:filtro.formato}, idioma:{_id:filtro.idioma}, complejo:{_id: filtro.complejo},diaTime: filtro.diaLocale } | unique:'pelicula.nombre'">
                       <div class="movie text-center">
                         <a href="#" ng-click="cargar(funcion)" ui-sref="detallePelicula">
                           <img ng-src="{{funcion.pelicula.imageUrl}}" alt="poster"  class="img-thumbnail img-poster">                                   

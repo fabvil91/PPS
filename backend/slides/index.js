@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/getAll',function(req, res,next){		
+router.get('/slides/getAll',function(req, res,next){		
 		req.db
-		.collection('articulos')
+		.collection('slides')
 		.find()
     	.toArray((err, data) => {
       		if (err)

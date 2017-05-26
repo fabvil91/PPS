@@ -1,16 +1,45 @@
 (function(){
 	'use strict';
 	angular.module('cine')
-	.controller('mainCtrl', ['$rootScope','$scope','Datos',function($rootScope,$scope,Datos){		
-		$scope.complejos = ["Cinemar Avellaneda", "Cinemar Lanus"];
-		$scope.formatos = ["2D","3D"];
-		$scope.idiomas = ["Español", "Subtitulado"];
+	.controller('mainCtrl', ['$rootScope','$scope','Datos','Complejos','Formatos','Idiomas','Slides','Funciones',function($rootScope,$scope,Datos,Complejos,Formatos,Idiomas,Slides,Funciones){		
+	//	$scope.complejos = ["Cinemar Avellaneda", "Cinemar Lanus"];
+
+		 Complejos.listado()
+	     .then(function(datos){
+	     	console.log(datos);
+	        $scope.complejos = datos;
+	     })
+	     .catch(function(e){
+	       console.log(e);
+	     })
+
+		//$scope.formatos = ["2D","3D"];
+
+		Formatos.listado()
+	     .then(function(datos){
+	     	console.log(datos);
+	        $scope.formatos = datos;
+	     })
+	     .catch(function(e){
+	       console.log(e);
+	     })
+
+		//$scope.idiomas = ["Español", "Subtitulado"];
+
+		Idiomas.listado()
+	     .then(function(datos){
+	     	console.log(datos);
+	        $scope.idiomas = datos;
+	     })
+	     .catch(function(e){
+	       console.log(e);
+	     })
 
 		$scope.filtro = {};
 
 		$scope.myInterval = 3000;
 		
-		$scope.slides = [
+	/*	$scope.slides = [
 			{imageUrl: "images/carousel/starWars.jpg",
 			 nombre: "Star Wars",
 			 descripcion: "Episodio 7"
@@ -27,9 +56,18 @@
 			 nombre: "Bella y Bestia",
 			 descripcion: "Un romance diferente" 
 			}
-		];
+		];*/
 
-		$scope.funciones = [
+		Slides.listado()
+	     .then(function(datos){
+	     	console.log(datos);
+	        $scope.slides = datos;
+	     })
+	     .catch(function(e){
+	       console.log(e);
+	     })
+
+	/*	$scope.funciones = [
 			{
 				pelicula: {imageUrl: "images/peliculas/StarWars.jpg",
 						   trailerUrl: "https://www.youtube.com/embed/sGbxmsDFVnE",
@@ -120,52 +158,63 @@
 				dia: new Date("5/26/2017"),
 				hora: new Date(2017,4,26,16,30,0,0)
 			}
-		];
-				
-		(function(){						
+		];*/
+
+		Funciones.listado()
+	     .then(function(datos){
+	     	console.log(datos);
+
+	        $scope.funciones = datos;
+
+	        (function(){						
 			var funcionesDesdeAhora = [];
 
 			for (var i = $scope.funciones.length - 1; i >= 0; i--) {				
-				$scope.funciones[i].diaTime = $scope.funciones[i].dia.getTime();
-				if($scope.funciones[i].hora.getTime() >= new Date().getTime()){
+				$scope.funciones[i].diaTime = new Date($scope.funciones[i].dia).getTime();
+				if(new Date($scope.funciones[i].hora).getTime() >= new Date().getTime()){
 					funcionesDesdeAhora.push($scope.funciones[i]);
 				}
 			}
 			$scope.funciones = funcionesDesdeAhora;
 			console.log($scope.funciones);			
-		})();
+			})();
 		
-		Date.prototype.addDays = function(days) {
-        var dat = new Date(this.valueOf())
-        dat.setDate(dat.getDate() + days);
-        return dat;
-   		}
+			Date.prototype.addDays = function(days) {
+	        var dat = new Date(this.valueOf())
+	        dat.setDate(dat.getDate() + days);
+	        return dat;
+	   		}
 
-   		function getDates(startDate, stopDate) {
-      	var dateArray = new Array();
-      	var currentDate = startDate;
-      	while (currentDate <= stopDate) {
-        	dateArray.push(currentDate)
-        	currentDate = currentDate.addDays(1);
-      	}
-      	return dateArray;
-    	}
+	   		function getDates(startDate, stopDate) {
+	      	var dateArray = new Array();
+	      	var currentDate = startDate;
+	      	while (currentDate <= stopDate) {
+	        	dateArray.push(currentDate)
+	        	currentDate = currentDate.addDays(1);
+	      	}
+	      	return dateArray;
+	    	}
 
-		$scope.dias = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
-		var hoy = new Date();
-		hoy.setHours(0,0,0,0);
-		var proxSem = (new Date()).addDays(6);
-		proxSem.setHours(0,0,0,0);
-				
-		$scope.fechas = getDates(hoy,proxSem);
-		$scope.fechasDias = [];
+			$scope.dias = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+			var hoy = new Date();
+			hoy.setHours(0,0,0,0);
+			var proxSem = (new Date()).addDays(6);
+			proxSem.setHours(0,0,0,0);
+					
+			$scope.fechas = getDates(hoy,proxSem);
+			$scope.fechasDias = [];
 
-		(function (){							
-			for (var i = 0; i < $scope.fechas.length; i++ ) {	   
-       		  $scope.fechasDias.push($scope.dias[$scope.fechas[i].getDay()] + " - " + $scope.fechas[i].getDate() + "/" + ($scope.fechas[i].getMonth()+1));    
-			}						
-		})();  
-				
+			(function (){							
+				for (var i = 0; i < $scope.fechas.length; i++ ) {	   
+	       		  $scope.fechasDias.push($scope.dias[$scope.fechas[i].getDay()] + " - " + $scope.fechas[i].getDate() + "/" + ($scope.fechas[i].getMonth()+1));    
+				}						
+			})();  
+
+	     })
+	     .catch(function(e){
+	       console.log(e);
+	     });
+					
 		$scope.filtrarDia = function(){									
 			var indice = $scope.fechasDias.indexOf($scope.filtro.dia);			
 			var dia = $scope.fechas[indice];
@@ -189,6 +238,10 @@
 			
 			console.log(funcion);
 			Datos.cargar(funcion);
+		}
+
+		$scope.loguear = function(){
+			console.log($scope.filtro);
 		}						
 	}]);
 })();
