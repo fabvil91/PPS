@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/funciones/getAll',function(req, res,next){		
+router.get('/bancos/getAll',function(req, res,next){		
 		req.db
-		.collection('funciones')
+		.collection('bancos')
 		.find()
     	.toArray((err, data) => {
       		if (err)
@@ -65,16 +65,18 @@ router.post('/insertar',function(req, res, next){
         });  
 	});
 
-router.put('/funciones/modificar',function(req, res, next){
+router.put('/modificar',function(req, res, next){
 		console.log(req.body);
 		var id = new require('mongodb').ObjectID(req.body._id);
 		console.log(id);
 
-        req.db.collection('funciones')        
-        .update({_id: id}, {$set: {
-        						   dia: new Date(req.body.dia),
-                       hora: new Date(req.body.hora),
-                       sala: req.body.sala        						   
+        req.db.collection('articulos')        
+        .update({_id: id}, {$set: {name: req.body.name, 
+        						   peso: req.body.peso,
+        						   precio: req.body.precio,
+        						   fecha: new Date(req.body.fecha),
+        						   tipo: req.body.tipo,
+        						   proveedor: {email: req.body.email}
         						   }}, function (err, result){
            if (err) {
                res.json({rta : err});

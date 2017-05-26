@@ -3,97 +3,78 @@
  
     angular
         .module('cine')
-        .controller('datosOperacionCompraCtrl', ['$scope','$location','Datos','UserService','$rootScope',
-        function ($scope,$location,Datos,UserService,$rootScope,) {
+        .controller('datosOperacionCompraCtrl', ['$scope','$location','Datos','$rootScope','Tarjetas','Bancos','Promociones',
+        function ($scope,$location,Datos,$rootScope,Tarjetas,Bancos,Promociones) {
         
                 $scope.funcion = Datos.listado();
-                $scope.tarjetas = [
-                    {nombre:"Visa", id:1},
-                    {nombre:"MasterCard", id:2},
-                    {nombre:"American Express", id:0}
-                ];
 
-                $scope.bancos = [
-                    {nombre:"Galicia", id:0},
-                    {nombre:"Santander Rio"},
-                    {nombre:"Banco Macro"},
-                    {nombre:"Banco Ciudad"},
-                    {nombre:"HSBC"},
-                    {nombre:"Banco Patagonia"},
-                    {nombre:"Superville"}
-                ];
-                $scope.promociones = [
-                    {
-                        nombre:"Sin Promocion", id:0,
-                        banco:"Galicia",
-                        tarjeta:"Visa"
-                    },
-                    {
-                        nombre:"2X1",
-                        banco:"Galicia",
-                        tarjeta:"Visa"
-                    },
-                    {
-                        nombre:"30% de Descuento comprando 1 entrada",
-                        banco:"Galicia",
-                        tarjeta:"MasterCard"
-                    },
-                    {
-                        nombre:"50% de Descuento comprando 2 entradas",
-                        banco:"Santander Rio",
-                        tarjeta:"MasterCard"
-                    },
-                    {
-                        nombre:"4x2 comprando 4 entradas pagan 2",
-                        banco:"Santander Rio",
-                        tarjeta:"Visa"
-                    },
-                    {
-                        nombre:"2x1 tarjeta de credito De cualquier banco",
-                        banco:"Santander Rio",
-                        tarjeta:"MasterCard"
-                    },
-                    {
-                        nombre:"40% de Descuento comprando 3 entradas",                        
-                        banco:"Santander Rio",
-                        tarjeta:"MasterCard"
-                    }
-                    
-                ];
-                $scope.mes = [
-                    {nombre:"Enero", id:0},
-                    {nombre:"Febrero"},
-                    {nombre:"Marzo"},
-                    {nombre:"Abril"},
-                    {nombre:"Marzo"},
-                    {nombre:"Abril"},
-                    {nombre:"Mayo"},
-                    {nombre:"Junio"},
-                    {nombre:"Julio"},
-                    {nombre:"Agosto"},
-                    {nombre:"Septiembre"},
-                    {nombre:"Octubre"},
-                    {nombre:"Noviembre"},
-                    {nombre:"Diciembre"}
-                 ];
-                $scope.year = [
-                    {nombre:"2017", id:0},
-                    {nombre:"2018"},
-                    {nombre:"2019"},
-                    {nombre:"2020"},
-                    {nombre:"2021"},
-                    {nombre:"2022"},
-                    {nombre:"2023"},
-                    {nombre:"2024"}
-                ];
+                 Tarjetas.listado()
+                     .then(function(datos){
+                        console.log(datos);
+                        $scope.tarjetas = datos;
 
-                $scope.funcion.operacion = {
-                    vencimiento:{}
-                };
+                         Bancos.listado()
+                         .then(function(datos){
+                            console.log(datos);
+                            $scope.bancos = datos;
+
+                                 Promociones.listado()
+                                 .then(function(datos){
+                                    console.log(datos);
+                                    $scope.promociones = datos;
+
+                                        $scope.promociones = $scope.promociones.filter(function(element){
+                                            return (element.banco != null && element.tarjeta != null);
+                                        });
+                                        console.log($scope.promociones);
+
+                                             $scope.mes = [
+                                                {nombre:"Enero", id:0},
+                                                {nombre:"Febrero"},
+                                                {nombre:"Marzo"},
+                                                {nombre:"Abril"},
+                                                {nombre:"Marzo"},
+                                                {nombre:"Abril"},
+                                                {nombre:"Mayo"},
+                                                {nombre:"Junio"},
+                                                {nombre:"Julio"},
+                                                {nombre:"Agosto"},
+                                                {nombre:"Septiembre"},
+                                                {nombre:"Octubre"},
+                                                {nombre:"Noviembre"},
+                                                {nombre:"Diciembre"}
+                                             ];
+                                            $scope.year = [
+                                                {nombre:"2017", id:0},
+                                                {nombre:"2018"},
+                                                {nombre:"2019"},
+                                                {nombre:"2020"},
+                                                {nombre:"2021"},
+                                                {nombre:"2022"},
+                                                {nombre:"2023"},
+                                                {nombre:"2024"}
+                                            ];
+
+                                            $scope.funcion.operacion = {
+                                                vencimiento:{}
+                                            };
+                                  })
+                             .catch(function(e){
+                              console.log(e);
+                            })
+                        })
+                    .catch(function(e){
+                      console.log(e);
+                    })
+                 })
+                 .catch(function(e){
+                   console.log(e);
+                 })
+                              
                 $scope.cargar = function(funcion){                
                     console.log(funcion);        	
                     Datos.cargar(funcion);
-        	 }	 
+        	   }	 
         } ]) 
 })();
 

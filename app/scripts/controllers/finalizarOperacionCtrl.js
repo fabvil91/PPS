@@ -10,7 +10,10 @@
 			$window.print();
 		};
 		
-		
+		$scope.formatearHora = function(funcion){        	
+			var fecha = new Date(funcion.hora);
+			return fecha.getHours() + ":" + (fecha.getMinutes() == "0"? "00" : fecha.getMinutes());
+		}
 
 		$scope.generarCodigo= function(){
 			var length = 6;

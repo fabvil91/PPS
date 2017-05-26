@@ -8,6 +8,10 @@ var formatos = require('./formatos');
 var idiomas = require('./idiomas');
 var slides = require('./slides');
 var funciones = require('./funciones');
+var precios = require('./precios');
+var promociones = require('./promociones');
+var bancos = require('./bancos');
+var tarjetas = require('./tarjetas');
 
 var bodyParser = require('body-parser');
 var cors = require('cors');
@@ -36,6 +40,10 @@ MongoClient.connect('mongodb://localhost:27017/pps', (err, db) =>
 	app.use('/',idiomas);
 	app.use('/',slides);
 	app.use('/',funciones);
+	app.use('/',precios);
+	app.use('/',promociones);
+	app.use('/',bancos);
+	app.use('/',tarjetas);
 
 	app.listen(3333, ()=> {
 		console.log('Servidor iniciado..');

@@ -78,8 +78,7 @@
 								for (var i = 0; i < $scope.fechas.length; i++ ) {	   
 					       		  $scope.fechasDias.push($scope.dias[$scope.fechas[i].getDay()] + " - " + $scope.fechas[i].getDate() + "/" + ($scope.fechas[i].getMonth()+1));    
 								}						
-							})();  
-
+							})(); 														
 					     })
 					     .catch(function(e){
 					       console.log(e);

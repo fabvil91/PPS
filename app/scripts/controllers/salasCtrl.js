@@ -3,8 +3,7 @@
 	angular.module('cine')
 	.controller('salasCtrl', ['$rootScope','$scope','Datos','$sce','Salas','$timeout','$location',function($rootScope,$scope,Datos,$sce,Salas,$timeout,$location){
 			 $scope.mensaje = "";			
-			 $scope.funcion = Datos.listado();
-			 $scope.funcion.sala = Salas.crear(10,10);
+			 $scope.funcion = Datos.listado();			 
 			            	
 	         var _startCountdown = function(){
 				var timerCount = 300;

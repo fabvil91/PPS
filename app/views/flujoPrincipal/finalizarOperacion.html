@@ -23,8 +23,8 @@
     <div class="col-md-8">
         <div class="detallesFuncion">
             <h3>Datos de Funcion</h3>
-            <p>Pelicula: {{funcion.pelicula.nombre}} - {{funcion.idioma}}</p>
-            <p>Funcion: {{funcion.diaFormateado}} -  {{funcion.hora.getHours() + ":" + (funcion.hora.getMinutes() == "0"? "00" : funcion.hora.getMinutes()) }}</p>
+            <p>Pelicula: {{funcion.pelicula.nombre}} - {{funcion.idioma.nombre}}</p>
+            <p>Funcion: {{funcion.diaFormateado}} - {{ formatearHora(funcion) }}</p>
             <p>Complejo: {{funcion.complejo.nombre}}</p>
             <p>Cantidad de Asientos: {{funcion.cantidadAsientos}}</p>
         </div>
