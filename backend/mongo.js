@@ -12,6 +12,7 @@ var precios = require('./precios');
 var promociones = require('./promociones');
 var bancos = require('./bancos');
 var tarjetas = require('./tarjetas');
+var usuarios = require('./usuarios');
 
 var bodyParser = require('body-parser');
 var cors = require('cors');
@@ -44,6 +45,7 @@ MongoClient.connect('mongodb://localhost:27017/pps', (err, db) =>
 	app.use('/',promociones);
 	app.use('/',bancos);
 	app.use('/',tarjetas);
+	app.use('/',usuarios);
 
 	app.listen(3333, ()=> {
 		console.log('Servidor iniciado..');

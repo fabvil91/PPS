@@ -5,8 +5,8 @@
         .module('cine')
         .factory('AuthenticationService', AuthenticationService);
  
-    AuthenticationService.$inject = ['$http', '$cookies', '$rootScope', '$timeout', 'UserService'];
-    function AuthenticationService($http, $cookies, $rootScope, $timeout, UserService) {
+    AuthenticationService.$inject = ['$http', '$cookies', '$rootScope', '$timeout', 'UserService','Usuarios'];
+    function AuthenticationService($http, $cookies, $rootScope, $timeout, UserService,Usuarios) {
         var service = {};
  
         service.Login = Login;
@@ -16,10 +16,9 @@
         return service;
  
         function Login(username, password, callback) {
- 
             /* Dummy authentication for testing, uses $timeout to simulate api call
              ----------------------------------------------*/
-            $timeout(function () {
+            /*    $timeout(function () {
                 var response;
                 UserService.GetByUsername(username)
                     .then(function (user) {
@@ -30,7 +29,7 @@
                         }
                         callback(response);
                     });
-            }, 1000);
+            }, 1000);*/
  
             /* Use this for real authentication
              ----------------------------------------------*/
@@ -38,7 +37,19 @@
             //    .success(function (response) {
             //        callback(response);
             //    });
- 
+		
+			var response;
+            Usuarios.usuarioPorNombreUsuario(username)
+                .then(function (userArray) {
+				var user = userArray[0];
+				console.log(user);
+                if (user  && user.password === password) {
+                     response = { success: true, tipoUsuario: user.tipo.nombre };
+                 } else {
+                     response = { success: false, message: 'Usuario o contraseña incorrectos' };
+                 }
+                     callback(response);
+                });                          
         }
  
         function SetCredentials(username, password, tipoUsuario) {
