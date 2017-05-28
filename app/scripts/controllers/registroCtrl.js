@@ -3,30 +3,40 @@
  
     angular
         .module('cine')
-        .controller('registroCtrl', ['$scope','$location','UserService','$rootScope',
-        function ($scope,$location,UserService,$rootScope) {
-                
-         $scope.registroForm = {
-         	firstName: null,
-         	lastName: null,
-         	username: null,
-         	password: null,
-         	tipoUsuario: "Usuario"
-         };
-         $scope.mensaje = null;
-
+        .controller('registroCtrl', ['$scope','$location','Usuarios','TiposUsuario','$rootScope',
+        function ($scope,$location,Usuarios,TiposUsuario,$rootScope) {
+        
+          TiposUsuario.tiposUsuarioPorNombre('Usuario')
+             .then(function(datos){
+                console.log(datos);
+                    
+              $scope.registroForm = {         
+                        username: null,
+                        email: null,
+                        password: null,
+                        tipoUsuario: datos[0]
+                     };
+             $scope.mensaje = null;
                
-		$scope.registrar = function() {
-            UserService.Create($scope.registroForm)
-                .then(function (response) {
-                    if (response.success) {
-                        $location.path('/login');
-                    } else {
- 						console.log("error");
-	                    $scope.mensaje = response.message;                       
-                    }
-                });
-        };   
+             $scope.registrar = function() {
+                    Usuarios.Create($scope.registroForm)
+                    .then(function (response) {
+                    console.log(response);
+                        if (response.success) {
+                            $location.path('/login');
+                        } else {
+                            console.log("error");
+                            $scope.mensaje = response.message;                       
+                        }
+                    });
+                   }; 
+
+            })
+             .catch(function(e){
+               console.log(e);
+             })
+
+         
 }]);
 }) ();
 

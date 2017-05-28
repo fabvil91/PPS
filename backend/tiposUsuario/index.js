@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/usuarios/getAll',function(req, res,next){		
+router.get('/tiposUsuario/getAll',function(req, res,next){		
 		req.db
-		.collection('usuarios')
+		.collection('tiposUsuario')
 		.find()
     	.toArray((err, data) => {
       		if (err)
@@ -12,10 +12,10 @@ router.get('/usuarios/getAll',function(req, res,next){
     	})
 	});
 
-router.get('/usuarios/username/:username', (req, res, next) => {
-    console.log(req.params.username);
-    req.db.collection('usuarios')
-    .find({username:req.params.username})
+router.get('/tiposUsuario/nombre/:nombre', (req, res, next) => {
+    console.log(req.params.nombre);
+    req.db.collection('tiposUsuario')
+    .find({nombre:req.params.nombre})
     .toArray((err, data) => {
     	if (err)
         	console.log(err);  
@@ -49,10 +49,7 @@ router.post('/usuarios/insertar',function(req, res, next){
 		console.log(req.body);
 
         req.db.collection('usuarios')        
-        .insert({username: req.body.username,
-                 password: req.body.password,
-                 email: req.body.email,
-                 tipo: req.body.tipoUsuario         		 
+        .insert({username: req.body.username         		 
         		}, function (err, result){
            if (err) {
                res.json({rta : err});

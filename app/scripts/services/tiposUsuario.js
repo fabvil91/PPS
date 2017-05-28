@@ -1,9 +1,9 @@
 angular
   .module('cine')
-  .service('Usuarios', ['$http', function($http){
+  .service('TiposUsuario', ['$http', function($http){
 
     this.listado = listado;
-    this.usuarioPorNombreUsuario = usuarioPorNombreUsuario;
+    this.tiposUsuarioPorNombre = tiposUsuarioPorNombre;
     this.articuloPrecioMayor = articuloPrecioMayor;
     this.articuloPorProveedor = articuloPorProveedor;
     this.articuloPorIndice = articuloPorIndice;
@@ -13,7 +13,7 @@ angular
     this.Create = Create;
 
     function listado () {
-      return $http.get('http://localhost:3333/usuarios/getAll')
+      return $http.get('http://localhost:3333/tiposUsuario/getAll')
       .then(function(rta){
         return rta.data;
       })
@@ -22,8 +22,8 @@ angular
       })
     }
 
-     function usuarioPorNombreUsuario(texto) {
-      return $http.get('http://localhost:3333/usuarios/username/'+texto)
+     function tiposUsuarioPorNombre(texto) {
+      return $http.get('http://localhost:3333/tiposUsuario/nombre/'+texto)
       .then(function(rta){
         console.log(rta);
         return rta.data;
