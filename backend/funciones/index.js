@@ -73,8 +73,8 @@ router.put('/funciones/modificar',function(req, res, next){
         req.db.collection('funciones')        
         .update({_id: id}, {$set: {
         						   dia: new Date(req.body.dia),
-                       hora: new Date(req.body.hora),
-                       sala: req.body.sala        						   
+                       hora: new Date(req.body.hora)
+                     //  sala: req.body.sala        						   
         						   }}, function (err, result){
            if (err) {
                res.json({rta : err});
