@@ -16,6 +16,7 @@
 			$scope.nombreUser = null;
 
 			$location.path('/main'); 
-		}  
+		}
+		  
 	}]);
 }) ();

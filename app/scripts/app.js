@@ -78,8 +78,14 @@
         controller: 'datosOperacionCompraCtrl',
         templateUrl:'views/flujoPrincipal/datosOperacionCompra.html'
         })
+      $stateProvider
+        .state('prohibida',
+        {
+        url:'/prohibida',        
+        templateUrl:'views/flujoPrincipal/prohibida.html'
+        })    
 
-    $urlRouterProvider.otherwise('main');           
+  //  $urlRouterProvider.otherwise('main');           
   }) 
   .filter('trusted', ['$sce', function ($sce) {
         return function(url) {
@@ -91,8 +97,8 @@
         return new Date(1970, 0, 1).setSeconds(seconds);
     };
   }])
-  .run(['$rootScope', '$location', '$cookies', '$http',
-    function run($rootScope, $location, $cookies, $http) {
+  .run(['$rootScope', '$location', '$cookies', '$http','$state',
+    function run($rootScope, $location, $cookies, $http,$state) {
         // keep user logged in after page refresh
         $rootScope.globals = $cookies.getObject('globals') || {};
         if ($rootScope.globals.currentUser) {
@@ -113,15 +119,34 @@
 
             if(loggedIn){
               if($rootScope.globals.currentUser.tipoUsuario == 'Usuario'){
-                var restrictedPage = $.inArray($location.path(), ['/main', '/login','/registro','/detallePelicula','/salas','/seleccionEntradas','/promosVigentes','/quienesSomos']) === -1;
+                var restrictedPage = $.inArray($location.path(), ['/main', '/login','/registro','/detallePelicula','/salas','/seleccionEntradas','/promosVigentes','/quienesSomos','/prohibida']) === -1;
               }
               //Agregar los distintos tipos de usuario
-              if (restrictedPage) {
-                console.log("Pagina prohibida" + $location.path());
-               // $location.path('/login'); o Pagina de error?
-              }              
+              /*if($rootScope.globals.currentUser.tipoUsuario == 'Admin'){
+                var restrictedPage = $.inArray($location.path(), ['/mainAdmin', '/login','/registro','/detallePelicula','/salas','/seleccionEntradas','/promosVigentes','/quienesSomos']) === -1;
+              }
+
+              if($rootScope.globals.currentUser.tipoUsuario == 'Empleado'){
+                var restrictedPage = $.inArray($location.path(), ['/mainEmp', '/login','/registro','/detallePelicula','/salas','/seleccionEntradas','/promosVigentes','/quienesSomos']) === -1;
+              }
+
+              if($rootScope.globals.currentUser.tipoUsuario == 'Cajero'){
+                var restrictedPage = $.inArray($location.path(), ['/mainCajero', '/login','/registro','/detallePelicula','/salas','/seleccionEntradas','/promosVigentes','/quienesSomos']) === -1;
+              }*/
+                                          
+              if (restrictedPage) {                    
+                  console.log("Pagina prohibida: " + $location.path());                   
+                  $state.go('prohibida');                      
+              }        
+
             }else{
-              //si no estas logeado y vas a una que no sea main => // $location.path('/login');
+              console.log('no logueado, path: ' + $location.path());
+              //si no estas logeado y vas a una que no sea main,etc => // $location.path('/login');
+                 var restrictedPage = $.inArray($location.path(), ['/main', '/login','/registro','/promosVigentes','/quienesSomos','/contactanos','/prohibida']) === -1;
+                   if (restrictedPage) {                    
+                    console.log("Pagina prohibida: " + $location.path());                   
+                    $state.go('login');                      
+                  }  
             }
          
         });
