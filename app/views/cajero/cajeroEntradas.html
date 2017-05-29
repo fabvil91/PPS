@@ -1,0 +1,94 @@
+<div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <ul class="nav navbar-nav">
+                        <li><a href="#">Buscar Transaccion</a></li>
+                        <li class="active"><a href="#">Compra Presencial</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+     <div class="col-md-2">
+    </div>
+    <div class = "col-md-8">
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">1. Entradas</a></li>
+                    <li><a href="#">2. Ubicaciones</a></li>
+                    <li><a href="#">3. Pago</a></li> 
+                    <li><a href="#">4. Confirmacion</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+     <div class="col-md-2">
+    </div>
+</div>
+<!-- HAY QUE HACER QUE transaccion.tipoTransaccion sea 'compra' SIEMPRE -->
+<div class = "row">
+    <div class="col-sx-1 col-md-2">
+    </div>
+    <div class="col-sx-10 col-md-8 container white">
+    
+        <div class="detallesFuncion">
+            <p>Pelicula: {{funcion.pelicula.nombre}} - {{funcion.idioma.nombre}}</p>
+            <p>Funcion: {{funcion.diaFormateado}} -  {{ formatearHora(funcion) }}</p>
+            <p>Complejo: {{funcion.complejo.nombre}}</p>
+        </div>
+        <div> 
+            <h3>SELECCIONE SUS ENTRADAS</h3>
+            <p>Seleccione la cantidad y el tipo de tickets a comprar.</p>
+            <p>Usted puede comprar un maximo de 6 tickets por transaccion.</p>
+            <p>El ticket Niño se considera para niños de 3 a 12 años.</p>
+        </div> 
+        <div>
+            <form class="entradas">
+                
+                <div ng-if="cantidadTotal == 6">{{mensaje}}</div>
+                <table class="table ">
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Costo</th>
+                            <th>Cantidad</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Hay que fijarse como manejamos esto -->
+                        <tr ng-repeat="precios in preciosFiltrados">
+                            <td>{{precios.tipo}}</td>    
+                            <td>${{precios.monto}}</td>
+                            <td>                                
+                                <button ng-click="agregarEntrada(precios)" ><img src="./images/icons/plus.png" alt="Simbolo 'suma'" height="16px"></button>
+                                <!--como filtras $scope.entradas para que te devuleva la cantidad por tipo?? -->
+                                {{precios.cantidad}}
+                                <button ng-click="restarEntrada(precios)"><img src="./images/icons/minus.png" alt="Simbolo 'resta'" height="16px"></button>                                   
+                            </td>
+                            <td>
+                                <p>$ {{precios.subtotal}}</p>
+                            </td>
+                        </tr>                       
+                    </tbody>
+                </table>
+                <div class="form-group form-inline centered">
+                    <label for="total">Total:</label>
+                    <input type="text" name="total" class="form-control" ng-model="total" disabled>
+                
+                    <input type="button" class="btn btn-info" value="Cancelar" ui-sref="#">
+              
+                    <input type="button" class="btn btn-info" value="Continuar" ng-hide="cantidadTotal == 0" ui-sref="#" ng-click="cargar(funcion)">
+               </div>
+                
+            </form>
+        </div>
+    </div>
+    <div class="col-sx-1 col-md-2">
+    </div>
+</div>

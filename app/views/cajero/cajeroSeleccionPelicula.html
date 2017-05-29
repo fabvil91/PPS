@@ -1,0 +1,82 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav">
+                    <li><a href="#">Buscar Transaccion</a></li>
+                    <li class="active"><a href="#">Compra Presencial</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- PELICULAS -->
+    <div class="row">
+        <div class="col-md-12">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Pelicula</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><a href="#">Logan</a></td>                                
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- FUNCIONES -->
+    <div class="row">
+        <div class="col-md-12">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!--Formato-->
+                    <div class="form-group">
+                        <label for="selFormato">Formato: </label>                   
+                        <select class="form-control" id="selFormato" ng-model="filtro.formato" ng-options="x._id  as x.nombre for x in formatos"></select> 
+                    </div>
+                    <!--idioma-->
+                    <div class="form-group">
+                        <label for="selIdioma">Idioma: </label>                   
+                        <select class="form-control" id="selIdioma" ng-model="filtro.idioma" ng-options="x._id as x.nombre for x in idiomas"></select> 
+                    </div>
+                    <!--Dia-->
+                    <div class="form-group">
+                        <label for="selDia">Día: </label>                   
+                        <select class="form-control" id="selDia" ng-model="filtro.diaNombre" ng-options="x for x in fechasDias" ng-change="filtrarDia()"></select> 
+                    </div>
+                    <div>
+                        
+                    
+                        <div class="panel-group">
+                            <div class="panel panel-default" ng-repeat="(key, value) in funciones 
+                            | filter: { formato:{_id:filtro.formato}, idioma:{_id:filtro.idioma}, complejo:{_id: filtro.complejo},diaTime: filtro.diaLocale,pelicula:{nombre: filtro.pelicula.nombre} }
+                            | groupBy: '[complejo.nombre,formato.nombre,idioma.nombre,diaFormateado]'">
+
+                                <div class="panel-heading">
+                                    {{ formatear(key) }}  
+                                </div>
+                                <div class="panel-body" >
+                                    <!--       <a href="#" ui-sref="salas" ng-click="cargar(funcion)">   -->
+                                    <a href="#" ng-repeat="funcion in value" ng-click="cargar(funcion)" ui-sref="seleccionEntradas"> 
+                                    {{ formatearHora(funcion) }}
+                                    </a> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>

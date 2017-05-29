@@ -1,0 +1,77 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav">
+                    <li><a href="#">Buscar Transaccion</a></li>
+                    <li class="active"><a href="#">Compra Presencial</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"> </div>
+        <div class="col-md-8  container white center-block">
+
+            <div class="detallesFuncion">
+            <p>Pelicula: {{funcion.pelicula.nombre}} - {{funcion.idioma}}</p>
+            <p>Funcion: {{funcion.diaFormateado}} -  {{funcion.hora.getHours() + ":" + (funcion.hora.getMinutes() == "0"? "00" : funcion.hora.getMinutes()) }}</p>
+            <p>Complejo: {{funcion.complejo.nombre}}</p>
+            <p>Cantidad de Asientos: {{funcion.cantidadAsientos}}</p>
+        </div>
+
+        <div class="container-fluid"> 
+            <h3>SELECCIONE SUS ASIENTOS</h3>
+            <div>
+                <div class="pull-left">
+                    <div class="legend" >
+                        <div>
+                            <img src="./images/icons/seleccionado.jpg" alt="seleccionado"> Su selección
+                        </div>
+                        <div>
+                            <img src="./images/icons/disponible.jpg" alt="disponible"> Disponible
+                        </div>
+                        <div>
+                            <img src="./images/icons/ocupado.jpg" alt="ocupado"> Ocupado
+                        </div>
+                    </div>
+                <div style="color:red;">{{countDownLeft | secondsToDateTime | date:'HH:mm:ss'}}</div>
+                </div>
+                <div class="pull-right">
+                        <input type="button" class="btn btn-info" value="Cancelar" ui-sref="main">
+                        <input type="button" class="btn btn-info" value="Continuar" ng-if="contarSeleccionados() == funcion.cantidadAsientos" ng-click="cargar(funcion)">                      
+                    </div>
+            </div>
+        </div> 
+        
+
+        <div class="center-block">
+                    
+                <div class="panel panel-default">
+                <div class="sala panel-body ">
+                    <div class="pantalla center-block"> 
+                    Pantalla
+                    </div>
+                    <ol class="filas" ng-repeat="filas in funcion.sala">
+                    <li class="columna" ng-repeat="columna in filas">
+                        <label class="asiento ocupado" ng-if="!columna.pasillo && columna.booked" ng-click="seleccionar(columna)"> {{columna.id}} </label>
+                        <label class="asiento disponible" ng-if="!columna.pasillo && !columna.booked && !columna.checked" ng-click="seleccionar(columna)"> {{columna.id}} </label>
+                        <label class="asiento ocupado pasillo" ng-if="columna.pasillo && columna.booked" ng-click="seleccionar(columna)"> {{columna.id}} </label>                    
+                        <label class="asiento disponible pasillo" ng-if="columna.pasillo && !columna.booked && !columna.checked" ng-click="seleccionar(columna)"> {{columna.id}} </label>         
+
+                        <label class="asiento seleccionado pasillo" ng-if="columna.pasillo && columna.checked" ng-click="seleccionar(columna)"> {{columna.id}} </label>                                
+                        <label class="asiento seleccionado" ng-if="!columna.pasillo && columna.checked" ng-click="seleccionar(columna)"> {{columna.id}} </label>                                       
+                    </li>
+                    </ol>
+                </div>
+                </div>
+            </div>
+    
+    </div>
+        
+    <div class="col-md-2"> </div>
+
+    </div>
+</div>

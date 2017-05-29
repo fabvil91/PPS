@@ -1,0 +1,163 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav">
+                    <li><a href="#">Buscar Transaccion</a></li>
+                    <li class="active"><a href="#">Compra Presencial</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!--SELECCION DE METODO DE PAGO-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">METODO DE PAGO</div>
+                <div class="panel-body">
+                    <label class="radio-inline"><input type="radio" name="metodoPago" ng-click="">Efectivo</label>
+                    <label class="radio-inline"><input type="radio" name="metodoPago" ng-click="">Credito</label>
+                    <label class="radio-inline"><input type="radio" name="metodoPago" ng-click="">Debito</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EFECTIVO -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">DATOS COMPRA</div>
+                <div class="panel-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="precio">Precio:</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="precio" class="form-control" readonly="readonly" ng-model="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="promocion">Promocion: <span class="require">*</span></label>
+                            <div class="col-sm-10">
+                                <select class="form-control input-sm" name="promocion" ng-options="" ng-model="" required>
+                                </select>
+                                <span ng-show="form.promociones.$dirty && form.promociones.$error.required" class="help-block">Promocion es requerido</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="total">Monto Total:</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="total" class="form-control" readonly="readonly" ng-model="">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DEBITO O CREDITO -->
+        <div class="row">
+        <div class="col-md-12">
+            <div ng-if="funcion.transaccion.tipoTransaccion == 'reserva'">
+            <div class="panel panel-default">
+                <div class="panel-heading">DATOS COMPRA</div>
+                <div class="panel-body">
+                    <form name="form" class="form-horizontal" role="form">
+                    
+                                        
+
+                    <div class="form-group" ng-class="{ 'has-error': form.banco.$dirty && form.banco.$error.required }"> 
+                    <label class="control-label col-sm-2" for="banco">Seleccione Banco <span class="require">*</span></label>
+                        <div class="col-sm-10">
+                        <select class="form-control input-sm" ng-options="item.nombre for item in bancos" ng-model="funcion.operacion.banco" required>
+                        </select>
+                        <span ng-show="form.banco.$dirty && form.banco.$error.required" class="help-block">Banco es requerido</span>
+                        </div>
+                    
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error': form.titular.$dirty && form.titular.$error.required }"> 
+                    <label class="control-label col-sm-2" for="tarjeta">Seleccione Tarjeta <span class="require">*</span></label>
+                        <div class="col-sm-10">
+                        <select class="form-control input-sm" id="tarjeta" ng-options="item.nombre for item in tarjetas" ng-model="funcion.operacion.tarjeta" required>
+                        </select>
+                        <span ng-show="form.tarjeta.$dirty && form.tarjeta.$error.required" class="help-block">Tarjeta es requerido</span>
+                        </div>
+                        
+                    </div>
+
+                    <div ng-if="funcion.operacion.banco !=null && funcion.operacion.tarjeta!=null">
+
+                    <div class="form-group" ng-class="{ 'has-error': form.promociones.$dirty && form.promociones.$error.required }"> 
+                        <label class="control-label col-sm-2" for="tarjeta">Seleccione Promociones <span class="require">*</span></label>
+                        <div class="col-sm-10">
+                            <select class="form-control input-sm" id="promociones" ng-options="item.nombre for item in promociones | filter :{banco:{nombre:funcion.operacion.banco.nombre}, tarjeta:{nombre:funcion.operacion.tarjeta.nombre}}" ng-model="funcion.operacion.promociones" required>
+                            </select>
+                            <span ng-show="form.promociones.$dirty && form.promociones.$error.required" class="help-block">Promocion es requerido</span>
+                        </div>
+                        
+                    </div>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error': form.titular.$dirty && form.titular.$error.required }">
+                    <label class="control-label col-sm-2" for="titular">Titular</label>
+                        <div class="col-sm-10">
+                        <input type="text" id="titular" class="form-control" ng-model="funcion.operacion.titular" required>
+                        <span ng-show="form.titular.$dirty && form.titular.$error.required" class="help-block">Titular es requerido</span>
+                        </div>
+                    
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error': form.dni.$dirty && form.dni.$error.required }"> 
+                    <label class="control-label col-sm-2" for="dni">Dni</label>
+                        <div class="col-sm-10">
+                    <input type="text" id="dni" class="form-control" ng-model="funcion.operacion.dni" ng-minlength="3" ng-maxlength="8" required>
+                        <span ng-show="form.dni.$dirty && form.dni.$error.required" class="help-block">dni es requerido</span>
+                        <span ng-show="userForm.name.$error.minlength" class="help-block">DNI es muy corto.</span>
+                        <span ng-show="userForm.name.$error.maxlength" class="help-block">DNI es muy largo.</span>
+                        </div>
+
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': form.vencimiento.$dirty && form.vencimiento.$error.required }"> 
+                    <label class="control-label col-sm-2" for="vencimiento">Vencimiento <span class="require">*</span></label>
+                        <div class="col-sm-10">
+                        <select class="form-control input-sm" id="vencimiento" ng-options="item.nombre for item in mes" ng-model="funcion.operacion.vencimiento.mes" required>
+                        <span ng-show="form.vencimiento.$dirty && form.vencimiento.$error.required" class="help-block">Mes y año es requerido</span>
+                        </select> 
+                        
+                        <select class="form-control input-sm" id="vencimiento" ng-options="item.nombre for item in year" ng-model="funcion.operacion.vencimiento.year">
+                        </select>  
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" ng-class="{ 'has-error': form.codigoSeguridad.$dirty && form.codigoSeguridad.$error.required }" > 
+                        <label class="control-label col-sm-2" for="codigoSeguridad">Codigo de seguridad</label>
+                        <div class="col-sm-10"> 
+                        <input type="text" id="codigoSeguridad" class="form-control" ng-model="funcion.operacion.codigoSeguridad" required/>
+                        <span ng-show="form.codigoSeguridad.$dirty && form.codigoSeguridad.$error.required" class="help-block">Codigo de Seguridad es requerido</span>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>                 
+        </div>
+        </div>
+    </div>
+    <!--BOTONES-->
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-inline">
+                    <div class="form-group centered">
+                
+                        <input type="button" ng-disabled="form.$invalid" class="btn btn-info" value="Continuar" ui-sref="#" ng-click="cargar(funcion)" >
+                        <input type="button" class="btn btn-info" value="Cancelar" ui-sref="main">              
+                
+                    </div>
+            </form>
+        </div>
+        
+    </div>
+</div>

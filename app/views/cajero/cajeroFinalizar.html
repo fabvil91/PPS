@@ -1,0 +1,124 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav">
+                    <li><a href="#">Buscar Transaccion</a></li>
+                    <li class="active"><a href="#">Compra Presencial</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- DATOS FUNCION -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">DATOS FUNCION</div>
+                <div class="panel-body">
+                    <p>Pelicula: {{funcion.pelicula.nombre}} - {{funcion.idioma.nombre}}</p>
+                    <p>Funcion: {{funcion.diaFormateado}} - {{ formatearHora(funcion) }}</p>
+                    <p>Complejo: {{funcion.complejo.nombre}}</p>
+                    <p>Cantidad de Asientos: {{funcion.cantidadAsientos}}</p>
+                </div>
+            </div>                 
+        </div>
+    </div>
+    <!-- DEBITO O CREDITO -->
+    <div class="row">
+        <div class="col-md-12">
+            <div ng-if="funcion.transaccion.tipoTransaccion == 'compra'">
+            <div class="panel panel-default">
+                <div class="panel-heading">DATOS COMPRA</div>
+                <div class="panel-body">
+                    <form action="" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="banco">Banco:</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="banco" class="form-control" readonly="readonly" ng-model="funcion.operacion.banco.nombre">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="tarjeta">Tarjeta:</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="tarjeta" class="form-control" readonly="readonly" ng-model="funcion.operacion.tarjeta.nombre">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="titular">Titular:</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="titular" class="form-control" readonly="readonly" ng-model="funcion.operacion.titular">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="dni">DNI:</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="dni" class="form-control" readonly="readonly" ng-model="funcion.operacion.dni">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="vencimiento">Vencimiento:</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="vencimiento" class="form-control" readonly="readonly" ng-model="funcion.operacion.vencimiento.mes.nombre">
+                                <input type="text" name="vencimiento" class="form-control" readonly="readonly" ng-model="funcion.operacion.vencimiento.year.nombre">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="codigoSeguridad">Codigo de Seguridad:</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="codigoSeguridad" class="form-control" readonly="readonly" ng-model="funcion.operacion.codigoSeguridad">
+                            </div>
+                        </div>
+                    </form>                        
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!--EFECTIVO-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">DATOS COMPRA</div>
+                <div class="panel-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="precio">Precio:</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="precio" class="form-control" readonly="readonly" ng-model="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                <label class="control-label col-sm-2" for="promocion">Promocion:</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="promocion" class="form-control" readonly="readonly" ng-model="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="total">Monto Total:</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="total" class="form-control" readonly="readonly" ng-model="">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--BOTONES-->
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-inline">
+                    <div class="form-group centered">
+                
+                        <input type="button" ng-disabled="form.$invalid" class="btn btn-info" value="Continuar" ui-sref="#" ng-click="cargar(funcion)" >
+                        <input type="button" class="btn btn-info" value="Cancelar" ui-sref="main">              
+                
+                    </div>
+            </form>
+        </div>
+        
+    </div>
+</div>

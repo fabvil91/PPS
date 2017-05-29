@@ -210,5 +210,12 @@ height: 50px;
   top:20px;
   margin-left:-200px;
 }*/
+td:hover { 
+   background: lightblue; 
+}
+td a { 
+   display: block; 
+   padding: 2px; 
+}
 
 
