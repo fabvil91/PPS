@@ -119,7 +119,8 @@
 
             if(loggedIn){
               if($rootScope.globals.currentUser.tipoUsuario == 'Usuario'){
-                var restrictedPage = $.inArray($location.path(), ['/main', '/login','/registro','/detallePelicula','/salas','/seleccionEntradas','/promosVigentes','/quienesSomos','/prohibida']) === -1;
+                var restrictedPage = $.inArray($location.path(), ['/main', '/login','/registro','/detallePelicula','/seleccionEntradas','/salas','/datosOperacionCompra','/finalizarOperacion',
+                  '/promosVigentes','/quienesSomos','/prohibida']) === -1;
               }
               //Agregar los distintos tipos de usuario
               /*if($rootScope.globals.currentUser.tipoUsuario == 'Admin'){

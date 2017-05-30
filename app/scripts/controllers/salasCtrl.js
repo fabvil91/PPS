@@ -49,8 +49,12 @@
 			   		$location.path('/datosOperacionCompra');
 			   }else if($scope.funcion.transaccion.tipoTransaccion == 'reserva'){
 			   		$location.path('/finalizarOperacion');
-			   }
-			   
-        	 }	       		         	         
+			   }			   
+        	 }
+
+        	 $scope.formatearHora = function(funcion){        	
+			     var fecha = new Date(funcion.hora);
+			     return fecha.getHours() + ":" + (fecha.getMinutes() == "0"? "00" : fecha.getMinutes());
+			 }	       		         	         
     }])
 })();

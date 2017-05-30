@@ -58,6 +58,14 @@
                                             $scope.funcion.operacion = {
                                                 vencimiento:{}
                                             };
+                                            $scope.hayPromo = false;
+                                            for (var i = $scope.funcion.entradas.length - 1; i >= 0; i--) {
+                                                if($scope.funcion.entradas[i].promocion && $scope.funcion.entradas[i].cantidad > 0){
+                                                    $scope.hayPromo = true;
+                                                    break;
+                                                }
+                                            }
+                                            console.log($scope.hayPromo);
                                   })
                              .catch(function(e){
                               console.log(e);
