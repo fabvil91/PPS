@@ -63,13 +63,25 @@
                       <div class="form-group" ng-class="{ 'has-error': form.dni.$dirty && form.dni.$error.required }"> 
                         <label class="control-label col-sm-2" for="dni">Dni</label>
                          <div class="col-sm-10">
-                        <input type="text" id="dni" class="form-control" ng-model="funcion.operacion.dni" ng-minlength="3" ng-maxlength="8" required>
+                        <input type="text" id="dni" class="form-control" ng-model="funcion.operacion.dni" ng-minlength="8" ng-maxlength="8" required>
                           <span ng-show="form.dni.$dirty && form.dni.$error.required" class="help-block">dni es requerido</span>
                             <span ng-show="userForm.name.$error.minlength" class="help-block">DNI es muy corto.</span>
                             <span ng-show="userForm.name.$error.maxlength" class="help-block">DNI es muy largo.</span>
                          </div>
 
                      </div>
+
+                       <div class="form-group" ng-class="{ 'has-error': form.nroTarjeta.$dirty && form.nroTarjeta.$error.required }"> 
+                        <label class="control-label col-sm-2" for="nroTarjeta">Número de tarjeta</label>
+                         <div class="col-sm-10">
+                        <input type="text" id="nroTarjeta" class="form-control" ng-model="funcion.operacion.nroTarjeta" ng-minlength="15" ng-maxlength="16" required>
+                          <span ng-show="form.nroTarjeta.$dirty && form.nroTarjeta.$error.required" class="help-block">Número de tarjeta es requerido</span>
+                            <span ng-show="userForm.name.$error.minlength" class="help-block">Número de tarjeta es muy corto.</span>
+                            <span ng-show="userForm.name.$error.maxlength" class="help-block">Número de tarjeta es muy largo.</span>
+                         </div>
+
+                     </div>
+
                       <div class="form-group" ng-class="{ 'has-error': form.vencimiento.$dirty && form.vencimiento.$error.required }"> 
                         <label class="control-label col-sm-2" for="vencimiento">Vencimiento <span class="require">*</span></label>
                          <div class="col-sm-10">
