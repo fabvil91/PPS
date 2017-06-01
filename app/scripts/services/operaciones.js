@@ -1,19 +1,18 @@
 angular
   .module('cine')
-  .service('Funciones', ['$http', function($http){
+  .service('Operaciones', ['$http', function($http){
 
     this.listado = listado;
-    this.articuloPorNombre = articuloPorNombre;
+    this.operacionPorCodigo = operacionPorCodigo;
     this.articuloPrecioMayor = articuloPrecioMayor;
     this.articuloPorProveedor = articuloPorProveedor;
     this.articuloPorIndice = articuloPorIndice;
     this.alta = alta;
     this.modificar = modificar;
-    this.modificarSala = modificarSala;
     this.borrar = borrar;
 
     function listado () {
-      return $http.get('http://localhost:3333/funciones/getAll')
+      return $http.get('http://localhost:3333/operaciones/getAll')
       .then(function(rta){
         return rta.data;
       })
@@ -22,8 +21,8 @@ angular
       })
     }
 
-     function articuloPorNombre(texto) {
-      return $http.get('http://localhost:3333/articulos/name/'+texto)
+     function operacionPorCodigo(texto) {
+      return $http.get('http://localhost:3333/operaciones/codigo/'+texto)
       .then(function(rta){
         return rta.data;
       })
@@ -64,7 +63,7 @@ angular
 
     function alta(item){
       return $http({
-            url: 'http://localhost:3333/insertar',
+            url: 'http://localhost:3333/operaciones/insertar',
             method: "POST",
             data: item,
             headers: {'Content-Type': 'application/json'}})
@@ -79,20 +78,6 @@ angular
     function modificar(item){
       return $http({
             url: 'http://localhost:3333/funciones/modificar',
-            method: "PUT",
-            data: item,
-            headers: {'Content-Type': 'application/json'}})
-      .then(function(rta){
-        return rta.data;
-      })
-      .catch(function(e){
-        return e;
-      })
-    }
-
-     function modificarSala(item){
-      return $http({
-            url: 'http://localhost:3333/funciones/modificarSala',
             method: "PUT",
             data: item,
             headers: {'Content-Type': 'application/json'}})

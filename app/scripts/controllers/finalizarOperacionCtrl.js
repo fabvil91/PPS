@@ -2,8 +2,8 @@
 	'use strict';
 	angular
 	.module('cine')
-	.controller('finalizarOperacionCtrl', ['$scope','Datos', '$rootScope', '$window','Usuarios', 
-	function($scope,Datos,$rootScope,$window,Usuarios){		
+	.controller('finalizarOperacionCtrl', ['$scope','Datos', '$rootScope', '$window','Usuarios','Operaciones','Funciones', 
+	function($scope,Datos,$rootScope,$window,Usuarios,Operaciones,Funciones){		
 		$scope.funcion = Datos.listado();			
 		
 		$scope.imprimir=function(){
@@ -102,7 +102,38 @@
 				usuario: usuario,
 				promocion: promo }
 			}
-			console.log(operacion);                                  
+			console.log(operacion); 
+
+			Operaciones.alta(operacion)
+	       .then(function(datos){
+	        console.log(datos);
+
+	         for (var i = $scope.funcion.sala.length - 1; i >= 0; i--) {
+	         	 	for (var j = $scope.funcion.sala[i].length - 1; j >= 0; j--) {
+	         	 		if($scope.funcion.sala[i][j].checked == true){
+	         	 			$scope.funcion.sala[i][j].booked = true;
+	         	 			$scope.funcion.sala[i][j].checked = false;
+	         	 		}
+	         	 	}
+	         	 }
+	         console.log($scope.funcion.sala);	 
+
+	         	Funciones.modificarSala({
+	         		_id: $scope.funcion._id,
+	         		sala: $scope.funcion.sala
+	         	})
+		       .then(function(datos){
+		        console.log(datos);
+		         })
+		       .catch(function(e){
+		        console.log(e);
+		       }); 
+
+	       })
+	       .catch(function(e){
+	        console.log(e);
+	       }); 
+	                                       
 		});                          
         	
 		}

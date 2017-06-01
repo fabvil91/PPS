@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/funciones/getAll',function(req, res,next){		
+router.get('/operaciones/getAll',function(req, res,next){		
 		req.db
-		.collection('funciones')
+		.collection('operaciones')
 		.find()
     	.toArray((err, data) => {
       		if (err)
@@ -12,10 +12,10 @@ router.get('/funciones/getAll',function(req, res,next){
     	})
 	});
 
-router.get('/articulos/name/:name', (req, res, next) => {
-    console.log(req.params.name);
-    req.db.collection('articulos')
-    .find({name:req.params.name})
+router.get('/operaciones/codigo/:codigo', (req, res, next) => {
+    console.log(req.params.codigo);
+    req.db.collection('operaciones')
+    .find({codigo:req.params.codigo})
     .toArray((err, data) => {
     	if (err)
         	console.log(err);  
@@ -45,17 +45,27 @@ router.get('/articulos/proveedor/:proveedor', (req, res, next) => {
     });
 });
 
-router.post('/insertar',function(req, res, next){
+router.post('/operaciones/insertar',function(req, res, next){
 		console.log(req.body);
 
-        req.db.collection('articulos')        
-        .insert({name: req.body.name, 
-        		 peso: req.body.peso,
-        		 precio: req.body.precio,
-        		 fecha: new Date(req.body.fecha),
-        		 tipo: req.body.tipo,
-        		 proveedor: {email: req.body.email}
-        		}, function (err, result){
+        req.db.collection('operaciones')        
+        .insert({
+            codigo: req.body.codigo,
+            estado: req.body.estado,
+            funcion: req.body.funcion,
+            entradas: req.body.entradas,
+            tipoPago: req.body.tipoPago,
+            nombreTitular: req.body.nombreTitular,
+            dniTitular: req.body.dniTitular,
+            nroTarjeta: req.body.nroTarjeta,
+            codigoSeguridad: req.body.codigoSeguridad,
+            fechaVencimiento: req.body.fechaVencimiento,
+            tarjeta: req.body.tarjeta,
+            banco: req.body.banco,
+            fechaOperacion: req.body.fechaOperacion,
+            usuario: req.body.usuario,
+            promocion: req.body.promocion
+          }, function (err, result){
            if (err) {
                res.json({rta : err});
             }
@@ -84,24 +94,6 @@ router.put('/funciones/modificar',function(req, res, next){
             }
         });  
 	});
-
-router.put('/funciones/modificarSala',function(req, res, next){
-    console.log(req.body);
-    var id = new require('mongodb').ObjectID(req.body._id);
-    console.log(id);
-
-        req.db.collection('funciones')        
-        .update({_id: id}, {$set: {                     
-                              sala: req.body.sala                       
-                       }}, function (err, result){
-           if (err) {
-               res.json({rta : err});
-            }
-            else {
-               res.json({rta : "OK"});
-            }
-        });  
-  });
 
 router.delete('/eliminar',function(req, res, next){
 		console.log(req.body);
