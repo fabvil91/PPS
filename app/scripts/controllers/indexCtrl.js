@@ -17,6 +17,24 @@
 
 			$location.path('/main'); 
 		}
+
+		$scope.main = function(){
+			if($rootScope.globals.currentUser.tipoUsuario == 'Usuario'){
+			   $location.path('/main'); 						
+ 			}   
+ 					//Agregar los demas tipos de usuario 
+ 					/*if($rootScope.globals.currentUser.tipoUsuario == 'Admin'){
+						$location.path('/mainAdmin'); 						
+ 					}
+
+ 					if($rootScope.globals.currentUser.tipoUsuario == 'Empleado'){
+						$location.path('/mainEmpleado'); 						
+ 					} */
+
+ 			if($rootScope.globals.currentUser.tipoUsuario == 'Cajero'){
+				$location.path('/cajeroMain'); 						
+ 			}    
+		}
 		  
 	}]);
 }) ();

@@ -67,6 +67,13 @@
     <script type="text/javascript" src="scripts/controllers/datosOperacionCompraCtrl.js"></script>
     <script type="text/javascript" src="scripts/controllers/ModalDemoCtrl.js"></script>
 
+    <script type="text/javascript" src="scripts/controllers/cajero/cajeroAsientosCtrl.js"></script>
+    <script type="text/javascript" src="scripts/controllers/cajero/cajeroBuscarCodigoCtrl.js"></script>
+    <script type="text/javascript" src="scripts/controllers/cajero/cajeroEntradasCtrl.js"></script>
+    <script type="text/javascript" src="scripts/controllers/cajero/cajeroFinalizarCtrl.js"></script>
+    <script type="text/javascript" src="scripts/controllers/cajero/cajeroPagoCtrl.js"></script>
+    <script type="text/javascript" src="scripts/controllers/cajero/cajeroSeleccionPeliculaCtrl.js"></script>
+
 </head>
 
 <body ng-app="cine" ng-controller="indexCtrl">
@@ -77,7 +84,7 @@
         <div class="row text-center header hidden-print">
             <div class="col-sm-2"></div>
             <div class="col-sm-8">
-            <a ui-sref="main">
+            <a ng-click="main()">
                 <h1 class="text-uppercase" style="color:#5BC0DE;">Cinemar</h1>
             </a>    
             </div>

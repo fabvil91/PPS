@@ -89,7 +89,7 @@
         .state('cajeroMain',
         {
         url:'/cajeroMain',              
-        controller: 'cajeroMainCtrl',
+      //  controller: 'cajeroMainCtrl',
         templateUrl:'views/cajero/cajeroMain.html'
         })
       $stateProvider
@@ -134,8 +134,36 @@
         controller: 'cajeroFinalizarCtrl',
         templateUrl:'views/cajero/cajeroFinalizar.html'
         })      
+        
+    $urlRouterProvider.otherwise(function ($injector, $location) {
+        console.log("Otherwise Executed");
 
-    $urlRouterProvider.otherwise('main');           
+        try {
+            var $rootScope = $injector.get("$rootScope");
+            var $state = $injector.get("$state");
+
+            if($rootScope.globals.currentUser.tipoUsuario == 'Usuario'){
+            $state.go('main');            
+          }   
+          //Agregar los demas tipos de usuario 
+          /*if($rootScope.globals.currentUser.tipoUsuario == 'Admin'){
+            $location.path('/mainAdmin');             
+          }
+
+          if($rootScope.globals.currentUser.tipoUsuario == 'Empleado'){
+            $location.path('/mainEmpleado');            
+          } */
+
+          if($rootScope.globals.currentUser.tipoUsuario == 'Cajero'){
+            $state.go('cajeroMain');            
+          }  
+
+         
+        } catch (e) {
+          console.log("Error otherwise");
+        }
+
+    });           
   }) 
   .filter('trusted', ['$sce', function ($sce) {
         return function(url) {
@@ -170,7 +198,7 @@
             if(loggedIn){
               if($rootScope.globals.currentUser.tipoUsuario == 'Usuario'){
                 var restrictedPage = $.inArray($location.path(), ['/main', '/login','/registro','/detallePelicula','/seleccionEntradas','/salas','/datosOperacionCompra','/finalizarOperacion',
-                  '/promosVigentes','/quienesSomos','/prohibida']) === -1;
+                  '/promosVigentes','/quienesSomos','/contactanos','/prohibida']) === -1;
               }
               //Agregar los distintos tipos de usuario
               /*if($rootScope.globals.currentUser.tipoUsuario == 'Admin'){
@@ -180,10 +208,11 @@
               if($rootScope.globals.currentUser.tipoUsuario == 'Empleado'){
                 var restrictedPage = $.inArray($location.path(), ['/mainEmp', '/login','/registro','/detallePelicula','/salas','/seleccionEntradas','/promosVigentes','/quienesSomos']) === -1;
               }
-
+              */
               if($rootScope.globals.currentUser.tipoUsuario == 'Cajero'){
-                var restrictedPage = $.inArray($location.path(), ['/mainCajero', '/login','/registro','/detallePelicula','/salas','/seleccionEntradas','/promosVigentes','/quienesSomos']) === -1;
-              }*/
+                var restrictedPage = $.inArray($location.path(), ['/cajeroMain', '/cajeroBuscarCodigo','/cajeroSeleccionPelicula','/cajeroEntradas','/cajeroAsientos','/cajeroPago','/cajeroFinalizar',
+                  '/promosVigentes','/quienesSomos','/contactanos','/prohibida']) === -1;
+              }
                                           
               if (restrictedPage) {                    
                   console.log("Pagina prohibida: " + $location.path());                   

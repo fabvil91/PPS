@@ -33,11 +33,11 @@
 
  					if($rootScope.globals.currentUser.tipoUsuario == 'Empleado'){
 						$location.path('/mainEmpleado'); 						
- 					} 
+ 					} */
 
  					if($rootScope.globals.currentUser.tipoUsuario == 'Cajero'){
-						$location.path('/mainCajero'); 						
- 					}*/             	
+						$location.path('/cajeroMain'); 						
+ 					}            	
 
                 } else {
                     console.log("error");

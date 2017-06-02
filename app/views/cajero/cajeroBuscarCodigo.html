@@ -17,44 +17,44 @@
             <form class="form-inline">
                 <div class="form-group">
                     <label for="codigo">Codigo:</label>
-                    <input type="text" class="form-control" id="codigo">
+                    <input type="text" class="form-control" id="codigo" ng-model="codigo">
                 </div>
                 <div class="form-group">
-                    <input type="button" class="btn btn-info" value="Buscar" ui-sref="main"> 
+                    <input type="button" class="btn btn-info" value="Buscar" ng-click="buscar(codigo)"> 
                 </div>
             </form>                   
         </div>
     </div>
     <!-- DATOS FUNCION -->
-    <div class="row">
+    <div class="row" ng-if="operacion != null">
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">DATOS FUNCION</div>
                 <div class="panel-body">
-                    <p>Pelicula: {{funcion.pelicula.nombre}} - {{funcion.idioma.nombre}}</p>
-                    <p>Funcion: {{funcion.diaFormateado}} - {{ formatearHora(funcion) }}</p>
-                    <p>Complejo: {{funcion.complejo.nombre}}</p>
-                    <p>Cantidad de Asientos: {{funcion.cantidadAsientos}}</p>
+                    <p>Pelicula: {{operacion.funcion.pelicula.nombre}} - {{operacion.funcion.idioma.nombre}}</p>
+                    <p>Funcion: {{operacion.funcion.diaFormateado}} - {{ formatearHora(operacion.funcion) }}</p>
+                    <p>Complejo: {{operacion.funcion.complejo.nombre}}</p>
+                    <p>Cantidad de Asientos: {{operacion.funcion.cantidadAsientos}}</p>
                 </div>
             </div>                 
         </div>
     </div>
     <!-- RESERVA -->
     <!-- SEL METODO DE PAGO -->
-    <div class="row">
+    <div class="row" ng-if="operacion.funcion.transaccion.tipoTransaccion == 'reserva'">
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">METODO DE PAGO</div>
                 <div class="panel-body">
-                    <label class="radio-inline"><input type="radio" name="metodoPago" ng-click="">Efectivo</label>
-                    <label class="radio-inline"><input type="radio" name="metodoPago" ng-click="">Credito</label>
-                    <label class="radio-inline"><input type="radio" name="metodoPago" ng-click="">Debito</label>
+                    <label class="radio-inline"><input type="radio" name="metodoPago" ng-click="operacion.tipo = 'efectivo'">Efectivo</label>
+                    <label class="radio-inline"><input type="radio" name="metodoPago" ng-click="operacion.tipo = 'credito'">Credito</label>
+                    <label class="radio-inline"><input type="radio" name="metodoPago" ng-click="operacion.tipo = 'debito'">Debito</label>
                 </div>
             </div>
         </div>
     </div>
     <!-- EFECTIVO -->
-    <div class="row">
+    <div class="row" ng-if="operacion.funcion.transaccion.tipoTransaccion == 'reserva' && operacion.tipo == 'efectivo'">
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">DATOS COMPRA</div>
@@ -89,7 +89,7 @@
     <!-- TARGETAS -->
     <div class="row">
         <div class="col-md-12">
-            <div ng-if="funcion.transaccion.tipoTransaccion == 'reserva'">
+            <div ng-if="operacion.funcion.transaccion.tipoTransaccion == 'reserva' && (operacion.tipo == 'credito' || operacion.tipo == 'debito')">
             <div class="panel panel-default">
                 <div class="panel-heading">DATOS COMPRA</div>
                 <div class="panel-body">
@@ -174,10 +174,11 @@
         </div>
         </div>
     </div>
+
     <!-- COMPRA -->
     <div class="row">
         <div class="col-md-12">
-            <div ng-if="funcion.transaccion.tipoTransaccion == 'compra'">
+            <div ng-if="operacion.funcion.transaccion.tipoTransaccion == 'compra'">
             <div class="panel panel-default">
                 <div class="panel-heading">DATOS COMPRA</div>
                 <div class="panel-body">
@@ -185,38 +186,38 @@
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="banco">Banco:</label>
                             <div class="col-sm-10">
-                                <input type="text" name="banco" class="form-control" readonly="readonly" ng-model="funcion.operacion.banco.nombre">
+                                <input type="text" name="banco" class="form-control" readonly="readonly" ng-model="operacion.funcion.operacion.banco.nombre">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="tarjeta">Tarjeta:</label>
                             <div class="col-sm-10">
-                                <input type="text" name="tarjeta" class="form-control" readonly="readonly" ng-model="funcion.operacion.tarjeta.nombre">
+                                <input type="text" name="tarjeta" class="form-control" readonly="readonly" ng-model="operacion.funcion.operacion.tarjeta.nombre">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="titular">Titular:</label>
                             <div class="col-sm-10">
-                                <input type="text" name="titular" class="form-control" readonly="readonly" ng-model="funcion.operacion.titular">
+                                <input type="text" name="titular" class="form-control" readonly="readonly" ng-model="operacion.funcion.operacion.titular">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="dni">DNI:</label>
                             <div class="col-sm-10">
-                                <input type="text" name="dni" class="form-control" readonly="readonly" ng-model="funcion.operacion.dni">
+                                <input type="text" name="dni" class="form-control" readonly="readonly" ng-model="operacion.funcion.operacion.dni">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="vencimiento">Vencimiento:</label>
                             <div class="col-sm-10">
-                                <input type="text" name="vencimiento" class="form-control" readonly="readonly" ng-model="funcion.operacion.vencimiento.mes.nombre">
-                                <input type="text" name="vencimiento" class="form-control" readonly="readonly" ng-model="funcion.operacion.vencimiento.year.nombre">
+                                <input type="text" name="vencimiento" class="form-control" readonly="readonly" ng-model="operacion.funcion.operacion.vencimiento.mes.nombre">
+                                <input type="text" name="vencimiento" class="form-control" readonly="readonly" ng-model="operacion.funcion.operacion.vencimiento.year.nombre">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="codigoSeguridad">Codigo de Seguridad:</label>
                             <div class="col-sm-10">
-                                <input type="text" name="codigoSeguridad" class="form-control" readonly="readonly" ng-model="funcion.operacion.codigoSeguridad">
+                                <input type="text" name="codigoSeguridad" class="form-control" readonly="readonly" ng-model="operacion.funcion.operacion.codigoSeguridad">
                             </div>
                         </div>
                     </form>                        
@@ -225,13 +226,14 @@
         </div>
     </div>
     </div>
+
     <!--BOTONES-->
-    <div class="row">
+    <div class="row" ng-if="operacion != null">
         <div class="col-md-12">
             <form class="form-inline">
                     <div class="form-group centered">
                 
-                        <input type="button" ng-disabled="form.$invalid" class="btn btn-info" value="Continuar" ui-sref="#" ng-click="cargar(funcion)" >
+                        <input type="button" ng-disabled="form.$invalid" class="btn btn-info" value="Continuar" ui-sref="#" ng-click="cargar()" >
                         <input type="button" class="btn btn-info" value="Cancelar" ui-sref="main">              
                 
                     </div>
