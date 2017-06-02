@@ -83,7 +83,57 @@
         {
         url:'/prohibida',        
         templateUrl:'views/flujoPrincipal/prohibida.html'
-        })    
+        })
+      /* CAJERO */  
+      $stateProvider
+        .state('cajeroMain',
+        {
+        url:'/cajeroMain',              
+        controller: 'cajeroMainCtrl',
+        templateUrl:'views/cajero/cajeroMain.html'
+        })
+      $stateProvider
+        .state('cajeroBuscarCodigo',
+        {
+        url:'/cajeroBuscarCodigo',              
+        controller: 'cajeroBuscarCodigoCtrl',
+        templateUrl:'views/cajero/cajeroBuscarCodigo.html'
+        }) 
+      $stateProvider
+        .state('cajeroSeleccionPelicula',
+        {
+        url:'/cajeroSeleccionPelicula',              
+        controller: 'cajeroSeleccionPeliculaCtrl',
+        templateUrl:'views/cajero/cajeroSeleccionPelicula.html'
+        }) 
+      $stateProvider
+        .state('cajeroEntradas',
+        {
+        url:'/cajeroEntradas',              
+        controller: 'cajeroEntradasCtrl',
+        templateUrl:'views/cajero/cajeroEntradas.html'
+        }) 
+      $stateProvider
+        .state('cajeroAsientos',
+        {
+        url:'/cajeroAsientos',              
+        controller: 'cajeroAsientosCtrl',
+        templateUrl:'views/cajero/cajeroAsientos.html'
+        }) 
+      $stateProvider
+        .state('cajeroPago',
+        {
+        url:'/cajeroPago',              
+        controller: 'cajeroPagoCtrl',
+        templateUrl:'views/cajero/cajeroPago.html'
+        }) 
+      $stateProvider
+        .state('cajeroFinalizar',
+        {
+        url:'/cajeroFinalizar',              
+        controller: 'cajeroFinalizarCtrl',
+        templateUrl:'views/cajero/cajeroFinalizar.html'
+        })      
 
     $urlRouterProvider.otherwise('main');           
   }) 
