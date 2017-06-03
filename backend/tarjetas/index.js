@@ -45,7 +45,7 @@ router.get('/articulos/proveedor/:proveedor', (req, res, next) => {
     });
 });
 
-router.post('/insertar',function(req, res, next){
+router.post('/tarj/insertar',function(req, res, next){
 		console.log(req.body);
 
         req.db.collection('articulos')        

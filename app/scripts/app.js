@@ -128,17 +128,24 @@
         templateUrl:'views/cajero/cajeroPago.html'
         }) 
       $stateProvider
-        .state('cajeroFinalizar',
+        .state('adminMain',
         {
-        url:'/cajeroFinalizar',              
-        controller: 'cajeroFinalizarCtrl',
-        templateUrl:'views/cajero/cajeroFinalizar.html'
-        })      
+        url:'/adminMain',              
+        //controller: '',
+        templateUrl:'views/admin/adminMain.html'
+        })  
+       $stateProvider
+        .state('empleadoMain',
+        {
+        url:'/empleadoMain',              
+        //controller: 'cajeroFinalizarCtrl',
+        templateUrl:'views/empleado/empleadoMain.html'
+        })    
         
     $urlRouterProvider.otherwise(function ($injector, $location) {
         console.log("Otherwise Executed");
 
-        try {
+        try { 
             var $rootScope = $injector.get("$rootScope");
             var $state = $injector.get("$state");
 
@@ -146,13 +153,13 @@
             $state.go('main');            
           }   
           //Agregar los demas tipos de usuario 
-          /*if($rootScope.globals.currentUser.tipoUsuario == 'Admin'){
-            $location.path('/mainAdmin');             
+          if($rootScope.globals.currentUser.tipoUsuario == 'Admin'){
+            $location.path('/adminMain');             
           }
 
           if($rootScope.globals.currentUser.tipoUsuario == 'Empleado'){
-            $location.path('/mainEmpleado');            
-          } */
+            $location.path('/empleadoMain');            
+          } 
 
           if($rootScope.globals.currentUser.tipoUsuario == 'Cajero'){
             $state.go('cajeroMain');            
@@ -201,14 +208,16 @@
                   '/promosVigentes','/quienesSomos','/contactanos','/prohibida']) === -1;
               }
               //Agregar los distintos tipos de usuario
-              /*if($rootScope.globals.currentUser.tipoUsuario == 'Admin'){
-                var restrictedPage = $.inArray($location.path(), ['/mainAdmin', '/login','/registro','/detallePelicula','/salas','/seleccionEntradas','/promosVigentes','/quienesSomos']) === -1;
+              if($rootScope.globals.currentUser.tipoUsuario == 'Admin'){
+                var restrictedPage = $.inArray($location.path(), ['/adminMain', 
+                '/promosVigentes','/quienesSomos','/contactanos','/prohibida']) === -1;
               }
 
               if($rootScope.globals.currentUser.tipoUsuario == 'Empleado'){
-                var restrictedPage = $.inArray($location.path(), ['/mainEmp', '/login','/registro','/detallePelicula','/salas','/seleccionEntradas','/promosVigentes','/quienesSomos']) === -1;
+                var restrictedPage = $.inArray($location.path(), ['/empleadoMain',
+                '/promosVigentes','/quienesSomos','/contactanos','/prohibida']) === -1;
               }
-              */
+              
               if($rootScope.globals.currentUser.tipoUsuario == 'Cajero'){
                 var restrictedPage = $.inArray($location.path(), ['/cajeroMain', '/cajeroBuscarCodigo','/cajeroSeleccionPelicula','/cajeroEntradas','/cajeroAsientos','/cajeroPago','/cajeroFinalizar',
                   '/promosVigentes','/quienesSomos','/contactanos','/prohibida']) === -1;

@@ -27,13 +27,13 @@
 						$location.path('/main'); 						
  					}   
  					//Agregar los demas tipos de usuario 
- 					/*if($rootScope.globals.currentUser.tipoUsuario == 'Admin'){
-						$location.path('/mainAdmin'); 						
+ 					if($rootScope.globals.currentUser.tipoUsuario == 'Admin'){
+						$location.path('/adminMain'); 						
  					}
 
  					if($rootScope.globals.currentUser.tipoUsuario == 'Empleado'){
-						$location.path('/mainEmpleado'); 						
- 					} */
+						$location.path('/empleadoMain'); 						
+ 					} 
 
  					if($rootScope.globals.currentUser.tipoUsuario == 'Cajero'){
 						$location.path('/cajeroMain'); 						
