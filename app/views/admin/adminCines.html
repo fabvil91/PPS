@@ -1,90 +1,77 @@
-<!DOCUMENT html>
-<head>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-</head>
-<body>
-    <div class="container">
-        <div class="row">
-            <!--MENU-->
-            <div class="col-md-3">
-                <div class="panel panel-default margin-top">
-                    <div class="panel-body">
-                        <ul class="nav nav-pills nav-stacked">
-                            <li role="presentation"><a href="#">Gestionar Personal</a></li>
-                            <li role="presentation" class="active"><a href="#">Gestionar Cines</a></li>
-                            <li role="presentation"><a href="#">Gestionar Precios</a></li>
-                            <li role="presentation"><a href="#">Gestionar Promociones</a></li> 
-                            <li role="presentation"><a href="#">Gestionar Salas</a></li> 
-                            <li role="presentation"><a href="#">Gestionar Slides</a></li>
-                            <br>
-                            <br>
-                            <br> 
-                            <li role="presentation"><a href="#">Configuracion General</a></li>    
-                        </ul>
-                    </div>
+<div class="container">
+    <div class="row">
+        <!--MENU-->
+        <div class="col-md-3">
+            <div class="panel panel-default margin-top">
+                <div class="panel-body">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li role="presentation"><a href="#">Gestionar Personal</a></li>
+                        <li role="presentation" class="active"><a href="#">Gestionar Cines</a></li>
+                        <li role="presentation"><a href="#">Gestionar Precios</a></li>
+                        <li role="presentation"><a href="#">Gestionar Promociones</a></li> 
+                        <li role="presentation"><a href="#">Gestionar Salas</a></li> 
+                        <li role="presentation"><a href="#">Gestionar Slides</a></li>
+                        <br>
+                        <br>
+                        <br> 
+                        <li role="presentation"><a href="#">Configuracion General</a></li>    
+                    </ul>
                 </div>
             </div>
-            
+        </div>
+        
 
-                <!-- BANCOS -->
-                <div class="row">
-                    <div class = "col-md-12">
-                        <div class="panel panel-default margin-top">
-                            <div class="panel-body">
-                                <button type="button" class="btn btn-primary">Nuevo</button>
-                                <table class="table table-condensed">
-                                    <thead>
-                                        <tr>
-                                            <th>Nombre</th>
-                                            <th>Hora de Apertura</th>
-                                            <th>Hora de Cierre</th>
-                                            <th>Duracion de Publicidad</th>
-                                            <th>Duracion entre Funciones</th>
-                                            <th>Duracion Tolerancia ultima Funcion</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody> 
-                                        <tr>
-                                            <th>Cinemar Temperleyr</th>
-                                            <th>8:00</th>
-                                            <th>23:59</th>
-                                            <th>20</th>
-                                            <th>10</th>
-                                            <th>45</th>
-                                            
-                                            <th>
-                                                <button class="btn btn-info btn-sm">Editar</button>
-                                                <button class="btn btn-danger btn-sm">Eliminar</button>
-                                            </th>
-                                        </tr>
-                                        <tr>
-                                            <th>Cinemar Avellaneda</th>
-                                            <th>10:00</th>
-                                            <th>01:59</th>
-                                            <th>15</th>
-                                            <th>10</th>
-                                            <th>40</th>
-                                            <th>
-                                                <button class="btn btn-info btn-sm">Editar</button>
-                                                <button class="btn btn-danger btn-sm">Eliminar</button>
-                                            </th>
-                                        </tr>
+            <!-- BANCOS -->
+            <div class="row">
+                <div class = "col-md-12">
+                    <div class="panel panel-default margin-top">
+                        <div class="panel-body">
+                            <button type="button" class="btn btn-primary">Nuevo</button>
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Hora de Apertura</th>
+                                        <th>Hora de Cierre</th>
+                                        <th>Duracion de Publicidad</th>
+                                        <th>Duracion entre Funciones</th>
+                                        <th>Duracion Tolerancia ultima Funcion</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody> 
+                                    <tr>
+                                        <th>Cinemar Temperleyr</th>
+                                        <th>8:00</th>
+                                        <th>23:59</th>
+                                        <th>20</th>
+                                        <th>10</th>
+                                        <th>45</th>
                                         
-                                    </tbody>                    
-                                </table>
-                            </div>
+                                        <th>
+                                            <button class="btn btn-info btn-sm">Editar</button>
+                                            <button class="btn btn-danger btn-sm">Eliminar</button>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>Cinemar Avellaneda</th>
+                                        <th>10:00</th>
+                                        <th>01:59</th>
+                                        <th>15</th>
+                                        <th>10</th>
+                                        <th>40</th>
+                                        <th>
+                                            <button class="btn btn-info btn-sm">Editar</button>
+                                            <button class="btn btn-danger btn-sm">Eliminar</button>
+                                        </th>
+                                    </tr>
+                                    
+                                </tbody>                    
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-    
-    </div>
-</body>
+        </div>
+
+</div>

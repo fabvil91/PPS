@@ -1,0 +1,110 @@
+<div class="container">
+    <div class="row">
+        <!--MENU-->
+        <div class="col-md-3">
+            <div class="panel panel-default margin-top">
+                <div class="panel-body">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li role="presentation"><a href="#">Gestionar Personal</a></li>
+                        <li role="presentation"><a href="#">Gestionar Cines</a></li>
+                        <li role="presentation"><a href="#">Gestionar Precios</a></li>
+                        <li role="presentation"><a href="#">Gestionar Promociones</a></li> 
+                        <li role="presentation" class="active"><a href="#">Gestionar Salas</a></li> 
+                        <li role="presentation"><a href="#">Gestionar Slides</a></li>
+                        <br>
+                        <br>
+                        <br> 
+                        <li role="presentation"><a href="#">Configuracion General</a></li>    
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class = "col-md-9">
+            <!-- SALAS DATOS -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="nombre">Nombre:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="nombre" class="form-control" ng-model="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="selFormato">Formato: </label>  
+                                    <div class="col-sm-10">
+                                        <select class="form-control" id="selFormato" ng-model="filtro.formato" ng-options="x._id  as x.nombre for x in formatos"></select> 
+                                    </div>                 
+                                    
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="filas">Filas:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="filas" class="form-control" ng-model="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="columnas">Columnas:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="columnas" class="form-control" ng-model="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-10"></div>
+                                    <div class="col-sm-2">
+                                        <input type="button" class="btn btn-info" value="Generar" ng-click="">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--GUARDAR-->
+                <div class="row">
+                    <div class="col-md-12">
+                    <div class="alert alert-info">
+                    <strong>Info!</strong> Haciendo click sobre una columna puede definir un pasillo.
+                    </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="legend" >
+                        <div>
+                            <img src="./images/icons/pasillo.jpg" alt="pasillo"> Pasillo
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="button" class="btn btn-info" value="Guardar Sala" ng-click="">
+                    </div>
+            </div>
+
+            <!--SALA GENERADA -->
+            <div class="row">
+                <div class="center-block">
+                    <div class="panel panel-default">
+                        <div class="sala panel-body ">
+                            <div class="pantalla center-block"> 
+                            Pantalla
+                            </div>
+                            <ol class="filas" ng-repeat="filas in funcion.sala">
+                                <li class="columna" ng-repeat="columna in filas">
+                                    <label class="asiento ocupado" ng-if="!columna.pasillo && columna.booked" ng-click="seleccionar(columna)"> {{columna.id}} </label>
+                                    <label class="asiento disponible" ng-if="!columna.pasillo && !columna.booked && !columna.checked" ng-click="seleccionar(columna)"> {{columna.id}} </label>
+                                    <label class="asiento ocupado pasillo" ng-if="columna.pasillo && columna.booked" ng-click="seleccionar(columna)"> {{columna.id}} </label>                    
+                                    <label class="asiento disponible pasillo" ng-if="columna.pasillo && !columna.booked && !columna.checked" ng-click="seleccionar(columna)"> {{columna.id}} </label>         
+                                    <label class="asiento seleccionado pasillo" ng-if="columna.pasillo && columna.checked" ng-click="seleccionar(columna)"> {{columna.id}} </label>                                
+                                    <label class="asiento seleccionado" ng-if="!columna.pasillo && columna.checked" ng-click="seleccionar(columna)"> {{columna.id}} </label>                                       
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
