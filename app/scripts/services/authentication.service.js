@@ -44,7 +44,7 @@
 				var user = userArray[0];
 				console.log(user);
                 if (user  && user.password === password) {
-                     response = { success: true, tipoUsuario: user.tipo.nombre };
+                     response = { success: true, tipoUsuario: user.tipo.nombre};
                  } else {
                      response = { success: false, message: 'Usuario o contraseña incorrectos' };
                  }

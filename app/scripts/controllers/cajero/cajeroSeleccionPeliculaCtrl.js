@@ -82,14 +82,29 @@
 				       		  funciones[i].diaFormateado = $scope.dias[new Date(funciones[i].dia).getDay()] + " - " + new Date(funciones[i].dia).getDate() + "/" + (new Date(funciones[i].dia).getMonth()+1);       		  
 							}
 							console.log($scope.funciones);	
-						})();					
+						})();
+
+						$scope.filtro.pelicula = Datos.listado().pelicula;
+						if(Datos.listado().filtroDia){			
+							$scope.filtro.diaNombre = $scope.dias[new Date(Datos.listado().dia).getDay()] + " - " + new Date(Datos.listado().dia).getDate() + "/" + (new Date(Datos.listado().dia).getMonth()+1);
+							$scope.filtro.diaLocale = new Date(Datos.listado().dia).getTime();
+						}
+						if(Datos.listado().filtroFormato){																
+							$scope.filtro.formato = Datos.listado().formato._id;							
+						}
+						if(Datos.listado().filtroIdioma){			
+							$scope.filtro.idioma = Datos.listado().idioma._id;
+						}
+																
+						$scope.filtro.complejo = $rootScope.globals.currentUser.complejo._id;
+						console.log($scope.filtro.complejo);					
 			  		})
 				    .catch(function(e){
 				      console.log(e);
 				    });
 			     })
 			     .catch(function(e){
-			       console.log(e);
+			       console.log(e); 
 			     })
 		     })
 		     .catch(function(e){
@@ -124,5 +139,10 @@
 			$scope.filtro.diaLocale = dia.getTime();					
 			console.log($scope.filtro);
 		}	
+		$scope.cargar = function(funcion){
+        	console.log(funcion);
+        	console.log(Salas.crear(2,4));        	
+			Datos.cargar(funcion);
+        }
     }])
 })();

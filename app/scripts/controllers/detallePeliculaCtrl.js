@@ -85,7 +85,7 @@
 								
 						$scope.limpiarFiltro = function (){
 							console.log($rootScope);
-							$scope.filtro = {};			
+							$scope.filtro = {};			 
 						}
 						
 						/* Cargamos en los filtros lo seleccionado en la pantalla anterior (main) */
