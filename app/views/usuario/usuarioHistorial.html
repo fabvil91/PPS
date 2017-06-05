@@ -1,0 +1,126 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav">
+                    <li><a href="#">Tu Cuenta</a></li>
+                    <li class="active"><a href="#">Historial</a></li>
+                    <li><a href="#">Borrar Cuenta</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!--FILTROS-->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                    <li><a href="#">No Retiradas</a></li>
+                    <li><a href="#">Reservas</a></li>
+                    <li><a href="#">Compras</a></li>
+                    <li><a href="#">Retiradas</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!--NO RETIRADAS -->
+    <div class="row">
+        <div class="col-md-12">
+            <!--NG-REPEAT por cada operacion No Retirada -->
+            <div class="panel panel-danger">
+                <div class="panel-heading">{{fecha}}No Retirada</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>No se han retirado estas entradas dentro del tiempo permitido.</p>
+                            <p>Se ingresara a Lista Negra hasta que abone el monto indicado.</p>
+                            <p>Mientras se encuentra dentro de la Lista Negra no se le permitira realizar reservas de entradas.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{nombrePelicula}}, {{idioma}}</p>
+                            <p>{{Fecha}}, {{hora}}</p>
+                            <p>{{complejo}}</p>
+                            <p>Cantidad de Asientos: {{cantidad}}</p> 
+                            <p>Precio: {{precio}}</p>
+                            <p>Monto Debido: {{deuda}}</p>
+                            <div class="form-group pull-right">
+                                <input type="button" class="btn btn-danger" value="Realizar Pago" ui-sref="#">  
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--POR FECHA-->
+        <div class="row">
+        <div class="col-md-12">
+            <div>
+                <h2>{{fecha}}</h2>
+            </div>
+            <!--NG-REPEAT por cada operacion Reservada-->
+            <div class="panel panel-primary">
+                <div class="panel-heading">{{fecha}}Reserva</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Tiene tiempo hasta {{tiempo limite - retiro}} para abonar estas entradas online o por boleteria.</p>
+                            <p>Tiene tiempo hasta {{tiempo limite - cancelacion}} para cancelar esta reserva.</p>
+                            <p>Si no se retiran dentro del tiempo permitido se le ingresara a Lista Negra.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{nombrePelicula}}, {{idioma}}</p>
+                            <p>{{Fecha}}, {{hora}}</p>
+                            <p>{{complejo}}</p>
+                            <p>Cantidad de Asientos: {{cantidad}}</p> 
+                            <p>Precio: {{precio}}</p>
+                            <div class="form-group pull-right">
+                                <input type="button" class="btn btn-primary" value="Comprar" ui-sref="#">  
+                                <input type="button" class="btn btn-primary" value="Cancelar" ui-sref="#">  
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <!--NG-REPEAT por cada operacion Compra-->
+            <div class="panel panel-success">
+                <div class="panel-heading">{{fecha}}Compra</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Tiene tiempo hasta {{tiempo limite - cancelacion}} para cancelar esta compra sin cargo.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{nombrePelicula}}, {{idioma}}</p>
+                            <p>{{Fecha}}, {{hora}}</p>
+                            <p>{{complejo}}</p>
+                            <p>Cantidad de Asientos: {{cantidad}}</p> 
+                            <p>Precio: {{precio}}</p>
+                            <div class="form-group pull-right">
+                                <input type="button" class="btn btn-success" value="Cancelar" ui-sref="#">  
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <!--NG-REPEAT por cada operacion Retirada-->
+            <div class="panel panel-default">
+                <div class="panel-heading">{{fecha}}Retirada</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>{{nombrePelicula}}, {{idioma}}</p>
+                            <p>{{Fecha}}, {{hora}}</p>
+                            <p>{{complejo}}</p>
+                            <p>Cantidad de Asientos: {{cantidad}}</p> 
+                            <p>Precio: {{precio}}</p>
+                            <div class="form-group pull-right">
+                                <input type="button" class="btn btn-default" value="Borrar" ui-sref="#">  
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
