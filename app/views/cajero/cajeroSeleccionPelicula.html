@@ -65,8 +65,8 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td><a href="#">Logan</a></td>                                
+                            <tr ng-repeat="(key, value) in funciones | groupBy: 'pelicula.nombre'">
+                              <td><a href="" ng-click="cargarPelicula(key)">{{key}}</a></td>
                             </tr>
                             </tbody>
                         </table>

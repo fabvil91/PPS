@@ -74,36 +74,7 @@
 				       		  $scope.fechasDias.push($scope.dias[$scope.fechas[i].getDay()] + " - " + $scope.fechas[i].getDate() + "/" + ($scope.fechas[i].getMonth()+1)); 
 							}						
 						})();  
-								
-						$scope.filtrarDia = function(){									
-							var indice = $scope.fechasDias.indexOf($scope.filtro.diaNombre);			
-							var dia = $scope.fechas[indice];
-							
-							$scope.filtro.diaLocale = dia.getTime();					
-							console.log($scope.filtro);
-						}
-								
-						$scope.limpiarFiltro = function (){
-							console.log($rootScope);
-							$scope.filtro = {};			
-						}
-						
-						/* Cargamos en los filtros lo seleccionado en la pantalla anterior (main) */
-						$scope.filtro.pelicula = Datos.listado().pelicula;
-						if(Datos.listado().filtroDia){			
-							$scope.filtro.diaNombre = $scope.dias[new Date(Datos.listado().dia).getDay()] + " - " + new Date(Datos.listado().dia).getDate() + "/" + (new Date(Datos.listado().dia).getMonth()+1);
-							$scope.filtro.diaLocale = new Date(Datos.listado().dia).getTime();
-						}
-						if(Datos.listado().filtroFormato){																
-							$scope.filtro.formato = Datos.listado().formato._id;							
-						}
-						if(Datos.listado().filtroIdioma){			
-							$scope.filtro.idioma = Datos.listado().idioma._id;
-						}
-						if(Datos.listado().filtroComplejo){										
-							$scope.filtro.complejo = Datos.listado().complejo._id;
-						}
-
+																														
 						/* Generamos campo nuevo con dia formateado en la funcion */
 						(function(){
 							for (var i = 0; i < $scope.funciones.length; i++ ) {	   
@@ -128,17 +99,7 @@
 	     .catch(function(e){
 	       console.log(e);
 	     })
-
-		$scope.tab = 1;
-
-        $scope.setTab = function (tabId) {        	
-            $scope.tab = tabId;
-        };
-
-        $scope.isSet = function (tabId) {        	        	
-            return $scope.tab === tabId;
-        };
-
+	
         $scope.formatear = function(funcion){        	
         	return funcion.replace(/,/g, " > ");
         }
@@ -148,10 +109,20 @@
         	return fecha.getHours() + ":" + (fecha.getMinutes() == "0"? "00" : fecha.getMinutes());
         }
 
-        $scope.cargar = function(funcion){
-        	console.log(funcion);
-        	console.log(Salas.crear(2,4));        	
-			Datos.cargar(funcion);
+        $scope.cargarPelicula = function(pelicula){
+        	console.log(pelicula);
+        	$scope.filtro.pelicula = {};
+        	$scope.filtro.pelicula.nombre = pelicula;
+        	//console.log(Salas.crear(2,4));        	
+			//Datos.cargar(funcion);
         }
+
+        $scope.filtrarDia = function(){									
+			var indice = $scope.fechasDias.indexOf($scope.filtro.diaNombre);			
+			var dia = $scope.fechas[indice];
+							
+			$scope.filtro.diaLocale = dia.getTime();					
+			console.log($scope.filtro);
+		}	
     }])
 })();

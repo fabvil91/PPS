@@ -70,7 +70,7 @@
                               
                 $scope.cargar = function(){                
                     console.log($scope.operacion);         
-                   // Datos.cargar(funcion); SI es efectivo, limpiar funcion.operacion (Solo se llena con pago en tarjeta)
+                   // Guardar en BD. SI es efectivo, limpiar funcion.operacion (Solo se llena con pago en tarjeta)
                 }   
                                 
          
