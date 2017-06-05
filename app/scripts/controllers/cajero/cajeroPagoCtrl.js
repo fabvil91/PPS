@@ -1,4 +1,4 @@
-(function () {
+(function () { 
     'use strict';
  
     angular
@@ -6,7 +6,8 @@
         .controller('cajeroPagoCtrl', ['$scope','$location','Datos','$rootScope','Tarjetas','Bancos','Promociones',
         function ($scope,$location,Datos,$rootScope,Tarjetas,Bancos,Promociones) {
         
-                $scope.funcion = Datos.listado();
+              $scope.funcion = Datos.listado();
+    
 
                  Tarjetas.listado()
                      .then(function(datos){

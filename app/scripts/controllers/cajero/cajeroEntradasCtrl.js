@@ -22,7 +22,7 @@
 					$scope.funcion = Datos.listado();
 
 					$scope.preciosFiltrados = $scope.precios.filter(function(element){
-							return (element.complejo.nombre === $scope.funcion.complejo.nombre && element.formato.nombre === $scope.funcion.formato.nombre);
+						return (element.complejo.nombre === $scope.funcion.complejo.nombre && element.formato.nombre === $scope.funcion.formato.nombre);
 					});
 
 					(function(){

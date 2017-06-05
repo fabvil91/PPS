@@ -126,6 +126,13 @@
         url:'/cajeroPago',              
         controller: 'cajeroPagoCtrl',
         templateUrl:'views/cajero/cajeroPago.html'
+      }) 
+      $stateProvider
+        .state('cajeroFinalizar',
+        {
+        url:'/cajeroFinalizar',              
+        controller: 'cajeroFinalizarCtrl',
+        templateUrl:'views/cajero/cajeroFinalizar.html'
         }) 
       $stateProvider
         .state('adminMain',
