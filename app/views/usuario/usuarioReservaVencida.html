@@ -4,9 +4,9 @@
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <ul class="nav navbar-nav">
-                    <li><a href="#">Tu Cuenta</a></li>
-                    <li><a href="#">Historial</a></li>
-                    <li><a href="#">Borrar Cuenta</a></li>
+                    <li ui-sref="usuarioCuenta"><a href="#">Tu Cuenta</a></li>
+                    <li ui-sref="usuarioHistorial"><a href="#">Historial</a></li>
+                    <li ui-sref="usuarioBorrar"><a href="#">Borrar Cuenta</a></li>
                     </ul>
                 </div>
             </nav>
@@ -106,7 +106,7 @@
             <form class="form-inline">
                     <div class="form-group centered">
                 
-                        <input type="button" ng-disabled="form.$invalid" class="btn btn-info" value="Continuar" ui-sref="#" ng-click="cargar(funcion)" >
+                        <input type="button" ng-disabled="form.$invalid" class="btn btn-info" value="Continuar" ui-sref="usuarioFinalizarPago" ng-click="cargar(funcion)" >
                         <input type="button" class="btn btn-info" value="Cancelar" ui-sref="main">              
                 
                     </div>

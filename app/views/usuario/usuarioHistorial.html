@@ -4,9 +4,9 @@
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <ul class="nav navbar-nav">
-                    <li><a href="#">Tu Cuenta</a></li>
-                    <li class="active"><a href="#">Historial</a></li>
-                    <li><a href="#">Borrar Cuenta</a></li>
+                    <li ui-sref="usuarioCuenta"><a href="#">Tu Cuenta</a></li>
+                    <li ui-sref="usuarioHistorial" class="active"><a href="#">Historial</a></li>
+                    <li ui-sref="usuarioBorrar"><a href="#">Borrar Cuenta</a></li>
                     </ul>
                 </div>
             </nav>
@@ -44,7 +44,7 @@
                             <p>Precio: {{precio}}</p>
                             <p>Monto Debido: {{deuda}}</p>
                             <div class="form-group pull-right">
-                                <input type="button" class="btn btn-danger" value="Realizar Pago" ui-sref="#">  
+                                <input type="button" class="btn btn-danger" value="Realizar Pago" ui-sref="usuarioReservaVencida">  
                             </div>
                         </div>
                     </div> 
@@ -64,8 +64,8 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <p>Tiene tiempo hasta {{tiempo limite - retiro}} para abonar estas entradas online o por boleteria.</p>
-                            <p>Tiene tiempo hasta {{tiempo limite - cancelacion}} para cancelar esta reserva.</p>
+                            <p>Tiene tiempo hasta {{tiempolimiteretiro}} para abonar estas entradas online o por boleteria.</p>
+                            <p>Tiene tiempo hasta {{tiempolimitecancelacion}} para cancelar esta reserva.</p>
                             <p>Si no se retiran dentro del tiempo permitido se le ingresara a Lista Negra.</p>
                         </div>
                         <div class="col-md-6">
@@ -88,7 +88,7 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <p>Tiene tiempo hasta {{tiempo limite - cancelacion}} para cancelar esta compra sin cargo.</p>
+                            <p>Tiene tiempo hasta {{tiempolimitecancelacion}} para cancelar esta compra sin cargo.</p>
                         </div>
                         <div class="col-md-6">
                             <p>{{nombrePelicula}}, {{idioma}}</p>

@@ -13,11 +13,11 @@
             // reset login status
             AuthenticationService.ClearCredentials();
         })();
- 
+  
         $scope.login = function login() {        
             AuthenticationService.Login($scope.loginForm.username, $scope.loginForm.password, function (response) {
                 if (response.success) {
-                    AuthenticationService.SetCredentials($scope.loginForm.username, $scope.loginForm.password, response.tipoUsuario);
+                    AuthenticationService.SetCredentials($scope.loginForm.username, $scope.loginForm.password, response.tipoUsuario, response.complejo);
 					
  					console.log($rootScope);
 

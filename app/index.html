@@ -91,7 +91,7 @@
             <div class="col-sm-2 btn-group-vertical">
                 <a href="#" ng-if="!nombreUser" ui-sref="login" class="btn btn-info" role="button">Ingresar</a>
                 <a href="#" ng-if="!nombreUser" ui-sref="registro" class="btn btn-info" role="button">Registrate</a>
-                <a href="#" ng-if="nombreUser" ui-sref="login" class="btn btn-info" role="button">{{nombreUser}}</a>
+                <a href="#" ng-if="nombreUser" ui-sref="usuarioMain" class="btn btn-info" role="button">{{nombreUser}}</a>
                 <a href="#" ng-if="nombreUser" ng-click="logout()" class="btn btn-info" role="button">Log Out</a>
             </div>
         </div>

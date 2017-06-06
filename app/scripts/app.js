@@ -135,19 +135,152 @@
         templateUrl:'views/cajero/cajeroFinalizar.html'
         }) 
       $stateProvider
+        .state('adminBancos',
+        {
+        url:'/adminBancos',              
+        //controller: '',
+        templateUrl:'views/admin/adminBancos.html'
+        })
+      $stateProvider
+        .state('adminCines',
+        {
+        url:'/adminCines',              
+        //controller: '',
+        templateUrl:'views/admin/adminCines.html'
+        })  
+      $stateProvider
+        .state('adminConfiguracionGeneral',
+        {
+        url:'/adminConfiguracionGeneral',              
+        //controller: '',
+        templateUrl:'views/admin/adminConfiguracionGeneral.html'
+        })  
+      $stateProvider
         .state('adminMain',
         {
         url:'/adminMain',              
         //controller: '',
         templateUrl:'views/admin/adminMain.html'
         })  
-       $stateProvider
+      $stateProvider
+        .state('adminPersonal',
+        {
+        url:'/adminPersonal',              
+        //controller: '',
+        templateUrl:'views/admin/adminPersonal.html'
+        })  
+      $stateProvider
+        .state('adminPrecios',
+        {
+        url:'/adminPrecios',              
+        //controller: '',
+        templateUrl:'views/admin/adminPrecios.html'
+        }) 
+      $stateProvider
+        .state('adminPromociones',
+        {
+        url:'/adminPromociones',              
+        //controller: '',
+        templateUrl:'views/admin/adminPromociones.html'
+        }) 
+      $stateProvider
+        .state('adminSalaNueva',
+        {
+        url:'/adminSalaNueva',              
+        //controller: '',
+        templateUrl:'views/admin/adminSalaNueva.html'
+        }) 
+      $stateProvider
+        .state('adminSalas',
+        {
+        url:'/adminSalas',              
+        //controller: '',
+        templateUrl:'views/admin/adminSalas.html'
+        }) 
+      $stateProvider
+        .state('adminSlide',
+        {
+        url:'/adminSlide',              
+        //controller: '',
+        templateUrl:'views/admin/adminSlide.html'
+        }) 
+      $stateProvider
+        .state('adminTarjeta',
+        {
+        url:'/adminTarjeta',              
+        //controller: '',
+        templateUrl:'views/admin/adminTarjeta.html'
+        })  
+      $stateProvider
+        .state('empleadoFunciones',
+        {
+        url:'/empleadoFunciones',              
+        //controller: 'cajeroFinalizarCtrl',
+        templateUrl:'views/empleado/empleadoFunciones.html'
+        })  
+      $stateProvider
+        .state('empleadoNotificaciones',
+        {
+        url:'/empleadoNotificaciones',              
+        //controller: 'cajeroFinalizarCtrl',
+        templateUrl:'views/empleado/empleadoNotificaciones.html'
+        })  
+      $stateProvider
         .state('empleadoMain',
         {
         url:'/empleadoMain',              
         //controller: 'cajeroFinalizarCtrl',
         templateUrl:'views/empleado/empleadoMain.html'
-        })    
+        })  
+      $stateProvider
+        .state('empleadoPeliculas',
+        {
+        url:'/empleadoPeliculas',              
+        //controller: 'cajeroFinalizarCtrl',
+        templateUrl:'views/empleado/empleadoPeliculas.html'
+        }) 
+      $stateProvider
+        .state('usuarioBorrar',
+        {
+        url:'/usuarioBorrar',              
+        //controller: 'cajeroFinalizarCtrl',
+        templateUrl:'views/usuario/usuarioBorrar.html'
+        })  
+      $stateProvider
+        .state('usuarioCuenta',
+        {
+        url:'/usuarioCuenta',              
+        //controller: 'cajeroFinalizarCtrl',
+        templateUrl:'views/usuario/usuarioCuenta.html'
+        })
+      $stateProvider
+        .state('usuarioFinalizarPago',
+        {
+        url:'/usuarioFinalizarPago',              
+        //controller: 'cajeroFinalizarCtrl',
+        templateUrl:'views/usuario/usuarioFinalizarPago.html'
+        })  
+      $stateProvider
+        .state('usuarioHistorial',
+        {
+        url:'/usuarioHistorial',              
+        //controller: 'cajeroFinalizarCtrl',
+        templateUrl:'views/usuario/usuarioHistorial.html'
+        })
+      $stateProvider
+        .state('usuarioMain',
+        {
+        url:'/usuarioMain',              
+        //controller: 'cajeroFinalizarCtrl',
+        templateUrl:'views/usuario/usuarioMain.html'
+        })
+      $stateProvider
+        .state('usuarioReservaVencida',
+        {
+        url:'/usuarioReservaVencida',              
+        //controller: 'cajeroFinalizarCtrl',
+        templateUrl:'views/usuario/usuarioReservaVencida.html'
+        })   
         
     $urlRouterProvider.otherwise(function ($injector, $location) {
         console.log("Otherwise Executed");
@@ -161,11 +294,11 @@
           }   
           //Agregar los demas tipos de usuario 
           if($rootScope.globals.currentUser.tipoUsuario == 'Admin'){
-            $location.path('/adminMain');             
+            $location.path('adminMain');             
           }
 
           if($rootScope.globals.currentUser.tipoUsuario == 'Empleado'){
-            $location.path('/empleadoMain');            
+            $location.path('empleadoMain');            
           } 
 
           if($rootScope.globals.currentUser.tipoUsuario == 'Cajero'){
@@ -212,17 +345,20 @@
             if(loggedIn){
               if($rootScope.globals.currentUser.tipoUsuario == 'Usuario'){
                 var restrictedPage = $.inArray($location.path(), ['/main', '/login','/registro','/detallePelicula','/seleccionEntradas','/salas','/datosOperacionCompra','/finalizarOperacion',
-                  '/promosVigentes','/quienesSomos','/contactanos','/prohibida']) === -1;
+                  '/promosVigentes','/quienesSomos','/contactanos','/prohibida',
+                  '/usuarioBorrar','/usuarioCuenta','/usuarioFinalizarPago','/usuarioHistorial','/usuarioMain','/usuarioReservaVencida']) === -1;
               }
               //Agregar los distintos tipos de usuario
               if($rootScope.globals.currentUser.tipoUsuario == 'Admin'){
                 var restrictedPage = $.inArray($location.path(), ['/adminMain', 
-                '/promosVigentes','/quienesSomos','/contactanos','/prohibida']) === -1;
+                '/promosVigentes','/quienesSomos','/contactanos','/prohibida',
+                '/adminBancos','/adminCines','/adminConfiguracionGeneral','/adminPersonal','/adminPrecios','/adminPromociones','/adminSalaNueva','/adminSalas','/adminTarjeta','/adminSlide']) === -1;
               }
 
               if($rootScope.globals.currentUser.tipoUsuario == 'Empleado'){
                 var restrictedPage = $.inArray($location.path(), ['/empleadoMain',
-                '/promosVigentes','/quienesSomos','/contactanos','/prohibida']) === -1;
+                '/promosVigentes','/quienesSomos','/contactanos','/prohibida',
+                '/empleadoFunciones','/empleadoNotificaciones','/empleadoPeliculas']) === -1;
               }
               
               if($rootScope.globals.currentUser.tipoUsuario == 'Cajero'){

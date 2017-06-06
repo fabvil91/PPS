@@ -44,7 +44,7 @@
 				var user = userArray[0];
 				console.log(user);
                 if (user  && user.password === password) {
-                     response = { success: true, tipoUsuario: user.tipo.nombre};
+                     response = { success: true, tipoUsuario: user.tipo.nombre, complejo:user.complejo.nombre};
                  } else {
                      response = { success: false, message: 'Usuario o contraseña incorrectos' };
                  }
@@ -52,13 +52,14 @@
                 });                          
         }
  
-        function SetCredentials(username, password, tipoUsuario) {
-            var authdata = Base64.encode(username + ':' + password + ":" + tipoUsuario);
+        function SetCredentials(username, password, tipoUsuario, complejo) {
+            var authdata = Base64.encode(username + ':' + password + ":" + tipoUsuario + ":" + complejo);
  
             $rootScope.globals = {
                 currentUser: {
                     username: username,
 					tipoUsuario: tipoUsuario,
+					complejo:complejo,
                     authdata: authdata
                 }
             };
