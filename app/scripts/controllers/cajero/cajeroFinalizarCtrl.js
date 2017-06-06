@@ -4,7 +4,21 @@
 	.module('cine')
 	.controller('cajeroFinalizarCtrl', ['$scope','Datos', '$rootScope', '$window','Usuarios','Operaciones','Funciones', 
 	function($scope,Datos,$rootScope,$window,Usuarios,Operaciones,Funciones){		
-		$scope.funcion = Datos.listado();			
+		$scope.funcion = Datos.listado();	
+		//TO DO
+		$scope.registrarOperacion= function(){}
+		
+		$scope.formatearEntrada = function(entrada){                          
+			return entrada.tipo + " - " + entrada.monto + " - " + entrada.cantidad;
+		}
+
+		$scope.total = function(){  
+				var total = 0;                        
+				for (var i = $scope.funcion.entradas.length - 1; i >= 0; i--) {
+					total = total + $scope.funcion.entradas[i].subtotal;
+				}
+				return total;
+		}		
 		
 		$scope.imprimir=function(){
 			$window.print();

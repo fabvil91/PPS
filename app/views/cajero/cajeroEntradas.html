@@ -5,8 +5,8 @@
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <ul class="nav navbar-nav">
-                    <li><a href="#">Buscar Transaccion</a></li>
-                    <li class="active"><a href="#">Compra Presencial</a></li>
+                    <li ui-sref="cajeroBuscarCodigo"><a href="#">Buscar Transaccion</a></li>
+                    <li ui-sref="cajeroSeleccionPelicula" class="active"><a href="#">Compra Presencial</a></li>
                     </ul>
                 </div>
             </nav>
@@ -84,8 +84,7 @@
                 
                     <input type="button" class="btn btn-info" value="Cancelar" ui-sref="cajeroMain">
               
-                    <!--<input type="button" class="btn btn-info" value="Continuar" ng-hide="cantidadTotal == 0" ui-sref="cajeroPago" ng-click="cargar(funcion)">-->
-                    <input type="button" class="btn btn-info" value="Continuar" ui-sref="cajeroAsientos" ng-click="cargar(funcion)">
+                    <input type="button" class="btn btn-info" value="Continuar" ng-hide="cantidadTotal == 0" ui-sref="cajeroAsientos" ng-click="cargar(funcion)">
                </div>
                 
             </form>

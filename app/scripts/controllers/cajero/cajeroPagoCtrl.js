@@ -55,7 +55,8 @@
                                             ];
                                             $scope.funcion = Datos.listado();
                                             $scope.funcion.operacion = {
-                                                vencimiento:{}
+                                                vencimiento:{},
+                                                tipoPago:''
                                             };
                                             $scope.hayPromo = false;
                                             for (var i = $scope.funcion.entradas.length - 1; i >= 0; i--) {
@@ -94,7 +95,7 @@
                          total = total + $scope.funcion.entradas[i].subtotal;
                        }
                        return total;
-                      }
+                }
         } ]) 
 })();
 

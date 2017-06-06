@@ -4,8 +4,8 @@
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <ul class="nav navbar-nav">
-                    <li><a href="#">Buscar Transaccion</a></li>
-                    <li class="active"><a href="#">Compra Presencial</a></li>
+                    <li ui-sref="cajeroBuscarCodigo"><a href="#">Buscar Transaccion</a></li>
+                    <li ui-sref="cajeroSeleccionPelicula" class="active"><a href="#">Compra Presencial</a></li>
                     </ul>
                 </div>
             </nav>
@@ -25,7 +25,7 @@
             </div>                 
         </div>
     </div>
-    <div ng-if="operacion.tipo=='debito' || operacion.tipo=='credito'">
+    <div ng-if="funcion.operacion.tipoPago=='debito' || funcion.operacion.tipoPago=='credito'">
         <!-- DEBITO O CREDITO -->
         <div class="row">
             <div class="col-md-12">
@@ -79,7 +79,7 @@
         </div>
     </div>
 
-    <div ng-if="operacion.tipo=='efectivo'">
+    <div ng-if="funcion.operacion.tipoPago=='efectivo'">
         <!--EFECTIVO-->
         <div class="row">
             <div class="col-md-12">
@@ -88,21 +88,15 @@
                     <div class="panel-body">
                         <form class="form-horizontal">
                             <div class="form-group">
-                                <label class="control-label col-sm-2" for="precio">Precio:</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="precio" class="form-control" readonly="readonly" ng-model="">
-                                </div>
+                            <label class="control-label col-sm-2" for="precio">Entradas:</label>
+                            <div class="col-sm-10">
+                                <input ng-repeat="entrada in funcion.entradas" type="text" name="precio" class="form-control" readonly="readonly" value="{{formatearEntrada(entrada)}}">
                             </div>
-                            <div class="form-group">
-                                    <label class="control-label col-sm-2" for="promocion">Promocion:</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="promocion" class="form-control" readonly="readonly" ng-model="">
-                                </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-sm-2" for="total">Monto Total:</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="total" class="form-control" readonly="readonly" ng-model="">
+                                    <input type="text" name="total" class="form-control" readonly="readonly" value="{{total()}}">
                                 </div>
                             </div>
                         </form>
@@ -118,7 +112,7 @@
             <form class="form-inline">
                     <div class="form-group centered">
                 
-                        <input type="button" ng-disabled="form.$invalid" class="btn btn-info" value="Continuar" ui-sref="main" ng-click="registrarOperacion()" >
+                        <input type="button" ng-disabled="form.$invalid" class="btn btn-info" value="Continuar" ui-sref="cajeroMain" ng-click="registrarOperacion()" >
                         <input type="button" class="btn btn-info" value="Cancelar" ui-sref="main">              
                 
                     </div>

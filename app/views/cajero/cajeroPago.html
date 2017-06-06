@@ -4,8 +4,8 @@
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <ul class="nav navbar-nav">
-                    <li><a href="#">Buscar Transaccion</a></li>
-                    <li class="active"><a href="#">Compra Presencial</a></li>
+                    <li ui-sref="cajeroBuscarCodigo"><a href="#">Buscar Transaccion</a></li>
+                    <li ui-sref="cajeroSeleccionPelicula" class="active"><a href="#">Compra Presencial</a></li>
                     </ul>
                 </div>
             </nav>
@@ -17,14 +17,14 @@
             <div class="panel panel-default">
                 <div class="panel-heading">METODO DE PAGO</div>
                 <div class="panel-body">
-                    <label class="radio-inline"><input type="radio" name="metodoPago" ng-click="operacion.tipo = 'efectivo'">Efectivo</label>
-                    <label class="radio-inline"><input type="radio" name="metodoPago" ng-click="operacion.tipo = 'credito'">Credito</label>
-                    <label class="radio-inline"><input type="radio" name="metodoPago" ng-click="operacion.tipo = 'debito'">Debito</label>
+                    <label class="radio-inline"><input type="radio" name="metodoPago" ng-click="funcion.operacion.tipoPago = 'efectivo'">Efectivo</label>
+                    <label class="radio-inline"><input type="radio" name="metodoPago" ng-click="funcion.operacion.tipoPago = 'credito'">Credito</label>
+                    <label class="radio-inline"><input type="radio" name="metodoPago" ng-click="funcion.operacion.tipoPago = 'debito'">Debito</label>
                 </div>
             </div>
         </div>
     </div>
-    <div ng-if="operacion.tipo=='efectivo'">
+    <div ng-if="funcion.operacion.tipoPago=='efectivo'">
         <!-- EFECTIVO -->
         <div class="row">
             <div class="col-md-12">
@@ -58,7 +58,7 @@
                                 <form class="form-inline">
                                         <div class="form-group centered">
                                     
-                                            <input type="button" ng-disabled="form.$invalid" class="btn btn-info" value="Continuar" ng-click="cargar(funcion)" >
+                                            <input type="button" ng-disabled="form.$invalid" class="btn btn-info" value="Continuar" ng-click="cargar(funcion)" ui-sref="cajeroFinalizar">
                                             <input type="button" class="btn btn-info" value="Cancelar" ui-sref="cajeroMain">              
                                     
                                         </div>
@@ -72,7 +72,7 @@
             </div>
         </div>
     </div>
-    <div ng-if="operacion.tipo=='debito' || operacion.tipo == 'credito'">
+    <div ng-if="funcion.operacion.tipoPago=='debito' || funcion.operacion.tipoPago == 'credito'">
         <!-- DEBITO O CREDITO -->
             <div class="row">
             <div class="col-md-12">
@@ -176,7 +176,7 @@
                                 <form class="form-inline">
                                         <div class="form-group centered">
                                     
-                                            <input type="button" ng-disabled="form.$invalid" class="btn btn-info" value="Continuar" ng-click="cargar(funcion)" >
+                                            <input type="button" ng-disabled="form.$invalid" class="btn btn-info" value="Continuar" ng-click="cargar(funcion)" ui-sref="cajeroFinalizar" >
                                             <input type="button" class="btn btn-info" value="Cancelar" ui-sref="cajeroMain">              
                                     
                                         </div>
