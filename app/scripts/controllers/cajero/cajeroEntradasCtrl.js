@@ -14,7 +14,7 @@
 		     	console.log(datos);
 		        $scope.promociones = datos;
 
-					$scope.transaccion = {}
+					$scope.transaccion = {tipoTransaccion: "compra"};
 					$scope.entradas = [];
 					$scope.total = 0;
 					$scope.cantidadTotal = 0;

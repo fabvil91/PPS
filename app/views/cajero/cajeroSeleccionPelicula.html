@@ -65,7 +65,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ng-repeat="(key, value) in funciones | groupBy: 'pelicula.nombre'">
+                            <tr ng-repeat="(key, value) in funciones | filter: {complejo:{_id: '5927205a39a5301c9ceb768a'}} | groupBy: 'pelicula.nombre'">
                               <td><a href="" ng-click="cargarPelicula(key)">{{key}}</a></td>
                             </tr>
                             </tbody>
@@ -96,6 +96,10 @@
                             <label for="selDia">Día: </label>                   
                             <select class="form-control" id="selDia" ng-model="filtro.diaNombre" ng-options="x for x in fechasDias" ng-change="filtrarDia()"></select> 
                         </div>
+                         <div class="form-group">                                             
+                            <a href="">{{filtro.pelicula.nombre}}</a>
+                        </div>
+
                         <div>
                             
                         

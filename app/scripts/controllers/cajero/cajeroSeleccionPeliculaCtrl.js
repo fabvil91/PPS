@@ -84,7 +84,7 @@
 							console.log($scope.funciones);	
 						})();
 
-						$scope.filtro.pelicula = Datos.listado().pelicula;
+					/*	$scope.filtro.pelicula = Datos.listado().pelicula;
 						if(Datos.listado().filtroDia){			
 							$scope.filtro.diaNombre = $scope.dias[new Date(Datos.listado().dia).getDay()] + " - " + new Date(Datos.listado().dia).getDate() + "/" + (new Date(Datos.listado().dia).getMonth()+1);
 							$scope.filtro.diaLocale = new Date(Datos.listado().dia).getTime();
@@ -97,7 +97,7 @@
 						}
 																
 						$scope.filtro.complejo = $rootScope.globals.currentUser.complejo._id;
-						console.log($scope.filtro.complejo);					
+						console.log($scope.filtro.complejo);*/					
 			  		})
 				    .catch(function(e){
 				      console.log(e);
@@ -131,7 +131,7 @@
         	//console.log(Salas.crear(2,4));        	
 			//Datos.cargar(funcion);
         }
-
+       
         $scope.filtrarDia = function(){									
 			var indice = $scope.fechasDias.indexOf($scope.filtro.diaNombre);			
 			var dia = $scope.fechas[indice];
@@ -141,7 +141,7 @@
 		}	
 		$scope.cargar = function(funcion){
         	console.log(funcion);
-        	console.log(Salas.crear(2,4));        	
+        	//console.log(Salas.crear(2,4));        	
 			Datos.cargar(funcion);
         }
     }])

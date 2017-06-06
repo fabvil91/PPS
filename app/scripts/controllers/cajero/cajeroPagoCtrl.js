@@ -5,10 +5,8 @@
         .module('cine')
         .controller('cajeroPagoCtrl', ['$scope','$location','Datos','$rootScope','Tarjetas','Bancos','Promociones',
         function ($scope,$location,Datos,$rootScope,Tarjetas,Bancos,Promociones) {
-        
-              $scope.funcion = Datos.listado();
+              
     
-
                  Tarjetas.listado()
                      .then(function(datos){
                         console.log(datos);
@@ -55,7 +53,7 @@
                                                 {nombre:"2023"},
                                                 {nombre:"2024"}
                                             ];
-
+                                            $scope.funcion = Datos.listado();
                                             $scope.funcion.operacion = {
                                                 vencimiento:{}
                                             };
@@ -80,10 +78,23 @@
                    console.log(e);
                  })
                               
-                $scope.cargar = function(funcion){                
+                $scope.cargar = function(funcion){ 
+                //SI es efectivo, limpiar funcion.operacion (Solo se llena con pago en tarjeta)               
                     console.log(funcion);        	
                     Datos.cargar(funcion);
         	   }	 
+
+              $scope.formatearEntrada = function(entrada){                          
+                  return entrada.tipo + " - " + entrada.monto + " - " + entrada.cantidad;
+               }
+
+               $scope.total = function(){  
+                      var total = 0;                        
+                       for (var i = $scope.funcion.entradas.length - 1; i >= 0; i--) {
+                         total = total + $scope.funcion.entradas[i].subtotal;
+                       }
+                       return total;
+                      }
         } ]) 
 })();
 

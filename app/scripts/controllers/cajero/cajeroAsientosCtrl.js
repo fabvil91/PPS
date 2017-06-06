@@ -10,7 +10,7 @@
 
 				var countDown = function () {
 				 if (timerCount < 0) {					 
-					$location.path('/main');
+					$location.path('/cajeroMain');
 				 } else {
 					$scope.countDownLeft = timerCount;
 					timerCount--;
@@ -46,10 +46,10 @@
 			   Datos.cargar(funcion);
 
 			   if($scope.funcion.transaccion.tipoTransaccion == 'compra'){
-			   		$location.path('/datosOperacionCompra');
-			   }else if($scope.funcion.transaccion.tipoTransaccion == 'reserva'){
+			   		$location.path('/cajeroPago');
+			   }/*else if($scope.funcion.transaccion.tipoTransaccion == 'reserva'){
 			   		$location.path('/finalizarOperacion');
-			   }			   
+			   }*/			   
         	 }
 
         	 $scope.formatearHora = function(funcion){        	
