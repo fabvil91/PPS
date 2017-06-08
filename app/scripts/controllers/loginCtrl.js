@@ -17,7 +17,20 @@
         $scope.login = function login() {        
             AuthenticationService.Login($scope.loginForm.username, $scope.loginForm.password, function (response) {
                 if (response.success) {
-                    AuthenticationService.SetCredentials($scope.loginForm.username, $scope.loginForm.password, response.tipoUsuario, response.complejo);
+
+					if(response.tipoUsuario=='Cajero' || response.tipoUsuario=='Empleado'){
+						console.log('good2');
+                    	AuthenticationService.SetCredentials($scope.loginForm.username, $scope.loginForm.password, response.tipoUsuario, response.complejo); 
+					}
+					if(response.tipoUsuario=='Admin'){
+                    	AuthenticationService.SetCredentials($scope.loginForm.username, $scope.loginForm.password, response.tipoUsuario); 
+					}
+					if(response.tipoUsuario=='Usuario'){
+                    	AuthenticationService.SetCredentials($scope.loginForm.username, $scope.loginForm.password, response.tipoUsuario, null ,response.datos); 
+					}
+
+					
+					
 					
  					console.log($rootScope);
 

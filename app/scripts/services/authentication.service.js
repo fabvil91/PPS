@@ -44,7 +44,17 @@
 				var user = userArray[0];
 				console.log(user);
                 if (user  && user.password === password) {
-                     response = { success: true, tipoUsuario: user.tipo.nombre, complejo:user.complejo.nombre};
+					if(user.tipo.nombre=='Cajero' || user.tipo.nombre=='Empleado'){
+						response = { success: true, tipoUsuario: user.tipo.nombre, complejo:user.complejo.nombre};
+						console.log('good1');
+					}
+					if(user.tipo.nombre=='Admin'){
+						response = { success: true, tipoUsuario: user.tipo.nombre};
+					}
+					if(user.tipo.nombre=='Usuario'){
+						response = { success: true, tipoUsuario: user.tipo.nombre, datos:{datosPersonales:user.datosPersonales}};
+					}
+                     
                  } else {
                      response = { success: false, message: 'Usuario o contraseña incorrectos' };
                  }
@@ -52,9 +62,10 @@
                 });                          
         }
  
-        function SetCredentials(username, password, tipoUsuario, complejo) {
+        function SetCredentials(username, password, tipoUsuario, complejo, datos) {
+		if(tipoUsuario=='Cajero' || tipoUsuario=='Empleado'){
             var authdata = Base64.encode(username + ':' + password + ":" + tipoUsuario + ":" + complejo);
- 
+			console.log('good3');
             $rootScope.globals = {
                 currentUser: {
                     username: username,
@@ -63,7 +74,36 @@
                     authdata: authdata
                 }
             };
+		 }
+		if(tipoUsuario=='Admin'){
+			var authdata = Base64.encode(username + ':' + password + ":" + tipoUsuario);
  
+            $rootScope.globals = {
+                currentUser: {
+                    username: username,
+					tipoUsuario: tipoUsuario,
+                    authdata: authdata
+                }
+            };
+		}
+		if(tipoUsuario=='Usuario'){
+			var authdata = Base64.encode(username + ':' + password + ":" + tipoUsuario + ":" + datos);
+ 
+            $rootScope.globals = {
+                currentUser: {
+                    username: username,
+					password:password,
+					tipoUsuario: tipoUsuario,
+					datosPersonales:{
+						nombre:datos.datosPersonales.nombre,
+						apellido:datos.datosPersonales.apellido,
+						mail:datos.datosPersonales.mail,
+						telefono:datos.datosPersonales.telefono
+					},
+                    authdata: authdata
+                }
+            };
+		}
             // set default auth header for http requests
             $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
  

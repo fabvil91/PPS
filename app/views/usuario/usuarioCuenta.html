@@ -24,30 +24,36 @@
                             <div class="form-group">
                                 <label class="control-label col-sm-2" for="nombre">Nombre:</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="nombre" class="form-control" readonly="readonly" ng-model="">
+                                    <input type="text" name="nombre" class="form-control"  ng-model="datosPersonales.nombre" ng-readonly="readOnlyPersonales">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-sm-2" for="apellido">Apellido:</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="apellido" class="form-control" readonly="readonly" ng-model="">
+                                    <input type="text" name="apellido" class="form-control"  ng-model="datosPersonales.apellido"  ng-readonly="readOnlyPersonales">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-sm-2" for="mail">Mail:</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="mail" class="form-control" readonly="readonly" ng-model="">
+                                    <input type="text" name="mail" class="form-control"  ng-model="datosPersonales.mail"  ng-readonly="readOnlyPersonales">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-sm-2" for="telefono">Telefono:</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="telefono" class="form-control" readonly="readonly" ng-model="">
+                                    <input type="text" name="telefono" class="form-control"  ng-model="datosPersonales.telefono"  ng-readonly="readOnlyPersonales">
                                 </div>
                             </div>
                             
                             <div class="form-group pull-right">
-                                <input type="button" class="btn btn-info" value="Editar Datos" ng-click="">  
+                                <div ng-show="readOnlyPersonales">
+                                    <input type="button" class="btn btn-info" value="Editar Datos" ng-click="editar('personales')">  
+                                </div>
+                                <div ng-show="!readOnlyPersonales">
+                                    <input type="button" class="btn btn-info" value="Guardar" ng-click="guardar('personales')">  
+                                    <input type="button" class="btn btn-info" value="Cancelar" ng-click="cancelar('personales')">  
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -64,23 +70,30 @@
                             <div class="form-group">
                                 <label class="control-label col-sm-2" for="nombreUsuario">Nombre de Usuario:</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="nombreUsuario" class="form-control" readonly="readonly" ng-model="">
+                                    <input type="text" name="nombreUsuario" class="form-control"  ng-model="username" ng-readonly="readOnlyUsuario">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-sm-2" for="contrasena">Contrasena:</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="contraseña" class="form-control" readonly="readonly" ng-model="">
+                                    <input type="text" name="contraseña" class="form-control" ng-model="password" ng-readonly="readOnlyUsuario">
                                 </div>
                             </div>
-                            <div class="form-group">
+
+                            <div class="form-group" ng-show="!readOnlyUsuario">
                                 <label class="control-label col-sm-2" for="contrasenaCheck">Reingrese Contrasena:</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="contrasenaCheck" class="form-control" readonly="readonly" ng-model="">
+                                    <input type="text" name="contrasenaCheck" class="form-control" >
                                 </div>
                             </div>
                             <div class="form-group pull-right">
-                                <input type="button" class="btn btn-info" value="Editar Datos" ng-click="">  
+                                <div ng-show="readOnlyUsuario">
+                                    <input type="button" class="btn btn-info" value="Editar Datos" ng-click="editar('usuario')">  
+                                </div>
+                                <div ng-show="!readOnlyUsuario">
+                                    <input type="button" class="btn btn-info" value="Guardar" ng-click="guardar('usuario')">  
+                                    <input type="button" class="btn btn-info" value="Cancelar" ng-click="cancelar('usuario')">  
+                                </div>
                             </div>
                         </form>
                     </div>

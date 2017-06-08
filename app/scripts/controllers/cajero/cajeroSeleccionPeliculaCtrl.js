@@ -83,6 +83,8 @@
 							}
 							console.log($scope.funciones);	
 						})();
+						
+						$scope.filtro.complejo = $rootScope.globals.currentUser.complejo._id;
 
 					/*	$scope.filtro.pelicula = Datos.listado().pelicula;
 						if(Datos.listado().filtroDia){			
@@ -96,7 +98,7 @@
 							$scope.filtro.idioma = Datos.listado().idioma._id;
 						}
 																
-						$scope.filtro.complejo = $rootScope.globals.currentUser.complejo._id;
+						
 						console.log($scope.filtro.complejo);*/					
 			  		})
 				    .catch(function(e){

@@ -250,7 +250,7 @@
         .state('usuarioCuenta',
         {
         url:'/usuarioCuenta',              
-        //controller: 'cajeroFinalizarCtrl',
+        controller: 'usuarioCuentaCtrl',
         templateUrl:'views/usuario/usuarioCuenta.html'
         })
       $stateProvider
