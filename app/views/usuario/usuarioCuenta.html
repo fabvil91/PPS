@@ -14,91 +14,254 @@
     </div>
 
     <div class="container">
-    <!--DATOS PERSONALES -->
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">DATOS PERSONALES</div>
                     <div class="panel-body">
-                        <form class="form-horizontal">
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="nombre">Nombre:</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="nombre" class="form-control"  ng-model="datosPersonales.nombre" ng-readonly="readOnlyPersonales">
+                        <!--DATOS PERSONALES -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">DATOS PERSONALES</div>
+                                    <div class="panel-body">
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="nombre">Nombre:</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="nombre" class="form-control"  ng-model="datosPersonales.nombre" ng-readonly="readOnlyPersonales">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="apellido">Apellido:</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="apellido" class="form-control"  ng-model="datosPersonales.apellido"  ng-readonly="readOnlyPersonales">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="mail">Mail:</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="mail" class="form-control"  ng-model="datosPersonales.mail"  ng-readonly="readOnlyPersonales">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="telefono">Telefono:</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="telefono" class="form-control"  ng-model="datosPersonales.telefono"  ng-readonly="readOnlyPersonales">
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group pull-right">
+                                                <div ng-show="readOnlyPersonales">
+                                                    <input type="button" class="btn btn-info" value="Editar Datos" ng-click="editar('personales')">  
+                                                </div>
+                                                <div ng-show="!readOnlyPersonales">
+                                                    <input type="button" class="btn btn-info" value="Guardar" ng-click="guardar('personales')">  
+                                                    <input type="button" class="btn btn-info" value="Cancelar" ng-click="cancelar('personales')">  
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="apellido">Apellido:</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="apellido" class="form-control"  ng-model="datosPersonales.apellido"  ng-readonly="readOnlyPersonales">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="mail">Mail:</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="mail" class="form-control"  ng-model="datosPersonales.mail"  ng-readonly="readOnlyPersonales">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="telefono">Telefono:</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="telefono" class="form-control"  ng-model="datosPersonales.telefono"  ng-readonly="readOnlyPersonales">
-                                </div>
-                            </div>
-                            
-                            <div class="form-group pull-right">
-                                <div ng-show="readOnlyPersonales">
-                                    <input type="button" class="btn btn-info" value="Editar Datos" ng-click="editar('personales')">  
-                                </div>
-                                <div ng-show="!readOnlyPersonales">
-                                    <input type="button" class="btn btn-info" value="Guardar" ng-click="guardar('personales')">  
-                                    <input type="button" class="btn btn-info" value="Cancelar" ng-click="cancelar('personales')">  
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--DATOS USUARIO -->
-        <div class="row">
-            <div class="col-md-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">DATOS DE USUARIO</div>
-                    <div class="panel-body">
-                        <form class="form-horizontal">
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="nombreUsuario">Nombre de Usuario:</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="nombreUsuario" class="form-control"  ng-model="username" ng-readonly="readOnlyUsuario">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="contrasena">Contrasena:</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="contraseña" class="form-control" ng-model="password" ng-readonly="readOnlyUsuario">
-                                </div>
-                            </div>
+                        
+                        <!--DATOS USUARIO -->
+                        
+                            <div class="col-md-6">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">DATOS DE USUARIO</div>
+                                    <div class="panel-body">
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="nombreUsuario">Nombre de Usuario:</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="nombreUsuario" class="form-control"  ng-model="username" ng-readonly="readOnlyUsuario">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="contrasena">Contrasena:</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="contraseña" class="form-control" ng-model="password" ng-readonly="readOnlyUsuario">
+                                                </div>
+                                            </div>
 
-                            <div class="form-group" ng-show="!readOnlyUsuario">
-                                <label class="control-label col-sm-2" for="contrasenaCheck">Reingrese Contrasena:</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="contrasenaCheck" class="form-control" >
+                                            <div class="form-group" ng-show="!readOnlyUsuario">
+                                                <label class="control-label col-sm-2" for="contrasenaCheck">Reingrese Contrasena:</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="contrasenaCheck" class="form-control" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group pull-right">
+                                                <div ng-show="readOnlyUsuario">
+                                                    <input type="button" class="btn btn-info" value="Editar Datos" ng-click="editar('usuario')">  
+                                                </div>
+                                                <div ng-show="!readOnlyUsuario">
+                                                    <input type="button" class="btn btn-info" value="Guardar" ng-click="guardar('usuario')">  
+                                                    <input type="button" class="btn btn-info" value="Cancelar" ng-click="cancelar('usuario')">  
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group pull-right">
-                                <div ng-show="readOnlyUsuario">
-                                    <input type="button" class="btn btn-info" value="Editar Datos" ng-click="editar('usuario')">  
+                        </div>
+                        <!--TARJETA-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div ng-show="readOnlyTarjeta">
+                                    <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3>Datos de Tarjeta</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <form action="" class="form-horizontal">
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="banco">Banco:</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="banco" class="form-control" readonly="readonly" ng-model="datosTarjeta.banco.nombre">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="tarjeta">Tarjeta:</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="tarjeta" class="form-control" readonly="readonly" ng-model="datosTarjeta.tarjeta.nombre">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="nroTarjeta">Número de tarjeta:</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="nroTarjeta" class="form-control" readonly="readonly" ng-model="datosTarjeta.numeroTarjeta">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="titular">Titular:</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="titular" class="form-control" readonly="readonly" ng-model="datosTarjeta.titular">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="dni">DNI:</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="dni" class="form-control" readonly="readonly" ng-model="datosTarjeta.dni">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="vencimiento">Vencimiento:</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="vencimiento" class="form-control" readonly="readonly" ng-model="datosTarjeta.vencimiento.mes">
+                                                    <input type="text" name="vencimiento" class="form-control" readonly="readonly" ng-model="datosTarjeta.vencimiento.year">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="codigoSeguridad">Codigo de Seguridad:</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="codigoSeguridad" class="form-control" readonly="readonly" ng-model="datosTarjeta.codigoSeguridad">
+                                                </div>
+                                            </div>
+                                            <div class="form-group pull-right">
+                                                <input type="button" class="btn btn-info" value="Editar Datos" ng-click="editar('tarjeta')"> 
+                                            </div>
+                                            
+                                        </form>
+                                        
+                            
+                                    </div>
                                 </div>
-                                <div ng-show="!readOnlyUsuario">
-                                    <input type="button" class="btn btn-info" value="Guardar" ng-click="guardar('usuario')">  
-                                    <input type="button" class="btn btn-info" value="Cancelar" ng-click="cancelar('usuario')">  
+                                </div>
+                
+                            
+
+
+                                <!--EDICION-->
+                                <div class="panel panel-default" ng-if="!readOnlyTarjeta">
+                                    <div class="panel-heading">Datos de Tarjeta</div>
+                                    <div class="panel-body">
+                                        <form name="form" class="form-horizontal" role="form">
+
+                                        <div class="form-group" ng-class="{ 'has-error': form.banco.$dirty && form.banco.$error.required }"> 
+                                            <label class="control-label col-sm-2" for="banco">Seleccione Banco <span class="require">*</span></label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control input-sm" ng-options="item.nombre for item in bancos" ng-model="banco" required>
+                                                </select>
+                                                <span ng-show="form.banco.$dirty && form.banco.$error.required" class="help-block">Banco es requerido</span>
+                                            </div>
+                                            
+                                        </div>
+
+                                        <div class="form-group" ng-class="{ 'has-error': form.titular.$dirty && form.titular.$error.required }"> 
+                                            <label class="control-label col-sm-2" for="tarjeta">Seleccione Tarjeta <span class="require">*</span></label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control input-sm" id="tarjeta" ng-options="item.nombre for item in tarjetas" ng-model="tarjeta" required>
+                                                </select>
+                                                <span ng-show="form.tarjeta.$dirty && form.tarjeta.$error.required" class="help-block">Tarjeta es requerido</span>
+                                            </div>
+                                            
+                                        </div>
+
+                                        <div class="form-group" ng-class="{ 'has-error': form.titular.$dirty && form.titular.$error.required }">
+                                            <label class="control-label col-sm-2" for="titular">Titular</label>
+                                            <div class="col-sm-10">
+                                            <input type="text" id="titular" class="form-control" ng-model="datosTarjeta.titular" required>
+                                                <span ng-show="form.titular.$dirty && form.titular.$error.required" class="help-block">Titular es requerido</span>
+                                            </div>
+                                        
+                                        </div>
+
+                                        <div class="form-group" ng-class="{ 'has-error': form.dni.$dirty && form.dni.$error.required }"> 
+                                            <label class="control-label col-sm-2" for="dni">Dni</label> 
+                                            <div class="col-sm-10">
+                                            <input type="text" id="dni" class="form-control" ng-model="datosTarjeta.dni" ng-minlength="8" ng-maxlength="8" required>
+                                            <span ng-show="form.dni.$dirty && form.dni.$error.required" class="help-block">dni es requerido</span>
+                                                <span ng-show="userForm.name.$error.minlength" class="help-block">DNI es muy corto.</span>
+                                                <span ng-show="userForm.name.$error.maxlength" class="help-block">DNI es muy largo.</span>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group" ng-class="{ 'has-error': form.nroTarjeta.$dirty && form.nroTarjeta.$error.required }"> 
+                                            <label class="control-label col-sm-2" for="nroTarjeta">Número de tarjeta</label>
+                                            <div class="col-sm-10">
+                                            <input type="text" id="nroTarjeta" class="form-control" ng-model="datosTarjeta.numeroTarjeta" ng-minlength="15" ng-maxlength="16" required>
+                                            <span ng-show="form.nroTarjeta.$dirty && form.nroTarjeta.$error.required" class="help-block">Número de tarjeta es requerido</span>
+                                                <span ng-show="userForm.name.$error.minlength" class="help-block">Número de tarjeta es muy corto.</span>
+                                                <span ng-show="userForm.name.$error.maxlength" class="help-block">Número de tarjeta es muy largo.</span>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group" ng-class="{ 'has-error': form.vencimiento.$dirty && form.vencimiento.$error.required }"> 
+                                            <label class="control-label col-sm-2" for="vencimiento">Vencimiento <span class="require">*</span></label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control input-sm" id="vencimiento" ng-options="item.nombre for item in mes" ng-model="datosTarjeta.vencimiento.mes" required>
+                                                <span ng-show="form.vencimiento.$dirty && form.vencimiento.$error.required" class="help-block">Mes y año es requerido</span>
+                                                </select> 
+                                                
+                                                <select class="form-control input-sm" id="vencimiento" ng-options="item.nombre for item in year" ng-model="datosTarjeta.vencimiento.year">
+                                                </select>  
+                                            </div>
+                                        </div>
+                                        
+                                            <div class="form-group" ng-class="{ 'has-error': form.codigoSeguridad.$dirty && form.codigoSeguridad.$error.required }" > 
+                                            <label class="control-label col-sm-2" for="codigoSeguridad">Codigo de seguridad</label>
+                                            <div class="col-sm-10"> 
+                                                <input type="text" id="codigoSeguridad" class="form-control" ng-model="datosTarjeta.codigoSeguridad" required/>
+                                                <span ng-show="form.codigoSeguridad.$dirty && form.codigoSeguridad.$error.required" class="help-block">Codigo de Seguridad es requerido</span>
+                                            </div>
+                                            </div>
+                                            <div class="form-group pull-right">                            
+                                                <input type="button" class="btn btn-info" value="Guardar" ng-click="guardar('tarjeta')">  
+                                                <input type="button" class="btn btn-info" value="Cancelar" ng-click="cancelar('tarjeta')">
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                        </form>
+                        </div>
+                    </div>
+
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 </div>

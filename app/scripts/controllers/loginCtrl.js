@@ -9,7 +9,7 @@
          $scope.loginForm = {};
          $scope.mensaje = null;
 
-        (function () {
+        (function () { 
             // reset login status
             AuthenticationService.ClearCredentials();
         })();
