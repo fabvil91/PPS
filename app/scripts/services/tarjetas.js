@@ -63,7 +63,7 @@ angular
 
     function alta(item){
       return $http({
-            url: 'http://localhost:3333/insertar',
+            url: 'http://localhost:3333/tarjetas/insertar',
             method: "POST",
             data: item,
             headers: {'Content-Type': 'application/json'}})
@@ -77,7 +77,7 @@ angular
 
     function modificar(item){
       return $http({
-            url: 'http://localhost:3333/modificar',
+            url: 'http://localhost:3333/tarjetas/modificar',
             method: "PUT",
             data: item,
             headers: {'Content-Type': 'application/json'}})

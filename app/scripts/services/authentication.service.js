@@ -50,7 +50,7 @@
 					}
 					if(user.tipo.nombre=='Admin'){
 						response = { success: true, tipoUsuario: user.tipo.nombre};
-					}
+					} 
 					if(user.tipo.nombre=='Usuario'){
 						response = { success: true, tipoUsuario: user.tipo.nombre, datos:{datosPersonales:user.datosPersonales,datosTarjeta:user.datosTarjeta}};
 					}

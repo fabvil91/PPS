@@ -53,7 +53,7 @@
                                 $scope.datosPersonales.telefono = $rootScope.globals.currentUser.datosPersonales.telefono;
 
                                 $scope.datosTarjeta={};
-                                if($rootScope.globals.currentUser.datosTarjeta.dni!=null){
+                                if($rootScope.globals.currentUser.datosTarjeta!=null){
                                     $scope.datosTarjeta.banco = $rootScope.globals.currentUser.datosTarjeta.banco;
                                     $scope.datosTarjeta.tarjeta=$rootScope.globals.currentUser.datosTarjeta.tarjeta;
                                     $scope.datosTarjeta.numeroTarjeta=$rootScope.globals.currentUser.datosTarjeta.numeroTarjeta;
@@ -67,7 +67,7 @@
                                 $scope.readOnlyPersonales = true;
                                 $scope.readOnlyUsuario = true;
                                 $scope.readOnlyTarjeta = true;
-
+ 
 
                                 //PERMITE EDITAR
                                 $scope.editar = function(editarEsto){
@@ -87,6 +87,7 @@
                                     console.log('guardar datos de ' + seccion + ' en db');
                                     if(seccion=='personales'){
                                         $scope.readOnlyPersonales=true;
+                                        
                                     }
                                     if(seccion=='usuario'){
                                         $scope.readOnlyUsuario=true;
