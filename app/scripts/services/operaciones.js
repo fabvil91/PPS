@@ -9,6 +9,9 @@ angular
     this.articuloPorIndice = articuloPorIndice;
     this.alta = alta;
     this.modificar = modificar;
+    this.modificarEfectivo = modificarEfectivo;
+    this.modificarCompra = modificarCompra; 
+    this.modificarTarjeta = modificarTarjeta;
     this.borrar = borrar;
 
     function listado () {
@@ -78,6 +81,48 @@ angular
     function modificar(item){
       return $http({
             url: 'http://localhost:3333/funciones/modificar',
+            method: "PUT",
+            data: item,
+            headers: {'Content-Type': 'application/json'}})
+      .then(function(rta){
+        return rta.data;
+      })
+      .catch(function(e){
+        return e;
+      })
+    }
+
+     function modificarEfectivo(item){
+      return $http({
+            url: 'http://localhost:3333/operaciones/modificarEfectivo',
+            method: "PUT",
+            data: item,
+            headers: {'Content-Type': 'application/json'}})
+      .then(function(rta){
+        return rta.data;
+      })
+      .catch(function(e){
+        return e;
+      })
+    }
+
+     function modificarCompra(item){
+      return $http({
+            url: 'http://localhost:3333/operaciones/modificarCompra',
+            method: "PUT",
+            data: item,
+            headers: {'Content-Type': 'application/json'}})
+      .then(function(rta){
+        return rta.data;
+      })
+      .catch(function(e){
+        return e;
+      })
+    }
+
+     function modificarTarjeta(item){
+      return $http({
+            url: 'http://localhost:3333/operaciones/modificarTarjeta',
             method: "PUT",
             data: item,
             headers: {'Content-Type': 'application/json'}})

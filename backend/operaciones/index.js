@@ -95,6 +95,74 @@ router.put('/funciones/modificar',function(req, res, next){
         });  
 	});
 
+router.put('/operaciones/modificarEfectivo',function(req, res, next){
+    console.log(req.body);
+    var id = new require('mongodb').ObjectID(req.body._id);
+    console.log(id);
+
+        req.db.collection('operaciones')        
+        .update({_id: id}, {$set: {
+                              estado: req.body.estado,           
+                              tipoPago: req.body.tipoPago,           
+                              fechaOperacion: req.body.fechaOperacion,
+                              promocion: req.body.promocion             
+                       }}, function (err, result){
+           if (err) {
+               res.json({rta : err});
+            }
+            else {
+               res.json({rta : "OK"});
+            }
+        });  
+  });
+
+router.put('/operaciones/modificarCompra',function(req, res, next){
+    console.log(req.body);
+    var id = new require('mongodb').ObjectID(req.body._id);
+    console.log(id);
+
+        req.db.collection('operaciones')        
+        .update({_id: id}, {$set: {
+                              estado: req.body.estado,                                             
+                              fechaOperacion: req.body.fechaOperacion                                         
+                       }}, function (err, result){
+           if (err) {
+               res.json({rta : err});
+            }
+            else {
+               res.json({rta : "OK"});
+            }
+        });  
+  });
+
+router.put('/operaciones/modificarTarjeta',function(req, res, next){
+    console.log(req.body);
+    var id = new require('mongodb').ObjectID(req.body._id);
+    console.log(id);
+
+        req.db.collection('operaciones')        
+        .update({_id: id}, {$set: {                               
+                                estado: req.body.estado,                              
+                                tipoPago: req.body.tipoPago,
+                                nombreTitular: req.body.nombreTitular,
+                                dniTitular: req.body.dniTitular,
+                                nroTarjeta: req.body.nroTarjeta,
+                                codigoSeguridad: req.body.codigoSeguridad,
+                                fechaVencimiento: req.body.fechaVencimiento,
+                                tarjeta: req.body.tarjeta,
+                                banco: req.body.banco,
+                                fechaOperacion: req.body.fechaOperacion,                              
+                                promocion: req.body.promocion                                        
+                       }}, function (err, result){
+           if (err) {
+               res.json({rta : err});
+            }
+            else {
+               res.json({rta : "OK"});
+            }
+        });  
+  });
+
 router.delete('/eliminar',function(req, res, next){
 		console.log(req.body);
 		var id = new require('mongodb').ObjectID(req.body._id);
