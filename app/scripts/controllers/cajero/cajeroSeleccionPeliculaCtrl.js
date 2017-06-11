@@ -130,6 +130,7 @@
         	console.log(pelicula);
         	$scope.filtro.pelicula = {};
         	$scope.filtro.pelicula.nombre = pelicula;
+        	console.log($scope.filtro.complejo);
         	//console.log(Salas.crear(2,4));        	
 			//Datos.cargar(funcion);
         }

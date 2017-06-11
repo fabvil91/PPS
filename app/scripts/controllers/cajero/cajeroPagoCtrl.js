@@ -66,6 +66,16 @@
                                                 }
                                             }
                                             console.log($scope.hayPromo);
+
+
+                                            var entradas = [];
+                                                for (var i = $scope.funcion.entradas.length - 1; i >= 0; i--) {
+                                                    if($scope.funcion.entradas[i].cantidad > 0){
+                                                        entradas.push($scope.funcion.entradas[i]);
+                                                    }
+                                                }
+                                            $scope.funcion.entradas = entradas; 
+                                            console.log($scope.funcion.entradas);                                           
                                   })
                              .catch(function(e){
                               console.log(e);
@@ -96,6 +106,5 @@
                        }
                        return total;
                 }
-        } ]) 
+        }]) 
 })();
-

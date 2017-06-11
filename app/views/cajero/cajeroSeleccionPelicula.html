@@ -100,9 +100,7 @@
                             <a href="">{{filtro.pelicula.nombre}}</a>
                         </div>
 
-                        <div>
-                            
-                        
+                        <div>                                                    
                             <div class="panel-group">
                                 <div class="panel panel-default" ng-repeat="(key, value) in funciones 
                                 | filter: { formato:{_id:filtro.formato}, idioma:{_id:filtro.idioma}, complejo:{nombre:filtro.complejo},diaTime: filtro.diaLocale,pelicula:{nombre: filtro.pelicula.nombre} }
@@ -111,8 +109,7 @@
                                     <div class="panel-heading">
                                         {{ formatear(key) }}  
                                     </div>
-                                    <div class="panel-body" >
-                                        
+                                    <div class="panel-body" >                                        
                                         <a href="#" ng-repeat="funcion in value" ng-click="cargar(funcion)" ui-sref="cajeroEntradas"> 
                                         {{ formatearHora(funcion) }}
                                         </a> 
@@ -120,7 +117,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </nav>
             </div>

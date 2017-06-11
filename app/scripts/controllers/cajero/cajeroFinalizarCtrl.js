@@ -4,10 +4,8 @@
 	.module('cine')
 	.controller('cajeroFinalizarCtrl', ['$scope','Datos', '$rootScope', '$window','Usuarios','Operaciones','Funciones', 
 	function($scope,Datos,$rootScope,$window,Usuarios,Operaciones,Funciones){		
-		$scope.funcion = Datos.listado();	
-		//TO DO
-		$scope.registrarOperacion= function(){}
-		
+		$scope.funcion = Datos.listado();
+
 		$scope.formatearEntrada = function(entrada){                          
 			return entrada.tipo + " - " + entrada.monto + " - " + entrada.cantidad;
 		}
@@ -42,27 +40,11 @@
 
 		$scope.registrarOperacion = function(){
 			console.log($scope.funcion);
-
-			var usuario = null;
-			Usuarios.usuarioPorNombreUsuario($rootScope.globals.currentUser.username)
-              .then(function (userArray) {
-			  var user = userArray[0];
-			  console.log(user);
-              if (user) {
-                  usuario = user;
-              }
-
-			var entradas = [];
-			for (var i = $scope.funcion.entradas.length - 1; i >= 0; i--) {
-				if($scope.funcion.entradas[i].cantidad > 0){
-					entradas.push($scope.funcion.entradas[i]);
-				}
-			}
-
+					
 			var promo = null;
-            for (var i = entradas.length - 1; i >= 0; i--) {
-                if(entradas[i].promocion){
-                   promo = entradas[i].promocion;
+            for (var i = $scope.funcion.entradas.length - 1; i >= 0; i--) {
+                if($scope.funcion.entradas[i].promocion){
+                   promo = $scope.funcion.entradas[i].promocion;
                    break;
                 }
             }
@@ -81,13 +63,13 @@
             }
 
             var operacion = {};
-            if($scope.funcion.transaccion.tipoTransaccion == 'compra'){
+            if($scope.funcion.operacion.tipoPago =='debito' || $scope.funcion.operacion.tipoPago=='credito'){
 				operacion = {
 				codigo: $scope.funcion.transaccion.codigo,
-				estado: "Pagado",
+				estado: "Retirado",
 				funcion: $scope.funcion,
-				entradas: entradas,
-				tipoPago: "Credito",
+				entradas: $scope.funcion.entradas,
+				tipoPago: $scope.funcion.operacion.tipoPago == 'credito' ? 'Credito' : 'Debito',
 				nombreTitular: $scope.funcion.operacion.titular,
 				dniTitular: $scope.funcion.operacion.dni,
 				nroTarjeta: $scope.funcion.operacion.nroTarjeta,
@@ -96,15 +78,15 @@
 				tarjeta: $scope.funcion.operacion.tarjeta,
 				banco: $scope.funcion.operacion.banco,
 				fechaOperacion: new Date(),
-				usuario: usuario,
+				usuario: null,
 				promocion: promo }
-			}else{
+			}else if($scope.funcion.operacion.tipoPago =='efectivo'){
 				operacion = {
 				codigo: $scope.funcion.transaccion.codigo,
-				estado: "Reservado",
+				estado: "Retirado",
 				funcion: $scope.funcion,
-				entradas: entradas,
-				tipoPago: null,
+				entradas: $scope.funcion.entradas,
+				tipoPago: 'Efectivo',
 				nombreTitular: null,
 				dniTitular: null,
 				nroTarjeta: null,
@@ -113,7 +95,7 @@
 				tarjeta: null,
 				banco: null,
 				fechaOperacion: new Date(),
-				usuario: usuario,
+				usuario: null,
 				promocion: promo }
 			}
 			console.log(operacion); 
@@ -146,11 +128,7 @@
 	       })
 	       .catch(function(e){
 	        console.log(e);
-	       }); 
-	                                       
-		});                          
-        	
+	       }); 	                                       		                                  	
 		}
 	}])
 })();
-
