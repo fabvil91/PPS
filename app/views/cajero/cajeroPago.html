@@ -37,15 +37,7 @@
                             <div class="col-sm-10">
                                 <input ng-repeat="entrada in funcion.entradas" type="text" name="precio" class="form-control" readonly="readonly" value="{{formatearEntrada(entrada)}}">
                             </div>
-                        </div>
-                       <!-- <div class="form-group">
-                            <label class="control-label col-sm-2" for="promocion">Promocion: <span class="require">*</span></label>
-                            <div class="col-sm-10">
-                                <select class="form-control input-sm" name="promocion" ng-options="" ng-model="" required>
-                                </select>
-                                <span ng-show="form.promociones.$dirty && form.promociones.$error.required" class="help-block">Promocion es requerido</span>
-                            </div>
-                        </div> -->
+                        </div>                       
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="total">Monto Total:</label>
                             <div class="col-sm-10">
@@ -63,8 +55,7 @@
                                     
                                         </div>
                                 </form>
-                            </div>
-                            
+                            </div>                            
                         </div>
                         </form>
                     </div>
@@ -81,8 +72,6 @@
                     <div class="panel-heading">DATOS COMPRA</div>
                     <div class="panel-body">
                         <form name="form" class="form-horizontal" role="form">
-                        
-                                            
 
                         <div class="form-group" ng-class="{ 'has-error': form.banco.$dirty && form.banco.$error.required }"> 
                         <label class="control-label col-sm-2" for="banco">Seleccione Banco <span class="require">*</span></label>
@@ -90,8 +79,7 @@
                             <select class="form-control input-sm" ng-options="item.nombre for item in bancos" ng-model="funcion.operacion.banco" required>
                             </select>
                             <span ng-show="form.banco.$dirty && form.banco.$error.required" class="help-block">Banco es requerido</span>
-                            </div>
-                        
+                            </div>                        
                         </div>
 
                         <div class="form-group" ng-class="{ 'has-error': form.titular.$dirty && form.titular.$error.required }"> 
@@ -100,8 +88,7 @@
                             <select class="form-control input-sm" id="tarjeta" ng-options="item.nombre for item in tarjetas" ng-model="funcion.operacion.tarjeta" required>
                             </select>
                             <span ng-show="form.tarjeta.$dirty && form.tarjeta.$error.required" class="help-block">Tarjeta es requerido</span>
-                            </div>
-                            
+                            </div>                            
                         </div>
 
                         <div ng-if="funcion.operacion.banco !=null && funcion.operacion.tarjeta!=null && !hayPromo">
@@ -113,8 +100,7 @@
                                  <option value="">Sin promoción</option>
                                 </select>
                                 <span ng-show="form.promociones.$dirty && form.promociones.$error.required" class="help-block">Promocion es requerido</span>
-                            </div>
-                            
+                            </div>                            
                         </div>
                         </div>
 
@@ -123,8 +109,7 @@
                             <div class="col-sm-10">
                             <input type="text" id="titular" class="form-control" ng-model="funcion.operacion.titular" required>
                             <span ng-show="form.titular.$dirty && form.titular.$error.required" class="help-block">Titular es requerido</span>
-                            </div>
-                        
+                            </div>                        
                         </div>
 
                         <div class="form-group" ng-class="{ 'has-error': form.dni.$dirty && form.dni.$error.required }"> 
@@ -135,7 +120,6 @@
                             <span ng-show="userForm.name.$error.minlength" class="help-block">DNI es muy corto.</span>
                             <span ng-show="userForm.name.$error.maxlength" class="help-block">DNI es muy largo.</span>
                             </div>
-
                         </div>
 
 
@@ -147,7 +131,6 @@
                             <span ng-show="userForm.name.$error.minlength" class="help-block">Número de tarjeta es muy corto.</span>
                             <span ng-show="userForm.name.$error.maxlength" class="help-block">Número de tarjeta es muy largo.</span>
                          </div>
-
                      </div>
 
                         <div class="form-group" ng-class="{ 'has-error': form.vencimiento.$dirty && form.vencimiento.$error.required }"> 
@@ -174,15 +157,12 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <form class="form-inline">
-                                        <div class="form-group centered">
-                                    
+                                        <div class="form-group centered">                                    
                                             <input type="button" ng-disabled="form.$invalid" class="btn btn-info" value="Continuar" ng-click="cargar(funcion)" ui-sref="cajeroFinalizar" >
-                                            <input type="button" class="btn btn-info" value="Cancelar" ui-sref="cajeroMain">              
-                                    
+                                            <input type="button" class="btn btn-info" value="Cancelar" ui-sref="cajeroMain">                                                  
                                         </div>
                                 </form>
-                            </div>
-                            
+                            </div>                            
                         </div>
                         </form>
                     </div>
@@ -190,19 +170,5 @@
             </div>
             </div>
         </div>
-    </div>
-    <!--BOTONES-->
-  <!--  <div class="row">
-        <div class="col-md-12">
-            <form class="form-inline">
-                    <div class="form-group centered">
-                
-                        <input type="button" ng-disabled="form.$invalid" class="btn btn-info" value="Continuar" ui-sref="cajeroFinalizar" ng-click="cargar(funcion)" >
-                        <input type="button" class="btn btn-info" value="Cancelar" ui-sref="main">              
-                
-                    </div>
-            </form>
-        </div>
-        
-    </div>-->
+    </div>   
 </div>

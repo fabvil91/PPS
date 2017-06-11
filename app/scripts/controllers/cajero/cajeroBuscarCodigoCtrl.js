@@ -7,8 +7,7 @@
         function ($scope,$location,Operaciones,Datos,$rootScope,Tarjetas,Bancos,Promociones) {
                 $scope.codigo = null;
                 $scope.operacion = null;                
-              
-            
+                          
                     Tarjetas.listado()
                      .then(function(datos){
                         console.log(datos);
@@ -68,18 +67,26 @@
                    console.log(e);
                  })
                               
-                $scope.cargar = function(){                
+                $scope.cargar = function(tipo){                
                     console.log($scope.operacion);         
                    // Guardar en BD. SI es efectivo, limpiar funcion.operacion (Solo se llena con pago en tarjeta)
+                   if(tipo == 'efectivo'){
+
+                   }else if(tipo == 'tarjeta'){
+
+                   }else if(tipo == 'compra'){
+                    
+                   }
                 }   
                                 
          
                $scope.buscar = function(codigo){
 
                 Operaciones.operacionPorCodigo(codigo)
-               .then(function(datos){
-
+                .then(function(datos){
                   console.log(datos);
+                  if(datos.length != 0){
+                    $scope.error = false;
                   $scope.operacion = datos[0];
 
                      $scope.hayPromo = false;
@@ -113,13 +120,15 @@
                        }
                        return total;
                       }
-
+                  }else{
+                    console.log("nadinas");
+                    $scope.error = true;
+                  }
                  })
                 .catch(function(e){
                   console.log(e);
                 });            
            }
-
         }]) 
 })();
 
