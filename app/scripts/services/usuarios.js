@@ -4,9 +4,7 @@ angular
 
     this.listado = listado;
     this.usuarioPorNombreUsuario = usuarioPorNombreUsuario;
-    this.articuloPrecioMayor = articuloPrecioMayor;
-    this.articuloPorProveedor = articuloPorProveedor;
-    this.articuloPorIndice = articuloPorIndice;
+   
     this.alta = alta;
     this.modificar = modificar;
     this.borrar = borrar;
@@ -26,36 +24,6 @@ angular
       return $http.get('http://localhost:3333/usuarios/username/'+texto)
       .then(function(rta){
         console.log(rta);
-        return rta.data;
-      })
-      .catch(function(e){
-        return e;
-      })
-    }
-
-    function articuloPrecioMayor(texto) {
-      return $http.get('http://localhost:3333/articulos/precio/'+texto)
-      .then(function(rta){
-        return rta.data;
-      })
-      .catch(function(e){
-        return e;
-      })
-    }
-
-    function articuloPorProveedor(texto) {
-      return $http.get('http://localhost:3333/articulos/proveedor/'+texto)
-      .then(function(rta){
-        return rta.data;
-      })
-      .catch(function(e){
-        return e;
-      })
-    }
-
-    function articuloPorIndice(texto) {
-      return $http.get('http://localhost:3333/articulos/indices/'+texto)
-      .then(function(rta){
         return rta.data;
       })
       .catch(function(e){

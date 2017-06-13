@@ -52,7 +52,12 @@
 						response = { success: true, tipoUsuario: user.tipo.nombre};
 					} 
 					if(user.tipo.nombre=='Usuario'){
+						if(user.datosTarjeta){
 						response = { success: true, tipoUsuario: user.tipo.nombre, datos:{datosPersonales:user.datosPersonales,datosTarjeta:user.datosTarjeta}};
+						}else{
+							response = { success: true, tipoUsuario: user.tipo.nombre, datos:{datosPersonales:user.datosPersonales}};
+						}
+					
 					}
                      
                  } else {
@@ -124,15 +129,6 @@
 							apellido:datos.datosPersonales.apellido,
 							mail:datos.datosPersonales.mail,
 							telefono:datos.datosPersonales.telefono
-						},
-						datosTarjeta:{
-							banco:datos.datosTarjeta.banco,
-							tarjeta:datos.datosTarjeta.tarjeta,
-							titular:datos.datosTarjeta.titular,
-							dni:datos.datosTarjeta.dni,
-							codigoSeguridad:datos.datosTarjeta.codigoSeguridad,
-							vencimiento:datos.datosTarjeta.vencimiento,
-							numeroTarjeta:datos.datosTarjeta.numeroTarjeta
 						},
 	                    authdata: authdata
 	                }

@@ -52,8 +52,9 @@
                                 $scope.datosPersonales.mail = $rootScope.globals.currentUser.datosPersonales.mail;
                                 $scope.datosPersonales.telefono = $rootScope.globals.currentUser.datosPersonales.telefono;
 
-                                $scope.datosTarjeta={};
+                                $scope.datosTarjeta={ exists:false,};
                                 if($rootScope.globals.currentUser.datosTarjeta!=null){
+                                    $scope.datosTarjeta.exists=true;
                                     $scope.datosTarjeta.banco = $rootScope.globals.currentUser.datosTarjeta.banco;
                                     $scope.datosTarjeta.tarjeta=$rootScope.globals.currentUser.datosTarjeta.tarjeta;
                                     $scope.datosTarjeta.numeroTarjeta=$rootScope.globals.currentUser.datosTarjeta.numeroTarjeta;
@@ -63,7 +64,7 @@
                                     $scope.datosTarjeta.vencimiento=$rootScope.globals.currentUser.datosTarjeta.vencimiento;
                                     
                                 }                                      
-
+                                $scope.addTarjeta=false;
                                 $scope.readOnlyPersonales = true;
                                 $scope.readOnlyUsuario = true;
                                 $scope.readOnlyTarjeta = true;
@@ -92,7 +93,12 @@
                                     if(seccion=='usuario'){
                                         $scope.readOnlyUsuario=true;
                                     }
-                                    if(seccion=='tarjeta'){
+                                    if(seccion=='tarjeta' && $scope.datosTarjeta.exists){
+                                        //UPDATE
+                                        $scope.readOnlyTarjeta=true;
+                                    }
+                                    if(seccion=='tarjeta' && $scope.datosTarjeta.exists==false){
+                                        //ALTA
                                         $scope.readOnlyTarjeta=true;
                                     }
                                 }
@@ -116,14 +122,18 @@
                                         $scope.readOnlyUsuario=true;
                                     }
                                     if(seccion=='tarjeta'){
-                                        $scope.datosTarjeta.banco = $rootscope.datosTarjeta.banco;
-                                        $scope.datosTarjeta.tarjeta=$rootScope.datosTarjeta.tarjeta;
-                                        $scope.datosTarjeta.numeroTarjeta=$rootScope.datosTarjeta.numeroTarjeta;
-                                        $scope.datosTarjeta.dni=$rootScope.datosTarjeta.dni;
-                                        $scope.datosTarjeta.titular=$rootScope.datosTarjeta.titular;
-                                        $scope.datosTarjeta.codigoSeguridad=$rootscope.datosTarjeta.codigoSeguridad;
-                                        $scope.datosTarjeta.vencimiento=$rootscope.datosTarjeta.vencimiento;
+                                          $scope.datosTarjeta.banco = $rootScope.globals.currentUser.datosTarjeta.banco;
+                                        $scope.datosTarjeta.tarjeta=$rootScope.globals.currentUser.datosTarjeta.tarjeta;
+                                        $scope.datosTarjeta.numeroTarjeta=$rootScope.globals.currentUser.datosTarjeta.numeroTarjeta;
+                                        $scope.datosTarjeta.dni=$rootScope.globals.currentUser.datosTarjeta.dni;
+                                        $scope.datosTarjeta.titular=$rootScope.globals.currentUser.datosTarjeta.titular;
+                                        $scope.datosTarjeta.codigoSeguridad=$rootScope.globals.currentUser.datosTarjeta.codigoSeguridad;
+                                        $scope.datosTarjeta.vencimiento=$rootScope.globals.currentUser.datosTarjeta.vencimiento;
                                     }
+                                }
+
+                                $scope.borrarTarjeta = function(){
+
                                 }
 
 

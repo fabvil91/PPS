@@ -106,8 +106,20 @@
                         </div>
                         <!--TARJETA-->
                         <div class="row">
+                             <div class="col-md-12">
+                                <div ng-hide="datosTarjeta.exists" class="panel panel-default">
+                                    <div class="panel-heading">DATOS TARJETA</div>
+                                    <div class="panel-body">                                        
+                                        <input type="button" class="btn btn-info" value="Añadir Tarjeta"ng-click="addTarjeta=true">
+                                    </div>
+                                </div>
+                             </div>
+                        </div>
+
+                        <!--DATOS TARJETA-->
+                        <div class="row">
                             <div class="col-md-12">
-                                <div ng-show="readOnlyTarjeta">
+                                <div ng-show="readOnlyTarjeta && datosTarjeta.exists">
                                     <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h3>Datos de Tarjeta</h3>
@@ -159,6 +171,7 @@
                                             </div>
                                             <div class="form-group pull-right">
                                                 <input type="button" class="btn btn-info" value="Editar Datos" ng-click="editar('tarjeta')"> 
+                                                <input type="button" class="btn btn-info" value="Editar Datos" ng-click="borrarTarjeta()"> 
                                             </div>
                                             
                                         </form>
@@ -172,7 +185,7 @@
 
 
                                 <!--EDICION-->
-                                <div class="panel panel-default" ng-if="!readOnlyTarjeta">
+                                <div class="panel panel-default" ng-if="!readOnlyTarjeta || addTarjeta">
                                     <div class="panel-heading">Datos de Tarjeta</div>
                                     <div class="panel-body">
                                         <form name="form" class="form-horizontal" role="form">
@@ -258,7 +271,6 @@
                         </div>
                     </div>
 
-                    </div>
                 </div>
             </div>
         </div>
