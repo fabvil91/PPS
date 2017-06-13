@@ -63,7 +63,7 @@
                                     </div>
                                 </div>
                             </div>
-                        
+                         
                         <!--DATOS USUARIO -->
                         
                             <div class="col-md-6">
@@ -80,7 +80,7 @@
                                             <div class="form-group">
                                                 <label class="control-label col-sm-2" for="contrasena">Contrasena:</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="contraseña" class="form-control" ng-model="usuario.password" ng-readonly="readOnlyUsuario">
+                                                    <input type="password" name="contraseña" class="form-control" ng-model="usuario.password" ng-readonly="readOnlyUsuario">
                                                 </div>
                                             </div>
 
@@ -193,7 +193,7 @@
                                         <div class="form-group" ng-class="{ 'has-error': form.banco.$dirty && form.banco.$error.required }"> 
                                             <label class="control-label col-sm-2" for="banco">Seleccione Banco <span class="require">*</span></label>
                                             <div class="col-sm-10">
-                                                <select class="form-control input-sm" ng-options="item.nombre for item in bancos" ng-model="banco" required>
+                                                <select class="form-control input-sm" ng-options="item._id as item.nombre for item in bancos" ng-model="usuario.datosTarjeta.banco._id" required>
                                                 </select>
                                                 <span ng-show="form.banco.$dirty && form.banco.$error.required" class="help-block">Banco es requerido</span>
                                             </div>
@@ -203,7 +203,7 @@
                                         <div class="form-group" ng-class="{ 'has-error': form.titular.$dirty && form.titular.$error.required }"> 
                                             <label class="control-label col-sm-2" for="tarjeta">Seleccione Tarjeta <span class="require">*</span></label>
                                             <div class="col-sm-10">
-                                                <select class="form-control input-sm" id="tarjeta" ng-options="item.nombre for item in tarjetas" ng-model="tarjeta" required>
+                                                <select class="form-control input-sm" id="tarjeta" ng-options="item._id as item.nombre for item in tarjetas" ng-model="usuario.datosTarjeta.tarjeta._id" required>
                                                 </select>
                                                 <span ng-show="form.tarjeta.$dirty && form.tarjeta.$error.required" class="help-block">Tarjeta es requerido</span>
                                             </div>

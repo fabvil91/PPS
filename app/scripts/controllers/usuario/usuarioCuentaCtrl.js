@@ -45,32 +45,7 @@
                                     {nombre:"2024"}
                                 ];
 
-                                
-        /*
-                                $scope.username = $rootScope.globals.currentUser.username;
-                                $scope.password = $rootScope.globals.currentUser.password;
-
-                                $scope.datosPersonales={};
-                                $scope.datosPersonales.nombre = $rootScope.globals.currentUser.datosPersonales.nombre;
-                                $scope.datosPersonales.apellido = $rootScope.globals.currentUser.datosPersonales.apellido;
-                                $scope.datosPersonales.mail = $rootScope.globals.currentUser.datosPersonales.mail;
-                                $scope.datosPersonales.telefono = $rootScope.globals.currentUser.datosPersonales.telefono;
-
-                                $scope.datosTarjeta={ exists:false,};
-                                if($rootScope.globals.currentUser.datosTarjeta!=null){
-                                    $scope.datosTarjeta.exists=true;
-                                    $scope.datosTarjeta.banco = $rootScope.globals.currentUser.datosTarjeta.banco;
-                                    $scope.datosTarjeta.tarjeta=$rootScope.globals.currentUser.datosTarjeta.tarjeta;
-                                    $scope.datosTarjeta.numeroTarjeta=$rootScope.globals.currentUser.datosTarjeta.numeroTarjeta;
-                                    $scope.datosTarjeta.dni=$rootScope.globals.currentUser.datosTarjeta.dni;
-                                    $scope.datosTarjeta.titular=$rootScope.globals.currentUser.datosTarjeta.titular;
-                                    $scope.datosTarjeta.codigoSeguridad=$rootScope.globals.currentUser.datosTarjeta.codigoSeguridad;
-                                    $scope.datosTarjeta.vencimiento=$rootScope.globals.currentUser.datosTarjeta.vencimiento;
-                                    
-                                } 
-        */                        
-                                
-                                             
+                                                                             
                                 $scope.addTarjeta=false;
                                 $scope.readOnlyPersonales = true;
                                 $scope.readOnlyUsuario = true;

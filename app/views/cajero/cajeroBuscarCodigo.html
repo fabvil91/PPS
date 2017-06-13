@@ -22,8 +22,8 @@
                     <input type="button" class="btn btn-info" value="Buscar" ng-disabled="frmCodigo.$invalid" ng-click="buscar(codigo)"> 
                 </div>                
             </form>  
-            <div ng-if="error"> El código ingresado no tiene operaciones asociadas </div>                 
-            <div ng-if="errorEstado"> El código ingresado corresponde a una operación terminada </div>   
+            <div ng-if="error" class="alert alert-danger"> El código ingresado no tiene operaciones asociadas </div>                 
+            <div ng-if="errorEstado" class="alert alert-danger"> El código ingresado corresponde a una operación terminada </div>   
         </div>
     </div>
     <!-- DATOS FUNCION -->
