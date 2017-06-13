@@ -65,7 +65,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ng-repeat="(key, value) in funciones | filter: {complejo:{_id: '5927205a39a5301c9ceb768a'}} | groupBy: 'pelicula.nombre'">
+                            <tr ng-repeat="(key, value) in funciones | filter: {complejo:{_id: filtro.complejo}} | groupBy: 'pelicula.nombre'">
                               <td><a href="" ng-click="cargarPelicula(key)">{{key}}</a></td>
                             </tr>
                             </tbody>
@@ -103,7 +103,7 @@
                         <div>                                                    
                             <div class="panel-group">
                                 <div class="panel panel-default" ng-repeat="(key, value) in funciones 
-                                | filter: { formato:{_id:filtro.formato}, idioma:{_id:filtro.idioma}, complejo:{nombre:filtro.complejo},diaTime: filtro.diaLocale,pelicula:{nombre: filtro.pelicula.nombre} }
+                                | filter: { formato:{_id:filtro.formato}, idioma:{_id:filtro.idioma}, complejo:{_id:filtro.complejo},diaTime: filtro.diaLocale,pelicula:{nombre: filtro.pelicula.nombre} }
                                 | groupBy: '[formato.nombre,idioma.nombre,diaFormateado]'">
 
                                     <div class="panel-heading">

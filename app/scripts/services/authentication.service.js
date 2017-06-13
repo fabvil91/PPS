@@ -45,7 +45,7 @@
 				console.log(user);
                 if (user  && user.password === password) {
 					if(user.tipo.nombre=='Cajero' || user.tipo.nombre=='Empleado'){
-						response = { success: true, tipoUsuario: user.tipo.nombre, complejo:user.complejo.nombre};
+						response = { success: true, tipoUsuario: user.tipo.nombre, complejo:user.complejo};
 						console.log('good1');
 					}
 					if(user.tipo.nombre=='Admin'){
