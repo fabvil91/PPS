@@ -7,6 +7,8 @@ angular
    
     this.alta = alta;
     this.modificar = modificar;
+    this.modificarPersonales=modificarPersonales;
+    this.modificarTarjeta=modificarTarjeta;
     this.borrar = borrar;
     this.Create = Create;
 
@@ -47,7 +49,33 @@ angular
 
     function modificar(item){
       return $http({
-            url: 'http://localhost:3333/modificar',
+            url: 'http://localhost:3333/usuarios/modificar',
+            method: "PUT",
+            data: item,
+            headers: {'Content-Type': 'application/json'}})
+      .then(function(rta){
+        return rta.data;
+      })
+      .catch(function(e){
+        return e;
+      })
+    }
+    function modificarPersonales(item){
+      return $http({
+            url: 'http://localhost:3333/usuarios/modificarPersonales',
+            method: "PUT",
+            data: item,
+            headers: {'Content-Type': 'application/json'}})
+      .then(function(rta){
+        return rta.data;
+      })
+      .catch(function(e){
+        return e;
+      })
+    }
+    function modificarTarjeta(item){
+      return $http({
+            url: 'http://localhost:3333/usuarios/modificarTarjeta',
             method: "PUT",
             data: item,
             headers: {'Content-Type': 'application/json'}})
@@ -61,7 +89,7 @@ angular
 
     function borrar(item){
       return $http({
-            url: 'http://localhost:3333/eliminar',
+            url: 'http://localhost:3333/usuarios/eliminar',
             method: "DELETE",
             data: item,
             headers: {'Content-Type': 'application/json'}})
