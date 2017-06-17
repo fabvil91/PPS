@@ -156,9 +156,11 @@
                 .then(function(datos){
                   console.log(datos);
                   if(datos.length != 0){
+                   if(datos[0].funcion.complejo._id == $rootScope.globals.currentUser.complejo._id){
                     if(datos[0].estado == 'Pagado' || datos[0].estado == 'Reservado'){
                        $scope.errorEstado = false;
                        $scope.error = false;
+                       $scope.errorComplejo = null;
                        $scope.operacion = datos[0];
 
                      $scope.hayPromo = false;
@@ -195,10 +197,17 @@
                     }else{
                       console.log(datos[0].estado);
                       $scope.errorEstado = true;
+                      $scope.operacion = null;
                     }
+                   }else{
+                    console.log(datos[0].funcion.complejo.nombre);
+                    $scope.errorComplejo = datos[0].funcion.complejo.nombre;
+                    $scope.operacion = null;
+                   } 
                   }else{
                     console.log("nadinas");
                     $scope.error = true;
+                    $scope.operacion = null;
                   }
                  })
                 .catch(function(e){

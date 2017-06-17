@@ -24,6 +24,7 @@
             </form>  
             <div ng-if="error" class="alert alert-danger"> El código ingresado no tiene operaciones asociadas </div>                 
             <div ng-if="errorEstado" class="alert alert-danger"> El código ingresado corresponde a una operación terminada </div>   
+            <div ng-if="errorComplejo != null" class="alert alert-danger"> El código ingresado no corresponde a este complejo. Complejo correspondiente: {{errorComplejo}}</div>   
         </div>
     </div>
     <!-- DATOS FUNCION -->
@@ -40,9 +41,52 @@
             </div>                 
         </div>
     </div>
+
+    <div class="row" ng-if="operacion != null">
+         <div class="container-fluid"> 
+          <h3>Asientos elegidos</h3>
+          <div>
+              <div class="pull-left">
+                  <div class="legend" >
+                      <div>
+                        <img src="./images/icons/seleccionado.jpg" alt="seleccionado"> Elegidos
+                      </div>
+                      <div>
+                        <img src="./images/icons/disponible.jpg" alt="disponible"> Disponible
+                      </div>
+                      <div>
+                        <img src="./images/icons/ocupado.jpg" alt="ocupado"> Ocupado
+                      </div>
+                  </div>             
+              </div>             
+          </div>
+      </div> 
+      
+      <div class="center-block">                
+              <div class="panel panel-default">
+              <div class="sala panel-body ">
+                <div class="pantalla center-block"> 
+                  Pantalla
+                </div>
+                <ol class="filas" ng-repeat="filas in operacion.funcion.sala">
+                  <li class="columna" ng-repeat="columna in filas">
+                    <label class="asiento ocupado" ng-if="!columna.pasillo && columna.booked"> {{columna.id}} </label>
+                    <label class="asiento disponible" ng-if="!columna.pasillo && !columna.booked && !columna.checked"> {{columna.id}} </label>
+                    <label class="asiento ocupado pasillo" ng-if="columna.pasillo && columna.booked"> {{columna.id}} </label>                    
+                    <label class="asiento disponible pasillo" ng-if="columna.pasillo && !columna.booked && !columna.checked"> {{columna.id}} </label>         
+
+                    <label class="asiento seleccionado pasillo" ng-if="columna.pasillo && columna.checked"> {{columna.id}} </label>                                
+                    <label class="asiento seleccionado" ng-if="!columna.pasillo && columna.checked"> {{columna.id}} </label>                                       
+                  </li>
+                </ol>
+              </div>
+            </div>
+       </div>
+    </div>
+
     <!-- RESERVA -->
     <!-- SEL METODO DE PAGO -->
-    <div class="row" ng-if="operacion.funcion.transaccion.tipoTransaccion == 'reserva'">
+    <div class="row" ng-if="operacion != null && operacion.funcion.transaccion.tipoTransaccion == 'reserva'">
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">METODO DE PAGO</div>
@@ -55,7 +99,7 @@
         </div>
     </div>
     <!-- EFECTIVO -->
-    <div class="row" ng-if="operacion.funcion.transaccion.tipoTransaccion == 'reserva' && operacion.tipo == 'efectivo'">
+    <div class="row" ng-if="operacion != null && operacion.funcion.transaccion.tipoTransaccion == 'reserva' && operacion.tipo == 'efectivo'">
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">DATOS COMPRA</div>
@@ -93,7 +137,7 @@
     <!-- TARJETAS -->
     <div class="row">
         <div class="col-md-12">
-            <div ng-if="operacion.funcion.transaccion.tipoTransaccion == 'reserva' && (operacion.tipo == 'credito' || operacion.tipo == 'debito')">
+            <div ng-if="operacion != null && operacion.funcion.transaccion.tipoTransaccion == 'reserva' && (operacion.tipo == 'credito' || operacion.tipo == 'debito')">
             <div class="panel panel-default">
                 <div class="panel-heading">DATOS COMPRA</div>
                 <div class="panel-body">
@@ -199,7 +243,7 @@
     <!-- COMPRA -->
     <div class="row">
         <div class="col-md-12">
-            <div ng-if="operacion.funcion.transaccion.tipoTransaccion == 'compra'">
+            <div ng-if="operacion != null && operacion.funcion.transaccion.tipoTransaccion == 'compra'">
             <div class="panel panel-default">
                 <div class="panel-heading">DATOS COMPRA</div>
                 <div class="panel-body">
