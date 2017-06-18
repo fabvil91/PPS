@@ -3,19 +3,28 @@
  
     angular
         .module('cine')
-        .controller('contactanosCtrl', ['$scope','$location','UserService','$rootScope',
-        function ($scope,$location,UserService,$rootScope) {
+        .controller('contactanosCtrl', ['$scope','$location','Mail','$rootScope',
+        function ($scope,$location,Mail,$rootScope) {
                 
          $scope.contactanosForm = {
          	firstName: null,
          	lastName: null,
-         	Email: null,
-            Complejo: null,
-            Asunto: null,
-            Mensaje: null
+         	email: null,
+            complejo: null,
+            asunto: null,
+            mensaje: null
          };
-         $scope.mensaje = null;
-               		
-        }]);
+         
+		$scope.enviar = function(){
+		Mail.enviar($scope.contactanosForm)
+		.then(function(datos){
+		      console.log(datos);
+		})
+		.catch(function(e){
+		      console.log(e);
+		}); 
+		}
+		           		
+     }]);
 })();
 

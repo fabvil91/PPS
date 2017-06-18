@@ -15,6 +15,7 @@ var tarjetas = require('./tarjetas');
 var usuarios = require('./usuarios');
 var tiposUsuario = require('./tiposUsuario');
 var operaciones = require('./operaciones');
+var mail = require('./mail');
 
 var bodyParser = require('body-parser');
 var cors = require('cors');
@@ -50,6 +51,7 @@ MongoClient.connect('mongodb://localhost:27017/pps', (err, db) =>
 	app.use('/',usuarios);
 	app.use('/',tiposUsuario);
 	app.use('/',operaciones);
+	app.use('/',mail);
 
 	app.listen(3333, ()=> {
 		console.log('Servidor iniciado..');
