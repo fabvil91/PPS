@@ -95,7 +95,6 @@ router.put('/usuarios/modificarTarjeta',function(req, res, next){
 
     req.db.collection('usuarios')        
     .update({_id: id}, {$set: {
-                email: req.body.email,
                 datosTarjeta:{
                     banco:req.body.datosTarjeta.banco,
                     tarjeta:req.body.datosTarjeta.tarjeta,
@@ -105,7 +104,33 @@ router.put('/usuarios/modificarTarjeta',function(req, res, next){
                     codigoSeguridad:req.body.datosTarjeta.codigoSeguridad,
                     vencimiento:req.body.datosTarjeta.vencimiento
                 }
-                                }}, function (err, result){
+            } 
+        },
+        {upsert:true}, function (err, result){
+        if (err) {
+            res.json({rta : err});
+        }
+        else {
+            res.json({rta : "OK"});
+        }
+    });  
+});
+router.put('/usuarios/borrarTarjeta',function(req, res, next){
+    console.log(req.body);
+    var id = new require('mongodb').ObjectID(req.body._id);
+    console.log(id);
+
+    req.db.collection('usuarios')        
+    .update({_id: id}, {username: req.body.username,
+                 password: req.body.password,
+                 email: req.body.email,
+                 tipo: req.body.tipoUsuario,
+                 datosPersonales:{
+                     nombre:req.body.datosPersonales.nombre,
+                     apellido:req.body.datosPersonales.apellido,
+                     telefono:req.body.datosPersonales.telefono
+                 }         		 
+                                }, function (err, result){
         if (err) {
             res.json({rta : err});
         }
@@ -119,7 +144,7 @@ router.delete('/usuarios/eliminar',function(req, res, next){
 		var id = new require('mongodb').ObjectID(req.body._id);
 		console.log(id);
 
-        req.db.collection('articulos')        
+        req.db.collection('usuarios')        
         .remove({_id: id}, function (err, result){
            if (err) {
                res.json({rta : err});
@@ -129,6 +154,8 @@ router.delete('/usuarios/eliminar',function(req, res, next){
             }
         });  
 	});
+
+
 
 
 module.exports = router;

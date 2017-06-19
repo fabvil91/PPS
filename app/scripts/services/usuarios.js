@@ -11,6 +11,7 @@ angular
     this.modificarTarjeta=modificarTarjeta;
     this.borrar = borrar;
     this.Create = Create;
+    this.borrarTarjeta = borrarTarjeta;
 
     function listado () {
       return $http.get('http://localhost:3333/usuarios/getAll')
@@ -87,6 +88,20 @@ angular
       })
     }
 
+    function borrarTarjeta(item){
+      return $http({
+            url: 'http://localhost:3333/usuarios/borrarTarjeta',
+            method: "PUT",
+            data: item,
+            headers: {'Content-Type': 'application/json'}})
+      .then(function(rta){
+        return rta.data;
+      })
+      .catch(function(e){
+        return e;
+      })
+    }
+
     function borrar(item){
       return $http({
             url: 'http://localhost:3333/usuarios/eliminar',
@@ -100,6 +115,8 @@ angular
         return e;
       })
     }
+
+
 
     function Create(user) {
           

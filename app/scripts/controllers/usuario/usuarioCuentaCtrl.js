@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
 	angular.module('cine')
-	.controller('usuarioCuentaCtrl', ['$rootScope','$scope','Tarjetas','Bancos','Usuarios',function($rootScope,$scope,Tarjetas,Bancos,Usuarios){	
+	.controller('usuarioCuentaCtrl', ['$rootScope','$scope','Tarjetas','Bancos','Usuarios','Datos',function($rootScope,$scope,Tarjetas,Bancos,Usuarios,Datos){	
 
 
         Tarjetas.listado()
@@ -15,8 +15,7 @@
                     Usuarios.usuarioPorNombreUsuario($rootScope.globals.currentUser.username)
                     .then(function(datos){
                     console.log(datos);
-                    $scope.usuario=datos[0];                
-                            
+                    $scope.usuario=datos[0]; 
 
                                     $scope.mes = [
                                     {nombre:"Enero", id:0},
@@ -45,11 +44,10 @@
                                     {nombre:"2024"}
                                 ];
 
-                                                                             
-                                $scope.addTarjeta=false;
+
                                 $scope.readOnlyPersonales = true;
                                 $scope.readOnlyUsuario = true;
-                                $scope.readOnlyTarjeta = true;
+                             
 
 
                                 //PERMITE EDITAR
@@ -60,11 +58,9 @@
                                     if(editarEsto == 'usuario'){
                                         $scope.readOnlyUsuario=false;
                                     }
-                                    if(editarEsto == 'tarjeta'){
-                                        $scope.readOnlyTarjeta=false;
-                                    }
+                                    
                                 }
-
+                                
                                 //HACE UPDATE EN BD
                                 $scope.guardar = function(seccion){
                                     console.log('guardar datos de ' + seccion + ' en db');
@@ -76,18 +72,11 @@
                                         $scope.readOnlyUsuario=true;
                                         Usuarios.modificar($scope.usuario);
                                     }
-                                    if(seccion=='tarjeta' && $scope.usuario.datosTarjeta){
-                                        //UPDATE
-                                        $scope.readOnlyTarjeta=true;
-                                        Usuarios.modificarTarjeta($scope.usuario);
-                                    }
-                                    if(seccion=='tarjeta' && $scope.usuario.datosTarjeta==null){
-                                        //ALTA
-                                        $scope.readOnlyTarjeta=true;
-                                    }
-                                }
+                                    
+                                } 
 
                                 //RECARGA DATOS
+                                
                                 $scope.cancelar = function(seccion){
                                     Usuarios.usuarioPorNombreUsuario($rootScope.globals.currentUser.username)
                                     .then(function(datosViejos){
@@ -107,6 +96,7 @@
 
                                                 $scope.readOnlyUsuario=true;
                                             }
+                                            /*
                                             if(seccion=='tarjeta'){
                                                 $scope.usuario.datosTarjeta.banco = datosViejos[0].datosTarjeta.banco;
                                                 $scope.usuario.datosTarjeta.tarjeta=datosViejos[0].datosTarjeta.tarjeta;
@@ -115,16 +105,25 @@
                                                 $scope.usuario.datosTarjeta.titular=datosViejos[0].datosTarjeta.titular;
                                                 $scope.usuario.datosTarjeta.codigoSeguridad=datosViejos[0].datosTarjeta.codigoSeguridad;
                                                 $scope.usuario.datosTarjeta.vencimiento=datosViejos[0].datosTarjeta.vencimiento;
-                                            }
+                                                $scope.readOnlyTarjeta=true;
+                                            }*/
                                     })
                                     .catch(function(e){
                                         console.log(e);
                                     })
                                 }
+                                
 
                                 $scope.borrarTarjeta = function(){
+                                    Usuarios.borrarTarjeta($scope.usuario);
 
                                 }
+
+                                $scope.cargar = function(datos){
+                                    datos=$scope.usuario.datosTarjeta;
+                                    
+                                    Datos.cargar(datos);
+                                }	
 
 
                             })

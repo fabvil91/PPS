@@ -259,6 +259,13 @@
         url:'/usuarioCuenta',              
         controller: 'usuarioCuentaCtrl',
         templateUrl:'views/usuario/usuarioCuenta.html'
+      })
+      $stateProvider
+        .state('usuarioTarjeta',
+        {
+        url:'/usuarioTarjeta',              
+        controller: 'usuarioTarjetaCtrl',
+        templateUrl:'views/usuario/usuarioTarjeta.html'
         })
       $stateProvider
         .state('usuarioFinalizarPago',
@@ -353,7 +360,7 @@
               if($rootScope.globals.currentUser.tipoUsuario == 'Usuario'){
                 var restrictedPage = $.inArray($location.path(), ['/main', '/login','/registro','/detallePelicula','/seleccionEntradas','/salas','/datosOperacionCompra','/finalizarOperacion',
                   '/promosVigentes','/quienesSomos','/contactanos','/prohibida',
-                  '/usuarioBorrar','/usuarioCuenta','/usuarioFinalizarPago','/usuarioHistorial','/usuarioMain','/usuarioReservaVencida']) === -1;
+                  '/usuarioBorrar','/usuarioCuenta','/usuarioFinalizarPago','/usuarioHistorial','/usuarioMain','/usuarioReservaVencida','/usuarioTarjeta']) === -1;
               }
               //Agregar los distintos tipos de usuario
               if($rootScope.globals.currentUser.tipoUsuario == 'Admin'){

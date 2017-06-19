@@ -1,0 +1,111 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav">
+                    <li ui-sref="usuarioCuenta" class="active"><a href="#">Tu Cuenta</a></li>
+                    <li ui-sref="usuarioHistorial"><a href="#">Historial</a></li>
+                    <li ui-sref="usuarioBorrar"><a href="#">Borrar Cuenta</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                          <!--EDICION-->
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Datos de Tarjeta</div>
+                                    <div class="panel-body">
+                                        <form name="form" class="form-horizontal" role="form">
+
+                                        <div class="form-group" ng-class="{ 'has-error': form.banco.$dirty && form.banco.$error.required }"> 
+                                            <label class="control-label col-sm-2" for="banco">Seleccione Banco <span class="require">*</span></label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control input-sm" ng-options="item._id as item.nombre for item in bancos" ng-model="usuario.datosTarjeta.banco._id" required>
+                                                </select>
+                                                <span ng-show="form.banco.$dirty && form.banco.$error.required" class="help-block">Banco es requerido</span>
+                                            </div>
+                                            
+                                        </div>
+
+                                        <div class="form-group" ng-class="{ 'has-error': form.titular.$dirty && form.titular.$error.required }"> 
+                                            <label class="control-label col-sm-2" for="tarjeta">Seleccione Tarjeta <span class="require">*</span></label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control input-sm" id="tarjeta" ng-options="item._id as item.nombre for item in tarjetas" ng-model="usuario.datosTarjeta.tarjeta._id" required>
+                                                </select>
+                                                <span ng-show="form.tarjeta.$dirty && form.tarjeta.$error.required" class="help-block">Tarjeta es requerido</span>
+                                            </div>
+                                            
+                                        </div>
+
+                                        <div class="form-group" ng-class="{ 'has-error': form.titular.$dirty && form.titular.$error.required }">
+                                            <label class="control-label col-sm-2" for="titular">Titular</label>
+                                            <div class="col-sm-10">
+                                            <input type="text" id="titular" class="form-control" ng-model="usuario.datosTarjeta.titular" required>
+                                                <span ng-show="form.titular.$dirty && form.titular.$error.required" class="help-block">Titular es requerido</span>
+                                            </div>
+                                        
+                                        </div>
+
+                                        <div class="form-group" ng-class="{ 'has-error': form.dni.$dirty && form.dni.$error.required }"> 
+                                            <label class="control-label col-sm-2" for="dni">Dni</label> 
+                                            <div class="col-sm-10">
+                                            <input type="text" id="dni" class="form-control" ng-model="usuario.datosTarjeta.dni" ng-minlength="8" ng-maxlength="8" required>
+                                            <span ng-show="form.dni.$dirty && form.dni.$error.required" class="help-block">dni es requerido</span>
+                                                <span ng-show="userForm.name.$error.minlength" class="help-block">DNI es muy corto.</span>
+                                                <span ng-show="userForm.name.$error.maxlength" class="help-block">DNI es muy largo.</span>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group" ng-class="{ 'has-error': form.nroTarjeta.$dirty && form.nroTarjeta.$error.required }"> 
+                                            <label class="control-label col-sm-2" for="nroTarjeta">Número de tarjeta</label>
+                                            <div class="col-sm-10">
+                                            <input type="text" id="nroTarjeta" class="form-control" ng-model="usuario.datosTarjeta.numeroTarjeta" ng-minlength="15" ng-maxlength="16" required>
+                                            <span ng-show="form.nroTarjeta.$dirty && form.nroTarjeta.$error.required" class="help-block">Número de tarjeta es requerido</span>
+                                                <span ng-show="userForm.name.$error.minlength" class="help-block">Número de tarjeta es muy corto.</span>
+                                                <span ng-show="userForm.name.$error.maxlength" class="help-block">Número de tarjeta es muy largo.</span>
+                                            </div>
+
+                                        </div>
+
+                                       <!-- <div class="form-group" ng-class="{ 'has-error': form.vencimiento.$dirty && form.vencimiento.$error.required }"> 
+                                            <label class="control-label col-sm-2" for="vencimiento">Vencimiento <span class="require">*</span></label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control input-sm" id="vencimiento" ng-options="item.nombre for item in mes" ng-model="selectedMes" required>
+                                                <span ng-show="form.vencimiento.$dirty && form.vencimiento.$error.required" class="help-block">Mes y año es requerido</span>
+                                                </select> 
+                                                
+                                                <select class="form-control input-sm" id="vencimiento" ng-options="item.nombre for item in year" ng-model="selectedYear">
+                                                </select>  
+                                            </div>
+                                        </div>
+                                        -->
+                                        
+                                            <div class="form-group" ng-class="{ 'has-error': form.codigoSeguridad.$dirty && form.codigoSeguridad.$error.required }" > 
+                                            <label class="control-label col-sm-2" for="codigoSeguridad">Codigo de seguridad</label>
+                                            <div class="col-sm-10"> 
+                                                <input type="text" id="codigoSeguridad" class="form-control" ng-model="usuario.datosTarjeta.codigoSeguridad" required/>
+                                                <span ng-show="form.codigoSeguridad.$dirty && form.codigoSeguridad.$error.required" class="help-block">Codigo de Seguridad es requerido</span>
+                                            </div>
+                                            </div>
+                                            <div class="form-group pull-right">                            
+                                                <input type="button" class="btn btn-info" value="Guardar" ng-click="guardar()" ui-sref="usuarioCuenta">  
+                                                <input type="button" class="btn btn-info" value="Cancelar" ui-sref="usuarioCuenta">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
