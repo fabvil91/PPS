@@ -18,15 +18,11 @@
                     </ul>
                 </div>
             </div>
-        </div>
-        
-
-            <!-- BANCOS -->
-            
+        </div>                               
                 <div class = "col-md-9">
                     <div class="panel panel-default margin-top">
                         <div class="panel-body">
-                            <button type="button" class="btn btn-primary">Nuevo</button>
+                            <button type="button" class="btn btn-primary" ng-click="alta()">Nuevo</button>
                             <table class="table table-condensed">
                                 <thead>
                                     <tr>
@@ -39,35 +35,31 @@
                                     </tr>
                                 </thead>
                                 <tbody> 
-                                    <tr>
-                                        <th>Logan</th>
-                                        <th>Cinemar Lomas de Zamora</th>
-                                        <th>10.255.1.2/loganA.jpg</th>
-                                        <th>Logan</th>
-                                        <th>Una batalla sin igual</th>
-                                        <th>
-                                            <button class="btn btn-info btn-sm">Editar</button>
-                                            <button class="btn btn-danger btn-sm">Eliminar</button>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <th>La Llegada</th>
-                                        <th>Cinemar Lanus</th>
-                                        <th>10.255.1.2/ArrivalA.jpg</th>
-                                        <th>La Llegada</th>
-                                        <th>Un nuevo misterio asoma</th>
-                                        <th>
-                                            <button class="btn btn-info btn-sm">Editar</button>
-                                            <button class="btn btn-danger btn-sm">Eliminar</button>
-                                        </th>
-                                    </tr>
-                                    
+                                    <tr ng-repeat="slide in slides track by $index">
+                                         <td>
+                                          {{slide.pelicula.nombre}}
+                                        </td>
+                                        <td>
+                                          COMPLEJO
+                                        </td> 
+                                        <td>
+                                          {{slide.imageUrl}}
+                                        </td>
+                                         <td>
+                                          {{slide.nombre}}
+                                        </td>
+                                         <td>
+                                          {{slide.descripcion}}
+                                        </td>                                        
+                                        <td>
+                                            <button class="btn btn-info btn-sm" ng-click="modificar(slide)">Editar</button>
+                                            <button class="btn btn-danger btn-sm" ng-click="borrar(slide)">Eliminar</button>
+                                        </td>
+                                    </tr>                                                                       
                                 </tbody>                    
                             </table>
                         </div>
                     </div>
                 </div>
-            </div>
-        
-
+            </div>        
 </div>

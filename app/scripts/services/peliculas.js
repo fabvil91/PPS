@@ -1,6 +1,6 @@
 angular
   .module('cine')
-  .service('Slides', ['$http', function($http){
+  .service('Peliculas', ['$http', function($http){
 
     this.listado = listado;
     this.articuloPorNombre = articuloPorNombre;
@@ -12,7 +12,7 @@ angular
     this.borrar = borrar;
 
     function listado () {
-      return $http.get('http://localhost:3333/slides/getAll')
+      return $http.get('http://localhost:3333/peliculas/getAll')
       .then(function(rta){
         return rta.data;
       })

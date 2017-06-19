@@ -201,9 +201,16 @@
         .state('adminSlide',
         {
         url:'/adminSlide',              
-        //controller: '',
+        controller: 'adminSlideCtrl',
         templateUrl:'views/admin/adminSlide.html'
         }) 
+       $stateProvider
+        .state('adminSlideForm',
+        {
+        url:'/adminSlideForm',              
+        controller: 'adminSlideFormCtrl',
+        templateUrl:'views/admin/adminSlideForm.html'
+        })   
       $stateProvider
         .state('adminTarjeta',
         {
@@ -352,7 +359,8 @@
               if($rootScope.globals.currentUser.tipoUsuario == 'Admin'){
                 var restrictedPage = $.inArray($location.path(), ['/adminMain', 
                 '/promosVigentes','/quienesSomos','/contactanos','/prohibida',
-                '/adminBancos','/adminCines','/adminConfiguracionGeneral','/adminPersonal','/adminPrecios','/adminPromociones','/adminSalaNueva','/adminSalas','/adminTarjeta','/adminSlide']) === -1;
+                '/adminBancos','/adminCines','/adminConfiguracionGeneral','/adminPersonal','/adminPrecios','/adminPromociones','/adminSalaNueva','/adminSalas','/adminTarjeta','/adminSlide',
+                '/adminSlideForm']) === -1;
               }
 
               if($rootScope.globals.currentUser.tipoUsuario == 'Empleado'){

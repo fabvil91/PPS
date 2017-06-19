@@ -45,16 +45,14 @@ router.get('/articulos/proveedor/:proveedor', (req, res, next) => {
     });
 });
 
-router.post('/insertar',function(req, res, next){
+router.post('/slides/insertar',function(req, res, next){
 		console.log(req.body);
 
-        req.db.collection('articulos')        
-        .insert({name: req.body.name, 
-        		 peso: req.body.peso,
-        		 precio: req.body.precio,
-        		 fecha: new Date(req.body.fecha),
-        		 tipo: req.body.tipo,
-        		 proveedor: {email: req.body.email}
+        req.db.collection('slides')        
+        .insert({nombre: req.body.nombre, 
+                 descripcion: req.body.descripcion,
+                 imageUrl: req.body.imageUrl,
+                 pelicula: req.body.pelicula
         		}, function (err, result){
            if (err) {
                res.json({rta : err});
@@ -65,18 +63,16 @@ router.post('/insertar',function(req, res, next){
         });  
 	});
 
-router.put('/modificar',function(req, res, next){
+router.put('/slides/modificar',function(req, res, next){
 		console.log(req.body);
 		var id = new require('mongodb').ObjectID(req.body._id);
 		console.log(id);
 
-        req.db.collection('articulos')        
-        .update({_id: id}, {$set: {name: req.body.name, 
-        						   peso: req.body.peso,
-        						   precio: req.body.precio,
-        						   fecha: new Date(req.body.fecha),
-        						   tipo: req.body.tipo,
-        						   proveedor: {email: req.body.email}
+        req.db.collection('slides')        
+        .update({_id: id}, {$set: {nombre: req.body.nombre, 
+        						   descripcion: req.body.descripcion,
+        						   imageUrl: req.body.imageUrl,
+        						   pelicula: req.body.pelicula        						  
         						   }}, function (err, result){
            if (err) {
                res.json({rta : err});
@@ -87,12 +83,12 @@ router.put('/modificar',function(req, res, next){
         });  
 	});
 
-router.delete('/eliminar',function(req, res, next){
+router.delete('/slides/eliminar',function(req, res, next){
 		console.log(req.body);
 		var id = new require('mongodb').ObjectID(req.body._id);
 		console.log(id);
 
-        req.db.collection('articulos')        
+        req.db.collection('slides')        
         .remove({_id: id}, function (err, result){
            if (err) {
                res.json({rta : err});

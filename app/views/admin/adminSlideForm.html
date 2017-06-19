@@ -1,0 +1,74 @@
+<div class="container">
+    <div class="row">
+        <!--MENU-->
+        <div class="col-md-3">
+            <div class="panel panel-default margin-top">
+                <div class="panel-body">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li role="presentation" ui-sref="adminPersonal"><a href="#">Gestionar Personal</a></li>
+                        <li role="presentation" ui-sref="adminCines"><a href="#">Gestionar Cines</a></li>
+                        <li role="presentation" ui-sref="adminPrecios"><a href="#">Gestionar Precios</a></li>
+                        <li role="presentation" ui-sref="adminPromociones"><a href="#">Gestionar Promociones</a></li> 
+                        <li role="presentation" ui-sref="adminSalas"><a href="#">Gestionar Salas</a></li> 
+                        <li role="presentation" ui-sref="adminSlide" class="active"><a href="#">Gestionar Slides</a></li>
+                        <br>
+                        <br>
+                        <br> 
+                        <li role="presentation" ui-sref="adminConfiguracionGeneral"><a href="#">Configuracion General</a></li>        
+                    </ul>
+                </div>
+            </div>
+        </div>                                
+                <div class = "col-md-9">
+                    <div class="panel panel-default margin-top">
+                        <form name="form" ng-submit="cargar()" novalidate>
+
+                        <!-- Pelicula -->
+                        <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
+                            <label>Pelicula</label>
+                            <select ng-model="slide.pelicula._id" ng-options="x._id as x.nombre for x in peliculas"> 
+                              <option value="">Seleccione</option>           
+                            </select>            
+                        </div>  
+                        
+                        <!-- Titulo -->
+                        <fieldset>
+                        <legend>Titulo</legend>
+                        <div class="form-group" ng-class="{ 'has-error' : form.titulo.$invalid && !form.titulo.$pristine }">
+                            <label>Titulo</label>
+                            <input type="text" name="titulo" class="form-control" ng-model="slide.nombre" ng-minlength="3" ng-maxlength="15" required>
+                            <p ng-show="form.titulo.$invalid && !form.titulo.$pristine" class="help-block">El titulo es requerido</p>
+                            <p ng-show="form.titulo.$error.minlength" class="help-block">titulo es muy corto.</p>
+                            <p ng-show="form.titulo.$error.maxlength" class="help-block">titulo es muy largo.</p>
+                        </div>
+                        </fieldset>
+                        <!-- Descripcion -->
+                        <fieldset>
+                        <legend>Descripcion</legend>
+                        <div class="form-group" ng-class="{ 'has-error' : form.descripcion.$invalid && !form.descripcion.$pristine }">
+                            <label>Descripcion</label>
+                            <input type="text" name="descripcion" class="form-control" ng-model="slide.descripcion" ng-minlength="3" ng-maxlength="100" required>
+                            <p ng-show="form.descripcion.$invalid && !form.descripcion.$pristine" class="help-block">La descripcion es requerido</p>
+                            <p ng-show="form.descripcion.$error.minlength" class="help-block">Descripcion es muy corto.</p>
+                            <p ng-show="form.descripcion.$error.maxlength" class="help-block">Descripcion es muy largo.</p>
+                        </div>
+                        </fieldset>
+                         <!-- ImagenUrl -->
+                        <fieldset>
+                        <legend>ImagenUrl</legend>
+                        <div class="form-group" ng-class="{ 'has-error' : form.imagenUrl.$invalid && !form.imagenUrl.$pristine }">
+                            <label>ImagenUrl</label>
+                            <input type="text" name="imagenUrl" class="form-control" ng-model="slide.imageUrl" ng-minlength="3" ng-maxlength="100" required>
+                            <p ng-show="form.imagenUrl.$invalid && !form.imagenUrl.$pristine" class="help-block">La ImagenUrl es requerido</p>
+                            <p ng-show="form.imagenUrl.$error.minlength" class="help-block">ImagenUrl es muy corto.</p>
+                            <p ng-show="form.imagenUrl.$error.maxlength" class="help-block">ImagenUrl es muy largo.</p>
+                        </div>
+                         </fieldset>                    
+                        <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">Cargar</button>
+
+                    </form>
+
+                    </div>
+                </div>
+            </div>        
+</div>
