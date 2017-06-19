@@ -125,6 +125,11 @@
 			Datos.cargar(funcion);
 		}
 
+		$scope.cargarSlide = function(slide){
+			console.log(slide);																						
+			Datos.cargar(slide);
+		}
+
 		$scope.loguear = function(){
 			console.log($scope.filtro);
 		}						
