@@ -63,7 +63,7 @@ angular
 
     function alta(item){
       return $http({
-            url: 'http://localhost:3333/insertar',
+            url: 'http://localhost:3333/promociones/insertar',
             method: "POST",
             data: item,
             headers: {'Content-Type': 'application/json'}})
@@ -77,7 +77,7 @@ angular
 
     function modificar(item){
       return $http({
-            url: 'http://localhost:3333/modificar',
+            url: 'http://localhost:3333/promociones/modificar',
             method: "PUT",
             data: item,
             headers: {'Content-Type': 'application/json'}})
@@ -91,7 +91,7 @@ angular
 
     function borrar(item){
       return $http({
-            url: 'http://localhost:3333/eliminar',
+            url: 'http://localhost:3333/promociones/eliminar',
             method: "DELETE",
             data: item,
             headers: {'Content-Type': 'application/json'}})

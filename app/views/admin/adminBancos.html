@@ -40,7 +40,7 @@
                 <div class = "col-md-12">
                     <div class="panel panel-default margin-top">
                         <div class="panel-body">
-                            <button type="button" class="btn btn-primary">Nuevo</button>
+                            <button type="button" class="btn btn-primary" ng-click="alta()">Nuevo</button>
                             <table class="table table-condensed">
                                 <thead>
                                     <tr>
@@ -49,25 +49,35 @@
                                     </tr>
                                 </thead>
                                 <tbody> 
-                                    <tr>
-                                        <th>BBVA Frances</th>
+                                    <tr ng-repeat="banco in bancos track by $index">
+                                       <!-- BANCOS -->
+                                        <!-- <th>BBVA Frances</th> -->
+                                         <td>
+                                          {{banco.nombre}}
+                                         </td>
                                         <th>
-                                            <button class="btn btn-info btn-sm">Editar</button>
-                                            <button class="btn btn-danger btn-sm">Eliminar</button>
+                                            <button class="btn btn-info btn-sm" ng-click="modificar(bancos)">
+                                            Editar</button>
+                                            <button class="btn btn-danger btn-sm" ng-click="borrar(bancos)">
+                                            Eliminar</button>
                                         </th>
                                     </tr>
                                     <tr>
                                         <th>Santander Rio</th>
                                         <th>
-                                            <button class="btn btn-info btn-sm">Editar</button>
-                                            <button class="btn btn-danger btn-sm">Eliminar</button>
+                                            <button class="btn btn-info btn-sm" ng-click="modificar(bancos)">
+                                            Editar</button>
+                                            <button class="btn btn-danger btn-sm" ng-click="borrar(bancos)">
+                                            Eliminar</button>
                                         </th>
                                     </tr>
                                     <tr>
                                         <th>Patagonia</th>
                                         <th>
-                                            <button class="btn btn-info btn-sm">Editar</button>
-                                            <button class="btn btn-danger btn-sm">Eliminar</button>
+                                            <button class="btn btn-info btn-sm" ng-click="modificar(bancos)">
+                                            Editar</button>
+                                            <button class="btn btn-danger btn-sm" ng-click="borrar(bancos)">
+                                            Eliminar</button>
                                         </th>
                                     </tr>
                                 </tbody>                    

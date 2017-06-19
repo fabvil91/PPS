@@ -137,15 +137,15 @@
       $stateProvider
         .state('adminBancos',
         {
-        url:'/adminBancos',              
-        //controller: '',
+        url:'/adminBancos', 
+        controller: 'adminBancosCtrl',             
         templateUrl:'views/admin/adminBancos.html'
         })
       $stateProvider
         .state('adminCines',
         {
         url:'/adminCines',              
-        //controller: '',
+        controller: 'adminCinesCtrl',
         templateUrl:'views/admin/adminCines.html'
         })  
       $stateProvider
@@ -165,22 +165,22 @@
       $stateProvider
         .state('adminPersonal',
         {
-        url:'/adminPersonal',              
-        //controller: '',
+        url:'/adminPersonal',
+        controller: 'adminPersonalCtrl',              
         templateUrl:'views/admin/adminPersonal.html'
         })  
       $stateProvider
         .state('adminPrecios',
         {
         url:'/adminPrecios',              
-        //controller: '',
+        controller: 'adminPreciosCtrl',
         templateUrl:'views/admin/adminPrecios.html'
         }) 
       $stateProvider
         .state('adminPromociones',
         {
         url:'/adminPromociones',              
-        //controller: '',
+        controller: 'adminPromocionesCtrl',
         templateUrl:'views/admin/adminPromociones.html'
         }) 
       $stateProvider
@@ -215,7 +215,7 @@
         .state('adminTarjeta',
         {
         url:'/adminTarjeta',              
-        //controller: '',
+        controller: 'adminTarjetaCtrl',
         templateUrl:'views/admin/adminTarjeta.html'
         })  
       $stateProvider
