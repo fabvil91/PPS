@@ -300,28 +300,28 @@
         console.log("Otherwise Executed");
 
         try { 
-            var $rootScope = $injector.get("$rootScope");
-            var $state = $injector.get("$state");
+          var $rootScope = $injector.get("$rootScope");
+          var $state = $injector.get("$state");
+          console.log($rootScope);
 
-            if($rootScope.globals.currentUser.tipoUsuario == 'Usuario'){
+          if($rootScope.globals.currentUser && $rootScope.globals.currentUser.tipoUsuario == 'Usuario'){
             $state.go('main');            
-          }   
-          //Agregar los demas tipos de usuario 
-          if($rootScope.globals.currentUser.tipoUsuario == 'Admin'){
+          } else             
+          if($rootScope.globals.currentUser && $rootScope.globals.currentUser.tipoUsuario == 'Admin'){
             $location.path('adminMain');             
-          }
-
-          if($rootScope.globals.currentUser.tipoUsuario == 'Empleado'){
+          } else
+          if($rootScope.globals.currentUser && $rootScope.globals.currentUser.tipoUsuario == 'Empleado'){
             $location.path('empleadoMain');            
-          } 
-
-          if($rootScope.globals.currentUser.tipoUsuario == 'Cajero'){
+          } else
+          if($rootScope.globals.currentUser && $rootScope.globals.currentUser.tipoUsuario == 'Cajero'){
             $state.go('cajeroMain');            
-          }  
-
+          } else          
+          {
+            $state.go('main');            
+          } 
          
         } catch (e) {
-          console.log("Error otherwise");
+          console.log(e);
         }
 
     });           

@@ -19,21 +19,20 @@
 		}
 
 		$scope.main = function(){
-			if($rootScope.globals.currentUser.tipoUsuario == 'Usuario'){
+			if($rootScope.globals.currentUser && $rootScope.globals.currentUser.tipoUsuario == 'Usuario'){
 			   $location.path('/main'); 						
- 			}   
- 					//Agregar los demas tipos de usuario 
- 					/*if($rootScope.globals.currentUser.tipoUsuario == 'Admin'){
-						$location.path('/mainAdmin'); 						
- 					}
-
- 					if($rootScope.globals.currentUser.tipoUsuario == 'Empleado'){
-						$location.path('/mainEmpleado'); 						
- 					} */
-
- 			if($rootScope.globals.currentUser.tipoUsuario == 'Cajero'){
+ 			}else    					
+ 			if($rootScope.globals.currentUser && $rootScope.globals.currentUser.tipoUsuario == 'Admin'){
+				$location.path('/adminMain'); 						
+ 			}else
+ 			if($rootScope.globals.currentUser && $rootScope.globals.currentUser.tipoUsuario == 'Empleado'){
+				$location.path('/empleadoMain'); 						
+ 			}else 
+ 			if($rootScope.globals.currentUser && $rootScope.globals.currentUser.tipoUsuario == 'Cajero'){
 				$location.path('/cajeroMain'); 						
- 			}    
+ 			}else{  			
+           		$location.path('/main');          
+            }    
 		}
 		  
 	}]);
