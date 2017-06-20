@@ -14,7 +14,8 @@
                         username: null,
                         email: null,
                         password: null,
-                        tipoUsuario: datos[0]
+                        tipoUsuario: datos[0],
+                        datosPersonales: {}
                      };
              $scope.mensaje = null;
                
