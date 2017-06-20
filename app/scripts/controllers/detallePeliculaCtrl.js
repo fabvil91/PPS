@@ -149,8 +149,7 @@
         }
 
         $scope.cargar = function(funcion){
-        	console.log(funcion);
-        	console.log(Salas.crear(2,4));        	
+        	console.log(funcion);        	      	
 			Datos.cargar(funcion);
         }
     }])

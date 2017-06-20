@@ -38,8 +38,8 @@
                             <label>Titulo</label>
                             <input type="text" name="titulo" class="form-control" ng-model="slide.nombre" ng-minlength="3" ng-maxlength="15" required>
                             <p ng-show="form.titulo.$invalid && !form.titulo.$pristine" class="help-block">El titulo es requerido</p>
-                            <p ng-show="form.titulo.$error.minlength" class="help-block">titulo es muy corto.</p>
-                            <p ng-show="form.titulo.$error.maxlength" class="help-block">titulo es muy largo.</p>
+                            <p ng-show="form.titulo.$error.minlength" class="help-block">Titulo es muy corto.</p>
+                            <p ng-show="form.titulo.$error.maxlength" class="help-block">Titulo es muy largo.</p>
                         </div>
                         </fieldset>
                         <!-- Descripcion -->
@@ -48,7 +48,7 @@
                         <div class="form-group" ng-class="{ 'has-error' : form.descripcion.$invalid && !form.descripcion.$pristine }">
                             <label>Descripcion</label>
                             <input type="text" name="descripcion" class="form-control" ng-model="slide.descripcion" ng-minlength="3" ng-maxlength="100" required>
-                            <p ng-show="form.descripcion.$invalid && !form.descripcion.$pristine" class="help-block">La descripcion es requerido</p>
+                            <p ng-show="form.descripcion.$invalid && !form.descripcion.$pristine" class="help-block">La descripcion es requerida</p>
                             <p ng-show="form.descripcion.$error.minlength" class="help-block">Descripcion es muy corto.</p>
                             <p ng-show="form.descripcion.$error.maxlength" class="help-block">Descripcion es muy largo.</p>
                         </div>
@@ -65,7 +65,7 @@
                         </div>
                          </fieldset>                    
                         <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">Cargar</button>
-
+                        <button class="btn btn-primary" ui-sref="adminSlide">Cancelar</button>
                     </form>
 
                     </div>

@@ -5,7 +5,7 @@
 								       
      Datos.limpiar();
 
-	   Slides.listado()
+	 Slides.listado()
      .then(function(datos){
      	console.log(datos);
         $scope.slides = datos;
