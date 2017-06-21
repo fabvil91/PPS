@@ -124,7 +124,7 @@ router.put('/usuarios/borrarTarjeta',function(req, res, next){
     .update({_id: id}, {username: req.body.username,
                  password: req.body.password,
                  email: req.body.email,
-                 tipo: req.body.tipoUsuario,
+                 tipo: req.body.tipo,
                  datosPersonales:{
                      nombre:req.body.datosPersonales.nombre,
                      apellido:req.body.datosPersonales.apellido,
