@@ -14,35 +14,23 @@
                 $scope.bancos = datos;
                     Usuarios.usuarioPorNombreUsuario($rootScope.globals.currentUser.username)
                     .then(function(datos){
-                    console.log(datos);
                     $scope.usuario=datos[0]; 
+                    console.log($scope.usuario);
+                    
+                    if($scope.usuario.datosTarjeta!=null){
+                        var banco = $scope.bancos.filter(function(element){
+                            return (element._id === $scope.usuario.datosTarjeta.banco._id);
+                        });
 
-                                    $scope.mes = [
-                                    {nombre:"Enero", id:0},
-                                    {nombre:"Febrero"},
-                                    {nombre:"Marzo"},
-                                    {nombre:"Abril"},
-                                    {nombre:"Marzo"},
-                                    {nombre:"Abril"},
-                                    {nombre:"Mayo"},
-                                    {nombre:"Junio"},
-                                    {nombre:"Julio"},
-                                    {nombre:"Agosto"},
-                                    {nombre:"Septiembre"},
-                                    {nombre:"Octubre"},
-                                    {nombre:"Noviembre"},
-                                    {nombre:"Diciembre"}
-                                    ];
-                                $scope.year = [
-                                    {nombre:"2017", id:0},
-                                    {nombre:"2018"},
-                                    {nombre:"2019"},
-                                    {nombre:"2020"},
-                                    {nombre:"2021"},
-                                    {nombre:"2022"},
-                                    {nombre:"2023"},
-                                    {nombre:"2024"}
-                                ];
+                        $scope.usuario.datosTarjeta.banco.nombre = banco[0].nombre;
+
+                        var tarjeta = $scope.tarjetas.filter(function(element){
+                            return (element._id === $scope.usuario.datosTarjeta.tarjeta._id);
+                        });
+
+                        $scope.usuario.datosTarjeta.tarjeta.nombre = tarjeta[0].nombre;
+                    }
+                                  
 
 
                                 $scope.readOnlyPersonales = true;
@@ -93,35 +81,24 @@
                                             if(seccion=='usuario'){
                                                 $scope.usuario.username = datosViejos[0].username;
                                                 $scope.usuario.password = datosViejos[0].password;
-
+                                                $scope.usuario.tipoUsuario=datosViejos[0].tipoUsuario;
                                                 $scope.readOnlyUsuario=true;
                                             }
-                                            /*
-                                            if(seccion=='tarjeta'){
-                                                $scope.usuario.datosTarjeta.banco = datosViejos[0].datosTarjeta.banco;
-                                                $scope.usuario.datosTarjeta.tarjeta=datosViejos[0].datosTarjeta.tarjeta;
-                                                $scope.usuario.datosTarjeta.numeroTarjeta=datosViejos[0].datosTarjeta.numeroTarjeta;
-                                                $scope.usuario.datosTarjeta.dni=datosViejos[0].datosTarjeta.dni;
-                                                $scope.usuario.datosTarjeta.titular=datosViejos[0].datosTarjeta.titular;
-                                                $scope.usuario.datosTarjeta.codigoSeguridad=datosViejos[0].datosTarjeta.codigoSeguridad;
-                                                $scope.usuario.datosTarjeta.vencimiento=datosViejos[0].datosTarjeta.vencimiento;
-                                                $scope.readOnlyTarjeta=true;
-                                            }*/
                                     })
                                     .catch(function(e){
                                         console.log(e);
                                     })
-                                }
+                                } 
                                 
 
                                 $scope.borrarTarjeta = function(){
                                     Usuarios.borrarTarjeta($scope.usuario);
+                                    delete $scope.usuario.datosTarjeta;
 
                                 }
 
                                 $scope.cargar = function(datos){
-                                    datos=$scope.usuario.datosTarjeta;
-                                    
+                                                                        
                                     Datos.cargar(datos);
                                 }	
 

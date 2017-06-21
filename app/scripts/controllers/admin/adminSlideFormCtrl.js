@@ -7,7 +7,7 @@
        Peliculas.listado()
 	    .then(function(datos){
 	     console.log(datos);
-	     $scope.peliculas = datos;
+	     $scope.peliculas = datos; 
 
 	    if(Datos.listado() == null){
 	     console.log('alta ' + Datos.listado());

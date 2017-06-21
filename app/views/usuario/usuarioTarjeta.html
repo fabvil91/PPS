@@ -27,7 +27,7 @@
                                         <div class="form-group" ng-class="{ 'has-error': form.banco.$dirty && form.banco.$error.required }"> 
                                             <label class="control-label col-sm-2" for="banco">Seleccione Banco <span class="require">*</span></label>
                                             <div class="col-sm-10">
-                                                <select class="form-control input-sm" ng-options="item._id as item.nombre for item in bancos" ng-model="usuario.datosTarjeta.banco._id" required>
+                                                <select class="form-control input-sm" ng-options="x._id as x.nombre for x in bancos" ng-model="usuario.datosTarjeta.banco._id" required>
                                                 </select>
                                                 <span ng-show="form.banco.$dirty && form.banco.$error.required" class="help-block">Banco es requerido</span>
                                             </div>
@@ -37,7 +37,7 @@
                                         <div class="form-group" ng-class="{ 'has-error': form.titular.$dirty && form.titular.$error.required }"> 
                                             <label class="control-label col-sm-2" for="tarjeta">Seleccione Tarjeta <span class="require">*</span></label>
                                             <div class="col-sm-10">
-                                                <select class="form-control input-sm" id="tarjeta" ng-options="item._id as item.nombre for item in tarjetas" ng-model="usuario.datosTarjeta.tarjeta._id" required>
+                                                <select class="form-control input-sm" id="tarjeta" ng-options="x._id as x.nombre for x in tarjetas" ng-model="usuario.datosTarjeta.tarjeta._id" required>
                                                 </select>
                                                 <span ng-show="form.tarjeta.$dirty && form.tarjeta.$error.required" class="help-block">Tarjeta es requerido</span>
                                             </div>
@@ -75,18 +75,20 @@
 
                                         </div>
 
-                                       <!-- <div class="form-group" ng-class="{ 'has-error': form.vencimiento.$dirty && form.vencimiento.$error.required }"> 
+                                       <div class="form-group" ng-class="{ 'has-error': form.vencimiento.$dirty && form.vencimiento.$error.required }"> 
                                             <label class="control-label col-sm-2" for="vencimiento">Vencimiento <span class="require">*</span></label>
                                             <div class="col-sm-10">
-                                                <select class="form-control input-sm" id="vencimiento" ng-options="item.nombre for item in mes" ng-model="selectedMes" required>
+                                                <select class="form-control input-sm" id="vencimientoMes" ng-model="usuario.datosTarjeta.vencimiento.mes" required>
+                                                    <option ng-repeat="x in mes">{{x}}</option>
                                                 <span ng-show="form.vencimiento.$dirty && form.vencimiento.$error.required" class="help-block">Mes y año es requerido</span>
                                                 </select> 
                                                 
-                                                <select class="form-control input-sm" id="vencimiento" ng-options="item.nombre for item in year" ng-model="selectedYear">
+                                                <select class="form-control input-sm" id="vencimientoYear" ng-model="usuario.datosTarjeta.vencimiento.year" required>
+                                                    <option ng-repeat="x in year">{{x}}</option>
                                                 </select>  
                                             </div>
                                         </div>
-                                        -->
+                                        
                                         
                                             <div class="form-group" ng-class="{ 'has-error': form.codigoSeguridad.$dirty && form.codigoSeguridad.$error.required }" > 
                                             <label class="control-label col-sm-2" for="codigoSeguridad">Codigo de seguridad</label>
