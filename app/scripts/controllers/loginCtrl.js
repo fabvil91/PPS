@@ -26,7 +26,7 @@
                     	AuthenticationService.SetCredentials($scope.loginForm.username, $scope.loginForm.password, response.tipoUsuario); 
 					}
 					if(response.tipoUsuario=='Usuario'){
-                    	AuthenticationService.SetCredentials($scope.loginForm.username, $scope.loginForm.password, response.tipoUsuario, null ,response.datos); 
+                    	AuthenticationService.SetCredentials($scope.loginForm.username, $scope.loginForm.password, response.tipoUsuario); 
 					}
 
 					
