@@ -285,7 +285,7 @@
         .state('usuarioHistorial',
         {
         url:'/usuarioHistorial',              
-        //controller: 'cajeroFinalizarCtrl',
+        controller: 'usuarioHistorialCtrl',
         templateUrl:'views/usuario/usuarioHistorial.html'
         })
       $stateProvider

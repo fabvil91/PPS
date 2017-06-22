@@ -23,6 +23,17 @@ router.get('/operaciones/codigo/:codigo', (req, res, next) => {
     });
 });
 
+router.get('/operaciones/codigoUser/:codigo', (req, res, next) => {
+    console.log(req.params.codigo);
+    req.db.collection('operaciones')
+    .find({'usuario._id':req.params.codigo})
+    .toArray((err, data) => {
+      if (err)
+          console.log(err);  
+        res.json(data);
+    });
+});
+
 router.get('/articulos/precio/:precio', (req, res, next) => {
      console.log(req.params.precio);
     req.db.collection('articulos')
