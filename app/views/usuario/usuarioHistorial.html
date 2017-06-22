@@ -12,7 +12,7 @@
             </nav>
         </div>
     </div>
-    <!--FILTROS-->
+    <!--FILTROS--> 
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <ul class="nav navbar-nav">
@@ -27,7 +27,8 @@
     <div class="row">
         <div class="col-md-12">
             <!--NG-REPEAT por cada operacion No Retirada -->
-            <div class="panel panel-danger">
+            
+            <div class="panel panel-danger" ng-repeat="x in noRetiradas">
                 <div class="panel-heading">{{fecha}}No Retirada</div>
                 <div class="panel-body">
                     <div class="row">
@@ -37,12 +38,12 @@
                             <p>Mientras se encuentra dentro de la Lista Negra no se le permitira realizar reservas de entradas.</p>
                         </div>
                         <div class="col-md-6">
-                            <p>{{nombrePelicula}}, {{idioma}}</p>
-                            <p>{{Fecha}}, {{hora}}</p>
-                            <p>{{complejo}}</p>
-                            <p>Cantidad de Asientos: {{cantidad}}</p> 
-                            <p>Precio: {{precio}}</p>
-                            <p>Monto Debido: {{deuda}}</p>
+                            <p>{{x.funcion.pelicula.nombre}}, {{x.funcion.idioma.nombre}}</p>
+                            <p>{{x.funcion.diaFormateado}}, {{hora}}</p> <!--como hacer la hora?-->
+                            <p>{{x.funcion.complejo.nombre}}</p>
+                            <p>Cantidad de Asientos: {{x.funcion.cantidadAsientos}}</p> 
+                            <p>Precio: {{calcularPrecio(x.funcion.entradas)}}</p> 
+                            <p>Monto Debido: {{calcularDeuda(x.funcion.entradas)}}</p> <!--same-->
                             <div class="form-group pull-right">
                                 <input type="button" class="btn btn-danger" value="Realizar Pago" ui-sref="usuarioReservaVencida">  
                             </div>
@@ -59,7 +60,7 @@
                 <h2>{{fecha}}</h2>
             </div>
             <!--NG-REPEAT por cada operacion Reservada-->
-            <div class="panel panel-primary">
+            <div class="panel panel-primary" ng-repeat="x in reservas">
                 <div class="panel-heading">{{fecha}}Reserva</div>
                 <div class="panel-body">
                     <div class="row">
@@ -69,11 +70,11 @@
                             <p>Si no se retiran dentro del tiempo permitido se le ingresara a Lista Negra.</p>
                         </div>
                         <div class="col-md-6">
-                            <p>{{nombrePelicula}}, {{idioma}}</p>
-                            <p>{{Fecha}}, {{hora}}</p>
-                            <p>{{complejo}}</p>
-                            <p>Cantidad de Asientos: {{cantidad}}</p> 
-                            <p>Precio: {{precio}}</p>
+                            <p>{{x.funcion.pelicula.nombre}}, {{x.funcion.idioma.nombre}}</p>
+                            <p>{{x.funcion.diaFormateado}}, {{hora}}</p>
+                            <p>{{x.funcion.complejo.nombre}}</p>
+                            <p>Cantidad de Asientos: {{x.funcion.cantidadAsientos}}</p> 
+                            <p>Precio: {{calcularPrecio(x.funcion.entradas)}}</p>
                             <div class="form-group pull-right">
                                 <input type="button" class="btn btn-primary" value="Comprar" ui-sref="#">  
                                 <input type="button" class="btn btn-primary" value="Cancelar" ui-sref="#">  
@@ -83,7 +84,7 @@
                 </div>
             </div>
             <!--NG-REPEAT por cada operacion Compra-->
-            <div class="panel panel-success">
+            <div class="panel panel-success" ng-repeat="x in compras">
                 <div class="panel-heading">{{fecha}}Compra</div>
                 <div class="panel-body">
                     <div class="row">
@@ -91,11 +92,11 @@
                             <p>Tiene tiempo hasta {{tiempolimitecancelacion}} para cancelar esta compra sin cargo.</p>
                         </div>
                         <div class="col-md-6">
-                            <p>{{nombrePelicula}}, {{idioma}}</p>
-                            <p>{{Fecha}}, {{hora}}</p>
-                            <p>{{complejo}}</p>
-                            <p>Cantidad de Asientos: {{cantidad}}</p> 
-                            <p>Precio: {{precio}}</p>
+                            <p>{{x.funcion.pelicula.nombre}}, {{x.funcion.idioma.nombre}}</p>
+                            <p>{{x.funcion.diaFormateado}}, {{hora}}</p>
+                            <p>{{x.funcion.complejo.nombre}}</p>
+                            <p>Cantidad de Asientos: {{x.funcion.cantidadAsientos}}</p> 
+                            <p>Precio: {{calcularPrecio(x.funcion.entradas)}}</p>
                             <div class="form-group pull-right">
                                 <input type="button" class="btn btn-success" value="Cancelar" ui-sref="#">  
                             </div>
@@ -104,16 +105,16 @@
                 </div>
             </div>
             <!--NG-REPEAT por cada operacion Retirada-->
-            <div class="panel panel-default">
+            <div class="panel panel-default" ng-repeat="x in retiradas">
                 <div class="panel-heading">{{fecha}}Retirada</div>
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <p>{{nombrePelicula}}, {{idioma}}</p>
-                            <p>{{Fecha}}, {{hora}}</p>
-                            <p>{{complejo}}</p>
-                            <p>Cantidad de Asientos: {{cantidad}}</p> 
-                            <p>Precio: {{precio}}</p>
+                            <p>{{x.funcion.pelicula.nombre}}, {{x.funcion.idioma.nombre}}</p>
+                            <p>{{x.funcion.diaFormateado}}, {{hora}}</p>
+                            <p>{{x.funcion.complejo.nombre}}</p>
+                            <p>Cantidad de Asientos: {{x.funcion.cantidadAsientos}}</p> 
+                            <p>Precio: {{calcularPrecio(x.funcion.entradas)}}</p>
                             <div class="form-group pull-right">
                                 <input type="button" class="btn btn-default" value="Borrar" ui-sref="#">  
                             </div>

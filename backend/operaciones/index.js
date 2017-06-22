@@ -9,7 +9,7 @@ router.get('/operaciones/getAll',function(req, res,next){
       		if (err)
         		console.log(err);     	
      	res.json(data);
-    	})
+    	}) 
 	});
 
 router.get('/operaciones/codigo/:codigo', (req, res, next) => {
