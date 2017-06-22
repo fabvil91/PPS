@@ -75,9 +75,11 @@
     <script type="text/javascript" src="scripts/controllers/cajero/cajeroFinalizarCtrl.js"></script>
     <script type="text/javascript" src="scripts/controllers/cajero/cajeroPagoCtrl.js"></script>
     <script type="text/javascript" src="scripts/controllers/cajero/cajeroSeleccionPeliculaCtrl.js"></script>
+    <script type="text/javascript" src="scripts/controllers/cajero/cajeroCuentaCtrl.js"></script>
 
     <script type="text/javascript" src="scripts/controllers/usuario/usuarioCuentaCtrl.js"></script>
     <script type="text/javascript" src="scripts/controllers/usuario/usuarioTarjetaCtrl.js"></script>
+    <script type="text/javascript" src="scripts/controllers/usuario/usuarioHistorialCtrl.js"></script>
 
     <script type="text/javascript" src="scripts/controllers/admin/adminSlideCtrl.js"></script>
     <script type="text/javascript" src="scripts/controllers/admin/adminSlideFormCtrl.js"></script>
@@ -105,7 +107,8 @@
             <div class="col-sm-2 btn-group-vertical">
                 <a href="#" ng-if="!nombreUser" ui-sref="login" class="btn btn-info" role="button">Ingresar</a>
                 <a href="#" ng-if="!nombreUser" ui-sref="registro" class="btn btn-info" role="button">Registrate</a>
-                <a href="#" ng-if="nombreUser" ui-sref="usuarioMain" class="btn btn-info" role="button">{{nombreUser}}</a>
+                <a href="#" ng-if="nombreUser && tipoUser == 'Usuario'" ui-sref='usuarioMain' class="btn btn-info" role="button">{{nombreUser}}</a>
+                <a href="#" ng-if="nombreUser && tipoUser == 'Cajero'" ui-sref='cajeroCuenta' class="btn btn-info" role="button">{{nombreUser}}</a>
                 <a href="#" ng-if="nombreUser" ng-click="logout()" class="btn btn-info" role="button">Log Out</a>
             </div>
         </div>

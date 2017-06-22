@@ -4,6 +4,7 @@ angular
 
     this.listado = listado;
     this.operacionPorCodigo = operacionPorCodigo;
+    this.operacionPorCodigoUser = operacionPorCodigoUser;
     this.articuloPrecioMayor = articuloPrecioMayor;
     this.articuloPorProveedor = articuloPorProveedor;
     this.articuloPorIndice = articuloPorIndice;
@@ -26,6 +27,16 @@ angular
 
      function operacionPorCodigo(texto) {
       return $http.get('http://localhost:3333/operaciones/codigo/'+texto)
+      .then(function(rta){
+        return rta.data;
+      })
+      .catch(function(e){
+        return e;
+      })
+    }
+
+     function operacionPorCodigoUser(texto) {
+      return $http.get('http://localhost:3333/operaciones/codigoUser/'+texto)
       .then(function(rta){
         return rta.data;
       })
