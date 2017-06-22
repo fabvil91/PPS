@@ -5,9 +5,10 @@
 
         Usuarios.usuarioPorNombreUsuario($rootScope.globals.currentUser.username)
         .then(function(datos){
+            $scope.passwordCheck = null;
+            $scope.mensaje = false;
             $scope.usuario=datos[0]; 
-            console.log($scope.usuario);
-
+           
             $scope.readOnlyUsuario = true;
    
             //PERMITE EDITAR
@@ -22,6 +23,8 @@
                console.log('guardar datos de ' + seccion + ' en db');
                                    
                if(seccion=='usuario'){
+                if($scope.passwordCheck == $scope.usuario.password){
+                   $scope.mensaje = false;
                    $scope.readOnlyUsuario=true;
 
                    Usuarios.modificar($scope.usuario)
@@ -33,11 +36,16 @@
                             console.log("error");                                            
                         }
                     });
+                }else{
+                    $scope.mensaje = true;
+                }
                }
             } 
 
             //RECARGA DATOS                                
             $scope.cancelar = function(seccion){
+               $scope.passwordCheck = null;
+               $scope.mensaje = false;
                Usuarios.usuarioPorNombreUsuario($rootScope.globals.currentUser.username)
                    .then(function(datosViejos){
                            if(seccion=='usuario'){
