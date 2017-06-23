@@ -23,6 +23,17 @@ router.get('/usuarios/username/:username', (req, res, next) => {
     });
 });
 
+router.get('/usuarios/email/:email', (req, res, next) => {
+    console.log(req.params.email);
+    req.db.collection('usuarios')
+    .find({email:req.params.email})
+    .toArray((err, data) => {
+        if (err)
+            console.log(err);  
+        res.json(data);
+    });
+});
+
 //hago uno separado para insertar datos de tarjeta??
 router.post('/usuarios/insertar',function(req, res, next){
 		console.log(req.body);

@@ -11,7 +11,8 @@
 
         (function () { 
             // reset login status
-            AuthenticationService.ClearCredentials();
+            //AuthenticationService.ClearCredentials();
+  			$rootScope.$emit('desloguear', true);
         })();
   
         $scope.login = function login() {        
@@ -28,10 +29,7 @@
 					if(response.tipoUsuario=='Usuario'){
                     	AuthenticationService.SetCredentials($scope.loginForm.username, $scope.loginForm.password, response.tipoUsuario, null ,response.datos); 
 					}
-
-					
-					
-					
+															
  					console.log($rootScope);
 
  					$rootScope.$emit('myOwnEvent', $scope.loginForm.username);

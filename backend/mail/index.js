@@ -40,6 +40,41 @@ router.post('/mail/enviar',function(req, res,next){
 
 	});
 
+router.post('/mail/enviarContrasenia',function(req, res,next){     
+        
+        // Create the transporter with the required configuration for Gmail        
+        var transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 465,
+            secure: true, // use SSL
+            auth: {
+                user: 'cinemarcomplejos@gmail.com',
+                pass: '2017pps2017'
+            }
+        });
+
+        // setup e-mail data
+        var mailOptions = {
+            from: '"Cinemar " <cinemarcomplejos@gmail.com>', // sender address (who sends)
+            to: req.body.email, // list of receivers (who receives)
+            subject: 'Recuperación de contraseña', // Subject line          
+            html:   '<u>Su contraseña</u>' + '<br>' +
+                    '<br>' +
+                    '<b>Nombre de usuario: </b>'+ req.body.username + '<br>' +
+                    '<b>Contraseña: </b>'+ req.body.password + '<br>' // html body
+        };
+
+        // send mail with defined transport object
+        transporter.sendMail(mailOptions, function(error, info){
+            if(error){
+                res.json(console.log(error));
+            }
+
+            res.json('Message sent: ' + info.response);
+        });
+
+    });
+
 router.get('/articulos/name/:name', (req, res, next) => {
     console.log(req.params.name);
     req.db.collection('articulos')
