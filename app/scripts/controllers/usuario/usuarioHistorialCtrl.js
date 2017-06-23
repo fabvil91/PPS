@@ -1,13 +1,16 @@
 (function(){
 	'use strict';
 	angular.module('cine')
-	.controller('usuarioHistorialCtrl', ['$rootScope','$scope','Usuarios','Operaciones','Datos',function($rootScope,$scope,Usuarios,Operaciones,Datos){	
-       
+	.controller('usuarioHistorialCtrl', ['$rootScope','$scope','Usuarios','Operaciones','Datos','$window',function($rootScope,$scope,Usuarios,Operaciones,Datos,$window){	
+       $scope.reloadPage = function(){$window.location.reload();}
+
         Usuarios.usuarioPorNombreUsuario($rootScope.globals.currentUser.username)
         .then(function(datos){ 
             $scope.usuario=datos[0]; 
             console.log("root user:");
             console.log($scope.usuario);
+
+            
 
 
              Usuarios.usuarioPorNombreUsuario($scope.usuario.username)
@@ -25,7 +28,7 @@
 
                 //Operaciones No retiradas (estado == Reservado && fechaActual > funcion.hora+30' )
                 $scope.noRetiradas = $scope.operaciones.filter(function(element){
-                  return (element.estado === "Reservado");
+                  return (element.estado === "ReservaVencida");
                 });
 
 
@@ -41,7 +44,7 @@
 
                 //Operaciones Retiradas (estado == Retirado)
                 $scope.retiradas = $scope.operaciones.filter(function(element){
-                  return (element.estado === "Retirado");
+                  return (element.estado === "Retirado" || element.estado==="Cancelado");
                 });
 
                 //Hay que calcular promociones tambien?
@@ -55,8 +58,26 @@
 
                 }
 
+                $scope.cancelar = function(operacion){
+                  operacion.estado="Cancelado";
+                  Operaciones.modificarCompra(operacion)
+                  $scope.reloadPage();
+                  
+                }
+
+                $scope.borrar = function(operacion){
+                  operacion.estado="Borrado";
+                  Operaciones.modificarCompra(operacion)
+                  $scope.reloadPage();
+                }
+
                 $scope.calcularDeuda = function(entradas){
                   return $scope.calcularPrecio(entradas)*porcentajeDeuda;               
+                }
+
+                $scope.formatearHora = function(funcion){        	
+                    var fecha = new Date(funcion.hora);
+                    return fecha.getHours() + ":" + (fecha.getMinutes() == "0"? "00" : fecha.getMinutes());
                 }
 
                   $scope.cargar = function(datos){                                                                        

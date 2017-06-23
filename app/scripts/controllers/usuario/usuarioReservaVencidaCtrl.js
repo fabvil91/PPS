@@ -49,8 +49,13 @@
                                         });
                                         $scope.operacion.tarjeta=tarjeta[0];
                                         
-                                    
+                                         
+
+                                       
                                     }
+                                    $scope.cargar = function(datos){                                                                        
+                                        Datos.cargar(datos);
+                                    }	
 
                                 })
                                 .catch(function(e){

@@ -174,6 +174,8 @@ router.put('/operaciones/modificarTarjeta',function(req, res, next){
         });  
   });
 
+  
+
 router.delete('/eliminar',function(req, res, next){
 		console.log(req.body);
 		var id = new require('mongodb').ObjectID(req.body._id);

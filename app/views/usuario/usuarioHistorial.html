@@ -39,7 +39,7 @@
                         </div>
                         <div class="col-md-6">
                             <p>{{x.funcion.pelicula.nombre}}, {{x.funcion.idioma.nombre}}</p>
-                            <p>{{x.funcion.diaFormateado}}, {{hora}}</p> <!--como hacer la hora?-->
+                            <p>{{x.funcion.diaFormateado}}, {{formatearHora(x.funcion)}}</p> <!--como hacer la hora?-->
                             <p>{{x.funcion.complejo.nombre}}</p>
                             <p>Cantidad de Asientos: {{x.funcion.cantidadAsientos}}</p> 
                             <p>Precio: {{calcularPrecio(x.funcion.entradas)}}</p> 
@@ -71,13 +71,13 @@
                         </div>
                         <div class="col-md-6">
                             <p>{{x.funcion.pelicula.nombre}}, {{x.funcion.idioma.nombre}}</p>
-                            <p>{{x.funcion.diaFormateado}}, {{hora}}</p>
+                            <p>{{x.funcion.diaFormateado}}, {{formatearHora(x.funcion)}}</p>
                             <p>{{x.funcion.complejo.nombre}}</p>
                             <p>Cantidad de Asientos: {{x.funcion.cantidadAsientos}}</p> 
                             <p>Precio: {{calcularPrecio(x.funcion.entradas)}}</p>
                             <div class="form-group pull-right">
-                                <input type="button" class="btn btn-primary" value="Comprar" ui-sref="#">  
-                                <input type="button" class="btn btn-primary" value="Cancelar" ui-sref="#">  
+                                <input type="button" class="btn btn-primary" value="Comprar" ui-sref="usuarioReservaVencida" ng-click="cargar(x)">  
+                                <input type="button" class="btn btn-primary" value="Cancelar" ng-click="cancelar(x)">  
                             </div>
                         </div>
                     </div> 
@@ -93,12 +93,12 @@
                         </div>
                         <div class="col-md-6">
                             <p>{{x.funcion.pelicula.nombre}}, {{x.funcion.idioma.nombre}}</p>
-                            <p>{{x.funcion.diaFormateado}}, {{hora}}</p>
+                            <p>{{x.funcion.diaFormateado}}, {{formatearHora(x.funcion)}}</p>
                             <p>{{x.funcion.complejo.nombre}}</p>
                             <p>Cantidad de Asientos: {{x.funcion.cantidadAsientos}}</p> 
                             <p>Precio: {{calcularPrecio(x.funcion.entradas)}}</p>
                             <div class="form-group pull-right">
-                                <input type="button" class="btn btn-success" value="Cancelar" ui-sref="#">  
+                                <input type="button" class="btn btn-primary" value="Cancelar" ng-click="cancelar(x)">   
                             </div>
                         </div>
                     </div> 
@@ -111,12 +111,12 @@
                     <div class="row">
                         <div class="col-md-12">
                             <p>{{x.funcion.pelicula.nombre}}, {{x.funcion.idioma.nombre}}</p>
-                            <p>{{x.funcion.diaFormateado}}, {{hora}}</p>
+                            <p>{{x.funcion.diaFormateado}}, {{formatearHora(x.funcion)}}</p>
                             <p>{{x.funcion.complejo.nombre}}</p>
                             <p>Cantidad de Asientos: {{x.funcion.cantidadAsientos}}</p> 
                             <p>Precio: {{calcularPrecio(x.funcion.entradas)}}</p>
                             <div class="form-group pull-right">
-                                <input type="button" class="btn btn-default" value="Borrar" ui-sref="#">  
+                                <input type="button" class="btn btn-default" value="Borrar" ng-click="borrar(x)">  
                             </div>
                         </div>
                     </div> 

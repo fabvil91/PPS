@@ -278,7 +278,7 @@
         .state('usuarioFinalizarPago',
         {
         url:'/usuarioFinalizarPago',              
-        //controller: 'cajeroFinalizarCtrl',
+        controller: 'usuarioFinalizarPagoCtrl',
         templateUrl:'views/usuario/usuarioFinalizarPago.html'
         })  
       $stateProvider
