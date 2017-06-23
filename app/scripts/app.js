@@ -299,7 +299,7 @@
         .state('usuarioReservaVencida',
         {
         url:'/usuarioReservaVencida',              
-        //controller: 'cajeroFinalizarCtrl',
+        controller: 'usuarioReservaVencidaCtrl',
         templateUrl:'views/usuario/usuarioReservaVencida.html'
         })   
         

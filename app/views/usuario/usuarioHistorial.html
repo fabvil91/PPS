@@ -45,7 +45,7 @@
                             <p>Precio: {{calcularPrecio(x.funcion.entradas)}}</p> 
                             <p>Monto Debido: {{calcularDeuda(x.funcion.entradas)}}</p> <!--same-->
                             <div class="form-group pull-right">
-                                <input type="button" class="btn btn-danger" value="Realizar Pago" ui-sref="usuarioReservaVencida">  
+                                <input type="button" class="btn btn-danger" value="Realizar Pago" ui-sref="usuarioReservaVencida" ng-click="cargar(x)">  
                             </div>
                         </div>
                     </div> 
