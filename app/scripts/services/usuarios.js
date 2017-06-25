@@ -4,6 +4,7 @@ angular
 
     this.listado = listado;
     this.usuarioPorNombreUsuario = usuarioPorNombreUsuario;
+    this.usuarioPorEmail = usuarioPorEmail;
    
     this.alta = alta;
     this.modificar = modificar;
@@ -25,6 +26,17 @@ angular
 
      function usuarioPorNombreUsuario(texto) {
       return $http.get('http://localhost:3333/usuarios/username/'+texto)
+      .then(function(rta){
+        console.log(rta);
+        return rta.data;
+      })
+      .catch(function(e){
+        return e;
+      })
+    }
+
+     function usuarioPorEmail(texto) {
+      return $http.get('http://localhost:3333/usuarios/email/'+texto)
       .then(function(rta){
         console.log(rta);
         return rta.data;

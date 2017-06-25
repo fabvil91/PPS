@@ -6,6 +6,7 @@ angular
     this.usuarioPorNombreUsuario = usuarioPorNombreUsuario;
    
     this.enviar = enviar;
+    this.enviarContrasenia = enviarContrasenia;
     this.modificar = modificar;
     this.modificarPersonales=modificarPersonales;
     this.modificarTarjeta=modificarTarjeta;
@@ -36,6 +37,20 @@ angular
     function enviar(item){
       return $http({
             url: 'http://localhost:3333/mail/enviar',
+            method: "POST",
+            data: item,
+            headers: {'Content-Type': 'application/json'}})
+      .then(function(rta){
+        return rta.data;
+      })
+      .catch(function(e){
+        return e;
+      })
+    }
+
+     function enviarContrasenia(item){
+      return $http({
+            url: 'http://localhost:3333/mail/enviarContrasenia',
             method: "POST",
             data: item,
             headers: {'Content-Type': 'application/json'}})

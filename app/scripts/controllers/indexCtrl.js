@@ -5,10 +5,22 @@
 		
 		$scope.nombreUser = null;
 		$scope.tipoUser = null;
+
 		$rootScope.$on('myOwnEvent', function(newData,data) {
     		console.log(data);
+    		
     		$scope.nombreUser = data;
     		$scope.tipoUser = $rootScope.globals.currentUser.tipoUsuario;
+		});
+
+		$rootScope.$on('desloguear', function(newData,data) {
+    		console.log(data);
+
+    		AuthenticationService.ClearCredentials();
+			console.log($rootScope);
+
+			$scope.nombreUser = null;
+			$scope.tipoUser = null;
 		});
 		
 		$scope.logout = function logout() {
@@ -37,24 +49,6 @@
            		$location.path('/main');          
             }    
 		}
-
-		$scope.cuenta = function(){
-			console.log($rootScope.globals.currentUser);
-			if($rootScope.globals.currentUser && $rootScope.globals.currentUser.tipoUsuario == 'Usuario'){
-			   $location.path('/usuarioMain'); 				 			
- 			}else    					
- 			if($rootScope.globals.currentUser && $rootScope.globals.currentUser.tipoUsuario == 'Admin'){
-			//	$location.path('/adminMain'); 						
- 			}else
- 			if($rootScope.globals.currentUser && $rootScope.globals.currentUser.tipoUsuario == 'Empleado'){
-			//	$location.path('/empleadoMain'); 						
- 			}else 
- 			if($rootScope.globals.currentUser && $rootScope.globals.currentUser.tipoUsuario == 'Cajero'){ 				
-				$location.path('/cajeroCuenta');										
- 			}else{  			
-           		$location.path('/main');          
-            }    
-		}
-		  
+				  
 	}]);
 }) ();
