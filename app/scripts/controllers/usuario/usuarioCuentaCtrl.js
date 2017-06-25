@@ -16,7 +16,13 @@
                     .then(function(datos){
                     $scope.usuario=datos[0]; 
                     console.log($scope.usuario);
-                    
+                        Usuarios.usuarioPorNombreUsuario($scope.usuario.username)
+                        .then(function(datos){ 
+                            $scope.usuario=datos[0]; 
+                            console.log("actual user:");
+                            console.log($scope.usuario);
+
+                              
                     if($scope.usuario.datosTarjeta!=null){
                         var banco = $scope.bancos.filter(function(element){
                             return (element._id === $scope.usuario.datosTarjeta.banco._id);
@@ -103,13 +109,21 @@
                                 }	
 
 
-                            })
+                        
                         })
+                        
+                  
+
+                    })
                 })
+            })
         .catch(function(e){
             console.log(e);
         })
         .catch(function(e){
+        console.log(e);
+    })
+    .catch(function(e){
         console.log(e);
     })
     .catch(function(e){

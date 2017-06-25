@@ -52,11 +52,8 @@
 						response = { success: true, tipoUsuario: user.tipo.nombre};
 					} 
 					if(user.tipo.nombre=='Usuario'){
-						if(user.datosTarjeta){
-						response = { success: true, tipoUsuario: user.tipo.nombre, datos:{datosPersonales:user.datosPersonales,datosTarjeta:user.datosTarjeta}};
-						}else{
-							response = { success: true, tipoUsuario: user.tipo.nombre, datos:{datosPersonales:user.datosPersonales}};
-						}
+						
+						response = { success: true, tipoUsuario: user.tipo.nombre};
 					
 					}
                      
@@ -92,48 +89,17 @@
             };
 		}
 		if(tipoUsuario=='Usuario'){
-			var authdata = Base64.encode(username + ':' + password + ":" + tipoUsuario + ":" + datos);
- 
-			if(datos.datosTarjeta!=null){
-				$rootScope.globals = {
+			var authdata = Base64.encode(username + ':' + password + ":" + tipoUsuario);
+			$rootScope.globals = {
                 currentUser: {
                     username: username,
 					password:password,
 					tipoUsuario: tipoUsuario,
-					datosPersonales:{
-						nombre:datos.datosPersonales.nombre,
-						apellido:datos.datosPersonales.apellido,
-						mail:datos.datosPersonales.mail,
-						telefono:datos.datosPersonales.telefono
-					},
-					datosTarjeta:{
-						banco:datos.datosTarjeta.banco,
-						tarjeta:datos.datosTarjeta.tarjeta,
-						titular:datos.datosTarjeta.titular,
-						dni:datos.datosTarjeta.dni,
-						codigoSeguridad:datos.datosTarjeta.codigoSeguridad,
-						vencimiento:datos.datosTarjeta.vencimiento,
-						numeroTarjeta:datos.datosTarjeta.numeroTarjeta
-					},
+					
                     authdata: authdata
                 }
             	};
-			}else{
-	            $rootScope.globals = {
-	                currentUser: {
-	                    username: username,
-						password:password,
-						tipoUsuario: tipoUsuario,
-						datosPersonales:{
-							nombre:datos.datosPersonales.nombre,
-							apellido:datos.datosPersonales.apellido,
-							mail:datos.datosPersonales.mail,
-							telefono:datos.datosPersonales.telefono
-						},
-	                    authdata: authdata
-	                }
-	            };
-			}
+			
 		}
             // set default auth header for http requests
             $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;

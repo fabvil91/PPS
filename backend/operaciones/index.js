@@ -9,7 +9,7 @@ router.get('/operaciones/getAll',function(req, res,next){
       		if (err)
         		console.log(err);     	
      	res.json(data);
-    	})
+    	}) 
 	});
 
 router.get('/operaciones/codigo/:codigo', (req, res, next) => {
@@ -173,6 +173,8 @@ router.put('/operaciones/modificarTarjeta',function(req, res, next){
             }
         });  
   });
+
+  
 
 router.delete('/eliminar',function(req, res, next){
 		console.log(req.body);
