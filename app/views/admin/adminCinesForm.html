@@ -1,0 +1,107 @@
+<div class="container">
+    <div class="row">
+        <!--MENU-->
+        <div class="col-md-3">
+            <div class="panel panel-default margin-top">
+                <div class="panel-body">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li role="presentation" ui-sref="adminPersonal"><a href="#">Gestionar Personal</a></li>
+                        <li role="presentation" ui-sref="adminCines" class="active"><a href="#">Gestionar Cines</a></li>
+                        <li role="presentation" ui-sref="adminPrecios"><a href="#">Gestionar Precios</a></li>
+                        <li role="presentation" ui-sref="adminPromociones"><a href="#">Gestionar Promociones</a></li> 
+                        <li role="presentation" ui-sref="adminSalas"><a href="#">Gestionar Salas</a></li> 
+                        <li role="presentation" ui-sref="adminSlide" ><a href="#">Gestionar Slides</a></li>
+                        <br>
+                        <br>
+                        <br> 
+                        <li role="presentation" ui-sref="adminConfiguracionGeneral"><a href="#">Configuracion General</a></li>        
+                    </ul>
+                </div>
+            </div>
+        </div>                                
+                <div class = "col-md-9">
+                    <div class="panel panel-default margin-top">
+                        <form name="form" ng-submit="cargar()" novalidate>
+
+                       
+                        
+                        <!-- Nombre -->
+                        <fieldset>
+                        <legend>Nombre</legend>
+                        <div class="form-group" ng-class="{ 'has-error' : form.nombre.$invalid && !form.nombre.$pristine }">
+                            <label>Nombre</label>
+                            <input type="text" name="nombre" class="form-control" ng-model="cines.nombre" ng-minlength="3" ng-maxlength="15" required>
+                            <p ng-show="form.nombre.$invalid && !form.nombre.$pristine" class="help-block">El nombre es requerido</p>
+                            <p ng-show="form.nombre.$error.minlength" class="help-block">Nombre es muy corto.</p>
+                            <p ng-show="form.nombre.$error.maxlength" class="help-block">Nombre es muy largo.</p>
+                        </div>
+                        </fieldset>
+                        <!-- Hora de Apertura -->
+                        <fieldset>
+                        <legend>Hora de Apertura</legend>
+                        <div class="form-group" ng-class="{ 'has-error' : form.horaApertura.$invalid && !form.horaApertura.$pristine }">
+                            <label>Hora de Apertura</label>
+                            <input type="text" name="horaApertura" class="form-control" ng-model="cines.horaApertura" ng-minlength="3" ng-maxlength="100" required>
+                            <p ng-show="form.horaApertura.$invalid && !form.horaApertura.$pristine" class="help-block">La horaApertura es requerida</p>
+                            <p ng-show="form.horaApertura.$error.minlength" class="help-block">Hora de Apertura es muy corto.</p>
+                            <p ng-show="form.horaApertura.$error.maxlength" class="help-block">Hora de Apertura es muy largo.</p>
+                        </div>
+                        </fieldset>
+
+                         <!-- Hora de Cierre -->
+                        <fieldset>
+                        <legend>Hora de Cierre</legend>
+                        <div class="form-group" ng-class="{ 'has-error' : form.horaCierre.$invalid && !form.horaCierre.$pristine }">
+                            <label>Hora de Cierre</label>
+                            <input type="text" name="horaCierre" class="form-control" ng-model="cines.horaCierre" ng-minlength="3" ng-maxlength="100" required>
+                            <p ng-show="form.horaCierre.$invalid && !form.horaCierre.$pristine" class="help-block">La hora de Cierre es requerida</p>
+                            <p ng-show="form.horaCierre.$error.minlength" class="help-block">Hora de Cierre es muy corto.</p>
+                            <p ng-show="form.horaCierre.$error.maxlength" class="help-block">Hora de Cierre es muy largo.</p>
+                        </div>
+                        </fieldset>
+
+                         <!-- Duracion Publicidad -->
+                        <fieldset>
+                        <legend>Duracion Publicidad</legend>
+                        <div class="form-group" ng-class="{ 'has-error' : form.duracionPublicidad.$invalid && !form.duracionPublicidad.$pristine }">
+                            <label>Duracion Publicidad</label>
+                            <input type="text" name="duracionPublicidad" class="form-control" ng-model="cines.duracionPublicidad" ng-minlength="3" ng-maxlength="100" required>
+                            <p ng-show="form.duracionPublicidad.$invalid && !form.duracionPublicidad.$pristine" class="help-block">La Duracion Publicidad es requerido</p>
+                            <p ng-show="form.duracionPublicidad.$error.minlength" class="help-block">Duracion Publicidad es muy corto.</p>
+                            <p ng-show="form.duracionPublicidad.$error.maxlength" class="help-block">Duracion Publicidad es muy largo.</p>
+                        </div>
+                         </fieldset>
+
+                          <!-- Duracion entre Funciones -->
+                        <fieldset>
+                        <legend>Duracion entre Funciones</legend>
+                        <div class="form-group" ng-class="{ 'has-error' : form.duracionFunciones.$invalid && !form.duracionFunciones.$pristine }">
+                            <label>Duracion entre Funciones</label>
+                            <input type="text" name="duracionFunciones" class="form-control" ng-model="cines.duracionFunciones" ng-minlength="3" ng-maxlength="100" required>
+                            <p ng-show="form.duracionFunciones.$invalid && !form.duracionFunciones.$pristine" class="help-block">La Duracion entre Funciones es requerido</p>
+                            <p ng-show="form.duracionFunciones.$error.minlength" class="help-block">Duracion entre Funciones es muy corto.</p>
+                            <p ng-show="form.duracionFunciones.$error.maxlength" class="help-block">Duracion entre Funciones es muy largo.</p>
+                        </div>
+                         </fieldset>
+
+                         <!-- Duracion Tolerancia Ultima Funcion -->
+                        <fieldset>
+                        <legend>Duracion Tolerancia Ultima Funcion</legend>
+                        <div class="form-group" ng-class="{ 'has-error' : form.duracionTolerancia.$invalid && !form.duracionTolerancia.$pristine }">
+                            <label>Duracion Tolerancia Ultima Funcion</label>
+                            <input type="text" name="duracionTolerancia" class="form-control" ng-model="cines.duracionTolerancia" ng-minlength="3" ng-maxlength="100" required>
+                            <p ng-show="form.duracionTolerancia.$invalid && !form.duracionTolerancia.$pristine" class="help-block">La Duracion Tolerancia Ultima Funcion es requerido</p>
+                            <p ng-show="form.duracionTolerancia.$error.minlength" class="help-block">Duracion Tolerancia Ultima Funcion es muy corto.</p>
+                            <p ng-show="form.duracionTolerancia.$error.maxlength" class="help-block">Duracion Tolerancia Ultima Funcion es muy largo.</p>
+                        </div>
+                         </fieldset>
+
+                                                   
+                        <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">Cargar</button>
+                        <button class="btn btn-primary" ui-sref="adminCines">Cancelar</button>
+                    </form>
+
+                    </div>
+                </div>
+            </div>        
+</div>
