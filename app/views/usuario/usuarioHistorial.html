@@ -13,114 +13,142 @@
         </div>
     </div>
     <!--FILTROS--> 
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <ul class="nav navbar-nav">
-                    <li><a href="#">No Retiradas</a></li>
-                    <li><a href="#">Reservas</a></li>
-                    <li><a href="#">Compras</a></li>
-                    <li><a href="#">Retiradas</a></li>
-            </ul>
-        </div>
-    </nav>
-    <!--NO RETIRADAS -->
     <div class="row">
         <div class="col-md-12">
-            <!--NG-REPEAT por cada operacion No Retirada -->
+            <!--  <ul class="nav navbar-nav">
+                        <li ng-click=filtro("NoRetiradas")><a>No Retiradas</a></li>
+                        <li ng-click=filtro("Reservas")><a>Reservas</a></li>
+                        <li ng-click=filtro("Compras")><a>Compras</a></li>
+                        <li ng-click=filtro("Retiradas")><a>Retiradas</a></li>
+                        <li ng-click=filtro("Todo")><a>Todo</a></li>
+                </ul>-->
+            <div class="btn-group btn-group-justified">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary" ng-click=filtro("NoRetiradas")>No Retiradas</button>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary" ng-click=filtro("Reservas")>Reservas</button>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary" ng-click=filtro("Compras")>Compras</button>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary" ng-click=filtro("Retiradas")>Retiradas</button>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary" ng-click=filtro("Todo")>Todo</button>
+                </div>
+            </div>
             
-            <div class="panel panel-danger" ng-repeat="x in noRetiradas">
-                <div class="panel-heading">{{fecha}}No Retirada</div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p>No se han retirado estas entradas dentro del tiempo permitido.</p>
-                            <p>Se ingresara a Lista Negra hasta que abone el monto indicado.</p>
-                            <p>Mientras se encuentra dentro de la Lista Negra no se le permitira realizar reservas de entradas.</p>
-                        </div>
-                        <div class="col-md-6">
-                            <p>{{x.funcion.pelicula.nombre}}, {{x.funcion.idioma.nombre}}</p>
-                            <p>{{x.funcion.diaFormateado}}, {{formatearHora(x.funcion)}}</p> <!--como hacer la hora?-->
-                            <p>{{x.funcion.complejo.nombre}}</p>
-                            <p>Cantidad de Asientos: {{x.funcion.cantidadAsientos}}</p> 
-                            <p>Precio: {{calcularPrecio(x.funcion.entradas)}}</p> 
-                            <p>Monto Debido: {{calcularDeuda(x.funcion.entradas)}}</p> <!--same-->
-                            <div class="form-group pull-right">
-                                <input type="button" class="btn btn-danger" value="Realizar Pago" ui-sref="usuarioReservaVencida" ng-click="cargar(x)">  
+        </div>
+    </div>
+    <!--NO RETIRADAS -->
+    <div ng-hide="ifNoRetirada">
+        <div class="row">
+            <div class="col-md-12">
+                <!--NG-REPEAT por cada operacion No Retirada -->
+                
+                <div class="panel panel-danger" ng-repeat="x in noRetiradas">
+                    <div class="panel-heading">{{fecha}}No Retirada</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>No se han retirado estas entradas dentro del tiempo permitido.</p>
+                                <p>Se ingresara a Lista Negra hasta que abone el monto indicado.</p>
+                                <p>Mientras se encuentra dentro de la Lista Negra no se le permitira realizar reservas de entradas.</p>
                             </div>
-                        </div>
-                    </div> 
+                            <div class="col-md-6">
+                                <p>{{x.funcion.pelicula.nombre}}, {{x.funcion.idioma.nombre}}</p>
+                                <p>{{x.funcion.diaFormateado}}, {{formatearHora(x.funcion)}}</p> <!--como hacer la hora?-->
+                                <p>{{x.funcion.complejo.nombre}}</p>
+                                <p>Cantidad de Asientos: {{x.funcion.cantidadAsientos}}</p> 
+                                <p>Precio: {{calcularPrecio(x.funcion.entradas)}}</p> 
+                                <p>Monto Debido: {{calcularDeuda(x.funcion.entradas)}}</p> <!--same-->
+                                <div class="form-group pull-right">
+                                    <input type="button" class="btn btn-danger" value="Realizar Pago" ui-sref="usuarioReservaVencida" ng-click="cargar(x)">  
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <!--POR FECHA-->
-    <div ng-repeat="c in fechas">
+    
+    <div ng-repeat="c in fechas" ng-hide="ifFechas">
         <div class="row">
             <div class="col-md-12">
                 <div>
                     <h2>{{c.formateado}}</h2>
                 </div>
                 <!--NG-REPEAT por cada operacion Reservada-->
-                <div class="panel panel-primary" ng-repeat="x in reservas">
-                    <div class="panel-heading">{{fecha}}Reserva</div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <p>Tiene tiempo hasta {{tiempolimiteretiro}} para abonar estas entradas online o por boleteria.</p>
-                                <p>Tiene tiempo hasta {{tiempolimitecancelacion}} para cancelar esta reserva.</p>
-                                <p>Si no se retiran dentro del tiempo permitido se le ingresara a Lista Negra.</p>
-                            </div>
-                            <div class="col-md-6">
-                                <p>{{x.funcion.pelicula.nombre}}, {{x.funcion.idioma.nombre}}</p>
-                                <p>{{x.funcion.diaFormateado}}, {{formatearHora(x.funcion)}}</p>
-                                <p>{{x.funcion.complejo.nombre}}</p>
-                                <p>Cantidad de Asientos: {{x.funcion.cantidadAsientos}}</p> 
-                                <p>Precio: {{calcularPrecio(x.funcion.entradas)}}</p>
-                                <div class="form-group pull-right">
-                                    <input type="button" class="btn btn-primary" value="Comprar" ui-sref="usuarioReservaVencida" ng-click="cargar(x)">  
-                                    <input type="button" class="btn btn-primary" value="Cancelar" ng-click="cancelar(x)">  
+                <div ng-hide="ifReserva==true">
+                    <div class="panel panel-primary" ng-repeat="x in reservas" >
+                        <div class="panel-heading">{{fecha}}Reserva</div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p>Tiene tiempo hasta {{tiempolimiteretiro}} para abonar estas entradas online o por boleteria.</p>
+                                    <p>Tiene tiempo hasta {{tiempolimitecancelacion}} para cancelar esta reserva.</p>
+                                    <p>Si no se retiran dentro del tiempo permitido se le ingresara a Lista Negra.</p>
                                 </div>
-                            </div>
-                        </div> 
+                                <div class="col-md-6">
+                                    <p>{{x.funcion.pelicula.nombre}}, {{x.funcion.idioma.nombre}}</p>
+                                    <p>{{x.funcion.diaFormateado}}, {{formatearHora(x.funcion)}}</p>
+                                    <p>{{x.funcion.complejo.nombre}}</p>
+                                    <p>Cantidad de Asientos: {{x.funcion.cantidadAsientos}}</p> 
+                                    <p>Precio: {{calcularPrecio(x.funcion.entradas)}}</p>
+                                    <div class="form-group pull-right">
+                                        <input type="button" class="btn btn-primary" value="Comprar" ui-sref="usuarioReservaVencida" ng-click="cargar(x)">  
+                                        <input type="button" class="btn btn-primary" value="Cancelar" ng-click="cancelar(x)">  
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
                     </div>
                 </div>
                 <!--NG-REPEAT por cada operacion Compra-->
-                <div class="panel panel-success" ng-repeat="x in compras">
-                    <div class="panel-heading">{{fecha}}Compra</div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <p>Tiene tiempo hasta {{tiempolimitecancelacion}} para cancelar esta compra sin cargo.</p>
-                            </div>
-                            <div class="col-md-6">
-                                <p>{{x.funcion.pelicula.nombre}}, {{x.funcion.idioma.nombre}}</p>
-                                <p>{{x.funcion.diaFormateado}}, {{formatearHora(x.funcion)}}</p>
-                                <p>{{x.funcion.complejo.nombre}}</p>
-                                <p>Cantidad de Asientos: {{x.funcion.cantidadAsientos}}</p> 
-                                <p>Precio: {{calcularPrecio(x.funcion.entradas)}}</p>
-                                <div class="form-group pull-right">
-                                    <input type="button" class="btn btn-primary" value="Cancelar" ng-click="cancelar(x)">   
+                <div ng-hide="ifCompra==true">
+                    <div class="panel panel-success" ng-repeat="x in compras">
+                        <div class="panel-heading">{{fecha}}Compra</div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p>Tiene tiempo hasta {{tiempolimitecancelacion}} para cancelar esta compra sin cargo.</p>
                                 </div>
-                            </div>
-                        </div> 
+                                <div class="col-md-6">
+                                    <p>{{x.funcion.pelicula.nombre}}, {{x.funcion.idioma.nombre}}</p>
+                                    <p>{{x.funcion.diaFormateado}}, {{formatearHora(x.funcion)}}</p>
+                                    <p>{{x.funcion.complejo.nombre}}</p>
+                                    <p>Cantidad de Asientos: {{x.funcion.cantidadAsientos}}</p> 
+                                    <p>Precio: {{calcularPrecio(x.funcion.entradas)}}</p>
+                                    <div class="form-group pull-right">
+                                        <input type="button" class="btn btn-primary" value="Cancelar" ng-click="cancelar(x)">   
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
                     </div>
                 </div>
                 <!--NG-REPEAT por cada operacion Retirada-->
-                <div class="panel panel-default" ng-repeat="x in retiradas">
-                    <div class="panel-heading">{{fecha}}Retirada</div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <p>{{x.funcion.pelicula.nombre}}, {{x.funcion.idioma.nombre}}</p>
-                                <p>{{x.funcion.diaFormateado}}, {{formatearHora(x.funcion)}}</p>
-                                <p>{{x.funcion.complejo.nombre}}</p>
-                                <p>Cantidad de Asientos: {{x.funcion.cantidadAsientos}}</p> 
-                                <p>Precio: {{calcularPrecio(x.funcion.entradas)}}</p>
-                                <div class="form-group pull-right">
-                                    <input type="button" class="btn btn-default" value="Borrar" ng-click="borrar(x)">  
+                <div  ng-hide="ifRetirada==true">
+                    <div class="panel panel-default" ng-repeat="x in retiradas">
+                        <div class="panel-heading">{{fecha}}Retirada</div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p>{{x.funcion.pelicula.nombre}}, {{x.funcion.idioma.nombre}}</p>
+                                    <p>{{x.funcion.diaFormateado}}, {{formatearHora(x.funcion)}}</p>
+                                    <p>{{x.funcion.complejo.nombre}}</p>
+                                    <p>Cantidad de Asientos: {{x.funcion.cantidadAsientos}}</p> 
+                                    <p>Precio: {{calcularPrecio(x.funcion.entradas)}}</p>
+                                    <div class="form-group pull-right">
+                                        <input type="button" class="btn btn-default" value="Borrar" ng-click="borrar(x)">  
+                                    </div>
                                 </div>
-                            </div>
-                        </div> 
+                            </div> 
+                        </div>
                     </div>
                 </div>
             </div>

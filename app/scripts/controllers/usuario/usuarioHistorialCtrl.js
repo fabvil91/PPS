@@ -10,7 +10,11 @@
             console.log("root user:");
             console.log($scope.usuario);
 
-            
+            $scope.ifRetirada=false;
+            $scope.ifNoRetirada=false;
+            $scope.ifReserva=false;
+            $scope.ifCompra=false;
+            $scope.ifFechas=false;
 
 
              Usuarios.usuarioPorNombreUsuario($scope.usuario.username)
@@ -76,6 +80,11 @@
                 }
 
                 $scope.cancelar = function(operacion){
+                  
+                  if(operacion.estado==="Pagado"){
+                    $scope.usuario.cuentaCorriente=$scope.usuario.cuentaCorriente+$scope.calcularPrecio(operacion.entradas);
+                    //update de usuario?
+                  }
                   operacion.estado="Cancelado";
                   Operaciones.modificarCompra(operacion)
                   $scope.reloadPage();
@@ -101,7 +110,45 @@
                     Datos.cargar(datos);
                 }
 
-                
+                $scope.filtro = function(tipo){
+                  if(tipo==="NoRetiradas"){                    
+                    $scope.ifRetirada=true;
+                    $scope.ifNoRetirada=false;
+                    $scope.ifReserva=true;
+                    $scope.ifCompra=true;
+                    $scope.ifFechas=true;
+                  }
+                  if(tipo==="Reservas"){                    
+                    $scope.ifRetirada=true;
+                    $scope.ifNoRetirada=true;
+                    $scope.ifReserva=false;
+                    $scope.ifCompra=true;
+                    $scope.ifFechas=false;
+                  }
+                  if(tipo==="Compras"){                    
+                    $scope.ifRetirada=true;
+                    $scope.ifNoRetirada=true;
+                    $scope.ifReserva=true;
+                    $scope.ifCompra=false;
+                    $scope.ifFechas=false;
+                  }
+                  if(tipo==="Retiradas"){                    
+                    $scope.ifRetirada=false;
+                    $scope.ifNoRetirada=true;
+                    $scope.ifReserva=true;
+                    $scope.ifCompra=true;
+                    $scope.ifFechas=false;
+                  }
+                  if(tipo==="Todo"){                    
+                    $scope.ifRetirada=false;
+                    $scope.ifNoRetirada=false;
+                    $scope.ifReserva=false;
+                    $scope.ifCompra=false;
+                    $scope.ifFechas=false;
+                  }
+                  console.log($scope.ifNoRetirada);
+                }
+
 
               })
         .catch(function(e){
