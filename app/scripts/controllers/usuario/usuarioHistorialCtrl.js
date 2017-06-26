@@ -24,13 +24,30 @@
                 $scope.operaciones=datos; 
                 console.log($scope.operaciones);
 
+                $scope.fechas = [];
+                $scope.operaciones.forEach(function(element){
+                  $scope.fechas.push({
+                    formateado:element.funcion.diaFormateado,
+                    dia:element.funcion.diaTime
+                  });
+                });
+                
+                $scope.fechas = $scope.fechas.filter((thing, index, self) => self.findIndex(t => t.formateado === thing.formateado && t.dia === thing.dia) === index); 
+                $scope.fechas =$scope.fechas.sort(function(a,b) {
+                    return a.dia - b.dia;
+                });
+                
+                console.log($scope.fechas);
+                
+                
+
                 var porcentajeDeuda = 0.6; //donde lo guarda desde configuracion de administrador?
 
                 //Operaciones No retiradas (estado == Reservado && fechaActual > funcion.hora+30' )
                 $scope.noRetiradas = $scope.operaciones.filter(function(element){
                   return (element.estado === "ReservaVencida");
                 });
-
+ 
 
                 //Operaciones Reservas (estado == Reservado && fechaActual <= funcion.hora+30' )
                 $scope.reservas = $scope.operaciones.filter(function(element){
@@ -80,11 +97,13 @@
                     return fecha.getHours() + ":" + (fecha.getMinutes() == "0"? "00" : fecha.getMinutes());
                 }
 
-                  $scope.cargar = function(datos){                                                                        
-                      Datos.cargar(datos);
-                  }	
+                $scope.cargar = function(datos){                                                                        
+                    Datos.cargar(datos);
+                }
 
-                  })
+                
+
+              })
         .catch(function(e){
             console.log(e);
         });

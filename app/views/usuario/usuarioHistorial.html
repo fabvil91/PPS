@@ -54,72 +54,74 @@
         </div>
     </div>
     <!--POR FECHA-->
+    <div ng-repeat="c in fechas">
         <div class="row">
-        <div class="col-md-12">
-            <div>
-                <h2>{{fecha}}</h2>
-            </div>
-            <!--NG-REPEAT por cada operacion Reservada-->
-            <div class="panel panel-primary" ng-repeat="x in reservas">
-                <div class="panel-heading">{{fecha}}Reserva</div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p>Tiene tiempo hasta {{tiempolimiteretiro}} para abonar estas entradas online o por boleteria.</p>
-                            <p>Tiene tiempo hasta {{tiempolimitecancelacion}} para cancelar esta reserva.</p>
-                            <p>Si no se retiran dentro del tiempo permitido se le ingresara a Lista Negra.</p>
-                        </div>
-                        <div class="col-md-6">
-                            <p>{{x.funcion.pelicula.nombre}}, {{x.funcion.idioma.nombre}}</p>
-                            <p>{{x.funcion.diaFormateado}}, {{formatearHora(x.funcion)}}</p>
-                            <p>{{x.funcion.complejo.nombre}}</p>
-                            <p>Cantidad de Asientos: {{x.funcion.cantidadAsientos}}</p> 
-                            <p>Precio: {{calcularPrecio(x.funcion.entradas)}}</p>
-                            <div class="form-group pull-right">
-                                <input type="button" class="btn btn-primary" value="Comprar" ui-sref="usuarioReservaVencida" ng-click="cargar(x)">  
-                                <input type="button" class="btn btn-primary" value="Cancelar" ng-click="cancelar(x)">  
-                            </div>
-                        </div>
-                    </div> 
+            <div class="col-md-12">
+                <div>
+                    <h2>{{c.formateado}}</h2>
                 </div>
-            </div>
-            <!--NG-REPEAT por cada operacion Compra-->
-            <div class="panel panel-success" ng-repeat="x in compras">
-                <div class="panel-heading">{{fecha}}Compra</div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p>Tiene tiempo hasta {{tiempolimitecancelacion}} para cancelar esta compra sin cargo.</p>
-                        </div>
-                        <div class="col-md-6">
-                            <p>{{x.funcion.pelicula.nombre}}, {{x.funcion.idioma.nombre}}</p>
-                            <p>{{x.funcion.diaFormateado}}, {{formatearHora(x.funcion)}}</p>
-                            <p>{{x.funcion.complejo.nombre}}</p>
-                            <p>Cantidad de Asientos: {{x.funcion.cantidadAsientos}}</p> 
-                            <p>Precio: {{calcularPrecio(x.funcion.entradas)}}</p>
-                            <div class="form-group pull-right">
-                                <input type="button" class="btn btn-primary" value="Cancelar" ng-click="cancelar(x)">   
+                <!--NG-REPEAT por cada operacion Reservada-->
+                <div class="panel panel-primary" ng-repeat="x in reservas">
+                    <div class="panel-heading">{{fecha}}Reserva</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>Tiene tiempo hasta {{tiempolimiteretiro}} para abonar estas entradas online o por boleteria.</p>
+                                <p>Tiene tiempo hasta {{tiempolimitecancelacion}} para cancelar esta reserva.</p>
+                                <p>Si no se retiran dentro del tiempo permitido se le ingresara a Lista Negra.</p>
                             </div>
-                        </div>
-                    </div> 
+                            <div class="col-md-6">
+                                <p>{{x.funcion.pelicula.nombre}}, {{x.funcion.idioma.nombre}}</p>
+                                <p>{{x.funcion.diaFormateado}}, {{formatearHora(x.funcion)}}</p>
+                                <p>{{x.funcion.complejo.nombre}}</p>
+                                <p>Cantidad de Asientos: {{x.funcion.cantidadAsientos}}</p> 
+                                <p>Precio: {{calcularPrecio(x.funcion.entradas)}}</p>
+                                <div class="form-group pull-right">
+                                    <input type="button" class="btn btn-primary" value="Comprar" ui-sref="usuarioReservaVencida" ng-click="cargar(x)">  
+                                    <input type="button" class="btn btn-primary" value="Cancelar" ng-click="cancelar(x)">  
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
                 </div>
-            </div>
-            <!--NG-REPEAT por cada operacion Retirada-->
-            <div class="panel panel-default" ng-repeat="x in retiradas">
-                <div class="panel-heading">{{fecha}}Retirada</div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p>{{x.funcion.pelicula.nombre}}, {{x.funcion.idioma.nombre}}</p>
-                            <p>{{x.funcion.diaFormateado}}, {{formatearHora(x.funcion)}}</p>
-                            <p>{{x.funcion.complejo.nombre}}</p>
-                            <p>Cantidad de Asientos: {{x.funcion.cantidadAsientos}}</p> 
-                            <p>Precio: {{calcularPrecio(x.funcion.entradas)}}</p>
-                            <div class="form-group pull-right">
-                                <input type="button" class="btn btn-default" value="Borrar" ng-click="borrar(x)">  
+                <!--NG-REPEAT por cada operacion Compra-->
+                <div class="panel panel-success" ng-repeat="x in compras">
+                    <div class="panel-heading">{{fecha}}Compra</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>Tiene tiempo hasta {{tiempolimitecancelacion}} para cancelar esta compra sin cargo.</p>
                             </div>
-                        </div>
-                    </div> 
+                            <div class="col-md-6">
+                                <p>{{x.funcion.pelicula.nombre}}, {{x.funcion.idioma.nombre}}</p>
+                                <p>{{x.funcion.diaFormateado}}, {{formatearHora(x.funcion)}}</p>
+                                <p>{{x.funcion.complejo.nombre}}</p>
+                                <p>Cantidad de Asientos: {{x.funcion.cantidadAsientos}}</p> 
+                                <p>Precio: {{calcularPrecio(x.funcion.entradas)}}</p>
+                                <div class="form-group pull-right">
+                                    <input type="button" class="btn btn-primary" value="Cancelar" ng-click="cancelar(x)">   
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+                <!--NG-REPEAT por cada operacion Retirada-->
+                <div class="panel panel-default" ng-repeat="x in retiradas">
+                    <div class="panel-heading">{{fecha}}Retirada</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>{{x.funcion.pelicula.nombre}}, {{x.funcion.idioma.nombre}}</p>
+                                <p>{{x.funcion.diaFormateado}}, {{formatearHora(x.funcion)}}</p>
+                                <p>{{x.funcion.complejo.nombre}}</p>
+                                <p>Cantidad de Asientos: {{x.funcion.cantidadAsientos}}</p> 
+                                <p>Precio: {{calcularPrecio(x.funcion.entradas)}}</p>
+                                <div class="form-group pull-right">
+                                    <input type="button" class="btn btn-default" value="Borrar" ng-click="borrar(x)">  
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
                 </div>
             </div>
         </div>
