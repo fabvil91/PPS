@@ -10,18 +10,11 @@
                     </ul>
                 </div>
             </nav>
-        </div>
+        </div> 
     </div>
     <!--FILTROS--> 
     <div class="row">
         <div class="col-md-12">
-            <!--  <ul class="nav navbar-nav">
-                        <li ng-click=filtro("NoRetiradas")><a>No Retiradas</a></li>
-                        <li ng-click=filtro("Reservas")><a>Reservas</a></li>
-                        <li ng-click=filtro("Compras")><a>Compras</a></li>
-                        <li ng-click=filtro("Retiradas")><a>Retiradas</a></li>
-                        <li ng-click=filtro("Todo")><a>Todo</a></li>
-                </ul>-->
             <div class="btn-group btn-group-justified">
                 <div class="btn-group">
                     <button type="button" class="btn btn-primary" ng-click=filtro("NoRetiradas")>No Retiradas</button>
@@ -84,7 +77,7 @@
                 </div>
                 <!--NG-REPEAT por cada operacion Reservada-->
                 <div ng-hide="ifReserva==true">
-                    <div class="panel panel-primary" ng-repeat="x in reservas" >
+                    <div class="panel panel-primary" ng-repeat="x in reservas | filter:  {funcion: { diaTime: c.dia}}" >
                         <div class="panel-heading">{{fecha}}Reserva</div>
                         <div class="panel-body">
                             <div class="row">
@@ -110,7 +103,7 @@
                 </div>
                 <!--NG-REPEAT por cada operacion Compra-->
                 <div ng-hide="ifCompra==true">
-                    <div class="panel panel-success" ng-repeat="x in compras">
+                    <div class="panel panel-success" ng-repeat="x in compras | filter:  {funcion: { diaTime: c.dia}}">
                         <div class="panel-heading">{{fecha}}Compra</div>
                         <div class="panel-body">
                             <div class="row">
@@ -133,7 +126,7 @@
                 </div>
                 <!--NG-REPEAT por cada operacion Retirada-->
                 <div  ng-hide="ifRetirada==true">
-                    <div class="panel panel-default" ng-repeat="x in retiradas">
+                    <div class="panel panel-default" ng-repeat="x in retiradas | filter:  {funcion: { diaTime: c.dia}}">
                         <div class="panel-heading">{{fecha}}Retirada</div>
                         <div class="panel-body">
                             <div class="row">

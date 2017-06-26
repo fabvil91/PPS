@@ -83,7 +83,7 @@
                   
                   if(operacion.estado==="Pagado"){
                     $scope.usuario.cuentaCorriente=$scope.usuario.cuentaCorriente+$scope.calcularPrecio(operacion.entradas);
-                    //update de usuario?
+                    //update de usuario? agregar campo a usuarioCuenta
                   }
                   operacion.estado="Cancelado";
                   Operaciones.modificarCompra(operacion)
@@ -96,7 +96,7 @@
                   Operaciones.modificarCompra(operacion)
                   $scope.reloadPage();
                 }
-
+                //agregar campo a operacion "montoDeuda" en service de lista negra, agregar montoDeuda a finalizarPago 
                 $scope.calcularDeuda = function(entradas){
                   return $scope.calcularPrecio(entradas)*porcentajeDeuda;               
                 }
@@ -131,7 +131,7 @@
                     $scope.ifReserva=true;
                     $scope.ifCompra=false;
                     $scope.ifFechas=false;
-                  }
+                  } 
                   if(tipo==="Retiradas"){                    
                     $scope.ifRetirada=false;
                     $scope.ifNoRetirada=true;
