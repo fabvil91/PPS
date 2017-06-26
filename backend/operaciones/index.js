@@ -34,27 +34,6 @@ router.get('/operaciones/codigoUser/:codigo', (req, res, next) => {
     });
 });
 
-router.get('/articulos/precio/:precio', (req, res, next) => {
-     console.log(req.params.precio);
-    req.db.collection('articulos')
-    .find({precio:{$gt:parseInt(req.params.precio)}})
-    .toArray((err, data) => {
-    	if (err)
-        	console.log(err); 
-        res.json(data);
-    });
-});
-
-router.get('/articulos/proveedor/:proveedor', (req, res, next) => {
-    console.log(req.params.proveedor);
-    req.db.collection('articulos')
-    .find({'proveedor.email':req.params.proveedor})
-    .toArray((err, data) => {
-    	if (err)
-        	console.log(err);  
-        res.json(data);
-    });
-});
 
 router.post('/operaciones/insertar',function(req, res, next){
 		console.log(req.body);
@@ -86,12 +65,12 @@ router.post('/operaciones/insertar',function(req, res, next){
         });  
 	});
 
-router.put('/funciones/modificar',function(req, res, next){
+router.put('/operaciones/modificar',function(req, res, next){
 		console.log(req.body);
 		var id = new require('mongodb').ObjectID(req.body._id);
 		console.log(id);
 
-        req.db.collection('funciones')        
+        req.db.collection('operaciones')        
         .update({_id: id}, {$set: {
         						   dia: new Date(req.body.dia),
                        hora: new Date(req.body.hora)
