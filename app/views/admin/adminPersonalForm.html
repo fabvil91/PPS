@@ -1,0 +1,83 @@
+<div class="container">
+    <div class="row">
+        <!--MENU-->
+        <div class="col-md-3">
+            <div class="panel panel-default margin-top">
+                <div class="panel-body">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li role="presentation" ui-sref="adminPersonal" class="active"><a href="#">Gestionar Personal</a></li>
+                        <li role="presentation" ui-sref="adminCines" ><a href="#">Gestionar Cines</a></li>
+                        <li role="presentation" ui-sref="adminPrecios"><a href="#">Gestionar Precios</a></li>
+                        <li role="presentation" ui-sref="adminPromociones"><a href="#">Gestionar Promociones</a></li> 
+                        <li role="presentation" ui-sref="adminSalas"><a href="#">Gestionar Salas</a></li> 
+                        <li role="presentation" ui-sref="adminSlide" ><a href="#">Gestionar Slides</a></li>
+                        <br>
+                        <br>
+                        <br> 
+                        <li role="presentation" ui-sref="adminConfiguracionGeneral"><a href="#">Configuracion General</a></li>        
+                    </ul>
+                </div>
+            </div>
+        </div>                                
+                <div class = "col-md-9">
+                    <div class="panel panel-default margin-top">
+                        <form name="form" ng-submit="cargar()" novalidate>
+
+                       
+                        
+                        <!-- Nombre -->
+                        <fieldset>
+                        <legend>Nombre</legend>
+                        <div class="form-group" ng-class="{ 'has-error' : form.nombre.$invalid && !form.nombre.$pristine }">
+                            <label>Nombre</label>
+                            <input type="text" name="nombre" class="form-control" ng-model="personal.nombre" ng-minlength="3" ng-maxlength="15" required>
+                            <p ng-show="form.nombre.$invalid && !form.nombre.$pristine" class="help-block">El nombre es requerido</p>
+                            <p ng-show="form.nombre.$error.minlength" class="help-block">Nombre es muy corto.</p>
+                            <p ng-show="form.nombre.$error.maxlength" class="help-block">Nombre es muy largo.</p>
+                        </div>
+                        </fieldset>
+                        <!-- Email -->
+                        <fieldset>
+                        <legend>Email</legend>
+                        <div class="form-group" ng-class="{ 'has-error' : form.email.$invalid && !form.email.$pristine }">
+                            <label>Email</label>
+                            <input type="text" name="email" class="form-control" ng-model="personal.email" ng-minlength="3" ng-maxlength="100" required>
+                            <p ng-show="form.email.$invalid && !form.email.$pristine" class="help-block">El Email es requerida</p>
+                            <p ng-show="form.email.$error.minlength" class="help-block">Email es muy corto.</p>
+                            <p ng-show="form.email.$error.maxlength" class="help-block">Email es muy largo.</p>
+                        </div>
+                        </fieldset>
+
+                         <!-- Password -->
+                        <fieldset>
+                        <legend>Password</legend>
+                        <div class="form-group" ng-class="{ 'has-error' : form.password.$invalid && !form.password.$pristine }">
+                            <label>Password</label>
+                            <input type="text" name="password" class="form-control" ng-model="personal.password" ng-minlength="3" ng-maxlength="100" required>
+                            <p ng-show="form.password.$invalid && !form.password.$pristine" class="help-block">El Password es requerida</p>
+                            <p ng-show="form.password.$error.minlength" class="help-block">Password es muy corto.</p>
+                            <p ng-show="form.password.$error.maxlength" class="help-block">Password es muy largo.</p>
+                        </div>
+                        </fieldset>
+
+                         <!-- Tipo de Usuario -->
+                        <fieldset>
+                        <legend>Tipo de Usuario</legend>
+                        <div class="form-group" ng-class="{ 'has-error' : form.tipoUsuario.$invalid && !form.tipoUsuario.$pristine }">
+                            <label>Tipo de Usuario</label>
+                            <input type="text" name="tipoUsuario" class="form-control" ng-model="personal.tipoUsuario" ng-minlength="3" ng-maxlength="100" required>
+                            <p ng-show="form.tipoUsuario.$invalid && !form.tipoUsuario.$pristine" class="help-block">El Tipo de Usuario es requerido</p>
+                            <p ng-show="form.tipoUsuario.$error.minlength" class="help-block">Tipo de Usuario es muy corto.</p>
+                            <p ng-show="form.tipoUsuario.$error.maxlength" class="help-block">Tipo de Usuario es muy largo.</p>
+                        </div>
+                         </fieldset>
+
+                        
+                        <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">Cargar</button>
+                        <button class="btn btn-primary" ui-sref="adminPersonal">Cancelar</button>
+                    </form>
+
+                    </div>
+                </div>
+            </div>        
+</div>

@@ -156,12 +156,26 @@
         templateUrl:'views/admin/adminBancos.html'
         })
       $stateProvider
+        .state('adminBancosForm',
+        {
+        url:'/adminBancosForm', 
+        controller: 'adminBancosFormCtrl',             
+        templateUrl:'views/admin/adminBancosForm.html'
+        })  
+      $stateProvider
         .state('adminCines',
         {
         url:'/adminCines',              
         controller: 'adminCinesCtrl',
         templateUrl:'views/admin/adminCines.html'
-        })  
+        })
+      $stateProvider
+        .state('adminCinesForm',
+        {
+        url:'/adminCinesForm',              
+        controller: 'adminCinesFormCtrl',
+        templateUrl:'views/admin/adminCinesForm.html'
+        })      
       $stateProvider
         .state('adminConfiguracionGeneral',
         {
@@ -182,21 +196,42 @@
         url:'/adminPersonal',
         controller: 'adminPersonalCtrl',              
         templateUrl:'views/admin/adminPersonal.html'
-        })  
+        })
+      $stateProvider
+        .state('adminPersonalForm',
+        {
+        url:'/adminPersonalForm',
+        controller: 'adminPersonalFormCtrl',              
+        templateUrl:'views/admin/adminPersonalForm.html'
+        })      
       $stateProvider
         .state('adminPrecios',
         {
         url:'/adminPrecios',              
         controller: 'adminPreciosCtrl',
         templateUrl:'views/admin/adminPrecios.html'
-        }) 
+        })
+      $stateProvider
+        .state('adminPreciosForm',
+        {
+        url:'/adminPreciosForm',              
+        controller: 'adminPreciosFormCtrl',
+        templateUrl:'views/admin/adminPreciosForm.html'
+        })    
       $stateProvider
         .state('adminPromociones',
         {
         url:'/adminPromociones',              
         controller: 'adminPromocionesCtrl',
         templateUrl:'views/admin/adminPromociones.html'
-        }) 
+        })
+       $stateProvider
+        .state('adminPromocionesForm',
+        {
+        url:'/adminPromocionesForm',              
+        controller: 'adminPromocionesFormCtrl',
+        templateUrl:'views/admin/adminPromocionesForm.html'
+        })   
       $stateProvider
         .state('adminSalaNueva',
         {
@@ -231,7 +266,14 @@
         url:'/adminTarjeta',              
         controller: 'adminTarjetaCtrl',
         templateUrl:'views/admin/adminTarjeta.html'
-        })  
+        })
+      $stateProvider
+        .state('adminTarjetaForm',
+        {
+        url:'/adminTarjetaForm',              
+        controller: 'adminTarjetaFormCtrl',
+        templateUrl:'views/admin/adminTarjetaForm.html'
+        })      
       $stateProvider
         .state('empleadoFunciones',
         {
