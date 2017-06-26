@@ -58,14 +58,100 @@ MongoClient.connect('mongodb://localhost:27017/pps', (err, db) =>
 		console.log('Servidor iniciado..');
 	})
 
-	cron.schedule('0 38 21 * * *', function(){
-  		console.log('running a task every minute 21.38');
-  		 db.collection('usuarios')
-    .find({username:'pepe'})
-    .toArray((err, data) => {
-    	if (err)
-        	console.log(err);  
-        console.log(data);
-    });
+	cron.schedule('0 2 0 * * *', function(){ 
+		/* Filtra arrays por sala */
+		function filtrar(funciones) {
+		    var a = [], l = funciones.length;
+		    for(var i=0; i<l; i++) {
+		      for(var j=i+1; j<l; j++)
+		            if (funciones[i].sala.nombre === funciones[j].sala.nombre) j = ++i;
+		      a.push(funciones[i]);
+		    }
+		    return a;
+		};
+
+
+		/* Verifica si dos dias son iguales */ 
+		Date.prototype.isSameDateAs = function(pDate) {
+		  return (
+		    this.getFullYear() === pDate.getFullYear() &&
+		    this.getMonth() === pDate.getMonth() &&
+		    this.getDate() === pDate.getDate()
+		  );
+		}
+
+  		/* Suma dias a una fecha */
+		Date.prototype.addDays = function(days) {
+		var dat = new Date(this.valueOf())
+		dat.setDate(dat.getDate() + days);
+		return dat;
+		}
+
+		/* Devuelve las fechas entre dos limites */
+		function getDates(startDate, stopDate) {
+		   	var dateArray = new Array();
+		   	var currentDate = startDate;
+		   	while (currentDate <= stopDate) {
+		        	dateArray.push(currentDate)
+		        	currentDate = currentDate.addDays(1);
+		   	}
+		   	return dateArray;
+		}
+
+  		//Buscamos las peliculas activas y en su ultima semana
+  		var peliculasAVencer = [];
+  		var peliculas = [];
+  		db.collection('peliculas')
+	    .find({estado:'Activa'})
+	    .toArray((err, data) => {
+	    	if (err){
+	        	console.log(err);  
+	    	}else{
+		        //console.log(data);
+		        peliculas = data;
+
+		    var limiteSup = null;
+		    var limiteInf = null;    
+			for (var i = 0; i < peliculas.length; i++) {
+				peliculas[i].fechaEstreno = new Date(peliculas[i].fechaEstreno);
+				limiteSup = peliculas[i].fechaEstreno.addDays(7 * peliculas[i].semanasActiva);				
+				limiteInf = limiteSup.addDays(-7);
+				var ultimaSemana = getDates(limiteInf,limiteSup.addDays(-1));
+				for (var j = 0; j < ultimaSemana.length; j++) {
+						if(ultimaSemana[j].isSameDateAs(new Date())){							
+							peliculasAVencer.push(peliculas[i]);
+							break;
+						}
+					}	
+			}			
+			console.log(peliculasAVencer);
+			console.log("-");
+			//Buscamos las funciones de esas peliculas y generacion notificacion
+			var funciones = [];
+	    	var notificaciones = [];
+	    	for (var i = 0; i < peliculasAVencer.length; i++) {
+	    		var pelicula = peliculasAVencer[i];
+
+	    		db.collection('funciones')
+				.find({'pelicula.nombre':pelicula.nombre})
+	    		.toArray((err, data) => {
+	      		if (err){
+	        		console.log(err);     	
+	      		}else{
+	      			console.log(data);
+	      			notificaciones.push({pelicula: pelicula,
+	      								 funciones: data});
+	      			console.log(notificaciones);	     			
+	     		}
+	    		})
+	    	}
+
+
+	    }
+    	});
+
+	   
+		
+    	
 	});
 });
