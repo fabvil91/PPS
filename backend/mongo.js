@@ -17,6 +17,7 @@ var tiposUsuario = require('./tiposUsuario');
 var operaciones = require('./operaciones');
 var mail = require('./mail');
 var cron = require('node-cron');
+var salas = require('./salas');
 
 var bodyParser = require('body-parser');
 var cors = require('cors');
@@ -53,6 +54,7 @@ MongoClient.connect('mongodb://localhost:27017/pps', (err, db) =>
 	app.use('/',tiposUsuario);
 	app.use('/',operaciones);
 	app.use('/',mail);
+	app.use('/',salas);
 
 	app.listen(3333, ()=> {
 		console.log('Servidor iniciado..');
