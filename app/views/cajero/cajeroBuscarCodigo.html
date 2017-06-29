@@ -68,7 +68,7 @@
                 <div class="pantalla center-block"> 
                   Pantalla
                 </div>
-                <ol class="filas" ng-repeat="filas in operacion.funcion.sala">
+                <ol class="filas" ng-repeat="filas in operacion.funcion.sala.asientos">
                   <li class="columna" ng-repeat="columna in filas">
                     <label class="asiento ocupado" ng-if="!columna.pasillo && columna.booked"> {{columna.id}} </label>
                     <label class="asiento disponible" ng-if="!columna.pasillo && !columna.booked && !columna.checked"> {{columna.id}} </label>

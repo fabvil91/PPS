@@ -104,11 +104,11 @@
 	       .then(function(datos){
 	        console.log(datos);
 
-	         for (var i = $scope.funcion.sala.length - 1; i >= 0; i--) {
-	         	 	for (var j = $scope.funcion.sala[i].length - 1; j >= 0; j--) {
-	         	 		if($scope.funcion.sala[i][j].checked == true){
-	         	 			$scope.funcion.sala[i][j].booked = true;
-	         	 			$scope.funcion.sala[i][j].checked = false;
+	         for (var i = $scope.funcion.sala.asientos.length - 1; i >= 0; i--) {
+	         	 	for (var j = $scope.funcion.sala.asientos[i].length - 1; j >= 0; j--) {
+	         	 		if($scope.funcion.sala.asientos[i][j].checked == true){
+	         	 			$scope.funcion.sala.asientos[i][j].booked = true;
+	         	 			$scope.funcion.sala.asientos[i][j].checked = false;
 	         	 		}
 	         	 	}
 	         	 }

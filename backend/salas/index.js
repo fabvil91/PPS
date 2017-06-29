@@ -14,7 +14,7 @@ router.get('/slides/getAll',function(req, res,next){
 
 router.get('/salas/id/:id', (req, res, next) => {
     console.log(req.params.id);
-    var idC = new require('mongodb').ObjectID(req.body.id);
+    var idC = new require('mongodb').ObjectID(req.params.id);
     req.db.collection('salas')
     .find({_id:idC})
     .toArray((err, data) => {
