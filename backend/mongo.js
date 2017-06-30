@@ -60,13 +60,14 @@ MongoClient.connect('mongodb://localhost:27017/pps', (err, db) =>
 		console.log('Servidor iniciado..');
 	})
 
-	cron.schedule('0 2 0 * * *', function(){ 
+	cron.schedule('0 44 23 * * *', function(){ 
 		/* Filtra arrays por sala */
 		function filtrar(funciones) {
 		    var a = [], l = funciones.length;
 		    for(var i=0; i<l; i++) {
 		      for(var j=i+1; j<l; j++)
-		            if (funciones[i].sala.nombre === funciones[j].sala.nombre) j = ++i;
+		            if (funciones[i].sala.nombre === funciones[j].sala.nombre &&
+		            	funciones[i].sala.complejo.nombre === funciones[j].sala.complejo.nombre) j = ++i;
 		      a.push(funciones[i]);
 		    }
 		    return a;
@@ -126,8 +127,7 @@ MongoClient.connect('mongodb://localhost:27017/pps', (err, db) =>
 						}
 					}	
 			}			
-			console.log(peliculasAVencer);
-			console.log("-");
+						
 			//Buscamos las funciones de esas peliculas y generacion notificacion
 			var funciones = [];
 	    	var notificaciones = [];
@@ -139,21 +139,15 @@ MongoClient.connect('mongodb://localhost:27017/pps', (err, db) =>
 	    		.toArray((err, data) => {
 	      		if (err){
 	        		console.log(err);     	
-	      		}else{
-	      			console.log(data);
+	      		}else{	      				      				      				      			
 	      			notificaciones.push({pelicula: pelicula,
-	      								 funciones: data});
-	      			console.log(notificaciones);	     			
+	      								 funciones: filtrar(data),
+	      								 fecha: new Date(),
+	      								 extendida: false});	      				     			
 	     		}
 	    		})
 	    	}
-
-
 	    }
-    	});
-
-	   
-		
-    	
+    	});	   		    	
 	});
 });
