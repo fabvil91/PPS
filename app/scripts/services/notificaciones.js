@@ -9,10 +9,11 @@ angular
     this.articuloPorIndice = articuloPorIndice;
     this.alta = alta;
     this.modificar = modificar;
-    this.modificarExtendida = modificarExtendida;
+    this.modificarExtendida = modificarExtendida;    
+    this.modificarFunciones = modificarFunciones;
     this.borrar = borrar;
 
-    function listado () {
+    function listado() {
       return $http.get('http://localhost:3333/notificaciones/getAll')
       .then(function(rta){
         return rta.data;
@@ -93,6 +94,20 @@ angular
      function modificarExtendida(item){
       return $http({
             url: 'http://localhost:3333/notificaciones/modificarExtendida',
+            method: "PUT",
+            data: item,
+            headers: {'Content-Type': 'application/json'}})
+      .then(function(rta){
+        return rta.data;
+      })
+      .catch(function(e){
+        return e;
+      })
+    }
+
+     function modificarFunciones(item){
+      return $http({
+            url: 'http://localhost:3333/notificaciones/modificarFunciones',
             method: "PUT",
             data: item,
             headers: {'Content-Type': 'application/json'}})

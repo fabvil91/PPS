@@ -285,7 +285,7 @@
         .state('empleadoNotificaciones',
         {
         url:'/empleadoNotificaciones',              
-        //controller: 'cajeroFinalizarCtrl',
+        controller: 'empleadoNotificacionesCtrl',
         templateUrl:'views/empleado/empleadoNotificaciones.html'
         })  
       $stateProvider

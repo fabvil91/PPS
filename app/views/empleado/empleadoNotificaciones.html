@@ -13,36 +13,37 @@
         </div>
     </div>
     <!--NOTIFICACION (NG-REPEAT)-->
-    <div class="row">
+    <div ng-if="notificaciones.length > 0">
+    <div class="row" ng-repeat="notificacion in notificaciones | filter: { ocultar: false }">
         <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">{{fecha}}Reserva</div>
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <p>La pelicula {{titulo}} esta en su ultima semana de funciones.</p>
-                            <p>¿Desea extenderla una semana mas?</p>
+                            <p>La película {{notificacion.pelicula.nombre}} esta en su última semana de funciones.</p>
+                            <p>¿Desea extenderla una semana más?</p>
                         </div>
                     </div>
                     <div class="row">                        
                         <!--<div class="col-md-9"></div>-->
-                        <div class="col-md-12">
-                                    <input type="button" class="btn btn-primary" value="Extender" ui-sref="#">  
-                                    <input type="button" class="btn btn-primary" value="No Extender" ui-sref="#">
+                        <div class="col-md-12" ng-if="notificacion.extendida != null && !notificacion.extendida">
+                                    <input type="button" class="btn btn-primary" value="Extender" ng-click="extender(notificacion)">  
+                                    <input type="button" class="btn btn-primary" value="No Extender" ng-click="noExtender(notificacion)">
                         </div>
                     </div>                       
                 </div>
-                <div class="panel-footer">
-                     <form action="" class="form-horizontal">
+                <div class="panel-footer" ng-if="notificacion.extendida != null && notificacion.extendida">
+                     <form class="form-horizontal">
                          <!--ng-repeat-->
-                        <div class="form-group">
+                        <div class="form-group" ng-repeat="funcion in notificacion.funciones">
                             <label class="control-label col-sm-2" for="sala">Sala:</label>
                             <div class="col-sm-6">
-                                <input type="text" name="sala" class="form-control" readonly="readonly" ng-model="sala.nombre">
+                                <input type="text" name="sala" class="form-control" readonly="readonly" ng-model="funcion.sala.nombre">
                             </div>
                             <div class="col-sm-4">
-                                <input type="button" class="btn btn-primary" value="Extender" ui-sref="#">  
-                                <input type="button" class="btn btn-primary" value="No Extender" ui-sref="#">
+                                <input type="button" class="btn btn-primary" value="Extender" ng-click="extenderFuncion(funcion)">  
+                                <input type="button" class="btn btn-primary" value="No Extender" ng-click="noExtenderFuncion(funcion)">
                             </div>
                      
                         </div>
@@ -51,4 +52,6 @@
             </div>
         </div>
     </div>
+    </div>
+    <div ng-if="notificaciones.length == 0"> Sin notificaciones </div>
 </div>

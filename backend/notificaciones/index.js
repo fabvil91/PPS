@@ -81,14 +81,14 @@ router.put('/notificaciones/modificarExtendida',function(req, res, next){
         });  
 	});
 
-router.put('/funciones/modificarSala',function(req, res, next){
+router.put('/notificaciones/modificarFunciones',function(req, res, next){
     console.log(req.body);
     var id = new require('mongodb').ObjectID(req.body._id);
     console.log(id);
 
-        req.db.collection('funciones')        
+        req.db.collection('notificaciones')        
         .update({_id: id}, {$set: {                     
-                              sala: req.body.sala                       
+                              funciones: req.body.funciones                       
                        }}, function (err, result){
            if (err) {
                res.json({rta : err});
