@@ -25,12 +25,28 @@
                         </div>
                     </div>
                     <div class="row">                        
-                        <div class="col-md-9"></div>
-                        <div class="col-md-3">
+                        <!--<div class="col-md-9"></div>-->
+                        <div class="col-md-12">
                                     <input type="button" class="btn btn-primary" value="Extender" ui-sref="#">  
                                     <input type="button" class="btn btn-primary" value="No Extender" ui-sref="#">
                         </div>
                     </div>                       
+                </div>
+                <div class="panel-footer">
+                     <form action="" class="form-horizontal">
+                         <!--ng-repeat-->
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="sala">Sala:</label>
+                            <div class="col-sm-6">
+                                <input type="text" name="sala" class="form-control" readonly="readonly" ng-model="sala.nombre">
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="button" class="btn btn-primary" value="Extender" ui-sref="#">  
+                                <input type="button" class="btn btn-primary" value="No Extender" ui-sref="#">
+                            </div>
+                     
+                        </div>
+                    </form> 
                 </div>
             </div>
         </div>
