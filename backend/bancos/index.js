@@ -48,13 +48,9 @@ router.get('/articulos/proveedor/:proveedor', (req, res, next) => {
 router.post('/insertar',function(req, res, next){
 		console.log(req.body);
 
-        req.db.collection('articulos')        
-        .insert({name: req.body.name, 
-        		 peso: req.body.peso,
-        		 precio: req.body.precio,
-        		 fecha: new Date(req.body.fecha),
-        		 tipo: req.body.tipo,
-        		 proveedor: {email: req.body.email}
+        req.db.collection('bancos')        
+        .insert({nombre: req.body.nombre, 
+        		
         		}, function (err, result){
            if (err) {
                res.json({rta : err});
