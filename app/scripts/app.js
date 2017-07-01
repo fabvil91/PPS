@@ -306,7 +306,7 @@
         .state('usuarioBorrar',
         {
         url:'/usuarioBorrar',              
-        //controller: 'cajeroFinalizarCtrl',
+        controller: 'usuarioBorrarCtrl',
         templateUrl:'views/usuario/usuarioBorrar.html'
         })  
       $stateProvider
@@ -350,6 +350,13 @@
         url:'/usuarioReservaVencida',              
         controller: 'usuarioReservaVencidaCtrl',
         templateUrl:'views/usuario/usuarioReservaVencida.html'
+      })  
+      $stateProvider
+        .state('usuarioImprimir',
+        {
+        url:'/usuarioImprimir',              
+        controller: 'usuarioImprimirCtrl',
+        templateUrl:'views/usuario/usuarioImprimir.html'
         })   
         
     $urlRouterProvider.otherwise(function ($injector, $location) {
@@ -416,7 +423,7 @@
               if($rootScope.globals.currentUser.tipoUsuario == 'Usuario'){
                 var restrictedPage = $.inArray($location.path(), ['/main', '/login','/registro','/detallePelicula','/seleccionEntradas','/salas','/datosOperacionCompra','/finalizarOperacion',
                   '/promosVigentes','/quienesSomos','/contactanos','/prohibida', 
-                  '/usuarioBorrar','/usuarioCuenta','/usuarioFinalizarPago','/usuarioHistorial','/usuarioMain','/usuarioReservaVencida','/usuarioTarjeta']) === -1;
+                  '/usuarioBorrar','/usuarioCuenta','/usuarioFinalizarPago','/usuarioHistorial','/usuarioMain','/usuarioReservaVencida','/usuarioTarjeta','/usuarioImprimir']) === -1;
               }
               //Agregar los distintos tipos de usuario
               if($rootScope.globals.currentUser.tipoUsuario == 'Admin'){
@@ -446,7 +453,7 @@
             }else{
               console.log('no logueado, path: ' + $location.path());
               //si no estas logeado y vas a una que no sea main,etc => // $location.path('/login');
-                 var restrictedPage = $.inArray($location.path(), ['/main', '/login','/olvidoContrasenia','/registro','/promosVigentes','/quienesSomos','/contactanos','/prohibida']) === -1;
+                 var restrictedPage = $.inArray($location.path(), ['/main', '/login','/olvidoContrasenia','/registro','/promosVigentes','/quienesSomos','/contactanos','/prohibida','/detallePelicula']) === -1;
                    if (restrictedPage) {                    
                     console.log("Pagina prohibida: " + $location.path());                   
                     $state.go('login');                      

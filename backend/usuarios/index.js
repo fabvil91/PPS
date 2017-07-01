@@ -76,6 +76,23 @@ router.put('/usuarios/modificar',function(req, res, next){
             }
         });  
 	});
+    router.put('/usuarios/modificarCuentaCorriente',function(req, res, next){
+		console.log(req.body);
+		var id = new require('mongodb').ObjectID(req.body._id);
+		console.log(id);
+
+        req.db.collection('usuarios')        
+        .update({_id: id}, {$set: {
+                 cuentaCorriente: req.body.cuentaCorriente
+        						   }},{upsert:true}, function (err, result){
+           if (err) {
+               res.json({rta : err});
+            }
+            else {
+               res.json({rta : "OK"});
+            }
+        });  
+	});
 
 router.put('/usuarios/modificarPersonales',function(req, res, next){
     console.log(req.body);

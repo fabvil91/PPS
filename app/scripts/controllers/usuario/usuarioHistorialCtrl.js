@@ -15,6 +15,7 @@
             $scope.ifReserva=false;
             $scope.ifCompra=false;
             $scope.ifFechas=false;
+            $scope.fechas = [];
 
 
              Usuarios.usuarioPorNombreUsuario($scope.usuario.username)
@@ -27,19 +28,27 @@
                 .then(function(datos){
                 $scope.operaciones=datos; 
                 console.log($scope.operaciones);
-
-                $scope.fechas = [];
-                $scope.operaciones.forEach(function(element){
-                  $scope.fechas.push({
-                    formateado:element.funcion.diaFormateado,
-                    dia:element.funcion.diaTime
-                  });
+                $scope.operaciones=$scope.operaciones.filter(function(item){
+                  return item.estado!='Cancelado' && item.estado!='Borrado';
                 });
                 
-                $scope.fechas = $scope.fechas.filter((thing, index, self) => self.findIndex(t => t.formateado === thing.formateado && t.dia === thing.dia) === index); 
-                $scope.fechas =$scope.fechas.sort(function(a,b) {
-                    return a.dia - b.dia;
-                });
+                $scope.recargarFechas=function(){
+                    
+                  $scope.operaciones.forEach(function(element){
+                    $scope.fechas.push({
+                      formateado:element.funcion.diaFormateado,
+                      dia:element.funcion.diaTime
+                    });
+                  });
+                  
+                  $scope.fechas = $scope.fechas.filter((thing, index, self) => self.findIndex(t => t.formateado === thing.formateado && t.dia === thing.dia) === index); 
+                  $scope.fechas =$scope.fechas.sort(function(a,b) {
+                      return a.dia - b.dia;
+                  });
+                }
+
+
+                $scope.recargarFechas();
                 
                 console.log($scope.fechas);
                 
@@ -82,11 +91,17 @@
                 $scope.cancelar = function(operacion){
                   
                   if(operacion.estado==="Pagado"){
+                    if($scope.usuario.cuentaCorriente==null){
+                      $scope.usuario.cuentaCorriente=0;
+                    }
                     $scope.usuario.cuentaCorriente=$scope.usuario.cuentaCorriente+$scope.calcularPrecio(operacion.entradas);
+                    console.log($scope.usuario.cuentaCorriente);
                     //update de usuario? agregar campo a usuarioCuenta
+                    Usuarios.modificarCuentaCorriente($scope.usuario);
                   }
                   operacion.estado="Cancelado";
                   Operaciones.modificarCompra(operacion)
+                  $scope.recargarFechas();
                   $scope.reloadPage();
                   
                 }
@@ -94,12 +109,14 @@
                 $scope.borrar = function(operacion){
                   operacion.estado="Borrado";
                   Operaciones.modificarCompra(operacion)
+                  $scope.recargarFechas();
                   $scope.reloadPage();
                 }
                 //agregar campo a operacion "montoDeuda" en service de lista negra, agregar montoDeuda a finalizarPago 
-                $scope.calcularDeuda = function(entradas){
+               /* $scope.calcularDeuda = function(entradas){
                   return $scope.calcularPrecio(entradas)*porcentajeDeuda;               
-                }
+                }*/
+
 
                 $scope.formatearHora = function(funcion){        	
                     var fecha = new Date(funcion.hora);

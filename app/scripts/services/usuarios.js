@@ -13,6 +13,7 @@ angular
     this.borrar = borrar;
     this.Create = Create;
     this.borrarTarjeta = borrarTarjeta;
+    this.modificarCuentaCorriente=modificarCuentaCorriente;
 
     function listado () {
       return $http.get('http://localhost:3333/usuarios/getAll')
@@ -89,6 +90,19 @@ angular
     function modificarTarjeta(item){
       return $http({
             url: 'http://localhost:3333/usuarios/modificarTarjeta',
+            method: "PUT",
+            data: item,
+            headers: {'Content-Type': 'application/json'}})
+      .then(function(rta){
+        return rta.data;
+      })
+      .catch(function(e){
+        return e;
+      })
+    }
+    function modificarCuentaCorriente(item){
+      return $http({
+            url: 'http://localhost:3333/usuarios/modificarCuentaCorriente',
             method: "PUT",
             data: item,
             headers: {'Content-Type': 'application/json'}})
