@@ -25,7 +25,7 @@
                if(seccion=='usuario'){
                 if($scope.passwordCheck == $scope.usuario.password){
                    $scope.mensaje = false;
-                   $scope.readOnlyUsuario=true;
+                   $scope.readOnlyUsuario=true; 
 
                    Usuarios.modificar($scope.usuario)
                     .then(function (response) {

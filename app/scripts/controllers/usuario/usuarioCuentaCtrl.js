@@ -52,7 +52,7 @@
                                     if(editarEsto == 'usuario'){
                                         $scope.readOnlyUsuario=false;
                                     }
-                                    
+                                     
                                 }
                                 
                                 //HACE UPDATE EN BD
@@ -63,11 +63,13 @@
                                         Usuarios.modificarPersonales($scope.usuario);
                                     }
                                     if(seccion=='usuario'){
-                                         if($scope.passwordCheck == $scope.usuario.password){
-                                        $scope.mensaje = false;
-                                        $scope.readOnlyUsuario=true;
-                                        Usuarios.modificar($scope.usuario);
-                                         }
+                                        if($scope.passwordCheck == $scope.usuario.password){
+                                            $scope.mensaje = false;
+                                            $scope.readOnlyUsuario=true;
+                                            Usuarios.modificar($scope.usuario);
+                                        }else{
+                                            $scope.mensaje = true;
+                                        }
                                     }
                                     
                                 } 
