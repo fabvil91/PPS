@@ -147,7 +147,14 @@
         url:'/cajeroFinalizar',              
         controller: 'cajeroFinalizarCtrl',
         templateUrl:'views/cajero/cajeroFinalizar.html'
-        }) 
+      }) 
+      $stateProvider
+        .state('cajeroTicket',
+        {
+        url:'/cajeroTicket',              
+        controller: 'cajeroTicketCtrl',
+        templateUrl:'views/cajero/cajeroTicket.html'
+      }) 
       $stateProvider
         .state('adminBancos',
         {
@@ -440,7 +447,7 @@
               }
               
               if($rootScope.globals.currentUser.tipoUsuario == 'Cajero'){
-                var restrictedPage = $.inArray($location.path(), ['/cajeroMain', '/cajeroBuscarCodigo','/cajeroSeleccionPelicula','/cajeroEntradas','/cajeroAsientos','/cajeroPago','/cajeroFinalizar',
+                var restrictedPage = $.inArray($location.path(), ['/cajeroMain','/cajeroTicket', '/cajeroBuscarCodigo','/cajeroSeleccionPelicula','/cajeroEntradas','/cajeroAsientos','/cajeroPago','/cajeroFinalizar',
                   '/cajeroCuenta', '/login',
                   '/promosVigentes','/quienesSomos','/contactanos','/prohibida']) === -1;
               }

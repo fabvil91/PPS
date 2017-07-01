@@ -12,5 +12,7 @@ aside {
     padding: 10px;
     margin: 5px;
 }
+.ticket {page-break-after: always;}
+
 }
 
