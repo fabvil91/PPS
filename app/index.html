@@ -125,6 +125,9 @@
                 <a href="#" ng-if="!nombreUser" ui-sref="registro" class="btn btn-info" role="button">Registrate</a>
                 <a href="#" ng-if="nombreUser && tipoUser == 'Usuario'" ui-sref='usuarioMain' class="btn btn-info" role="button">{{nombreUser}}</a>
                 <a href="#" ng-if="nombreUser && tipoUser == 'Cajero'" ui-sref='cajeroCuenta' class="btn btn-info" role="button">{{nombreUser}}</a>
+                
+                <a href="#" ng-if="nombreUser && tipoUser == 'Admin'" ui-sref='adminMain' class="btn btn-info" role="button">{{nombreUser}}</a>
+                <a href="#" ng-if="nombreUser && tipoUser == 'Empleado'" ui-sref='empleadoMain' class="btn btn-info" role="button">{{nombreUser}}</a>
                 <a href="#" ng-if="nombreUser" ng-click="logout()" class="btn btn-info" role="button">Log Out</a>
             </div>
         </div>

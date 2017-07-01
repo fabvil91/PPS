@@ -3,10 +3,10 @@
         <div id="slides_control">
             <div class="col-sm-12">
              <carousel interval="myInterval">
-                <slide ng-repeat="slide in slides" active="slide.active">
+                <slide ng-repeat="slide in slides" active="slide.active" ng-click="cargarSlide(slide)" ui-sref="detallePelicula">
                  <img class="img-responsive center-block"  ng-src="{{slide.imageUrl}}" >
                 <div class="carousel-caption">
-                        <h4><a href="#" ng-click="cargarSlide(slide)" ui-sref="detallePelicula">{{slide.nombre}}</a></h4>
+                        <h4>{{slide.nombre}}</h4>
                         <h4>{{slide.descripcion}}</h4>
                 </div>
                 </slide>
