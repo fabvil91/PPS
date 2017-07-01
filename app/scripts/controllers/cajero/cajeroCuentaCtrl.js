@@ -16,7 +16,7 @@
             if(editarEsto == 'usuario'){
                $scope.readOnlyUsuario=false;
                 }
-            }
+            } 
                                 
             //HACE UPDATE EN BD
             $scope.guardar = function(seccion){
