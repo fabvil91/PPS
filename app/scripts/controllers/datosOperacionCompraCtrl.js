@@ -3,8 +3,8 @@
  
     angular
         .module('cine')
-        .controller('datosOperacionCompraCtrl', ['$scope','$location','Datos','$rootScope','Tarjetas','Bancos','Promociones',
-        function ($scope,$location,Datos,$rootScope,Tarjetas,Bancos,Promociones) {
+        .controller('datosOperacionCompraCtrl', ['$scope','$location','Datos','$rootScope','Tarjetas','Bancos','Promociones','Usuarios',
+        function ($scope,$location,Datos,$rootScope,Tarjetas,Bancos,Promociones,Usuarios) {
         
                 $scope.funcion = Datos.listado();
 
@@ -23,49 +23,56 @@
                                     console.log(datos);
                                     $scope.promociones = datos;
 
-                                        $scope.promociones = $scope.promociones.filter(function(element){
-                                            return (element.banco != null && element.tarjeta != null);
-                                        });
-                                        console.log($scope.promociones);
+                                    Usuarios.usuarioPorNombreUsuario($rootScope.globals.currentUser.username)
+                                    .then(function(datos){
+                                        $scope.usuario=datos[0];
+                                        console.log("root user:");
+                                        console.log($scope.usuario);
 
-                                             $scope.mes = [
-                                                {nombre:"Enero", id:0},
-                                                {nombre:"Febrero"},
-                                                {nombre:"Marzo"},
-                                                {nombre:"Abril"},
-                                                {nombre:"Marzo"},
-                                                {nombre:"Abril"},
-                                                {nombre:"Mayo"},
-                                                {nombre:"Junio"},
-                                                {nombre:"Julio"},
-                                                {nombre:"Agosto"},
-                                                {nombre:"Septiembre"},
-                                                {nombre:"Octubre"},
-                                                {nombre:"Noviembre"},
-                                                {nombre:"Diciembre"}
-                                             ];
-                                            $scope.year = [
-                                                {nombre:"2017", id:0},
-                                                {nombre:"2018"},
-                                                {nombre:"2019"},
-                                                {nombre:"2020"},
-                                                {nombre:"2021"},
-                                                {nombre:"2022"},
-                                                {nombre:"2023"},
-                                                {nombre:"2024"}
-                                            ];
+                                        Usuarios.usuarioPorNombreUsuario($scope.usuario.username)
+                                        .then(function(datos){
+                                            $scope.usuario=datos[0];
+                                            console.log("actual user:");
+                                            console.log($scope.usuario);
 
-                                            $scope.funcion.operacion = {
-                                                vencimiento:{}
-                                            };
-                                            $scope.hayPromo = false;
-                                            for (var i = $scope.funcion.entradas.length - 1; i >= 0; i--) {
-                                                if($scope.funcion.entradas[i].promocion && $scope.funcion.entradas[i].cantidad > 0){
-                                                    $scope.hayPromo = true;
-                                                    break;
+                                            $scope.promociones = $scope.promociones.filter(function(element){
+                                                return (element.banco != null && element.tarjeta != null);
+                                            });
+                                            console.log($scope.promociones);
+
+                                                $scope.mes=["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre","Octubre","Noviembre","Diciembre"];
+                                                $scope.year = ["2017","2018","2019","2020","2021","2022","2023","2024"];
+
+                                                $scope.funcion.operacion = {
+                                                    vencimiento:{}
+                                                };
+                                                $scope.hayPromo = false;
+                                                for (var i = $scope.funcion.entradas.length - 1; i >= 0; i--) {
+                                                    if($scope.funcion.entradas[i].promocion && $scope.funcion.entradas[i].cantidad > 0){
+                                                        $scope.hayPromo = true;
+                                                        break;
+                                                    }
                                                 }
-                                            }
-                                            console.log($scope.hayPromo);
+                                                console.log($scope.hayPromo);
+
+                                                if($scope.usuario.datosTarjeta!=null){                                        
+                                            
+                                                    $scope.funcion.operacion.codigoSeguridad=$scope.usuario.datosTarjeta.codigoSeguridad;
+                                                    $scope.funcion.operacion.dniTitular=$scope.usuario.datosTarjeta.dni;
+                                                    $scope.funcion.operacion.fechaVencimiento=$scope.usuario.datosTarjeta.vencimiento;
+                                                    $scope.funcion.operacion.nombreTitular=$scope.usuario.datosTarjeta.titular;
+                                                    $scope.funcion.operacion.nroTarjeta=$scope.usuario.datosTarjeta.numeroTarjeta;
+
+                                                    var banco = $scope.bancos.filter(function(element){
+                                                    return (element._id === $scope.usuario.datosTarjeta.banco._id);
+                                                    });
+                                                    $scope.funcion.operacion.banco=banco[0];
+                                                    var tarjeta = $scope.tarjetas.filter(function(element){
+                                                    return (element._id === $scope.usuario.datosTarjeta.tarjeta._id);
+                                                    });
+                                                    $scope.funcion.operacion.tarjeta=tarjeta[0];                                          
+                                            
+                                                }
                                   })
                              .catch(function(e){
                               console.log(e);
@@ -78,6 +85,14 @@
                  .catch(function(e){
                    console.log(e);
                  })
+                 })
+                    .catch(function(e){
+                    console.log(e);
+                })
+                })
+                    .catch(function(e){
+                    console.log(e);
+                })
                               
                 $scope.cargar = function(funcion){                
                     console.log(funcion);        	

@@ -19,15 +19,16 @@
 				 };
 				$scope.countDownLeft = timerCount;
 				countDown();
-			 }
+			 } 
 	        
 	         _startCountdown();
 
 	         $scope.contarSeleccionados = function(){
+				
 	         	var cantidadSeleccionada = 0;
-	         	 for (var i = $scope.funcion.sala.length - 1; i >= 0; i--) {
-	         	 	for (var j = $scope.funcion.sala[i].length - 1; j >= 0; j--) {
-	         	 		if($scope.funcion.sala[i][j].checked == true){
+	         	 for (var i = $scope.funcion.sala.asientos.length - 1; i >= 0; i--) {
+	         	 	for (var j = $scope.funcion.sala.asientos[i].length - 1; j >= 0; j--) {
+	         	 		if($scope.funcion.sala.asientos[i][j].checked == true){
 	         	 			cantidadSeleccionada = cantidadSeleccionada + 1;
 	         	 		}
 	         	 	}
