@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/peliculas/getAll',function(req, res,next){		
+router.get('/notificaciones/getAll',function(req, res,next){		
 		req.db
-		.collection('peliculas')
+		.collection('notificaciones')
 		.find()
     	.toArray((err, data) => {
       		if (err)
@@ -45,16 +45,14 @@ router.get('/articulos/proveedor/:proveedor', (req, res, next) => {
     });
 });
 
-router.post('/insertar',function(req, res, next){
+router.post('/notificaciones/insertar',function(req, res, next){
 		console.log(req.body);
 
-        req.db.collection('articulos')        
-        .insert({name: req.body.name, 
-        		 peso: req.body.peso,
-        		 precio: req.body.precio,
-        		 fecha: new Date(req.body.fecha),
-        		 tipo: req.body.tipo,
-        		 proveedor: {email: req.body.email}
+        req.db.collection('notificaciones')        
+        .insert({extendida: req.body.extendida, 
+            		 fecha: req.body.fecha,
+            		 pelicula: req.body.pelicula,
+            		 funciones: req.body.funciones       		
         		}, function (err, result){
            if (err) {
                res.json({rta : err});
@@ -65,48 +63,48 @@ router.post('/insertar',function(req, res, next){
         });  
 	});
 
-router.put('/peliculas/modificar',function(req, res, next){
-        console.log(req.body);
-        var id = new require('mongodb').ObjectID(req.body._id);
-        console.log(id);
-
-        req.db.collection('peliculas')        
-        .update({_id: id}, {$set: {
-                                   fechaEstreno: new Date(req.body.fechaEstreno)                                            
-                                   }}, function (err, result){
-           if (err) {
-               res.json({rta : err});
-            }
-            else {
-               res.json({rta : "OK"});
-            }
-        });  
-    });
-
-router.put('/peliculas/modificarSemanas',function(req, res, next){
-        console.log(req.body);
-        var id = new require('mongodb').ObjectID(req.body._id);
-        console.log(id);
-
-        req.db.collection('peliculas')        
-        .update({_id: id}, {$set: {
-                                   semanasActiva: req.body.semanasActiva                                           
-                                   }}, function (err, result){
-           if (err) {
-               res.json({rta : err});
-            }
-            else {
-               res.json({rta : "OK"});
-            }
-        });  
-    });
-
-router.delete('/eliminar',function(req, res, next){
+router.put('/notificaciones/modificarExtendida',function(req, res, next){
 		console.log(req.body);
 		var id = new require('mongodb').ObjectID(req.body._id);
 		console.log(id);
 
-        req.db.collection('articulos')        
+        req.db.collection('notificaciones')        
+        .update({_id: id}, {$set: {
+        						   extendida: req.body.extendida						   
+        						   }}, function (err, result){
+           if (err) {
+               res.json({rta : err});
+            }
+            else {
+               res.json({rta : "OK"});
+            }
+        });  
+	});
+
+router.put('/funciones/modificarSala',function(req, res, next){
+    console.log(req.body);
+    var id = new require('mongodb').ObjectID(req.body._id);
+    console.log(id);
+
+        req.db.collection('funciones')        
+        .update({_id: id}, {$set: {                     
+                              sala: req.body.sala                       
+                       }}, function (err, result){
+           if (err) {
+               res.json({rta : err});
+            }
+            else {
+               res.json({rta : "OK"});
+            }
+        });  
+  });
+
+router.delete('/notificaciones/eliminar',function(req, res, next){
+		console.log(req.body);
+		var id = new require('mongodb').ObjectID(req.body._id);
+		console.log(id);
+
+        req.db.collection('notificaciones')        
         .remove({_id: id}, function (err, result){
            if (err) {
                res.json({rta : err});

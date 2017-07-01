@@ -1,6 +1,6 @@
 angular
   .module('cine')
-  .service('Peliculas', ['$http', function($http){
+  .service('Notificaciones', ['$http', function($http){
 
     this.listado = listado;
     this.articuloPorNombre = articuloPorNombre;
@@ -9,11 +9,11 @@ angular
     this.articuloPorIndice = articuloPorIndice;
     this.alta = alta;
     this.modificar = modificar;
-    this.modificarSemanas = modificarSemanas;
+    this.modificarExtendida = modificarExtendida;
     this.borrar = borrar;
 
     function listado () {
-      return $http.get('http://localhost:3333/peliculas/getAll')
+      return $http.get('http://localhost:3333/notificaciones/getAll')
       .then(function(rta){
         return rta.data;
       })
@@ -64,7 +64,7 @@ angular
 
     function alta(item){
       return $http({
-            url: 'http://localhost:3333/slides/insertar',
+            url: 'http://localhost:3333/notificaciones/insertar',
             method: "POST",
             data: item,
             headers: {'Content-Type': 'application/json'}})
@@ -78,7 +78,7 @@ angular
 
     function modificar(item){
       return $http({
-            url: 'http://localhost:3333/slides/modificar',
+            url: 'http://localhost:3333/funciones/modificar',
             method: "PUT",
             data: item,
             headers: {'Content-Type': 'application/json'}})
@@ -90,9 +90,9 @@ angular
       })
     }
 
-     function modificarSemanas(item){
+     function modificarExtendida(item){
       return $http({
-            url: 'http://localhost:3333/peliculas/modificarSemanas',
+            url: 'http://localhost:3333/notificaciones/modificarExtendida',
             method: "PUT",
             data: item,
             headers: {'Content-Type': 'application/json'}})
@@ -106,7 +106,7 @@ angular
 
     function borrar(item){
       return $http({
-            url: 'http://localhost:3333/slides/eliminar',
+            url: 'http://localhost:3333/notificaciones/eliminar',
             method: "DELETE",
             data: item,
             headers: {'Content-Type': 'application/json'}})
