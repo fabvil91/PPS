@@ -57,6 +57,7 @@
                                 <p>Cantidad de Asientos: {{x.funcion.cantidadAsientos}}</p> 
                                 <p>Precio: ${{calcularPrecio(x.funcion.entradas)}}</p> 
                                 <p>Monto Debido: ${{x.operacion.montoDeuda}}</p> <!--falta generar el campo desde el service de lista negra-->
+                                
                                 <div class="form-group pull-right">
                                      <input type="button" class="btn btn-primary" value="Imprimir" ng-click="cargar(x)" ui-sref="usuarioImprimir">
                                     <input type="button" class="btn btn-danger" value="Realizar Pago" ui-sref="usuarioReservaVencida" ng-click="cargar(x)">  
@@ -93,6 +94,7 @@
                                     <p>{{x.funcion.complejo.nombre}}</p>
                                     <p>Cantidad de Asientos: {{x.funcion.cantidadAsientos}}</p> 
                                     <p>Precio: ${{calcularPrecio(x.funcion.entradas)}}</p>
+                                    <p>Codigo: {{x.codigo}}</p>
                                     <div class="form-group pull-right">
                                         <input type="button" class="btn btn-primary" value="Comprar" ui-sref="usuarioReservaVencida" ng-click="cargar(x)"> 
                                          <input type="button" class="btn btn-primary" value="Imprimir" ng-click="cargar(x)" ui-sref="usuarioImprimir" >
@@ -119,6 +121,7 @@
                                     <p>{{x.funcion.complejo.nombre}}</p>
                                     <p>Cantidad de Asientos: {{x.funcion.cantidadAsientos}}</p> 
                                     <p>Precio: ${{calcularPrecio(x.funcion.entradas)}}</p>
+                                    <p>Codigo: {{x.codigo}}</p>
                                     <div class="form-group pull-right">
                                          <input type="button" class="btn btn-primary" value="Imprimir" ng-click="cargar(x)" ui-sref="usuarioImprimir">
                                         <input type="button" class="btn btn-primary" value="Cancelar" ng-click="cancelar(x)">   
@@ -140,6 +143,7 @@
                                     <p>{{x.funcion.complejo.nombre}}</p>
                                     <p>Cantidad de Asientos: {{x.funcion.cantidadAsientos}}</p> 
                                     <p>Precio: ${{calcularPrecio(x.funcion.entradas)}}</p>
+                                    
                                     <div class="form-group pull-right">
                                          <input type="button" class="btn btn-primary" value="Imprimir" ng-click="cargar(x)" ui-sref="usuarioImprimir">
                                         <input type="button" class="btn btn-default" value="Borrar" ng-click="borrar(x)">                                          

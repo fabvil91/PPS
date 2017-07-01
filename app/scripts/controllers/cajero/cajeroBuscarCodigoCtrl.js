@@ -67,15 +67,15 @@
                    console.log(e);
                  })
                               
-                $scope.cargar = function(tipo){                
-                    console.log($scope.operacion);         
+                $scope.guardar = function(tipo){                
+                    console.log($scope.operacion);     
                    // Guardar en BD. SI es efectivo, limpiar funcion.operacion (Solo se llena con pago en tarjeta)
                     var promo = null;
                     for (var i = $scope.operacion.entradas.length - 1; i >= 0; i--) {
                         if($scope.operacion.entradas[i].promocion){
                            promo = $scope.operacion.entradas[i].promocion;
                            break;
-                        }
+                        } 
                     }
 
                     if(promo){
@@ -94,6 +94,7 @@
                     var operacion = {};
                                          
                    if(tipo == 'efectivo'){
+
                      operacion = {  
                       _id: $scope.operacion._id,                
                       estado: "Retirado",                                    
@@ -145,8 +146,10 @@
                      })
                      .catch(function(e){
                       console.log(e);
-                     });   
+                     });
+                      
                    }
+                   
                    console.log(operacion);
                   }
 
@@ -194,6 +197,11 @@
                        }
                        return total;
                       }
+
+                      $scope.cargar = function(){                                                                        
+                          Datos.cargar($scope.operacion);
+                      }
+
                     }else{
                       console.log(datos[0].estado);
                       $scope.errorEstado = true;
@@ -214,5 +222,10 @@
                   console.log(e);
                 });            
            }
+           
+                if(Datos.listado()!=null){
+                  $scope.codigo=Datos.listado().codigo;
+                  $scope.buscar($scope.codigo);
+                }
         }]) 
 })();

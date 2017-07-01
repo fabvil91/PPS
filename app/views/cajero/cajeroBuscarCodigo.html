@@ -122,8 +122,9 @@
                             <div class="col-md-12">
                                 <form class="form-inline">
                                         <div class="form-group centered">                                    
-                                            <input type="button" ng-disabled="form.$invalid" class="btn btn-info" value="Continuar" ng-click="cargar('efectivo')" >
-                                            <input type="button" class="btn btn-info" value="Cancelar" ui-sref="cajeroMain">                                                  
+                                            <input type="button" ng-disabled="form.$invalid" class="btn btn-info" value="Continuar" ng-click="guardar('efectivo')" >
+                                            <input type="button" ng-disabled="form.$invalid" class="btn btn-info" value="Imprimir" ng-click="cargar()" ui-sref="cajeroTicket">
+                                            <input type="button" class="btn btn-info" value="Cancelar" ui-sref="cajeroMain">                                                
                                         </div>
                                 </form>
                             </div>                            
@@ -228,6 +229,7 @@
                                 <form class="form-inline">
                                         <div class="form-group centered">                                    
                                             <input type="button" ng-disabled="form.$invalid" class="btn btn-info" value="Continuar" ng-click="cargar('tarjeta')" >
+                                            <input type="button" ng-disabled="form.$invalid" class="btn btn-info" value="Imprimir" ng-click="cargar()" ui-sref="cajeroTicket">
                                             <input type="button" class="btn btn-info" value="Cancelar" ui-sref="cajeroMain">                                                  
                                         </div>
                                 </form>
@@ -292,6 +294,7 @@
                                 <form class="form-inline">
                                         <div class="form-group centered">                                    
                                             <input type="button" ng-disabled="form.$invalid" class="btn btn-info" value="Continuar" ng-click="cargar('compra')" >
+                                            <input type="button" ng-disabled="form.$invalid" class="btn btn-info" value="Imprimir" ng-click="cargar()" ui-sref="cajeroTicket">
                                             <input type="button" class="btn btn-info" value="Cancelar" ui-sref="cajeroMain">                                                  
                                         </div>
                                 </form>
