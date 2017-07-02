@@ -62,7 +62,7 @@ MongoClient.connect('mongodb://localhost:27017/pps', (err, db) =>
 		console.log('Servidor iniciado..');
 	})
 
-	cron.schedule('0 56 22 * * *', function(){ 
+	cron.schedule('0 15 21 * * *', function(){ 
 		/* Filtra arrays por sala */
 		function filtrar(funciones) {
 		    var a = [], l = funciones.length;
@@ -112,7 +112,7 @@ MongoClient.connect('mongodb://localhost:27017/pps', (err, db) =>
 	    	if (err){
 	        	console.log(err);  
 	    	}else{
-		        //console.log(data);
+		        console.log(data);
 		        peliculas = data;
 
 			    var limiteSup = null;

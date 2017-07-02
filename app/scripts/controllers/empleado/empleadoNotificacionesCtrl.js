@@ -1,7 +1,8 @@
 (function(){
 	'use strict';
 	angular.module('cine')
-	.controller('empleadoNotificacionesCtrl', ['$rootScope','$scope','Notificaciones','Usuarios','Peliculas','Datos',function($rootScope,$scope,Notificaciones,Usuarios,Peliculas,Datos){	
+	.controller('empleadoNotificacionesCtrl', ['$rootScope','$scope','Notificaciones','Usuarios','Peliculas','Datos','Horarios',
+        function($rootScope,$scope,Notificaciones,Usuarios,Peliculas,Datos,Horarios){	
       
         Notificaciones.listado()
             .then(function(datos){
@@ -19,7 +20,7 @@
                         $scope.notificaciones[i].funciones = $scope.notificaciones[i].funciones.filter(function(element){
                             return (element.complejo.nombre == $scope.usuario.complejo.nombre);
                         });  
-                        $scope.notificaciones[i].ocultar = false; 
+                        //$scope.notificaciones[i].ocultar = false; 
                     }
 
                     $scope.extender = function(notificacion){
@@ -56,7 +57,10 @@
                                                     funciones : funcionesOtrosComplejos})
                                 .then(function(datos){
                                   console.log(datos);
-                                  notificacion.ocultar = true;
+                                  notificacion.funciones = [];
+                                 // notificacion.ocultar = true;
+                                 // var pos = $scope.notificaciones.indexOf(notificacion);
+                                 // $scope.notificaciones.splice(pos, 1);
                                 })
                                 .catch(function(e){
                                       console.log(e);
@@ -64,11 +68,21 @@
                     }
 
                     $scope.extenderFuncion = function(funcion){
-                       
+                       console.log(Horarios.generar(funcion.pelicula, funcion.complejo));
                     }
 
-                     $scope.noExtenderFuncion = function(funcion){
-                       
+                     $scope.noExtenderFuncion = function(notificacion,funcion){
+                       var pos = notificacion.funciones.indexOf(funcion);
+                       notificacion.funciones.splice(pos, 1);
+
+                       Notificaciones.modificarFunciones({_id : notificacion._id,
+                                                    funciones : notificacion.funciones})
+                        .then(function(datos){
+                             console.log(datos);                                                                 
+                        })
+                        .catch(function(e){
+                             console.log(e);
+                        }); 
                     }
 
                          

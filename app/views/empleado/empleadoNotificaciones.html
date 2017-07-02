@@ -14,10 +14,11 @@
     </div>
     <!--NOTIFICACION (NG-REPEAT)-->
     <div ng-if="notificaciones.length > 0">
-    <div class="row" ng-repeat="notificacion in notificaciones | filter: { ocultar: false }">
+    <div class="row" ng-repeat="notificacion in notificaciones"> <!-- | filter: { ocultar: false }">-->
+      <div ng-if="notificacion.funciones.length > 0">
         <div class="col-md-12">
             <div class="panel panel-primary">
-                <div class="panel-heading">{{fecha}}Reserva</div>
+                <div class="panel-heading">{{notificacion.pelicula.nombre}}</div>
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-12">
@@ -43,7 +44,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <input type="button" class="btn btn-primary" value="Extender" ng-click="extenderFuncion(funcion)">  
-                                <input type="button" class="btn btn-primary" value="No Extender" ng-click="noExtenderFuncion(funcion)">
+                                <input type="button" class="btn btn-primary" value="No Extender" ng-click="noExtenderFuncion(notificacion,funcion)">
                             </div>
                      
                         </div>
@@ -51,6 +52,8 @@
                 </div>
             </div>
         </div>
+        </div>
+    <div ng-if="notificacion.funciones.length == 0"> La funciones de {{notificacion.pelicula.nombre}} en su complejo no necesitan renovarse </div>   
     </div>
     </div>
     <div ng-if="notificaciones.length == 0"> Sin notificaciones </div>
