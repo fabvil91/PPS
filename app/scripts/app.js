@@ -252,6 +252,13 @@
         url:'/adminSalas',              
         //controller: '',
         templateUrl:'views/admin/adminSalas.html'
+      }) 
+      $stateProvider
+        .state('adminCuenta',
+        {
+        url:'/adminCuenta',              
+        controller: 'adminCuentaCtrl',
+        templateUrl:'views/admin/adminCuenta.html'
         }) 
       $stateProvider
         .state('adminSlide',
@@ -301,6 +308,13 @@
         url:'/empleadoMain',              
         //controller: 'cajeroFinalizarCtrl',
         templateUrl:'views/empleado/empleadoMain.html'
+      })  
+      $stateProvider
+        .state('empleadoCuenta',
+        {
+        url:'/empleadoCuenta',              
+        controller: 'empleadoCuentaCtrl',
+        templateUrl:'views/empleado/empleadoCuenta.html'
         })  
       $stateProvider
         .state('empleadoPeliculas',
@@ -436,13 +450,13 @@
               if($rootScope.globals.currentUser.tipoUsuario == 'Admin'){
                 var restrictedPage = $.inArray($location.path(), ['/adminMain', 
                 '/promosVigentes','/quienesSomos','/contactanos','/prohibida',
-                '/adminBancos','/adminCines','/adminConfiguracionGeneral','/adminPersonal','/adminPrecios','/adminPromociones','/adminSalaNueva','/adminSalas','/adminTarjeta','/adminSlide',
+                '/adminBancos','/adminCines','/adminCuenta','/adminConfiguracionGeneral','/adminPersonal','/adminPrecios','/adminPromociones','/adminSalaNueva','/adminSalas','/adminTarjeta','/adminSlide',
                 '/adminSlideForm']) === -1;
               }
 
               if($rootScope.globals.currentUser.tipoUsuario == 'Empleado'){
                 var restrictedPage = $.inArray($location.path(), ['/empleadoMain',
-                '/promosVigentes','/quienesSomos','/contactanos','/prohibida',
+                '/promosVigentes','/quienesSomos','/contactanos','/prohibida','/empleadoCuenta',
                 '/empleadoFunciones','/empleadoNotificaciones','/empleadoPeliculas']) === -1;
               }
               

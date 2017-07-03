@@ -21,20 +21,51 @@
     <div class="col-sx-1 col-md-2">
     </div>
     <div class="col-sx-10 col-md-8 container white">
-    
-        <div class="detallesFuncion">
-            <p>Pelicula: {{funcion.pelicula.nombre}} - {{funcion.idioma.nombre}}</p>
-            <p>Funcion: {{funcion.diaFormateado}} -  {{ formatearHora(funcion) }}</p>
-            <p>Complejo: {{funcion.complejo.nombre}}</p>
+        <div class="row">
+            <div class="col-sx-12 col-md-12">
+                <div class="detallesFuncion">
+                    <p>Pelicula: {{funcion.pelicula.nombre}} - {{funcion.idioma.nombre}}</p>
+                    <p>Funcion: {{funcion.diaFormateado}} -  {{ formatearHora(funcion) }}</p>
+                    <p>Complejo: {{funcion.complejo.nombre}}</p>
+                </div>
+                <div> 
+                    <h3>SELECCIONE SUS ENTRADAS</h3>
+                    <p>Seleccione la cantidad y el tipo de tickets a comprar.</p>
+                    <p>Usted puede comprar un maximo de 6 tickets por transaccion.</p>
+                    <p>El ticket Niño se considera para niños de 3 a 12 años.</p>
+                </div>
+            </div>
         </div>
-        <div> 
-            <h3>SELECCIONE SUS ENTRADAS</h3>
-            <p>Seleccione la cantidad y el tipo de tickets a comprar.</p>
-            <p>Usted puede comprar un maximo de 6 tickets por transaccion.</p>
-            <p>El ticket Niño se considera para niños de 3 a 12 años.</p>
+        <div class="row" ng-hide="usuario.cuentaCorriente==null || hideCuenta">
+            <div class="container">
+            <div class="col-sx-6">
+               <!-- <div class="alert alert-info">
+                    <p>Usted tiene ${{usuario.cuentaCorriente}} para usar.</p>
+                    <p>¿Desea utilizarlo?</p>
+                    <div class="row">
+                       
+                            <button type="button" class="btn btn-primary">Aceptar</button>
+                        
+                            <button type="button" class="btn btn-primary">Rechazar</button>
+                        
+                    </div>
+                </div>-->
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Cuenta Corriente</div>
+                    <div class="panel-body text-center">
+                        <p>Usted tiene ${{usuario.cuentaCorriente}} para usar.</p>
+                        <p>¿Desea utilizarlo?</p>
+                        <div class="row">                        
+                            <button type="button" class="btn btn-primary" ng-click="usarCuenta()">Aceptar</button>                            
+                            <button type="button" class="btn btn-primary" ng-click="noUsarCuenta()">Rechazar</button>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
         </div> 
         <div>
-            <form class="entradas">
+            <form class="entradas"> 
                 <div>
                     <label class="radio-inline"><input type="radio" name="tipoTransaccion" ng-click="transaccion.tipoTransaccion = 'compra'">Compra</label>
                     <label class="radio-inline"><input type="radio" name="tipoTransaccion" ng-click="transaccion.tipoTransaccion = 'reserva'">Reserva</label>

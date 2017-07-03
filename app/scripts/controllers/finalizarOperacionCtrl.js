@@ -26,6 +26,8 @@
 			console.log($scope.funcion.transaccion.codigo);
 		}();
 
+		
+
 		$scope.registrarOperacion = function(){
 			console.log($scope.funcion);
 
@@ -52,6 +54,7 @@
                    break;
                 }
             }
+			
 
             if(promo){
             	console.log("promo del dia");

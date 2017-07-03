@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">        
+            <nav class="navbar navbar-default">
+                <div class="container">
+                    <ul class="nav navbar-nav">
+                        <li ui-sref="empleadoNotificaciones"><a href="#">Notificaciones</a></li>
+                        <li ui-sref="empleadoFunciones" ><a href="#">Funciones</a></li>
+                        <li ui-sref="empleadoPeliculas"><a href="#">Peliculas</a></li>
+                        <li ui-sref="empleadoCuenta"><a href="#">Mi Cuenta</a></li>
+                    </ul>
+                </div>
+            </nav>       
+        </div>
+    </div>
+    <div class="row">
+    
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">                        
+                    <div class="row">                                         
+                    <!--DATOS USUARIO -->   
+                            <div class="panel panel-default">
+                                <div class="panel-heading">DATOS DE USUARIO</div>
+                                <div class="panel-body">
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2" for="nombreUsuario">Nombre de Usuario:</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" name="nombreUsuario" class="form-control"  ng-model="usuario.username" ng-readonly="readOnlyUsuario">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2" for="contrasena">Contraseña:</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" name="contraseña" class="form-control" ng-model="usuario.password" ng-readonly="readOnlyUsuario">
+                                            </div>
+                                        </div>
+                                        <div class="form-group" ng-show="!readOnlyUsuario">
+                                            <label class="control-label col-sm-2" for="contrasenaCheck">Reingrese Contraseña:</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" name="contrasenaCheck" class="form-control" ng-model="passwordCheck">
+                                            </div>
+                                        </div>
+                                        <div ng-if="mensaje">Las contraseñas no coinciden</div> 
+                                        <div class="form-group pull-right">
+                                            <div ng-show="readOnlyUsuario">
+                                                <input type="button" class="btn btn-info" value="Editar Datos" ng-click="editar('usuario')">  
+                                            </div>
+                                            <div ng-show="!readOnlyUsuario">
+                                                <input type="button" class="btn btn-info" value="Guardar" ng-click="guardar('usuario')">  
+                                                <input type="button" class="btn btn-info" value="Cancelar" ng-click="cancelar('usuario')">  
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+       
+    </div>
+</div>
