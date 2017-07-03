@@ -78,11 +78,15 @@
                 });
 
                 //Hay que calcular promociones tambien?
-                $scope.calcularPrecio = function (entradas){
+                $scope.calcularPrecio = function (funcion){
                   var precio=0;
-                  entradas.forEach(function(element) {
-                    precio = precio + element.subtotal;
-                  });
+                  if(funcion.precioTotal==null){
+                    funcion.entradas.forEach(function(element) {
+                      precio = precio + element.subtotal;
+                    });
+                  }else{
+                    precio=funcion.precioTotal;
+                  }
                   
                   return precio;
 
@@ -94,7 +98,7 @@
                     if($scope.usuario.cuentaCorriente==null){
                       $scope.usuario.cuentaCorriente=0;
                     }
-                    $scope.usuario.cuentaCorriente=$scope.usuario.cuentaCorriente+$scope.calcularPrecio(operacion.entradas);
+                    $scope.usuario.cuentaCorriente=$scope.usuario.cuentaCorriente+$scope.calcularPrecio(operacion.funcion);
                     console.log($scope.usuario.cuentaCorriente);
                     //update de usuario? agregar campo a usuarioCuenta
                     Usuarios.modificarCuentaCorriente($scope.usuario);
