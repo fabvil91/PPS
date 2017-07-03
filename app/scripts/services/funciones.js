@@ -64,7 +64,7 @@ angular
 
     function alta(item){
       return $http({
-            url: 'http://localhost:3333/insertar',
+            url: 'http://localhost:3333/funciones/insertar',
             method: "POST",
             data: item,
             headers: {'Content-Type': 'application/json'}})

@@ -45,16 +45,17 @@ router.get('/articulos/proveedor/:proveedor', (req, res, next) => {
     });
 });
 
-router.post('/insertar',function(req, res, next){
+router.post('/funciones/insertar',function(req, res, next){
 		console.log(req.body);
 
-        req.db.collection('articulos')        
-        .insert({name: req.body.name, 
-        		 peso: req.body.peso,
-        		 precio: req.body.precio,
-        		 fecha: new Date(req.body.fecha),
-        		 tipo: req.body.tipo,
-        		 proveedor: {email: req.body.email}
+        req.db.collection('funciones')        
+        .insert({pelicula: req.body.pelicula, 
+            		 formato: req.body.formato,
+            		 complejo: req.body.complejo,
+            		 idioma: req.body.idioma,
+            		 dia: new Date(req.body.dia),
+            		 hora: new Date(req.body.hora),
+                 sala: req.body.sala,
         		}, function (err, result){
            if (err) {
                res.json({rta : err});

@@ -62,7 +62,7 @@ MongoClient.connect('mongodb://localhost:27017/pps', (err, db) =>
 		console.log('Servidor iniciado..');
 	})
 
-	cron.schedule('0 15 21 * * *', function(){ 
+	cron.schedule('0 30 21 * * *', function(){ 
 		/* Filtra arrays por sala */
 		function filtrar(funciones) {
 		    var a = [], l = funciones.length;
