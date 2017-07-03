@@ -77,7 +77,7 @@
                   return (element.estado === "Retirado" || element.estado==="Cancelado");
                 });
 
-                //Hay que calcular promociones tambien?
+                
                 $scope.calcularPrecio = function (funcion){
                   var precio=0;
                   if(funcion.precioTotal==null){
@@ -86,6 +86,33 @@
                     });
                   }else{
                     precio=funcion.precioTotal;
+                  }
+                  //repensar como hacemos PROMOCIONES?
+                  if(funcion.operacion.promociones!=null){  
+                    precio=0;
+                    if(funcion.operacion.promociones.tipo=='DescuentoTotal'){
+
+                      precio=precio*(1/funcion.operacion.promociones.porcentaje);
+
+                    }
+                    else if(funcion.operacion.promociones.tipo=='DescuentoEntrada'){
+
+                      funcion.entradas.forEach(function(element) {
+                        precio = precio + element.subtotal*(1/funcion.operacion.promociones.porcentaje);
+                      });
+
+                    }
+                    else if(funcion.operacion.promociones.tipo=='2x1'){
+
+                      entradasFiltradas = funcion.entradas.filter((item)=>{
+                        return item.tipo == funcion.operacion.promociones.tipoEntrada;
+                      });
+
+                      entradasFiltradas.forEach(function(element){
+                       precio=precio+element.subtotal;
+                      });
+                      
+                    }
                   }
                   
                   return precio;
