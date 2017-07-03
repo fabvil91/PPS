@@ -88,6 +88,7 @@
                     precio=funcion.precioTotal;
                   }
                   //repensar como hacemos PROMOCIONES?
+                  /*
                   if(funcion.operacion.promociones!=null){  
                     precio=0;
                     if(funcion.operacion.promociones.tipo=='DescuentoTotal'){
@@ -113,7 +114,7 @@
                       });
                       
                     }
-                  }
+                  }*/
                   
                   return precio;
 
