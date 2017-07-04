@@ -28,14 +28,16 @@
 							$scope.cantidadTotal = 0;
 							$scope.hideCuenta=false;
 							$scope.descuento=false;
+							$scope.promocion={};
 
 							$scope.funcion = Datos.listado();
-
+							//trae entradas+precio que concida con el complejo y formato de funcion
 							$scope.preciosFiltrados = $scope.precios.filter(function(element){
 									return (element.complejo.nombre === $scope.funcion.complejo.nombre && element.formato.nombre === $scope.funcion.formato.nombre);
 							});
 
 							(function(){
+								//carga solo la primera promocion que sea del dia actual
 								var promocion = null;
 								for (var i = $scope.promociones.length - 1; i >= 0; i--) {
 									if ($scope.promociones[i].diaSemana == new Date($scope.funcion.dia).getDay()){
@@ -44,20 +46,22 @@
 									}
 								}
 								console.log(promocion);
+								$scope.promocion = promocion;
 								for (var i = $scope.preciosFiltrados.length - 1; i >= 0; i--) {
 									$scope.preciosFiltrados[i].cantidad = 0;
 									$scope.preciosFiltrados[i].subtotal = 0;
 
-									if($scope.preciosFiltrados[i].tipo == 'Entrada General' && promocion != null){
-										$scope.preciosFiltrados[i].tipoOriginal = 'Entrada General';
-										$scope.preciosFiltrados[i].tipo = promocion.nombre;
+									if(promocion != null && ($scope.preciosFiltrados[i].tipo == promocion.tipoEntrada || promocion.tipoEntrada=="Todas")){
+										
+										if(promocion.tipoDescuento=="Porcentaje"){
+											$scope.preciosFiltrados[i].descuento = $scope.preciosFiltrados[i].monto * (promocion.porcentaje / 100);
+											$scope.preciosFiltrados[i].monto=$scope.preciosFiltrados[i].monto-$scope.preciosFiltrados[i].descuento;
+										}
 
-										$scope.preciosFiltrados[i].montoOriginal = $scope.preciosFiltrados[i].monto;
-										$scope.preciosFiltrados[i].monto = $scope.preciosFiltrados[i].monto * (promocion.porcentaje / 100);
-
-										$scope.preciosFiltrados[i].promocion = promocion;
+										
 									}
 								}
+								console.log("Precios Filtrados");
 								console.log($scope.preciosFiltrados);
 							})();
 
@@ -113,39 +117,69 @@
 		//Tiene que hacer los cambios en FinalizarOperacion pero no se donde. Preguntar.
 
 		$scope.calcularDescuento=function(funcion){
-			var precio=0;
-
-			funcion.entradas.forEach((item)=>{
-				precio=precio+item.subtotal;				
-			});
-
-			if($scope.usuario.cuentaCorriente<=precio){
-				precio=precio-$scope.usuario.cuentaCorriente;
-				$scope.usuario.cuentaCorriente=0;
-				Usuarios.modificarCuentaCorriente($scope.usuario);
-				console.log($scope.usuario.cuentaCorriente);
-			}else{
+			
+			//descuento 2x1
+			//se fija si hay promocion 2x1
+			if(funcion.promocion!=null&&funcion.promocion.tipoDescuento=="2x1"){
 				
-				$scope.usuario.cuentaCorriente=$scope.usuario.cuentaCorriente-precio;
-				precio=0;
-				Usuarios.modificarCuentaCorriente($scope.usuario);
-				
-				console.log($scope.usuario.cuentaCorriente);
+				funcion.entradas.forEach(function(element) {
+					//se fija si se aplica al tipo de entrada, hace 2X1 en entradas del mismo tipo
+					if(element.tipo==funcion.promocion.tipoEntrada||funcion.promocion.tipoEntrada=="Todas"){
+						if(element.cantidad!=1){
+							if(element.cantidad%2==0){
+								console.log("PAR");
+								element.subtotal=element.subtotal/2;
+							}else{
+								console.log("Impar");
+								//saca el precio de una entrada
+								element.subtotal=element.subtotal-element.monto;
+								//divide el nuevo precio por dos y despues le agrega el precio de la entrada extra
+								element.subtotal=(element.subtotal/2)+element.monto;
+							}
+						}
+					}
+				});
+				$scope.total=0;
+				funcion.entradas.forEach(function(element) {
+					$scope.total=$scope.total+element.subtotal;
+				});
+			}
+
+			var precio=$scope.total;
+			
+			//descuento de cuenta corriente
+			if($scope.descuento==true){
+
+				if($scope.usuario.cuentaCorriente<=precio){
+					precio=precio-$scope.usuario.cuentaCorriente;
+					$scope.usuario.cuentaCorriente=0;
+					//Usuarios.modificarCuentaCorriente($scope.usuario);
+				}else{
+					
+					$scope.usuario.cuentaCorriente=$scope.usuario.cuentaCorriente-precio;
+					precio=0;
+					//Usuarios.modificarCuentaCorriente($scope.usuario);
+				}
 			}
 			return precio;
 		}
+
 
 		$scope.cargar = function(funcion){
 			
         	funcion.cantidadAsientos = $scope.cantidadTotal;
         	funcion.entradas = $scope.preciosFiltrados;
         	funcion.transaccion = $scope.transaccion;
-			console.log($scope.usuario);
-			if($scope.descuento==true){
-				funcion.precioTotal=$scope.calcularDescuento(funcion);
+			funcion.precioTotal=$scope.total;
+			if($scope.promocion!=null){
+				funcion.promocion=$scope.promocion;
 			}
+			console.log($scope.usuario);
+			
+				funcion.precioTotal=$scope.calcularDescuento(funcion);
+				funcion.cuentaCorriente=$scope.usuario.cuentaCorriente;
+			
         	console.log(funcion);
-        	console.log($scope.usuario);
 			Datos.cargar(funcion);
         }					
     }])

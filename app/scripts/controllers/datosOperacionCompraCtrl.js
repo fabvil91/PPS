@@ -93,7 +93,13 @@
                     .catch(function(e){
                     console.log(e);
                 })
-                              
+                $scope.calcularDescuento=function(funcion){
+                    if(funcion.operacion.promociones!="Sin Promocion"){
+                        if(funcion.operacion.promociones.tipoDescuento=="Porcentaje"){
+                            
+                        }
+                    }
+                }              
                 $scope.cargar = function(funcion){                
                     console.log(funcion);        	
                     Datos.cargar(funcion);
