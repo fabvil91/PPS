@@ -62,7 +62,8 @@ MongoClient.connect('mongodb://localhost:27017/pps', (err, db) =>
 		console.log('Servidor iniciado..');
 	})
 
-	cron.schedule('0 30 21 * * *', function(){ 
+	// Cada jueves a las 2 AM (no esta cambiado para poder probar, pero deberia ser: 0 0 2 * * 4):
+	cron.schedule('0 26 0 * * *', function(){ 
 		/* Filtra arrays por sala */
 		function filtrar(funciones) {
 		    var a = [], l = funciones.length;
@@ -103,63 +104,74 @@ MongoClient.connect('mongodb://localhost:27017/pps', (err, db) =>
 		   	return dateArray;
 		}
 
-  		//Buscamos las peliculas activas y en su ultima semana
-  		var peliculasAVencer = [];
-  		var peliculas = [];
-  		db.collection('peliculas')
-	    .find({estado:'Activa'})
-	    .toArray((err, data) => {
-	    	if (err){
-	        	console.log(err);  
-	    	}else{
-		        console.log(data);
-		        peliculas = data;
+		/* Eliminamos notificaciones antiguas */
+		db.collection('notificaciones')        
+        .remove({ }, function (err, result){
+           if (err) {
+               console.log(err);
+            }
+            else {
+               console.log("Eliminaciones OK");
+        
+		  		//Buscamos las peliculas activas y en su ultima semana
+		  		var peliculasAVencer = [];
+		  		var peliculas = [];
+		  		db.collection('peliculas')
+			    .find({estado:'Activa'})
+			    .toArray((err, data) => {
+			    	if (err){
+			        	console.log(err);  
+			    	}else{
+				        console.log(data);
+				        peliculas = data;
 
-			    var limiteSup = null;
-			    var limiteInf = null;    
-				for (var i = 0; i < peliculas.length; i++) {
-					peliculas[i].fechaEstreno = new Date(peliculas[i].fechaEstreno);
-					limiteSup = peliculas[i].fechaEstreno.addDays(7 * peliculas[i].semanasActiva);				
-					limiteInf = limiteSup.addDays(-7);
-					var ultimaSemana = getDates(limiteInf,limiteSup.addDays(-1));
-					for (var j = 0; j < ultimaSemana.length; j++) {
-							if(ultimaSemana[j].isSameDateAs(new Date())){							
-								peliculasAVencer.push(peliculas[i]);
-								break;
-							}
-						}	
-				}			
-							
-				//Buscamos las funciones de esas peliculas y generacion notificacion
-				var funciones = [];	    	
-		    	for (var i = 0; i < peliculasAVencer.length; i++) {
-		    		var pelicula = peliculasAVencer[i];
+					    var limiteSup = null;
+					    var limiteInf = null;    
+						for (var i = 0; i < peliculas.length; i++) {
+							peliculas[i].fechaEstreno = new Date(peliculas[i].fechaEstreno);
+							limiteSup = peliculas[i].fechaEstreno.addDays(7 * peliculas[i].semanasActiva);				
+							limiteInf = limiteSup.addDays(-7);
+							var ultimaSemana = getDates(limiteInf,limiteSup.addDays(-1));
+							for (var j = 0; j < ultimaSemana.length; j++) {
+									if(ultimaSemana[j].isSameDateAs(new Date())){							
+										peliculasAVencer.push(peliculas[i]);
+										break;
+									}
+								}	
+						}			
+									
+						//Buscamos las funciones de esas peliculas y generacion notificacion
+						var funciones = [];	    	
+				    	for (var i = 0; i < peliculasAVencer.length; i++) {
+				    		var pelicula = peliculasAVencer[i];
 
-		    		db.collection('funciones')
-					.find({'pelicula.nombre':pelicula.nombre})
-		    		.toArray((err, data) => {
-		      		if (err){
-		        		console.log(err);     	
-		      		}else{	 
-		      			if(data.length != 0) {   				      				      				      				      			
-							db.collection('notificaciones')        
-					        .insert({extendida: false, 
-					            		 fecha: new Date(),
-					            		 pelicula: pelicula,
-					            		 funciones: filtrar(data)       		
-					        		}, function (err, result){
-					           if (err) {
-					               console.log(err);  
-					            }
-					            else {
-					               console.log("Notif OK");  
-					            }
-					        });
+				    		db.collection('funciones')
+							.find({'pelicula.nombre':pelicula.nombre})
+				    		.toArray((err, data) => {
+				      		if (err){
+				        		console.log(err);     	
+				      		}else{	 
+				      			if(data.length != 0) {   				      				      				      				      			
+									db.collection('notificaciones')        
+							        .insert({extendida: false, 
+							            		 fecha: new Date(),
+							            		 pelicula: pelicula,
+							            		 funciones: filtrar(data)       		
+							        		}, function (err, result){
+							           if (err) {
+							               console.log(err);  
+							            }
+							            else {
+							               console.log("Notif OK");  
+							            }
+							        });
+						      }
+				     		}
+				    	})
 				      }
-		     		}
+			    	}
 		    	})
-		      }
-	    	}
-    	});	   		    	
+	   			}
+     	}) 
 	});
 });

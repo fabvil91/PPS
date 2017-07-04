@@ -47,7 +47,7 @@
                                 <input type="button" class="btn btn-primary" value="Extender" ng-click="extenderFuncion(notificacion,funcion)">  
                                 <input type="button" class="btn btn-primary" value="No Extender" ng-click="noExtenderFuncion(notificacion,funcion)">
                             </div>
-                     
+                        <div ng-if="funcion.salaOcupada != null && funcion.salaOcupada" class="alert alert-danger">La sala ya está ocupada en la próxima semana</div>                 
                         </div>
                     </form> 
                 </div>

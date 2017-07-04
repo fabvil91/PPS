@@ -123,6 +123,7 @@
                             }
                             if(salaOcupada){
                                 console.log("salaOcupada");
+                                funcion.salaOcupada = true;
                             }else{
                                 /* Generamos las funciones y las insertamos en la BD*/
                                 SalasService.getById(funcion.sala._id)
