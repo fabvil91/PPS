@@ -172,7 +172,7 @@
         	funcion.transaccion = $scope.transaccion;
 			funcion.precioTotal=$scope.total;
 			if($scope.promocion!=null){
-				funcion.promocion=$scope.promocion;
+				funcion.promocion=$scope.promocion;				
 			}
 			console.log($scope.usuario);
 			

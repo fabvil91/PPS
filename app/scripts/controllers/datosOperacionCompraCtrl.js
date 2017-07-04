@@ -36,7 +36,7 @@
                                             console.log($scope.usuario);
 
                                             $scope.promociones = $scope.promociones.filter(function(element){
-                                                return (element.banco != null && element.tarjeta != null);
+                                                return (element.tipoPromocion=="Tarjeta");
                                             });
                                             console.log($scope.promociones);
 
@@ -47,11 +47,15 @@
                                                     vencimiento:{}
                                                 };
                                                 $scope.hayPromo = false;
+                                                /*
                                                 for (var i = $scope.funcion.entradas.length - 1; i >= 0; i--) {
                                                     if($scope.funcion.entradas[i].promocion && $scope.funcion.entradas[i].cantidad > 0){
                                                         $scope.hayPromo = true;
                                                         break;
                                                     }
+                                                }*/
+                                                if($scope.funcion.promocion!=null && $scope.funcion.promocion.tipoPromocion=="Dia"){
+                                                    $scope.hayPromo=true;
                                                 }
                                                 console.log($scope.hayPromo);
 
@@ -95,12 +99,46 @@
                 })
                 $scope.calcularDescuento=function(funcion){
                     if(funcion.operacion.promociones!="Sin Promocion"){
-                        if(funcion.operacion.promociones.tipoDescuento=="Porcentaje"){
-                            
+                        
+                        //Promociones Porcentaje
+                        if(funcion.operacion.promociones.tipoDescuento=="Porcentaje"){ 
+                            //aplica descuento a valor de entrada
+                            //Por cada entrada se fija si coincide el tipo de entrada, o si la promocion aplica a Todas                           
+                                funcion.entradas.forEach(function(element) {
+                                    if(element.tipo==funcion.operacion.promociones.tipoEntrada || funcion.operacion.promociones.tipoEntrada=="Todas"){
+                                        element.monto=element.monto*(funcion.operacion.promociones.porcentaje/100);
+                                        element.subtotal=element.monto*element.cantidad;
+                                    }                                    
+                                });  
+
                         }
+                        //Promociones 2x1
+                        if(funcion.operacion.promociones.tipoDescuento=="2x1"){
+                            funcion.entradas.forEach(function(element) {
+                                    if(element.tipo==funcion.operacion.promociones.tipoEntrada || funcion.operacion.promociones.tipoEntrada=="Todas"){
+                                        if(element.cantidad!=1){
+                                            if(element.cantidad%2==0){
+                                                console.log("PAR");
+                                                element.subtotal=element.subtotal/2;
+                                            }else{
+                                                console.log("IMPAR");
+                                                element.subtotal=element.subtotal-element.monto;
+                                                element.subtotal=(element.subtotal/2)+element.monto;
+                                            }
+                                        }
+                                    }
+                            });
+                        }
+                        //recalcula precioTotal
+                        funcion.precioTotal=0;
+                        funcion.entradas.forEach(function(element) {
+                            funcion.precioTotal=funcion.precioTotal+element.subtotal;
+                        });
+
                     }
                 }              
-                $scope.cargar = function(funcion){                
+                $scope.cargar = function(funcion){ 
+                    $scope.calcularDescuento(funcion);               
                     console.log(funcion);        	
                     Datos.cargar(funcion);
         	   }	 
