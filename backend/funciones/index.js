@@ -104,6 +104,24 @@ router.put('/funciones/modificarSala',function(req, res, next){
         });  
   });
 
+router.put('/funciones/modificarComplejo',function(req, res, next){
+    console.log(req.body);
+    var id = new require('mongodb').ObjectID(req.body._id);
+    console.log(id);
+
+        req.db.collection('funciones')        
+        .update({_id: id}, {$set: {                     
+                              complejo: req.body.complejo                       
+                       }}, function (err, result){
+           if (err) {
+               res.json({rta : err});
+            }
+            else {
+               res.json({rta : "OK"});
+            }
+        });  
+  });
+
 router.delete('/eliminar',function(req, res, next){
 		console.log(req.body);
 		var id = new require('mongodb').ObjectID(req.body._id);
