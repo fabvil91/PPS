@@ -18,6 +18,7 @@
 					$scope.entradas = [];
 					$scope.total = 0;
 					$scope.cantidadTotal = 0;
+					$scope.promocion={};
 
 					$scope.funcion = Datos.listado();
 
@@ -58,7 +59,7 @@
 			     })
 		     .catch(function(e){
 		       console.log(e);
-		     })
+		     }) 
 	     })
 	     .catch(function(e){
 	       console.log(e);
@@ -83,12 +84,55 @@
 				$scope.cantidadTotal = $scope.cantidadTotal - 1;
 			}
 		}
+		$scope.calcularDescuento=function(funcion){
+			
+			//descuento 2x1
+			//se fija si hay promocion 2x1
+			if(funcion.promocion!=null&&funcion.promocion.tipoDescuento=="2x1"){
+				
+				funcion.entradas.forEach(function(element) {
+					//se fija si se aplica al tipo de entrada, hace 2X1 en entradas del mismo tipo
+					if(element.tipo==funcion.promocion.tipoEntrada||funcion.promocion.tipoEntrada=="Todas"){
+						if(element.cantidad!=1){
+							if(element.cantidad%2==0){
+								console.log("PAR");
+								element.subtotal=element.subtotal/2;
+							}else{
+								console.log("Impar");
+								//saca el precio de una entrada
+								element.subtotal=element.subtotal-element.monto;
+								//divide el nuevo precio por dos y despues le agrega el precio de la entrada extra
+								element.subtotal=(element.subtotal/2)+element.monto;
+							}
+						}
+					}
+				});
+				$scope.total=0;
+				funcion.entradas.forEach(function(element) {
+					$scope.total=$scope.total+element.subtotal;
+				});
+			}
+
+			var precio=$scope.total;
+			
+			
+			return precio;
+		}
+
 
 		$scope.cargar = function(funcion){
         	funcion.cantidadAsientos = $scope.cantidadTotal;
         	funcion.entradas = $scope.preciosFiltrados;
         	funcion.transaccion = $scope.transaccion;
         	console.log(funcion);
+			funcion.precioTotal=$scope.total;
+			if($scope.promocion!=null){
+				funcion.promocion=$scope.promocion;				
+			}
+			console.log($scope.usuario);
+			
+				funcion.precioTotal=$scope.calcularDescuento(funcion);
+				funcion.descuentoCuentaCorriente=$scope.descuento;
         	
 			Datos.cargar(funcion);
         }					

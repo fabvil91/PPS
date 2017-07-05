@@ -27,35 +27,11 @@
                                         });
                                         console.log($scope.promociones);
 
-                                             $scope.mes = [
-                                                {nombre:"Enero", id:0},
-                                                {nombre:"Febrero"},
-                                                {nombre:"Marzo"},
-                                                {nombre:"Abril"},
-                                                {nombre:"Marzo"},
-                                                {nombre:"Abril"},
-                                                {nombre:"Mayo"},
-                                                {nombre:"Junio"},
-                                                {nombre:"Julio"},
-                                                {nombre:"Agosto"},
-                                                {nombre:"Septiembre"},
-                                                {nombre:"Octubre"},
-                                                {nombre:"Noviembre"},
-                                                {nombre:"Diciembre"}
-                                             ];
-                                            $scope.year = [
-                                                {nombre:"2017", id:0},
-                                                {nombre:"2018"},
-                                                {nombre:"2019"},
-                                                {nombre:"2020"},
-                                                {nombre:"2021"},
-                                                {nombre:"2022"},
-                                                {nombre:"2023"},
-                                                {nombre:"2024"}
-                                            ];
+                                               $scope.mes=["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre","Octubre","Noviembre","Diciembre"];
+                                                $scope.year = ["2017","2018","2019","2020","2021","2022","2023","2024"];
+
                                             $scope.funcion = Datos.listado();
                                             $scope.funcion.operacion = {
-                                                vencimiento:{},
                                                 tipoPago:''
                                             };
                                             $scope.hayPromo = false;
@@ -66,7 +42,47 @@
                                                 }
                                             }
                                             console.log($scope.hayPromo);
+                                             $scope.calcularDescuento=function(funcion){
+                                                    if(funcion.operacion.promociones!=null){
+                                                        
+                                                        //Promociones Porcentaje
+                                                        if(funcion.operacion.promociones.tipoDescuento=="Porcentaje"){ 
+                                                            //aplica descuento a valor de entrada
+                                                            //Por cada entrada se fija si coincide el tipo de entrada, o si la promocion aplica a Todas                           
+                                                                funcion.entradas.forEach(function(element) {
+                                                                    if(element.tipo==funcion.operacion.promociones.tipoEntrada || funcion.operacion.promociones.tipoEntrada=="Todas"){
+                                                                        element.monto=element.monto*(funcion.operacion.promociones.porcentaje/100);
+                                                                        element.subtotal=element.monto*element.cantidad;
+                                                                    }                                    
+                                                                });  
 
+                                                        }
+                                                        //Promociones 2x1
+                                                        if(funcion.operacion.promociones.tipoDescuento=="2x1"){
+                                                            funcion.entradas.forEach(function(element) {
+                                                                    if(element.tipo==funcion.operacion.promociones.tipoEntrada || funcion.operacion.promociones.tipoEntrada=="Todas"){
+                                                                        if(element.cantidad!=1){
+                                                                            if(element.cantidad%2==0){
+                                                                                console.log("PAR");
+                                                                                element.subtotal=element.subtotal/2;
+                                                                            }else{
+                                                                                console.log("IMPAR");
+                                                                                element.subtotal=element.subtotal-element.monto;
+                                                                                element.subtotal=(element.subtotal/2)+element.monto;
+                                                                            }
+                                                                        }
+                                                                    }
+                                                            });
+                                                        }
+                                                        //recalcula precioTotal
+                                                        funcion.precioTotal=0;
+                                                        funcion.entradas.forEach(function(element) {
+                                                            funcion.precioTotal=funcion.precioTotal+element.subtotal;
+                                                        });
+                                                        
+
+                                                    }
+                                             }
 
                                             var entradas = [];
                                                 for (var i = $scope.funcion.entradas.length - 1; i >= 0; i--) {
@@ -90,7 +106,8 @@
                  })
                               
                 $scope.cargar = function(funcion){ 
-                //SI es efectivo, limpiar funcion.operacion (Solo se llena con pago en tarjeta)               
+                //SI es efectivo, limpiar funcion.operacion (Solo se llena con pago en tarjeta)   
+                    $scope.calcularDescuento(funcion);            
                     console.log(funcion);        	
                     Datos.cargar(funcion);
         	   }	 
@@ -99,12 +116,6 @@
                   return entrada.tipo + " - " + entrada.monto + " - " + entrada.cantidad;
                }
 
-               $scope.total = function(){  
-                      var total = 0;                        
-                       for (var i = $scope.funcion.entradas.length - 1; i >= 0; i--) {
-                         total = total + $scope.funcion.entradas[i].subtotal;
-                       }
-                       return total;
-                }
+              
         }]) 
 })();

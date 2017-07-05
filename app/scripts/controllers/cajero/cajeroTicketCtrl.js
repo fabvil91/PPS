@@ -21,15 +21,7 @@
             return fecha.getHours() + ":" + (fecha.getMinutes() == "0"? "00" : fecha.getMinutes());
         }
 
-         $scope.calcularPrecio = function (entradas){
-            var precio=0;
-            entradas.forEach(function(element) {
-            precio = precio + element.subtotal;
-            });
-            
-            return precio;
-
-        }
+        
         $scope.imprimir=function(){
             $window.print();
             Datos.cargar($scope.operacion);

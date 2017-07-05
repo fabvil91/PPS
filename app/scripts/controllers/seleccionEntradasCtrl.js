@@ -147,20 +147,7 @@
 
 			var precio=$scope.total;
 			
-			//descuento de cuenta corriente
-			if($scope.descuento==true){
-
-				if($scope.usuario.cuentaCorriente<=precio){
-					precio=precio-$scope.usuario.cuentaCorriente;
-					$scope.usuario.cuentaCorriente=0;
-					//Usuarios.modificarCuentaCorriente($scope.usuario);
-				}else{
-					
-					$scope.usuario.cuentaCorriente=$scope.usuario.cuentaCorriente-precio;
-					precio=0;
-					//Usuarios.modificarCuentaCorriente($scope.usuario);
-				}
-			}
+			
 			return precio;
 		}
 
@@ -177,7 +164,7 @@
 			console.log($scope.usuario);
 			
 				funcion.precioTotal=$scope.calcularDescuento(funcion);
-				funcion.cuentaCorriente=$scope.usuario.cuentaCorriente;
+				funcion.descuentoCuentaCorriente=$scope.descuento;
 			
         	console.log(funcion);
 			Datos.cargar(funcion);
