@@ -3,16 +3,27 @@ angular
   .service('Complejos', ['$http', function($http){
 
     this.listado = listado;
-    this.articuloPorNombre = articuloPorNombre;
+    this.getById = getById;
     this.articuloPrecioMayor = articuloPrecioMayor;
     this.articuloPorProveedor = articuloPorProveedor;
     this.articuloPorIndice = articuloPorIndice;
     this.alta = alta;
-    this.modificar = modificar;
+    this.modificar = modificar;    
+    this.modificarHoras = modificarHoras;
     this.borrar = borrar;
 
     function listado () {
       return $http.get('http://localhost:3333/complejos/getAll')
+      .then(function(rta){
+        return rta.data;
+      })
+      .catch(function(e){
+        return e;
+      })
+    }
+
+     function getById (texto) {
+      return $http.get('http://localhost:3333/complejos/id/'+texto)
       .then(function(rta){
         return rta.data;
       })
@@ -78,6 +89,20 @@ angular
     function modificar(item){
       return $http({
             url: 'http://localhost:3333/modificar',
+            method: "PUT",
+            data: item,
+            headers: {'Content-Type': 'application/json'}})
+      .then(function(rta){
+        return rta.data;
+      })
+      .catch(function(e){
+        return e;
+      })
+    }
+
+    function modificarHoras(item){
+      return $http({
+            url: 'http://localhost:3333/complejos/modificarHoras',
             method: "PUT",
             data: item,
             headers: {'Content-Type': 'application/json'}})

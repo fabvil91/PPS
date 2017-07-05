@@ -9,17 +9,14 @@ angular
     function generar(pelicula, complejo) {
       console.log(complejo);
       var horarios = [];
-      var horaAcumulada = new Date(2017,6,07,9,0,0,0);//complejo.horaApertura;
-      var horaCierre = new Date(2017,6,07,23,40,0,0);//complejo.horaCierre;
+      var horaAcumulada = complejo.horaApertura; //new Date(2017,6,07,9,0,0,0);
+      var horaCierre = complejo.horaCierre; //new Date(2017,6,07,23,40,0,0);
 
-      while(addMinutes(horaAcumulada,complejo.duracionPublicidad+pelicula.duracion).getTime() <= addMinutes(horaCierre,30).getTime()){//(horaAcumulada.getTime() <= horaCierre.getTime()){
+      while(addMinutes(horaAcumulada,complejo.duracionPublicidad+pelicula.duracion).getTime() <= addMinutes(horaCierre,complejo.duracionToleranciaUltimaFuncion).getTime()){
         horarios.push(horaAcumulada);
         horaAcumulada = addMinutes(horaAcumulada, complejo.duracionPublicidad);
         horaAcumulada = addMinutes(horaAcumulada, pelicula.duracion);
-        horaAcumulada = addMinutes(horaAcumulada, complejo.duracionEntreFunciones);        
-       /* if(addMinutes(horaAcumulada,complejo.duracionPublicidad+pelicula.duracion).getTime() > addMinutes(horaCierre,30).getTime()){
-          break;
-        }*/              
+        horaAcumulada = addMinutes(horaAcumulada, complejo.duracionEntreFunciones);                             
       }
 
       return horarios;

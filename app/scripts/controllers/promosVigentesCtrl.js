@@ -3,26 +3,25 @@
  
     angular
         .module('cine')
-        .controller('promosVigentesCtrl', ['$rootScope','$scope','$location', 'Promociones','Funciones','SalasService',
-	    function ($rootScope,$scope,$location,Promociones,Funciones,SalasService) {
+        .controller('promosVigentesCtrl', ['$rootScope','$scope','$location', 'Promociones','Funciones','Complejos',
+	    function ($rootScope,$scope,$location,Promociones,Funciones,Complejos) {
 
 			  Promociones.listado()
 		     .then(function(datos){
 		     	console.log(datos);
 		        $scope.promociones = datos;
 
-		       /*  SalasService.getById('5952bd9283d7350820e5f698')
+		      /*   Complejos.getById('5927208039a5301c9ceb768c')
 			     .then(function(datos){
 			     	console.log(datos);
 		       
 			     	 var o = {
 			      	_id: '5927331139a5301c9ceb7699',
-			      	sala: datos[0]
+			      	complejo: datos[0]
 			      };
-			     Funciones.modificarSala(o)
+			     Funciones.modificarComplejo(o)
 			     .then(function(datos){
-			     	console.log(datos);
-			       
+			     	console.log(datos);			       
 			     })
 			     .catch(function(e){
 			       console.log(e);

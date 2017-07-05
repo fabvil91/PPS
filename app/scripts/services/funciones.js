@@ -10,6 +10,7 @@ angular
     this.alta = alta;
     this.modificar = modificar;
     this.modificarSala = modificarSala;
+    this.modificarComplejo = modificarComplejo;
     this.borrar = borrar;
 
     function listado () {
@@ -93,6 +94,20 @@ angular
      function modificarSala(item){
       return $http({
             url: 'http://localhost:3333/funciones/modificarSala',
+            method: "PUT",
+            data: item,
+            headers: {'Content-Type': 'application/json'}})
+      .then(function(rta){
+        return rta.data;
+      })
+      .catch(function(e){
+        return e;
+      })
+    }
+
+    function modificarComplejo(item){
+      return $http({
+            url: 'http://localhost:3333/funciones/modificarComplejo',
             method: "PUT",
             data: item,
             headers: {'Content-Type': 'application/json'}})
