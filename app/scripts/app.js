@@ -292,9 +292,16 @@
         .state('empleadoFunciones',
         {
         url:'/empleadoFunciones',              
-        //controller: 'cajeroFinalizarCtrl',
+        controller: 'empleadoFuncionesCtrl',
         templateUrl:'views/empleado/empleadoFunciones.html'
-        })  
+        })
+      $stateProvider
+        .state('empleadoFuncionesForm',
+        {
+        url:'/empleadoFuncionesForm',              
+        controller: 'empleadoFuncionesFormCtrl',
+        templateUrl:'views/empleado/empleadoFuncionesForm.html'
+        })   
       $stateProvider
         .state('empleadoNotificaciones',
         {
@@ -457,7 +464,7 @@
               if($rootScope.globals.currentUser.tipoUsuario == 'Empleado'){
                 var restrictedPage = $.inArray($location.path(), ['/empleadoMain',
                 '/promosVigentes','/quienesSomos','/contactanos','/prohibida','/empleadoCuenta',
-                '/empleadoFunciones','/empleadoNotificaciones','/empleadoPeliculas']) === -1;
+                '/empleadoFunciones','/empleadoFuncionesForm','/empleadoNotificaciones','/empleadoPeliculas']) === -1;
               }
               
               if($rootScope.globals.currentUser.tipoUsuario == 'Cajero'){

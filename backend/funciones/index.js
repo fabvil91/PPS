@@ -122,12 +122,12 @@ router.put('/funciones/modificarComplejo',function(req, res, next){
         });  
   });
 
-router.delete('/eliminar',function(req, res, next){
+router.delete('/funciones/eliminar',function(req, res, next){
 		console.log(req.body);
 		var id = new require('mongodb').ObjectID(req.body._id);
 		console.log(id);
 
-        req.db.collection('articulos')        
+        req.db.collection('funciones')        
         .remove({_id: id}, function (err, result){
            if (err) {
                res.json({rta : err});

@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="row">
+        <!--MENU-->
+        <div class="row">
+        <div class="col-md-12">        
+            <nav class="navbar navbar-default">
+                <div class="container">
+                    <ul class="nav navbar-nav">
+                        <li ui-sref="empleadoNotificaciones"><a href="#">Notificaciones</a></li>
+                        <li ui-sref="empleadoFunciones" class="active" ><a href="#">Funciones</a></li>
+                        <li ui-sref="empleadoPeliculas"><a href="#">Peliculas</a></li>
+                        <li ui-sref="empleadoCuenta"><a href="#">Mi Cuenta</a></li>
+                    </ul>
+                </div>
+            </nav>       
+        </div>
+    </div>                          
+                <div class = "col-md-9">
+                    <div class="panel panel-default margin-top">
+                        <form name="form" ng-submit="cargar()" novalidate>
+
+                        <!-- Pelicula -->
+                        <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
+                            <label>Pelicula</label>
+                            <select ng-model="funcion.pelicula._id" ng-options="x._id as x.nombre for x in peliculas">  
+                              <option value="">Seleccione</option>           
+                            </select>            
+                        </div>  
+
+                        <!-- Sala -->
+                        <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
+                            <label>Sala</label>
+                            <select ng-model="funcion.sala._id" ng-options="x._id as x.nombre for x in salas">  
+                              <option value="">Seleccione</option>           
+                            </select>            
+                        </div> 
+
+                        <!-- Dia -->
+                        <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
+                            <label>Día</label>
+                            <select ng-model="funcion.dia" ng-options="x for x in dias">  
+                              <option value="">Seleccione</option>           
+                            </select>            
+                        </div> 
+                        
+                        <!-- Titulo -->
+                        <fieldset>
+                        <legend>Titulo</legend>
+                        <div class="form-group" ng-class="{ 'has-error' : form.titulo.$invalid && !form.titulo.$pristine }">
+                            <label>Titulo</label>
+                            <input type="text" name="titulo" class="form-control" ng-model="slide.nombre" ng-minlength="3" ng-maxlength="15" required>
+                            <p ng-show="form.titulo.$invalid && !form.titulo.$pristine" class="help-block">El titulo es requerido</p>
+                            <p ng-show="form.titulo.$error.minlength" class="help-block">Titulo es muy corto.</p>
+                            <p ng-show="form.titulo.$error.maxlength" class="help-block">Titulo es muy largo.</p>
+                        </div>
+                        </fieldset>
+                        <!-- Descripcion -->
+                        <fieldset>
+                        <legend>Descripcion</legend>
+                        <div class="form-group" ng-class="{ 'has-error' : form.descripcion.$invalid && !form.descripcion.$pristine }">
+                            <label>Descripcion</label>
+                            <input type="text" name="descripcion" class="form-control" ng-model="slide.descripcion" ng-minlength="3" ng-maxlength="100" required>
+                            <p ng-show="form.descripcion.$invalid && !form.descripcion.$pristine" class="help-block">La descripcion es requerida</p>
+                            <p ng-show="form.descripcion.$error.minlength" class="help-block">Descripcion es muy corto.</p>
+                            <p ng-show="form.descripcion.$error.maxlength" class="help-block">Descripcion es muy largo.</p>
+                        </div>
+                        </fieldset>
+                                         
+                        <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">Cargar</button>
+                        <button class="btn btn-primary" ui-sref="adminSlide">Cancelar</button>
+                    </form>
+
+                    </div>
+                </div>
+            </div>        
+</div>
