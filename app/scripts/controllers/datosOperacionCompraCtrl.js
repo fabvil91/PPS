@@ -7,6 +7,8 @@
         function ($scope,$location,Datos,$rootScope,Tarjetas,Bancos,Promociones,Usuarios) {
         
                 $scope.funcion = Datos.listado();
+                $scope.funcion.operacion={};
+
 
                  Tarjetas.listado()
                      .then(function(datos){
@@ -57,6 +59,8 @@
                                                 }
                                                 console.log($scope.hayPromo);
 
+
+                                                
                                                 if($scope.usuario.datosTarjeta!=null){                                        
                                             
                                                     $scope.funcion.operacion.codigoSeguridad=$scope.usuario.datosTarjeta.codigoSeguridad;
@@ -136,7 +140,7 @@
                                                         }else{
                                                             
                                                             $scope.usuario.cuentaCorriente=$scope.usuario.cuentaCorriente- funcion.precioTotal;
-                                                            precio=0;
+                                                            funcion.precioTotal=0;
                                                             Usuarios.modificarCuentaCorriente($scope.usuario)
                                                             .then(function(datos){
                                                                 console.log(datos);

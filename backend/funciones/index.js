@@ -1,3 +1,4 @@
+var mongo=require('mongodb');
 var express = require('express');
 var router = express.Router();
 
@@ -11,7 +12,6 @@ router.get('/funciones/getAll',function(req, res,next){
      	res.json(data);
     	})
 	});
-
 router.get('/articulos/name/:name', (req, res, next) => {
     console.log(req.params.name);
     req.db.collection('articulos')

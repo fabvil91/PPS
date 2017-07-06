@@ -1,7 +1,8 @@
 (function(){
 	'use strict';
 	angular.module('cine')
-	.controller('usuarioHistorialCtrl', ['$rootScope','$scope','Usuarios','Operaciones','Datos','$window',function($rootScope,$scope,Usuarios,Operaciones,Datos,$window){	
+	.controller('usuarioHistorialCtrl', ['$rootScope','$scope','Usuarios','Operaciones','Datos','$window','Funciones',
+  function($rootScope,$scope,Usuarios,Operaciones,Datos,$window,Funciones){	
        $scope.reloadPage = function(){$window.location.reload();}
 
         Usuarios.usuarioPorNombreUsuario($rootScope.globals.currentUser.username)
@@ -86,13 +87,43 @@
                     if($scope.usuario.cuentaCorriente==null){
                       $scope.usuario.cuentaCorriente=0;
                     }
-                    $scope.usuario.cuentaCorriente=$scope.usuario.cuentaCorriente+$scope.calcularPrecio(operacion.funcion);
+                    $scope.usuario.cuentaCorriente=$scope.usuario.cuentaCorriente+operacion.funcion.precioTotal;
                     console.log($scope.usuario.cuentaCorriente);
-                    //update de usuario? agregar campo a usuarioCuenta
+                    
                     Usuarios.modificarCuentaCorriente($scope.usuario);
                   }
                   operacion.estado="Cancelado";
-                  Operaciones.modificarCompra(operacion)
+                  
+                  operacion.funcion.sala.asientos.forEach(function(fila){
+                    fila.forEach(function(columna){
+                      if(columna.booked==false&&columna.checked==true){
+                        console.log(columna.id);
+                        columna.checked=false;
+                      }
+                    });
+                  });
+
+                  var funcionMod;
+                 Funciones.listado()
+                 .then(function(datos){ 
+                    var funciones = datos;
+                    funciones.forEach(function(item){
+                      if(item._id==operacion.funcion._id){
+                        item.sala=operacion.funcion.sala;
+                        funcionMod=item;
+                      }
+                    });
+
+                    if(funcionMod!=null){
+                    Funciones.modificarSala(funcionMod);
+                    }
+
+                   })
+                .catch(function(e){
+                    console.log(e);
+                });
+
+                  Operaciones.modificarCompra(operacion);
                   $scope.recargarFechas();
                   $scope.reloadPage();
                   
