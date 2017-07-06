@@ -11,7 +11,7 @@
                         <li role="presentation" ui-sref="adminPromociones" class="active"><a href="#">Gestionar Promociones</a></li> 
                         <li role="presentation" ui-sref="adminSalas"><a href="#">Gestionar Salas</a></li> 
                         <li role="presentation" ui-sref="adminSlide" ><a href="#">Gestionar Slides</a></li>
-                        <br>
+                        <br> 
                         <br>
                         <br> 
                         <li role="presentation" ui-sref="adminConfiguracionGeneral"><a href="#">Configuracion General</a></li>
@@ -22,87 +22,75 @@
         </div>                                
                 <div class = "col-md-9">
                     <div class="panel panel-default margin-top">
+                        <div class="panel-body">
                         <form name="form" ng-submit="cargar()" novalidate>
 
-                       <!-- Promociones -->
-                        
-                        <!-- Nombre -->
-                        <fieldset>
-                        <legend>Nombre</legend>
-                        <div class="form-group" ng-class="{ 'has-error' : form.nombre.$invalid && !form.nombre.$pristine }">
-                            <label>Nombre</label>
-                            <input type="text" name="nombre" class="form-control" ng-model="promociones.nombre" ng-minlength="3" ng-maxlength="15" required>
-                            <p ng-show="form.nombre.$invalid && !form.nombre.$pristine" class="help-block">El nombre es requerido</p>
-                            <p ng-show="form.nombre.$error.minlength" class="help-block">Nombre es muy corto.</p>
-                            <p ng-show="form.nombre.$error.maxlength" class="help-block">Nombre es muy largo.</p>
+                                <div class="form-group" ng-class="{ 'has-error' : form.nombre.$invalid && !form.nombre.$pristine }">
+                                    <label>Nombre</label>
+                                    <input type="text" name="nombre" class="form-control" ng-model="promocion.nombre" ng-minlength="3" ng-maxlength="25" required>
+                                    <p ng-show="form.nombre.$invalid && !form.nombre.$pristine" class="help-block">El nombre es requerido</p>
+                                    <p ng-show="form.nombre.$error.minlength" class="help-block">Nombre es muy corto.</p>
+                                    <p ng-show="form.nombre.$error.maxlength" class="help-block">Nombre es muy largo.</p>
+                                </div>
+                                 <div class="form-group" ng-class="{ 'has-error' : form.descripcion.$invalid && !form.nombre.$pristine }">
+                                    <label>Descripcion</label>
+                                    <input type="text" name="descripcion" class="form-control" ng-model="promocion.descripcion" ng-minlength="3" ng-maxlength="30" required>
+                                    <p ng-show="form.descripcion.$invalid && !form.descripcion.$pristine" class="help-block">La descripcion es requerida</p>
+                                    <p ng-show="form.descripcion.$error.minlength" class="help-block">La descripcion es muy corta.</p>
+                                    <p ng-show="form.descripcion.$error.maxlength" class="help-block">La descripcion es muy larga.</p>
+                                </div>
+
+                                <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
+                                    <label>Tipo Promocion</label>
+                                    <select ng-model="promocion.tipoPromocion">  
+                                    <option ng-repeat="x in tipoPromocion">{{x}}</option> 
+                                    </select>            
+                                </div>  
+                                <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
+                                    <label>Tipo Descuento</label>
+                                    <select ng-model="promocion.tipoDescuento">  
+                                    <option ng-repeat="x in tipoDescuento">{{x}}</option>          
+                                    </select>            
+                                </div>
+                                <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
+                                    <label>Entradas Afectadas</label>
+                                    <select ng-model="promocion.tipoEntrada">  
+                                     <option selected="promocion.tipoEntrada" ng-repeat="x in preciosFiltrados">{{x}}</option>          
+                                    </select>            
+                                </div>                                   
+                                <div class="form-group" ng-if="promocion.tipoPromocion=='Dia'" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
+                                    <label>Dia</label>
+                                    <select ng-model="promocion.diaSemana">  
+                                     <option  selected="promocion.diaSemana" ng-repeat="x in dia">{{x}}</option>          
+                                    </select>            
+                                </div> 
+                                <div class="form-group" ng-if="promocion.tipoPromocion=='Tarjeta'" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
+                                    <label>Banco</label>
+                                    <select ng-model="promocion.banco">  
+                                    <option ng-repeat="x in bancos">{{x}}</option> 
+                                    </select>            
+                                </div>  
+                                <div class="form-group" ng-if="promocion.tipoPromocion=='Tarjeta'" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
+                                    <label>Tarjeta</label>
+                                    <select ng-model="promocion.tarjeta">  
+                                    <option ng-repeat="x in tarjetas">{{x}}</option> 
+                                    </select>            
+                                </div> 
+                              
+                                <div class="form-group" ng-if="promocion.tipoDescuento=='Porcentaje'" ng-class="{ 'has-error' : form.nombre.$invalid && !form.nombre.$pristine }">
+                                    <label>Porcentaje</label>
+                                    <input type="text" name="porcentaje" class="form-control" ng-model="promociones.porcentaje" ng-minlength="1" ng-maxlength="3" required>
+                                    <p ng-show="form.nombre.$invalid && !form.nombre.$pristine" class="help-block">El porcentaje es requerido</p>
+                                    <p ng-show="form.nombre.$error.minlength" class="help-block">Porcentaje es muy corto.</p>
+                                    <p ng-show="form.nombre.$error.maxlength" class="help-block">Porcentaje es muy largo.</p>
+                                </div> 
+
+                               
+                                                        
+                                <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">Cargar</button>
+                                <button class="btn btn-primary" ui-sref="adminPromociones">Cancelar</button>
+                            </form>
                         </div>
-                        </fieldset>
-
-                        <!-- Activa -->
-                        <fieldset>
-                        <legend>Activa</legend>
-                        <div class="form-group" ng-class="{ 'has-error' : form.activa.$invalid && !form.activa.$pristine }">
-                            <label>Activa</label>
-                            <input type="text" name="activa" class="form-control" ng-model="promociones.activa" ng-minlength="3" ng-maxlength="100" required>
-                            <p ng-show="form.activa.$invalid && !form.activa.$pristine" class="help-block">El Activa es requerida</p>
-                            <p ng-show="form.activa.$error.minlength" class="help-block">Activa es muy corto.</p>
-                            <p ng-show="form.activa.$error.maxlength" class="help-block">Activa es muy largo.</p>
-                        </div>
-                        </fieldset>
-
-                         <!-- Porcentaje -->
-                        <fieldset>
-                        <legend>Porcentaje</legend>
-                        <div class="form-group" ng-class="{ 'has-error' : form.porcentaje.$invalid && !form.porcentaje.$pristine }">
-                            <label>Porcentaje</label>
-                            <input type="text" name="porcentaje" class="form-control" ng-model="promociones.porcentaje" ng-minlength="3" ng-maxlength="100" required>
-                            <p ng-show="form.porcentaje.$invalid && !form.porcentaje.$pristine" class="help-block">el porcentaje es requerida</p>
-                            <p ng-show="form.porcentaje.$error.minlength" class="help-block">Porcentaje es muy corto.</p>
-                            <p ng-show="form.porcentaje.$error.maxlength" class="help-block">Porcentaje es muy largo.</p>
-                        </div>
-                        </fieldset>
-
-                         <!-- Banco -->
-                        <fieldset>
-                        <legend>Banco</legend>
-                        <div class="form-group" ng-class="{ 'has-error' : form.banco.$invalid && !form.banco.$pristine }">
-                            <label>Banco</label>
-                            <input type="text" name="banco" class="form-control" ng-model="promociones.banco" ng-minlength="3" ng-maxlength="100" required>
-                            <p ng-show="form.banco.$invalid && !form.banco.$pristine" class="help-block">El banco es requerido</p>
-                            <p ng-show="form.banco.$error.minlength" class="help-block">Banco es muy corto.</p>
-                            <p ng-show="form.banco.$error.maxlength" class="help-block">Banco es muy largo.</p>
-                        </div>
-                         </fieldset>
-
-                          <!-- Tarjeta -->
-                        <fieldset>
-                        <legend>Tarjeta</legend>
-                        <div class="form-group" ng-class="{ 'has-error' : form.tarjeta.$invalid && !form.tarjeta.$pristine }">
-                            <label>Tarjeta</label>
-                            <input type="text" name="tarjeta" class="form-control" ng-model="promociones.Tarjeta" ng-minlength="3" ng-maxlength="100" required>
-                            <p ng-show="form.tarjeta.$invalid && !form.tarjeta.$pristine" class="help-block">La tarjeta es requerida</p>
-                            <p ng-show="form.tarjeta.$error.minlength" class="help-block">Tarjeta es muy corto.</p>
-                            <p ng-show="form.tarjeta.$error.maxlength" class="help-block">Tarjeta es muy largo.</p>
-                        </div>
-                         </fieldset>
-
-                         <!-- Dia de la Semana -->
-                        <fieldset>
-                        <legend>Dia de la Semana</legend>
-                        <div class="form-group" ng-class="{ 'has-error' : form.diaSemana.$invalid && !form.diaSemana.$pristine }">
-                            <label>Dia de la Semana</label>
-                            <input type="text" name="diaSemana" class="form-control" ng-model="promociones.diaSemana" ng-minlength="3" ng-maxlength="100" required>
-                            <p ng-show="form.diaSemana.$invalid && !form.diaSemana.$pristine" class="help-block">El dia de la semana es requerido</p>
-                            <p ng-show="form.diaSemana.$error.minlength" class="help-block">Dia de la Semana es muy corto.</p>
-                            <p ng-show="form.diaSemana.$error.maxlength" class="help-block">Dia de la Semana es muy largo.</p>
-                        </div>
-                         </fieldset>
-
-                                                   
-                        <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">Cargar</button>
-                        <button class="btn btn-primary" ui-sref="adminPromociones">Cancelar</button>
-                    </form>
-
                     </div>
                 </div>
             </div>        

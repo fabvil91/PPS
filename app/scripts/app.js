@@ -458,7 +458,7 @@
                 var restrictedPage = $.inArray($location.path(), ['/adminMain', 
                 '/promosVigentes','/quienesSomos','/contactanos','/prohibida',
                 '/adminBancos','/adminCines','/adminCuenta','/adminConfiguracionGeneral','/adminPersonal','/adminPrecios','/adminPromociones','/adminSalaNueva','/adminSalas','/adminTarjeta','/adminSlide',
-                '/adminSlideForm']) === -1;
+                '/adminSlideForm','/adminPromocionesForm']) === -1;
               }
 
               if($rootScope.globals.currentUser.tipoUsuario == 'Empleado'){

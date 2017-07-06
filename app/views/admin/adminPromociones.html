@@ -12,7 +12,7 @@
                         <li role="presentation" ui-sref="adminSalas"><a href="#">Gestionar Salas</a></li> 
                         <li role="presentation" ui-sref="adminSlide"><a href="#">Gestionar Slides</a></li>
                         <br>
-                        <br>
+                        <br> 
                         <br> 
                         <li role="presentation" ui-sref="adminConfiguracionGeneral"><a href="#">Configuracion General</a></li>
                         <li role="presentation" ui-sref="adminCuenta"><a href="#">Mi Cuenta</a></li>         
@@ -42,46 +42,58 @@
                     <div class="panel panel-default margin-top">
                         <div class="panel-body">
                             <button type="button" class="btn btn-primary" ng-click="alta()">Nuevo</button>
-                            <table class="table table-condensed">
+                            <table ng-if="promocionesDia[0]!=null" class="table table-condensed">
                                 <thead>
                                     <tr>
                                         <th>Nombre</th>
-                                        <th>Activa</th>
+                                        <th>Tipo</th>
+                                        <th>Dia</th>                                        
                                         <th>Porcentaje</th>
-                                        <th>Banco</th>
-                                        <th>Tarjeta</th>
-                                        <th>Dia de la Semana</th>
+                                        <th>Entradas</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody> 
-                                    <tr>
-                                        <th>Frances</th>
-                                        <th>Si</th>
-                                        <th>30</th>
-                                        <th>BBVA Frances</th>
-                                        <th>Visa</th>
-                                        <th></th>
-                                        <th>
-                                            <button class="btn btn-info btn-sm" ng-click="modificar(promociones)">
+                                    <tr ng-repeat="promocion in promocionesDia track by $index">
+                                        <td>{{promocion.nombre}}</td>
+                                        <td>{{promocion.tipoDescuento}}</td>
+                                        <td>{{formatearDia(promocion.diaSemana)}}</td>
+                                        <td>{{promocion.porcentaje}}</td>                                        
+                                        <td>{{promocion.tipoEntrada}}</td>
+                                        <td>
+                                            <button class="btn btn-info btn-sm" ng-click="modificar(promocion)">
                                             Editar</button>
-                                            <button class="btn btn-danger btn-sm" ng-click="borrar(promociones)">
+                                            <button class="btn btn-danger btn-sm" ng-click="borrar(promocion)">
                                             Eliminar</button>
-                                        </th>
+                                        </td>
                                     </tr>
+                                    
+                                </tbody>                    
+                            </table>
+                            <table ng-if="promocionesTarjeta[0]!=null" class="table table-condensed">
+                                <thead>
                                     <tr>
-                                        <th>Miercoles de Cine</th>
-                                        <th>Si</th>
-                                        <th>50</th>
-                                        <th></th>
-                                        <th></th>
-                                        <th>Miercoles</th>
-                                        <th>
-                                            <button class="btn btn-info btn-sm" ng-click="modificar(promociones)">
-                                            Editar</button>
-                                            <button class="btn btn-danger btn-sm" ng-click="borrar(promociones)">
-                                            Eliminar</button>
-                                        </th>
+                                        <th>Nombre</th>
+                                        <th>Tipo</th>
+                                        <th>Banco</th>
+                                        <th>Tarjeta</th>
+                                        <th>Porcentaje</th>
+                                        <th>Entradas</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody> 
+                                    <tr ng-repeat="promocion in promocionesTarjeta track by $index">
+                                        <td>{{promocion.nombre}}</td>                                        
+                                        <td>{{promocion.tipoDescuento}}</td>
+                                        <td>{{promocion.banco.nombre}}</td>
+                                        <td>{{promocion.tarjeta.nombre}}</td>
+                                        <td>{{promocion.porcentaje}}</td>
+                                        <td>{{promocion.tipoEntrada}}</td>
+                                        <td>
+                                            <button class="btn btn-info btn-sm" ng-click="modificar(promocion)">Editar</button>
+                                            <button class="btn btn-danger btn-sm" ng-click="borrar(promocion)">Eliminar</button>
+                                        </td>
                                     </tr>
                                     
                                 </tbody>                    
