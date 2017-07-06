@@ -90,7 +90,10 @@
 								$scope.peliculasActivas = peliculas.filter(function(item){
 									return item.estado=="Activa";
 								});
-								$scope.peliculasActivas=$scope.peliculasActivas.slice(0,cantPeliculas);
+								
+
+
+								
 								console.log("PELICULAS ACTIVAS");
 								console.log($scope.peliculasActivas);
 
@@ -126,6 +129,15 @@
 										console.log("ENTRADAS");
 										console.log(item.nombre, item.cantEntradas);
 									});
+
+									//SORT & SLICE									
+									$scope.peliculasActivas.sort(function(a,b){
+										var aEnt = a.cantEntradas;
+										var bEnt = b.cantEntradas;
+										return bEnt - aEnt;
+									});
+									$scope.peliculasActivas=$scope.peliculasActivas.slice(0,cantPeliculas);
+
 									//Carga funciones de la pelicula, para poder pasarselo a detallePelicula
 									$scope.peliculasActivas.forEach(function(peli){
 										var funcionesPeli = [];
@@ -136,6 +148,8 @@
 										});	
 										peli.funciones=funcionesPeli;									
 									});
+
+									
 
 								 })
 					     .catch(function(e){

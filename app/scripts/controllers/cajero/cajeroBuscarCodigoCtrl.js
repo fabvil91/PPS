@@ -148,7 +148,7 @@
                       console.log(e);
                      });
                       
-                   }
+                   } 
                    
                    console.log(operacion);
                   }
