@@ -84,7 +84,7 @@ angular
         return rta.data;
       })
       .catch(function(e){
-        return e;
+        return e; 
       })
     }
     function modificarTarjeta(item){

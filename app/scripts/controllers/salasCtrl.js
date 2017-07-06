@@ -14,7 +14,7 @@
 				 } else {
 					$scope.countDownLeft = timerCount;
 					timerCount--;
-					$timeout(countDown, 1000);
+					$timeout(countDown, 1000); 
 				  }
 				 };
 				$scope.countDownLeft = timerCount;
