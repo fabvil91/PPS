@@ -32,7 +32,7 @@
                                     <p ng-show="form.nombre.$error.minlength" class="help-block">Nombre es muy corto.</p>
                                     <p ng-show="form.nombre.$error.maxlength" class="help-block">Nombre es muy largo.</p>
                                 </div>
-                                 <div class="form-group" ng-class="{ 'has-error' : form.descripcion.$invalid && !form.nombre.$pristine }">
+                                 <div class="form-group" ng-class="{ 'has-error' : form.descripcion.$invalid && !form.descripcion.$pristine }">
                                     <label>Descripcion</label>
                                     <input type="text" name="descripcion" class="form-control" ng-model="promocion.descripcion" ng-minlength="3" ng-maxlength="30" required>
                                     <p ng-show="form.descripcion.$invalid && !form.descripcion.$pristine" class="help-block">La descripcion es requerida</p>
@@ -77,12 +77,12 @@
                                     </select>            
                                 </div> 
                               
-                                <div class="form-group" ng-if="promocion.tipoDescuento=='Porcentaje'" ng-class="{ 'has-error' : form.nombre.$invalid && !form.nombre.$pristine }">
+                                <div class="form-group" ng-if="promocion.tipoDescuento=='Porcentaje'" ng-class="{ 'has-error' : form.porcentaje.$invalid && !form.porcentaje.$pristine }">
                                     <label>Porcentaje</label>
-                                    <input type="text" name="porcentaje" class="form-control" ng-model="promociones.porcentaje" ng-minlength="1" ng-maxlength="3" required>
-                                    <p ng-show="form.nombre.$invalid && !form.nombre.$pristine" class="help-block">El porcentaje es requerido</p>
-                                    <p ng-show="form.nombre.$error.minlength" class="help-block">Porcentaje es muy corto.</p>
-                                    <p ng-show="form.nombre.$error.maxlength" class="help-block">Porcentaje es muy largo.</p>
+                                    <input type="text" name="porcentaje" class="form-control" ng-model="promocion.porcentaje" ng-minlength="1" ng-maxlength="3" required>
+                                    <p ng-show="form.porcentaje.$invalid && !form.nombre.$pristine" class="help-block">El porcentaje es requerido</p>
+                                    <p ng-show="form.porcentaje.$error.minlength" class="help-block">Porcentaje es muy corto.</p>
+                                    <p ng-show="form.porcentaje.$error.maxlength" class="help-block">Porcentaje es muy largo.</p>
                                 </div> 
 
                                

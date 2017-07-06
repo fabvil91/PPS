@@ -84,7 +84,7 @@
 
 				$scope.promocion.banco = banco[0];
 				$scope.promocion.tarjeta = tarjeta[0];
-			}
+			} 
 			if($scope.promocion.tipoPromocion=="Dia"){
 				$scope.dia.forEach(function(item,index){
 					

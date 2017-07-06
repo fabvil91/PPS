@@ -63,7 +63,7 @@
             </form>
             <div class="col-sm-2"></div>
         </div>
-
+ 
     <!-- LISTA DE PELICULAS -->
         <div class="row">
            <div class="col-sm-2"></div>
@@ -100,27 +100,12 @@
                  <div class="panel-body">
                      <!-- PELICULAS -->
                     <ul class="list-inline">
-                        <li>
+                        <span ng-show="peliculasActivas.length === 0">No hay funciones disponibles</span>
+                        <li ng-repeat="pelicula in peliculasActivas | orderBy:'-cantEntradas'">
                             <div class="movie text-center">
-                                <a href="#">
-                                    <img src="images/peliculas/BeautyAndTheBeast.jpg" alt="poster" class="img-thumbnail img-poster">
-                                    <p>Bella y la Bestia</p>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="movie text-center">
-                                <a href="#">
-                                    <img src="images/peliculas/Logan.jpg" alt="poster" class="img-thumbnail img-poster">
-                                    <p>Logan</p>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="movie text-center">
-                                <a href="#">
-                                    <img src="images/peliculas/StarWars.jpg" alt="poster" class="img-thumbnail img-poster">
-                                    <p>Star Wars</p>
+                                <a href="#" ng-click="cargar(pelicula.funciones[0])" ui-sref="detallePelicula">
+                                <img ng-src="{{pelicula.imageUrl}}" alt="poster"  class="img-thumbnail img-poster">                                   
+                                <p>{{pelicula.nombre}}</p>
                                 </a>
                             </div>
                         </li>

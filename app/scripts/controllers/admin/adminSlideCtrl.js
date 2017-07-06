@@ -4,7 +4,7 @@
 	.controller('adminSlideCtrl', ['$rootScope','$scope','Datos','$sce','Slides','$timeout','$location',function($rootScope,$scope,Datos,$sce,Slides,$timeout,$location){
 								       
      Datos.limpiar();
-
+ 
 	 Slides.listado()
      .then(function(datos){
      	console.log(datos);

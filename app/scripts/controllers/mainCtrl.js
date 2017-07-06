@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
 	angular.module('cine')
-	.controller('mainCtrl', ['$rootScope','$scope','Datos','Complejos','Formatos','Idiomas','Slides','Funciones',function($rootScope,$scope,Datos,Complejos,Formatos,Idiomas,Slides,Funciones){		
+	.controller('mainCtrl', ['$rootScope','$scope','Datos','Complejos','Formatos','Idiomas','Slides','Funciones','Peliculas','Operaciones',function($rootScope,$scope,Datos,Complejos,Formatos,Idiomas,Slides,Funciones,Peliculas,Operaciones){		
 		 $scope.filtro = {};
 
 		 $scope.myInterval = 3000;
@@ -78,7 +78,74 @@
 								for (var i = 0; i < $scope.fechas.length; i++ ) {	   
 					       		  $scope.fechasDias.push($scope.dias[$scope.fechas[i].getDay()] + " - " + $scope.fechas[i].getDate() + "/" + ($scope.fechas[i].getMonth()+1));    
 								}						
-							})(); 														
+							})(); 
+
+
+							//MAS VISTAS
+							Peliculas.listado()
+							.then(function(datos){
+								var peliculas = datos;
+								var cantPeliculas=2;
+								//Trae peliculas en estado Activa
+								$scope.peliculasActivas = peliculas.filter(function(item){
+									return item.estado=="Activa";
+								});
+								$scope.peliculasActivas=$scope.peliculasActivas.slice(0,cantPeliculas);
+								console.log("PELICULAS ACTIVAS");
+								console.log($scope.peliculasActivas);
+
+								Operaciones.listado()
+								.then(function(datos){
+									var operaciones = datos;
+									$scope.operacionesActivas=[];
+									//Trae todas las operaciones en estado Retirado que match alguna de las peliculas activas
+									operaciones.forEach(function(item){
+										$scope.peliculasActivas.forEach(function(pel){
+											if(item.funcion.pelicula.nombre==pel.nombre && item.estado=="Retirado"){
+												console.log(item.funcion.pelicula.nombre, pel.nombre,item.estado);
+
+												$scope.operacionesActivas.push(item);
+											}
+										});
+
+									});
+									console.log("OPERACIONES ACTIVAS");
+									console.log($scope.operacionesActivas);
+
+									//Calcula entradas retiradas de cada pelicula activa y lo agrega como un campo
+									$scope.peliculasActivas.forEach(function(item){
+										var cantidad = 0;
+										$scope.operacionesActivas.forEach(function(op){
+											if(op.funcion.pelicula.nombre==item.nombre){
+												op.entradas.forEach(function(ent){
+													cantidad=cantidad+ent.cantidad;
+												});
+											}
+										});
+										item.cantEntradas=cantidad;
+										console.log("ENTRADAS");
+										console.log(item.nombre, item.cantEntradas);
+									});
+									//Carga funciones de la pelicula, para poder pasarselo a detallePelicula
+									$scope.peliculasActivas.forEach(function(peli){
+										var funcionesPeli = [];
+										$scope.funciones.forEach(function(item){
+											if(item.pelicula._id==peli._id){
+												funcionesPeli.push(item);
+											}
+										});	
+										peli.funciones=funcionesPeli;									
+									});
+
+								 })
+					     .catch(function(e){
+					       console.log(e);
+					     });
+						 })
+					     .catch(function(e){
+					       console.log(e);
+					     });
+
 					     })
 					     .catch(function(e){
 					       console.log(e);
