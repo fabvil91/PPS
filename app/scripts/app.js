@@ -243,14 +243,14 @@
         .state('adminSalaNueva',
         {
         url:'/adminSalaNueva',              
-        //controller: '',
+        controller: 'adminSalaFormCtrl',
         templateUrl:'views/admin/adminSalaNueva.html'
         }) 
       $stateProvider
         .state('adminSalas',
         {
         url:'/adminSalas',              
-        //controller: '',
+        controller: 'adminSalasCtrl',
         templateUrl:'views/admin/adminSalas.html'
       }) 
       $stateProvider

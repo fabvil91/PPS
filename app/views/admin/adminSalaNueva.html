@@ -19,7 +19,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> 
         
         <div class = "col-md-9">
             <!-- SALAS DATOS -->
@@ -28,35 +28,53 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <form class="form-horizontal">
-                                <div class="form-group">
+                                <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
                                     <label class="control-label col-sm-2" for="nombre">Nombre:</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="nombre" class="form-control" ng-model="">
+                                        <input type="text" name="nombre" class="form-control" ng-model="sala.nombre" ng-minlength="3" ng-maxlength="15" required>
+                                        <p ng-show="form.nombre.$invalid && !form.nombre.$pristine" class="help-block">El nombre es requerido</p>
+                                        <p ng-show="form.nombre.$error.minlength" class="help-block">Nombre es muy corto.</p>
+                                        <p ng-show="form.nombre.$error.maxlength" class="help-block">Nombre es muy largo.</p>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-sm-2" for="selFormato">Formato: </label>  
+                                <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }" required>
+                                    <label class="control-label col-sm-2" for="selFormato" >Formato: </label>  
                                     <div class="col-sm-10">
-                                        <select class="form-control" id="selFormato" ng-model="filtro.formato" ng-options="x._id  as x.nombre for x in formatos"></select> 
+                                       <select ng-model="sala.formato._id" ng-options="x._id as x.nombre for x in formatos">  
+                                            <option value="">Seleccione</option>           
+                                        </select>  
+                                         <p ng-show="form.selFormato.$invalid && !form.selFormato.$pristine" class="help-block">El formato es requerido</p>
                                     </div>                 
                                     
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }" required>
+                                    <label class="control-label col-sm-2" for="selComplejo" >Complejo: </label>  
+                                    <div class="col-sm-10">
+                                       <select ng-model="sala.complejo._id" ng-options="x._id as x.nombre for x in complejos">  
+                                            <option value="">Seleccione</option>           
+                                        </select>  
+                                         <p ng-show="form.selComplejo.$invalid && !form.selComplejo.$pristine" class="help-block">El complejo es requerido</p>
+                                    </div>                 
+                                    
+                                </div>
+                                <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }" required>
                                     <label class="control-label col-sm-2" for="filas">Filas:</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="filas" class="form-control" ng-model="">
+                                        <input type="text" name="filas" class="form-control" ng-model="cantFilas">
+                                        <p ng-show="form.filas.$invalid && !form.filas.$pristine" class="help-block">Filas es requerido</p>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }" required>
                                     <label class="control-label col-sm-2" for="columnas">Columnas:</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="columnas" class="form-control" ng-model="">
+                                        <input type="text" name="columnas" class="form-control" ng-model="cantColumnas">
+                                         <p ng-show="form.columnas.$invalid && !form.columnas.$pristine" class="help-block">Columnas es requerido</p>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" >
                                     <div class="col-sm-10"></div>
                                     <div class="col-sm-2">
-                                        <input type="button" class="btn btn-info" value="Generar" ng-click="">
+                                        <input type="button" class="btn btn-info" value="Generar" ng-click="generarSala()">
                                     </div>
                                 </div>
                             </form>
@@ -65,25 +83,17 @@
                 </div>
             </div>
             <!--GUARDAR-->
+            <div ng-hide="ocultarAsientos">
                 <div class="row">
                     <div class="col-md-12">
                     <div class="alert alert-info">
-                    <strong>Info!</strong> Haciendo click sobre una columna puede definir un pasillo.
+                     Haciendo click sobre una <strong>columna</strong> puede definir un <strong>pasillo</strong> a su derecha.
                     </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-10">
-                        <div class="legend" >
-                        <div>
-                            <img src="./images/icons/pasillo.jpg" alt="pasillo"> Pasillo
-                        </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <input type="button" class="btn btn-info" value="Guardar Sala" ng-click="">
-                    </div>
-            </div>
+                        <input type="button" class="btn btn-info" value="Guardar Sala" ng-click="cargar()">
+                </div>
 
             <!--SALA GENERADA -->
             <div class="row">
@@ -93,7 +103,7 @@
                             <div class="pantalla center-block"> 
                             Pantalla
                             </div>
-                            <ol class="filas" ng-repeat="filas in funcion.sala">
+                            <ol class="filas" ng-repeat="filas in sala.asientos">
                                 <li class="columna" ng-repeat="columna in filas">
                                     <label class="asiento ocupado" ng-if="!columna.pasillo && columna.booked" ng-click="seleccionar(columna)"> {{columna.id}} </label>
                                     <label class="asiento disponible" ng-if="!columna.pasillo && !columna.booked && !columna.checked" ng-click="seleccionar(columna)"> {{columna.id}} </label>
@@ -107,5 +117,6 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
 </div>

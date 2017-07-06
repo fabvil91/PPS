@@ -26,7 +26,7 @@
                 <div class = "col-md-9">
                     <div class="panel panel-default margin-top">
                         <div class="panel-body">
-                            <button type="button" class="btn btn-primary">Nuevo</button>
+                            <button type="button" class="btn btn-primary" ng-click="alta()">Nuevo</button>
                             <table class="table table-condensed">
                                 <thead>
                                     <tr>
@@ -35,22 +35,14 @@
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
-                                <tbody> 
-                                    <tr>
-                                        <th>Sala Media 3</th>
-                                        <th>2D</th>
-                                        <th>
-                                            <button class="btn btn-info btn-sm">Editar</button>
-                                            <button class="btn btn-danger btn-sm">Eliminar</button>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <th>Sala Media 5</th>
-                                        <th>3D</th>
-                                        <th>
-                                            <button class="btn btn-info btn-sm">Editar</button>
-                                            <button class="btn btn-danger btn-sm">Eliminar</button>
-                                        </th>
+                                <tbody>  
+                                    <tr ng-repeat="sala in salas track by $index">
+                                        <td>{{sala.nombre}}</td>
+                                        <td>{{sala.formato.nombre}}</td>
+                                        <td>{{sala.complejo.nombre}}</td>
+                                        <td>
+                                            <button class="btn btn-danger btn-sm" ng-click="borrar(sala)">Eliminar</button>
+                                        </td>
                                     </tr>
                                     
                                 </tbody>                    
