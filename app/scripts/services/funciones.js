@@ -121,7 +121,7 @@ angular
 
     function borrar(item){
       return $http({
-            url: 'http://localhost:3333/eliminar',
+            url: 'http://localhost:3333/funciones/eliminar',
             method: "DELETE",
             data: item,
             headers: {'Content-Type': 'application/json'}})

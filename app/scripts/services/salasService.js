@@ -12,7 +12,7 @@ angular
     this.borrar = borrar;
 
     function listado () {
-      return $http.get('http://localhost:3333/slides/getAll')
+      return $http.get('http://localhost:3333/salas/getAll')
       .then(function(rta){
         return rta.data;
       })
