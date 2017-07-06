@@ -24,17 +24,29 @@ ol {
   margin: 0;
 }
 .filas {
-  display: flex;
+  display: table-row;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: flex-start;
-  margin: 2px;
+  align-content: center; 
+  list-style-position:inside;
+  
+  
+}
+.tabla{
+  display:table;
+  align-content: center; 
 }
 .columna {
-  display: flex;
+  display: table-cell;
   flex: 0;
   padding: 0px;
   position: relative;
+  text-align: center;
+}
+.sala{
+  display:inline-block;
+
 }
 .asiento{
    width: 30px;

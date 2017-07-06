@@ -91,28 +91,30 @@
                     </div>
                     </div>
                 </div>
-                <div class="row">
-                        <input type="button" class="btn btn-info" value="Guardar Sala" ng-click="cargar()">
-                </div>
 
             <!--SALA GENERADA -->
             <div class="row">
-                <div class="center-block">
-                    <div class="panel panel-default">
-                        <div class="sala panel-body ">
+                <div class="container-fluid">
+                    <div class="panel panel-default text-center">
+                        <div class="sala panel-body" >
                             <div class="pantalla center-block"> 
                             Pantalla
+                            </div >
+                            <div class="tabla">
+                                <ol class="filas" ng-repeat="filas in sala.asientos">                                    
+                                    <li class="columna" ng-repeat="columna in filas">
+                                        <label class="asiento ocupado" ng-if="!columna.pasillo && columna.booked" ng-click="seleccionar(columna)"> {{columna.id}} </label>
+                                        <label class="asiento disponible" ng-if="!columna.pasillo && !columna.booked && !columna.checked" ng-click="seleccionar(columna)"> {{columna.id}} </label>
+                                        <label class="asiento ocupado pasillo" ng-if="columna.pasillo && columna.booked" ng-click="seleccionar(columna)"> {{columna.id}} </label>                    
+                                        <label class="asiento disponible pasillo" ng-if="columna.pasillo && !columna.booked && !columna.checked" ng-click="seleccionar(columna)"> {{columna.id}} </label>         
+                                        <label class="asiento seleccionado pasillo" ng-if="columna.pasillo && columna.checked" ng-click="seleccionar(columna)"> {{columna.id}} </label>                                
+                                        <label class="asiento seleccionado" ng-if="!columna.pasillo && columna.checked" ng-click="seleccionar(columna)"> {{columna.id}} </label>                                       
+                                    </li>
+                                </ol>
                             </div>
-                            <ol class="filas" ng-repeat="filas in sala.asientos">
-                                <li class="columna" ng-repeat="columna in filas">
-                                    <label class="asiento ocupado" ng-if="!columna.pasillo && columna.booked" ng-click="seleccionar(columna)"> {{columna.id}} </label>
-                                    <label class="asiento disponible" ng-if="!columna.pasillo && !columna.booked && !columna.checked" ng-click="seleccionar(columna)"> {{columna.id}} </label>
-                                    <label class="asiento ocupado pasillo" ng-if="columna.pasillo && columna.booked" ng-click="seleccionar(columna)"> {{columna.id}} </label>                    
-                                    <label class="asiento disponible pasillo" ng-if="columna.pasillo && !columna.booked && !columna.checked" ng-click="seleccionar(columna)"> {{columna.id}} </label>         
-                                    <label class="asiento seleccionado pasillo" ng-if="columna.pasillo && columna.checked" ng-click="seleccionar(columna)"> {{columna.id}} </label>                                
-                                    <label class="asiento seleccionado" ng-if="!columna.pasillo && columna.checked" ng-click="seleccionar(columna)"> {{columna.id}} </label>                                       
-                                </li>
-                            </ol>
+                        </div>
+                        <div class="panel-footer " style="text-align: right;">
+                            <input type="button" class="btn btn-info" value="Guardar Sala" ng-click="cargar()">
                         </div>
                     </div>
                 </div>
