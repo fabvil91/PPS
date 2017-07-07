@@ -1,28 +1,28 @@
 (function(){
 	'use strict';
 	angular.module('cine')
-	.controller('adminPreciosFormCtrl', ['$rootScope','$scope','Datos','$sce','Precios','$location',function($rootScope,$scope,Datos,$sce,Precios,$location){									
-        $scope.precios = {};
+	.controller('adminPreciosFormCtrl', ['$rootScope','$scope','Datos','$sce','Complejos','Precios','$location',function($rootScope,$scope,Datos,$sce,Complejos,Precios,$location){									
+        $scope.precio = {};
 
-       Precios.listado()
+       Complejos.listado()
 	    .then(function(datos){
 	     console.log(datos);
-	     $scope.precios = datos; 
+	     $scope.complejos = datos; 
 
 	    if(Datos.listado() == null){
 	     console.log('alta ' + Datos.listado());
 	     $scope.cargar = cargar;
 	    	    	  	     
-	    // function cargar() {   
-	     	//console.log($scope.bancos);
+	     function cargar() {   
+	     	console.log($scope.precio);
 
-	     	//var pelicula = $scope.peliculas.filter(function(element){
-			//return (element._id === $scope.slide.pelicula._id);
-			//});
+	     	var complejo = $scope.peliculas.filter(function(element){
+			return (element._id === $scope.precio.complejo._id);
+			});
 
-	    	//$scope.slide.pelicula = pelicula[0];
+	    	$scope.precio.complejo = complejo[0];
 
-	       Precios.alta($scope.precios)
+	       Slides.alta($scope.precio)
 	       .then(function(datos){
 	        console.log(datos);
 	       })
@@ -38,18 +38,18 @@
 		    $scope.cargar = cargar;
 		    
 		    $scope.slide = Datos.listado();
-		    console.log($scope.precios);	    	    	   	    
+		    console.log($scope.precio);	    	    	   	    
 		     
-		    //function cargar() {
-		    //	console.log($scope.bancos);	
+		    function cargar() {
+		    	console.log($scope.precio);	
 
-		    //	var pelicula = $scope.peliculas.filter(function(element){
-			//	return (element._id === $scope.slide.pelicula._id);
-			//	});
+		    	var complejos = $scope.complejos.filter(function(element){
+				return (element._id === $scope.precio.complejo._id);
+				});
 
-		    //	$scope.slide.pelicula = pelicula[0];
+		    	$scope.precio.complejo = complejo[0];
 
-		       Personal.modificar($scope.precios)
+		       Slides.modificar($scope.precio)
 		        .then(function(datos){
 		         console.log(datos);
 		        })
@@ -69,5 +69,3 @@
 	   })
     }])
 })();
-
-

@@ -1,11 +1,11 @@
 (function(){
 	'use strict';
 	angular.module('cine')
-	.controller('adminPersonalCtrl', ['$rootScope','$scope','Datos','$sce','Personal','$timeout','$location',function($rootScope,$scope,Datos,$sce,Personal,$timeout,$location){
+	.controller('adminPersonalCtrl', ['$rootScope','$scope','Datos','$sce','TiposUsuario','$timeout','$location',function($rootScope,$scope,Datos,$sce,TiposUsuario,$timeout,$location){
 								       
      Datos.limpiar();
 
-	   Personal.listado()
+	   TiposUsuario.listadoPersonal()
      .then(function(datos){
      	console.log(datos);
         $scope.personal = datos;
@@ -15,9 +15,9 @@
      })
 
     
-   	 $scope.borrar = function borrar(item) {
+   	 $scope.borrarPersonal = function borrarPersonal(item) {
 
-     Personal.borrar(item)
+     TiposUsuario.borrarPersonal(item)
      .then(function(datos){
       console.log(item);
       var pos = $scope.personal.indexOf(item);
@@ -28,13 +28,13 @@
      });
     }
 
-    $scope.modificar = function modificar(item) {
+    $scope.modificarPersonal = function modificarPersonal(item) {
       console.log(item);
      Datos.cargar(item);
      $location.path('adminPersonalForm');
     }	 
 
-     $scope.alta = function alta() {      
+     $scope.altaPersonal = function altaPersonal() {      
      Datos.cargar(null);
      $location.path('adminPersonalForm');
     }	

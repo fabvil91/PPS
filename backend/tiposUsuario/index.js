@@ -59,8 +59,25 @@ router.post('/usuarios/insertar',function(req, res, next){
             }
         });  
 	});
+router.post('/tiposUsuario/insertar',function(req, res, next){
+		console.log(req.body);
 
-router.put('/modificar',function(req, res, next){
+        req.db.collection('tiposUsuario')        
+        .insert({nombre: req.body.nombre,
+                 email: req.body.email,
+                 password: req.body.password,
+                 tipoUsuario:req.body.tipoUsuario
+				}, function (err, result){
+           if (err) {
+               res.json({rta : err});
+            }
+            else {
+               res.json({rta : "OK"});
+            }
+        });  
+	});	
+
+router.put('/usuarios/modificar',function(req, res, next){
 		console.log(req.body);
 		var id = new require('mongodb').ObjectID(req.body._id);
 		console.log(id);
@@ -81,8 +98,27 @@ router.put('/modificar',function(req, res, next){
             }
         });  
 	});
+router.put('/tiposUsuario/modificar',function(req, res, next){
+		console.log(req.body);
+		var id = new require('mongodb').ObjectID(req.body._id);
+		console.log(id);
 
-router.delete('/eliminar',function(req, res, next){
+        req.db.collection('tiposUsuario')        
+        .update({_id: id}, {$set: {nombre: req.body.nombre,
+        						   email: req.body.email,
+        						   password: req.body.password,
+        						   tipoUsuario:req.body.tipoUsuario
+        						   }}, function (err, result){
+           if (err) {
+               res.json({rta : err});
+            }
+            else {
+               res.json({rta : "OK"});
+            }
+        });  
+	});	
+
+router.delete('/usuarios/eliminar',function(req, res, next){
 		console.log(req.body);
 		var id = new require('mongodb').ObjectID(req.body._id);
 		console.log(id);
@@ -97,7 +133,21 @@ router.delete('/eliminar',function(req, res, next){
             }
         });  
 	});
+router.delete('/tiposUsuario/eliminar',function(req, res, next){
+		console.log(req.body);
+		var id = new require('mongodb').ObjectID(req.body._id);
+		console.log(id);
 
+        req.db.collection('tiposUsuario')        
+        .remove({_id: id}, function (err, result){
+           if (err) {
+               res.json({rta : err});
+            }
+            else {
+               res.json({rta : "OK"});
+            }
+        });  
+	});
 router.get('/indices', function(req, res){
   req.db.collection('articulos')
   .createIndex( { name: "text",

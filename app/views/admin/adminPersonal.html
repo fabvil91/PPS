@@ -38,29 +38,18 @@
                                     </tr>
                                 </thead>
                                 <tbody> 
-                                    <tr>
-                                        <th>Jorge Vilar</th>
-                                        <th>jvilar@cimenar.com.ar</th>
-                                        <th>********</th>
-                                        <th>Cajero</th>
-                                        <th>
-                                            <button class="btn btn-info btn-sm" ng-click="modificar(personal)">
+                                   <tr ng-repeat="persona in personal track by $index">
+                                        <td>{{persona.nombre}}</td>
+										<td>{{persona.email}}</td>
+										<td>{{persona.password}}</td>
+										<td>{{persona.tipoUsuario}}</td>
+										
+                                        <td>
+                                            <button class="btn btn-info btn-sm" ng-click="modificar(persona)">
                                             Editar</button>
-                                            <button class="btn btn-danger btn-sm" ng-click="borrar(personal)">
+                                            <button class="btn btn-danger btn-sm" ng-click="borrar(persona)">
                                             Eliminar</button>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <th>Maria Wilchey</th>
-                                        <th>mwilchey@cimenar.com.ar</th>
-                                        <th>******</th>
-                                        <th>Empleado</th>
-                                        <th>
-                                            <button class="btn btn-info btn-sm" ng-click="modificar(personal)">
-                                            Editar</button>
-                                            <button class="btn btn-danger btn-sm" ng-click="borrar(personal)">
-                                            Eliminar</button>
-                                        </th>
+                                        </td>
                                     </tr>
                                     
                                 </tbody>                    

@@ -1,14 +1,14 @@
 (function(){
 	'use strict';
 	angular.module('cine')
-	.controller('adminCinesCtrl', ['$rootScope','$scope','Datos','$sce','Cines','$timeout','$location',function($rootScope,$scope,Datos,$sce,Cines,$timeout,$location){
+	.controller('adminCinesCtrl', ['$rootScope','$scope','Datos','$sce','Complejos','$timeout','$location',function($rootScope,$scope,Datos,$sce,Complejos,$timeout,$location){
 								       
      Datos.limpiar();
 
-	   Cines.listado()
+	   Complejos.listado()
      .then(function(datos){
      	console.log(datos);
-        $scope.cines = datos;
+        $scope.complejos = datos;
      })
      .catch(function(e){
        console.log(e);
@@ -17,11 +17,11 @@
     
    	 $scope.borrar = function borrar(item) {
 
-     Cines.borrar(item)
+     Complejos.borrar(item)
      .then(function(datos){
       console.log(item);
-      var pos = $scope.cines.indexOf(item);
-      $scope.cines.splice(pos, 1);
+      var pos = $scope.complejos.indexOf(item);
+      $scope.complejos.splice(pos, 1);
      })
      .catch(function(e){
        console.log(e);

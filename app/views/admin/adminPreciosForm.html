@@ -31,7 +31,7 @@
                         <legend>Complejo</legend>
                         <div class="form-group" ng-class="{ 'has-error' : form.complejo.$invalid && !form.complejo.$pristine }">
                             <label>Complejo</label>
-                            <input type="text" name="complejo" class="form-control" ng-model="precios.complejo" ng-minlength="3" ng-maxlength="15" required>
+                            <input type="text" name="complejo" class="form-control" ng-model="precio.complejo" ng-minlength="3" ng-maxlength="15" required>
                             <p ng-show="form.complejo.$invalid && !form.complejo.$pristine" class="help-block">El complejo es requerido</p>
                             <p ng-show="form.complejo.$error.minlength" class="help-block">Complejo es muy corto.</p>
                             <p ng-show="form.complejo.$error.maxlength" class="help-block">Complejo es muy largo.</p>
@@ -43,7 +43,7 @@
                         <legend>Formato</legend>
                         <div class="form-group" ng-class="{ 'has-error' : form.formato.$invalid && !form.formato.$pristine }">
                             <label>Formato</label>
-                            <input type="text" name="formato" class="form-control" ng-model="precios.formato" ng-minlength="3" ng-maxlength="100" required>
+                            <input type="text" name="formato" class="form-control" ng-model="precio.formato" ng-minlength="3" ng-maxlength="100" required>
                             <p ng-show="form.formato.$invalid && !form.formato.$pristine" class="help-block">El formato es requerida</p>
                             <p ng-show="form.formato.$error.minlength" class="help-block">Formato es muy corto.</p>
                             <p ng-show="form.formato.$error.maxlength" class="help-block">Formato es muy largo.</p>
@@ -55,7 +55,7 @@
                         <legend>Monto</legend>
                         <div class="form-group" ng-class="{ 'has-error' : form.monto.$invalid && !form.monto.$pristine }">
                             <label>Monto</label>
-                            <input type="text" name="monto" class="form-control" ng-model="precios.monto" ng-minlength="3" ng-maxlength="100" required>
+                            <input type="text" name="monto" class="form-control" ng-model="precio.monto" ng-minlength="3" ng-maxlength="100" required>
                             <p ng-show="form.monto.$invalid && !form.monto.$pristine" class="help-block">El Monto es requerida</p>
                             <p ng-show="form.monto.$error.minlength" class="help-block">Monto es muy corto.</p>
                             <p ng-show="form.monto.$error.maxlength" class="help-block">Monto es muy largo.</p>

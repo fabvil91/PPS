@@ -2,13 +2,13 @@
 	'use strict';
 	angular.module('cine')
 	.controller('adminBancosFormCtrl', ['$rootScope','$scope','Datos','$sce','Bancos','$location',function($rootScope,$scope,Datos,$sce,Bancos,$location){									
-        $scope.bancos = {};
+        $scope.banco = {};
 
 	    if(Datos.listado() == null){
 	     console.log('alta ' + Datos.listado());$scope.cargar = cargar;
 	    	    	  	     
 	     function cargar() {   
-	       Bancos.alta($scope.bancos)
+	       Bancos.alta($scope.banco)
 	       .then(function(datos){
 	        console.log(datos);
 	       })
@@ -24,7 +24,7 @@
 		     
 		    function cargar() {
 		   
-		       Bancos.modificar($scope.bancos)
+		       Bancos.modificar($scope.banco)
 		        .then(function(datos){
 		         console.log(datos);
 		        })

@@ -19,19 +19,38 @@
                     </ul>
                 </div>
             </div>
-        </div>                                
-                <div class = "col-md-9">
+        </div>  
+
+<!--CONTENIDO-->
+        <div class="col-md-9">
+            <div class="row">
+                <div class = "col-md-12">
+                    <nav class="navbar navbar-default">
+                        <div class="container">
+                            <ul class="nav navbar-nav">
+                                <li ui-sref="adminPromociones"><a href="#">Promociones</a></li>
+                                <li ui-sref="adminTarjetas"><a href="#">Tarjetas</a></li>
+                                <li ui-sref="adminBancos" class="active"><a href="#">Bancos</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>                    
+            </div>
+		
+                
+				
+				
+				
+				<div class = "col-md-9">
                     <div class="panel panel-default margin-top">
                         <form name="form" ng-submit="cargar()" novalidate>
 
-                       <!-- Bancos -->
-                        
-                        <!-- Nombre -->
+                       <!-- Nombre -->
                         <fieldset>
                         <legend>-Nombre</legend>
                         <div class="form-group" ng-class="{ 'has-error' : form.nombre.$invalid && !form.nombre.$pristine }">
                             <label>Nombre</label>
-                            <input type="text" name="nombre" class="form-control" ng-model="bancos.nombre" ng-minlength="3" ng-maxlength="15" required>
+                            <input type="text" name="nombre" class="form-control" ng-model="banco.nombre" ng-minlength="3" ng-maxlength="15" required>
                             <p ng-show="form.nombre.$invalid && !form.nombre.$pristine" class="help-block">El nombre es requerido</p>
                             <p ng-show="form.nombre.$error.minlength" class="help-block">Nombre es muy corto.</p>
                             <p ng-show="form.nombre.$error.maxlength" class="help-block">Nombre es muy largo.</p>
