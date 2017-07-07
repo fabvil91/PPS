@@ -89,7 +89,7 @@
                                                             //Por cada entrada se fija si coincide el tipo de entrada, o si la promocion aplica a Todas                           
                                                                 funcion.entradas.forEach(function(element) {
                                                                     if(element.tipo==funcion.operacion.promociones.tipoEntrada || funcion.operacion.promociones.tipoEntrada=="Todas"){
-                                                                        element.monto=element.monto*(funcion.operacion.promociones.porcentaje/100);
+                                                                        element.monto=element.monto-element.monto*(funcion.operacion.promociones.porcentaje/100);
                                                                         element.subtotal=element.monto*element.cantidad;
                                                                     }                                    
                                                                 });  
