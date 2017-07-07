@@ -22,7 +22,7 @@
                         <!-- Pelicula -->
                         <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
                             <label>Pelicula</label>
-                            <select ng-model="funcion.pelicula._id" ng-options="x._id as x.nombre for x in peliculas">  
+                            <select ng-model="funcion.pelicula._id" ng-options="x._id as x.formateada for x in peliculas">  
                               <option value="">Seleccione</option>           
                             </select>            
                         </div>  
@@ -30,7 +30,7 @@
                         <!-- Sala -->
                         <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
                             <label>Sala</label>
-                            <select ng-model="funcion.sala._id" ng-options="x._id as x.nombre for x in salas">  
+                            <select ng-model="funcion.sala._id" ng-options="x._id as x.formateada for x in salas">  
                               <option value="">Seleccione</option>           
                             </select>            
                         </div> 
@@ -42,30 +42,7 @@
                               <option value="">Seleccione</option>           
                             </select>            
                         </div> 
-                        
-                        <!-- Titulo -->
-                        <fieldset>
-                        <legend>Titulo</legend>
-                        <div class="form-group" ng-class="{ 'has-error' : form.titulo.$invalid && !form.titulo.$pristine }">
-                            <label>Titulo</label>
-                            <input type="text" name="titulo" class="form-control" ng-model="slide.nombre" ng-minlength="3" ng-maxlength="15" required>
-                            <p ng-show="form.titulo.$invalid && !form.titulo.$pristine" class="help-block">El titulo es requerido</p>
-                            <p ng-show="form.titulo.$error.minlength" class="help-block">Titulo es muy corto.</p>
-                            <p ng-show="form.titulo.$error.maxlength" class="help-block">Titulo es muy largo.</p>
-                        </div>
-                        </fieldset>
-                        <!-- Descripcion -->
-                        <fieldset>
-                        <legend>Descripcion</legend>
-                        <div class="form-group" ng-class="{ 'has-error' : form.descripcion.$invalid && !form.descripcion.$pristine }">
-                            <label>Descripcion</label>
-                            <input type="text" name="descripcion" class="form-control" ng-model="slide.descripcion" ng-minlength="3" ng-maxlength="100" required>
-                            <p ng-show="form.descripcion.$invalid && !form.descripcion.$pristine" class="help-block">La descripcion es requerida</p>
-                            <p ng-show="form.descripcion.$error.minlength" class="help-block">Descripcion es muy corto.</p>
-                            <p ng-show="form.descripcion.$error.maxlength" class="help-block">Descripcion es muy largo.</p>
-                        </div>
-                        </fieldset>
-                                         
+                                                                                         
                         <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">Cargar</button>
                         <button class="btn btn-primary" ui-sref="adminSlide">Cancelar</button>
                     </form>

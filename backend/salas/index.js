@@ -60,6 +60,23 @@ router.put('/salas/modificarAsientos',function(req, res, next){
         });  
 	});
 
+router.put('/salas/modificarComplejos',function(req, res, next){
+    console.log(req.body);
+    var id = new require('mongodb').ObjectID(req.body._id);
+    console.log(id);
+
+        req.db.collection('salas')        
+        .update({_id: id}, {$set: {complejo: req.body.complejo                                                                              
+                       }}, function (err, result){
+           if (err) {
+               res.json({rta : err});
+            }
+            else {
+               res.json({rta : "OK"});
+            }
+        });  
+  });
+
 router.delete('/salas/eliminar',function(req, res, next){
 		console.log(req.body);
 		var id = new require('mongodb').ObjectID(req.body._id);
@@ -75,6 +92,5 @@ router.delete('/salas/eliminar',function(req, res, next){
             }
         });  
 	});
-
 
 module.exports = router;

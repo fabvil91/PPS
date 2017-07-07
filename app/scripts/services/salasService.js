@@ -6,6 +6,7 @@ angular
     this.getById = getById;
     this.alta = alta;
     this.modificarAsientos = modificarAsientos;
+    this.modificarComplejos = modificarComplejos;
     this.borrar = borrar;
 
     function listado () {
@@ -46,6 +47,20 @@ angular
     function modificarAsientos(item){
       return $http({
             url: 'http://localhost:3333/salas/modificarAsientos',
+            method: "PUT",
+            data: item,
+            headers: {'Content-Type': 'application/json'}})
+      .then(function(rta){
+        return rta.data;
+      })
+      .catch(function(e){
+        return e;
+      })
+    }
+
+    function modificarComplejos(item){
+      return $http({
+            url: 'http://localhost:3333/salas/modificarComplejos',
             method: "PUT",
             data: item,
             headers: {'Content-Type': 'application/json'}})

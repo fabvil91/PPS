@@ -1,7 +1,8 @@
 (function(){
 	'use strict';
 	angular.module('cine')
-	.controller('empleadoFuncionesFormCtrl', ['$rootScope','$scope','Datos','$sce','Peliculas','SalasService','$location',function($rootScope,$scope,Datos,$sce,Peliculas,SalasService,$location){									
+	.controller('empleadoFuncionesFormCtrl', ['$rootScope','$scope','Datos','$sce','Peliculas','SalasService','$location','Horarios',
+		function($rootScope,$scope,Datos,$sce,Peliculas,SalasService,$location,Horarios){									
         /* Verifica si dos dias son iguales */ 
 		Date.prototype.isGreaterOrEqualAs = function(pDate) {
 		  return (
@@ -42,6 +43,10 @@
                                		   new Date(element.fechaEstreno).addDays(7 * element.semanasActiva).addDays(-1).isGreaterOrEqualAs(new Date()));
                             });
 	     console.log($scope.peliculas);
+	     
+	     for (var i = 0; i < $scope.peliculas.length; i++) {
+	     	$scope.peliculas[i].formateada = $scope.peliculas[i].nombre + " - " + $scope.peliculas[i].formato.nombre + " - " + $scope.peliculas[i].idioma.nombre;
+	     }
 
 	     	SalasService.listado()
 		    .then(function(datos){
@@ -53,27 +58,52 @@
 	                               return (element.complejo.nombre == $rootScope.globals.currentUser.complejo.nombre);
 	                            });
 		     console.log($scope.salas);
+		     
+		     for (var i = 0; i < $scope.salas.length; i++) {
+		     	$scope.salas[i].formateada = $scope.salas[i].nombre + " - " + $scope.salas[i].formato.nombre + " - " + $scope.salas[i].complejo.nombre;
+		     }
 
-		     	var proximosJueves = [];
+		     	$scope.proximosJueves = [];
 		     	var proximasSemanas = getDates(new Date(),new Date().addDays(28));		     	
 		     	for (var i = 0; i < proximasSemanas.length; i++) {
 		     		if(proximasSemanas[i].getDay() == 4){		     			
-		     			proximosJueves.push(proximasSemanas[i]);
+		     			$scope.proximosJueves.push(proximasSemanas[i]);
 		     		}
 		     	}
-		     	console.log(proximosJueves);
+		     	console.log($scope.proximosJueves);
 		     	var semana = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
 		     	$scope.dias = [];
-				for (var i = 0; i < proximosJueves.length; i++ ) {	   
-					 $scope.dias.push(semana[proximosJueves[i].getDay()] + " - " + proximosJueves[i].getDate() + "/" + (proximosJueves[i].getMonth()+1));    
+				for (var i = 0; i < $scope.proximosJueves.length; i++ ) {	   
+					 $scope.dias.push(semana[$scope.proximosJueves[i].getDay()] + " - " + $scope.proximosJueves[i].getDate() + "/" + ($scope.proximosJueves[i].getMonth()+1));    
 				}						
 							
-			/*    if(Datos.listado() == null){
+			   if(Datos.listado() == null){
 			     console.log('alta ' + Datos.listado());
 			     $scope.cargar = cargar;
 			    	    	  	     
-			     function cargar() {   
-			     	console.log($scope.slide);
+			     function cargar() { 
+			     	var pelicula = $scope.peliculas.filter(function(element){
+					return (element._id === $scope.funcion.pelicula._id);
+					});	
+			     	console.log(pelicula);
+					var sala = $scope.salas.filter(function(element){
+					return (element._id === $scope.funcion.sala._id);
+					});	
+					console.log(sala);
+					var indice = $scope.dias.indexOf($scope.funcion.dia);			
+					var dia = $scope.proximosJueves[indice];
+					console.log(dia);
+			     	/*
+                        console.log(Horarios.generar(funcion.pelicula, funcion.complejo));
+                        var horarios = Horarios.generar(funcion.pelicula, funcion.complejo);
+                        
+                        notificacion.pelicula.fechaEstreno = new Date(notificacion.pelicula.fechaEstreno);
+                        var limiteInf = notificacion.pelicula.fechaEstreno.addDays(7 * notificacion.pelicula.semanasActiva);              
+                        var limiteSup = limiteInf.addDays(7);
+                        var proximaSemana = getDates(limiteInf,limiteSup.addDays(-1));
+                        console.log(proximaSemana);*/
+
+			     	/*console.log($scope.slide);
 
 			     	var pelicula = $scope.peliculas.filter(function(element){
 					return (element._id === $scope.slide.pelicula._id);
@@ -89,38 +119,10 @@
 			        console.log(e);
 			       });
 			         	    
-			    	$location.path('adminSlide');
+			    	$location.path('adminSlide');*/
 			     }
 
-			   }else{
-				    console.log('modificar' + Datos.listado());  
-				    $scope.cargar = cargar;
-				    
-				    $scope.slide = Datos.listado();
-				    console.log($scope.slide);	    	    	   	    
-				     
-				    function cargar() {
-				    	console.log($scope.slide);	
-
-				    	var pelicula = $scope.peliculas.filter(function(element){
-						return (element._id === $scope.slide.pelicula._id);
-						});
-
-				    	$scope.slide.pelicula = pelicula[0];
-
-				       Slides.modificar($scope.slide)
-				        .then(function(datos){
-				         console.log(datos);
-				        })
-				        .catch(function(e){
-				         console.log(e);
-				       });
-
-				       Datos.limpiar(); 
-				     
-				       $location.path('adminSlide');
-				    }
-			   }*/
+			   }
 		})
 	   .catch(function(e){
 	      console.log(e);

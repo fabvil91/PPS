@@ -3,23 +3,23 @@
  
     angular
         .module('cine')
-        .controller('promosVigentesCtrl', ['$rootScope','$scope','$location', 'Promociones','Funciones','Complejos',
-	    function ($rootScope,$scope,$location,Promociones,Funciones,Complejos) {
+        .controller('promosVigentesCtrl', ['$rootScope','$scope','$location', 'Promociones','SalasService','Complejos',
+	    function ($rootScope,$scope,$location,Promociones,SalasService,Complejos) {
 
 			  Promociones.listado()
 		     .then(function(datos){
 		     	console.log(datos);
 		        $scope.promociones = datos;
 
-		      /*   Complejos.getById('5927208039a5301c9ceb768c')
+		     /*    Complejos.getById('5927208039a5301c9ceb768c')
 			     .then(function(datos){
 			     	console.log(datos);
 		       
 			     	 var o = {
-			      	_id: '5927331139a5301c9ceb7699',
+			      	_id: '5952bd9283d7350820e5f698',
 			      	complejo: datos[0]
 			      };
-			     Funciones.modificarComplejo(o)
+			     SalasService.modificarComplejos(o)
 			     .then(function(datos){
 			     	console.log(datos);			       
 			     })
