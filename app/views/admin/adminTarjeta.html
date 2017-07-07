@@ -50,23 +50,14 @@
                                     </tr>
                                 </thead>
                                 <tbody> 
-                                    <tr>
-                                        <th>VISA</th>
-                                        <th>
-                                            <button class="btn btn-info btn-sm" ng-click="modificar(tarjetas)">
+                                   <tr ng-repeat="tarjeta in tarjetas track by $index">
+                                        <td>{{tarjeta.nombre}}</td>
+                                        <td>
+                                            <button class="btn btn-info btn-sm" ng-click="modificar(tarjeta)">
                                             Editar</button>
-                                            <button class="btn btn-danger btn-sm" ng-click="borrar(tarjetas)">
+                                            <button class="btn btn-danger btn-sm" ng-click="borrar(tarjeta)">
                                             Eliminar</button>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <th>Mastercard</th>
-                                        <th>
-                                            <button class="btn btn-info btn-sm" ng-click="modificar(tarjetas)">
-                                            Editar</button>
-                                            <button class="btn btn-danger btn-sm" ng-click="borrar(tarjetas)">
-                                            Eliminar</button>
-                                        </th>
+                                        </td>
                                     </tr>
                                     
                                 </tbody>                    

@@ -46,17 +46,17 @@ router.get('/articulos/proveedor/:proveedor', (req, res, next) => {
     });
 });
 
-router.post('/insertar',function(req, res, next){
+router.post('/complejos/insertar',function(req, res, next){
 		console.log(req.body);
 
-        req.db.collection('articulos')        
-        .insert({name: req.body.name, 
-        		 peso: req.body.peso,
-        		 precio: req.body.precio,
-        		 fecha: new Date(req.body.fecha),
-        		 tipo: req.body.tipo,
-        		 proveedor: {email: req.body.email}
-        		}, function (err, result){
+        req.db.collection('complejos')        
+        .insert({nombre: req.body.nombre, 
+        		 horaApertura: new Date(req.body.horaApertura),
+        		 horaCierre: new Date(req.body.horaCierre),
+        		 duracionPublicidad: req.body.duracionPublicidad,
+        		 duracionFunciones: req.body.duracionFunciones,
+        		 duracionTolerancia: req.body.duracionTolerancia
+			    }, function (err, result){
            if (err) {
                res.json({rta : err});
             }
@@ -66,18 +66,18 @@ router.post('/insertar',function(req, res, next){
         });  
 	});
 
-router.put('/modificar',function(req, res, next){
+router.put('/complejos/modificar',function(req, res, next){
 		console.log(req.body);
 		var id = new require('mongodb').ObjectID(req.body._id);
 		console.log(id);
 
-        req.db.collection('articulos')        
-        .update({_id: id}, {$set: {name: req.body.name, 
-        						   peso: req.body.peso,
-        						   precio: req.body.precio,
-        						   fecha: new Date(req.body.fecha),
-        						   tipo: req.body.tipo,
-        						   proveedor: {email: req.body.email}
+        req.db.collection('complejos')        
+        .update({_id: id}, {$set: {nombre: req.body.nombre, 
+        						   horaApertura: new Date(req.body.horaApertura),
+        						   horaCierre: new Date(req.body.horaCierre),
+        						   duracionPublicidad: req.body.duracionPublicidad
+        						   duracionFunciones: req.body.duracionFunciones,
+        						   duracionTolerancia: req.body.duracionTolerancia
         						   }}, function (err, result){
            if (err) {
                res.json({rta : err});
@@ -106,12 +106,12 @@ router.put('/complejos/modificarHoras',function(req, res, next){
         });  
     });
 
-router.delete('/eliminar',function(req, res, next){
+router.delete('/complejos/eliminar',function(req, res, next){
 		console.log(req.body);
 		var id = new require('mongodb').ObjectID(req.body._id);
 		console.log(id);
 
-        req.db.collection('articulos')        
+        req.db.collection('complejos')        
         .remove({_id: id}, function (err, result){
            if (err) {
                res.json({rta : err});
