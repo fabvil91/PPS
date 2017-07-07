@@ -1,6 +1,6 @@
 
 <div class="container">
-    <button type="button" class="btn btn-primary hidden-print" ng-click="imprimir()" ui-sref="cajeroBuscarCodigo">Imprimir</button>
+    <button type="button" class="btn btn-primary hidden-print" ng-click="imprimir()" ui-sref="cajeroMain">Imprimir</button>
     <div class="ticket" ng-repeat="a in asientos">
         <!--<div class="row">-->
             <h3>{{operacion.funcion.pelicula.nombre}}</h2>
@@ -27,14 +27,12 @@
                 <table class="table table-bordered">                    
                     <thead>
                     <tr>
-                        <th>Precio</th>
                         <th>Fecha</th>    
                         <th>Hora</th>                  
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>${{operacion.funcion.precioTotal}}</td>  
                         <td>{{operacion.funcion.diaFormateado}}</td>      
                         <td>{{formatearHora(operacion.funcion)}}</td>
                     </tr>               

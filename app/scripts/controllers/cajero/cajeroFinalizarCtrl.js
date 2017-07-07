@@ -49,7 +49,7 @@
                 }
             }
 
-            if(promo){
+            if(promo){ 
             	console.log("promo del dia");
             	promo = promo;
             }else{

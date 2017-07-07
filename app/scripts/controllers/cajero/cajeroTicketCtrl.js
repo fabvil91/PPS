@@ -5,6 +5,7 @@
        $scope.reloadPage = function(){$window.location.reload();}
 
        $scope.operacion = Datos.listado();
+       console.log("LLEGA A PRINT");
         console.log($scope.operacion);
 
         $scope.asientos = [];
@@ -24,7 +25,7 @@
         
         $scope.imprimir=function(){
             $window.print();
-            Datos.cargar($scope.operacion);
+            console.log("PRINTED");
         }
  
 	 

@@ -6,8 +6,9 @@
         .controller('cajeroBuscarCodigoCtrl', ['$scope','$location','Operaciones','Datos','$rootScope','Tarjetas','Bancos','Promociones',
         function ($scope,$location,Operaciones,Datos,$rootScope,Tarjetas,Bancos,Promociones) {
                 $scope.codigo = null;
-                $scope.operacion = null;                
-                          
+                $scope.operacion = null;    
+                $scope.funcion=null;            
+                           
                     Tarjetas.listado()
                      .then(function(datos){
                         console.log(datos);
@@ -27,33 +28,8 @@
                                             return (element.banco != null && element.tarjeta != null);
                                         });
                                         console.log($scope.promociones);
-
-                                             $scope.mes = [
-                                                {nombre:"Enero", id:0},
-                                                {nombre:"Febrero"},
-                                                {nombre:"Marzo"},
-                                                {nombre:"Abril"},
-                                                {nombre:"Marzo"},
-                                                {nombre:"Abril"},
-                                                {nombre:"Mayo"},
-                                                {nombre:"Junio"},
-                                                {nombre:"Julio"},
-                                                {nombre:"Agosto"},
-                                                {nombre:"Septiembre"},
-                                                {nombre:"Octubre"},
-                                                {nombre:"Noviembre"},
-                                                {nombre:"Diciembre"}
-                                             ];
-                                            $scope.year = [
-                                                {nombre:"2017", id:0},
-                                                {nombre:"2018"},
-                                                {nombre:"2019"},
-                                                {nombre:"2020"},
-                                                {nombre:"2021"},
-                                                {nombre:"2022"},
-                                                {nombre:"2023"},
-                                                {nombre:"2024"}
-                                            ];                                                                                 
+                                                $scope.mes=["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre","Octubre","Noviembre","Diciembre"];
+                                                $scope.year = ["2017","2018","2019","2020","2021","2022","2023","2024"];                                              
                                   })
                              .catch(function(e){
                               console.log(e);
@@ -67,92 +43,7 @@
                    console.log(e);
                  })
                               
-                $scope.guardar = function(tipo){                
-                    console.log($scope.operacion);     
-                   // Guardar en BD. SI es efectivo, limpiar funcion.operacion (Solo se llena con pago en tarjeta)
-                    var promo = null;
-                    for (var i = $scope.operacion.entradas.length - 1; i >= 0; i--) {
-                        if($scope.operacion.entradas[i].promocion){
-                           promo = $scope.operacion.entradas[i].promocion;
-                           break;
-                        } 
-                    }
-
-                    if(promo){
-                      console.log("promo del dia");
-                      promo = promo;
-                    }else{
-                      if($scope.operacion.funcion.operacion && $scope.operacion.funcion.operacion.promociones){
-                        console.log("promo de tarjeta/Banco");
-                        promo = $scope.operacion.funcion.operacion.promociones;
-                      }else{
-                        console.log("sin promos");
-                        promo = null;
-                      }
-                    }
-
-                    var operacion = {};
-                                         
-                   if(tipo == 'efectivo'){
-
-                     operacion = {  
-                      _id: $scope.operacion._id,                
-                      estado: "Retirado",                                    
-                      tipoPago: "Efectivo",                                                     
-                      fechaOperacion: new Date(),                    
-                      promocion: promo }
-
-                      Operaciones.modificarEfectivo(operacion)
-                     .then(function(datos){
-                      console.log(datos);         
-                     })
-                     .catch(function(e){
-                      console.log(e);
-                     }); 
-
-                   }else if(tipo == 'tarjeta'){
-                      operacion = {   
-                      _id: $scope.operacion._id,               
-                      estado: "Retirado",                 
-                      tipoPago: $scope.operacion.tipo == 'credito' ? 'Credito' : 'Debito',
-                      nombreTitular: $scope.operacion.funcion.operacion.titular,
-                      dniTitular: $scope.operacion.funcion.operacion.dni,
-                      nroTarjeta: $scope.operacion.funcion.operacion.nroTarjeta,
-                      codigoSeguridad: $scope.operacion.funcion.operacion.codigoSeguridad,
-                      fechaVencimiento: $scope.operacion.funcion.operacion.vencimiento,
-                      tarjeta: $scope.operacion.funcion.operacion.tarjeta,
-                      banco: $scope.operacion.funcion.operacion.banco,
-                      fechaOperacion: new Date(),                  
-                      promocion: promo }
-
-                     Operaciones.modificarTarjeta(operacion)
-                     .then(function(datos){
-                      console.log(datos);         
-                     })
-                     .catch(function(e){
-                      console.log(e);
-                     }); 
-
-                   }else if(tipo == 'compra'){
-                     operacion = {
-                      _id: $scope.operacion._id,                  
-                      estado: "Retirado",                                                       
-                      fechaOperacion: new Date()                  
-                       }
-
-                      Operaciones.modificarCompra(operacion)
-                     .then(function(datos){
-                      console.log(datos);         
-                     })
-                     .catch(function(e){
-                      console.log(e);
-                     });
-                      
-                   } 
-                   
-                   console.log(operacion);
-                  }
-
+               
                $scope.buscar = function(codigo){
 
                 Operaciones.operacionPorCodigo(codigo)
@@ -165,6 +56,7 @@
                        $scope.error = false;
                        $scope.errorComplejo = null;
                        $scope.operacion = datos[0];
+                       $scope.funcion=$scope.operacion.funcion;
 
                      $scope.hayPromo = false;
                      for (var i = $scope.operacion.funcion.entradas.length - 1; i >= 0; i--) {
@@ -173,13 +65,62 @@
                          break;
                        }
                       }
-                      console.log($scope.hayPromo);
 
-                      if($scope.operacion.funcion.transaccion.tipoTransaccion != 'compra'){
+                      console.log($scope.hayPromo);
+                       $scope.calcularDescuento=function(funcion){
+                         console.log("PROMOCION",funcion.operacion.promociones);
+                          if(funcion.operacion.promociones!=null){
+                              
+                              //Promociones Porcentaje
+                             
+                              if(funcion.operacion.promociones.tipoDescuento=="Porcentaje"){ 
+                                  //aplica descuento a valor de entrada
+                                  //Por cada entrada se fija si coincide el tipo de entrada, o si la promocion aplica a Todas      
+                                                   
+                                      funcion.entradas.forEach(function(element) {
+                                          if(element.tipo==funcion.operacion.promociones.tipoEntradas || funcion.operacion.promociones.tipoEntradas=="Todas"){
+                                           
+                                              element.monto=element.monto-element.monto*(funcion.operacion.promociones.porcentaje/100);
+                                              element.subtotal=element.monto*element.cantidad;
+                                             
+                                          }                                    
+                                      });  
+
+                              }
+                              //Promociones 2x1
+                              if(funcion.operacion.promociones.tipoDescuento=="2x1"){
+                                  funcion.entradas.forEach(function(element) {
+                                          if(element.tipo==funcion.operacion.promociones.tipoEntradas || funcion.operacion.promociones.tipoEntradas=="Todas"){
+                                              if(element.cantidad!=1){
+                                                  if(element.cantidad%2==0){
+                                                      console.log("PAR");
+                                                      element.subtotal=element.subtotal/2;
+                                                  }else{
+                                                      console.log("IMPAR");
+                                                      element.subtotal=element.subtotal-element.monto;
+                                                      element.subtotal=(element.subtotal/2)+element.monto;
+                                                  }
+                                              }
+                                          }
+                                  });
+                              }
+                              //recalcula precioTotal
+                              funcion.precioTotal=0;
+                              funcion.entradas.forEach(function(element) {
+                                  funcion.precioTotal=funcion.precioTotal+element.subtotal;
+                                   console.log("ENTRO A FUNCION 2");
+                              });
+                              console.log(funcion.precioTotal);
+                              
+
+                          }
+                    }
+                      if($scope.funcion.transaccion.tipoTransaccion != 'compra'){
                         $scope.operacion.funcion.operacion = {
                             vencimiento:{}
                          };
                       }
+
 
                       $scope.formatearHora = function(funcion){          
                       var fecha = new Date(funcion.hora);
@@ -191,11 +132,7 @@
                       }
 
                       $scope.total = function(){  
-                      var total = 0;                        
-                       for (var i = $scope.operacion.funcion.entradas.length - 1; i >= 0; i--) {
-                         total = total + $scope.operacion.funcion.entradas[i].subtotal;
-                       }
-                       return total;
+                      return $scope.funcion.precioTotal;
                       }
 
                       $scope.cargar = function(){                                                                        
@@ -222,10 +159,77 @@
                   console.log(e);
                 });            
            }
-           
-                if(Datos.listado()!=null){
-                  $scope.codigo=Datos.listado().codigo;
-                  $scope.buscar($scope.codigo);
+
+           $scope.reg=function(stri){
+             console.log("CARGAR");
+              if(stri=='tarjeta'){
+                console.log("TARJETA");
+                if($scope.funcion.operacion.promociones!=null){                  
+                  $scope.operacion.promociones=$scope.funcion.operacion.promociones;
+                  $scope.calcularDescuento($scope.funcion);
                 }
+                $scope.operacion.funcion=$scope.funcion;
+
+               $scope.operacion.banco=$scope.funcion.operacion.banco;
+                $scope.operacion.codigoSeguridad=$scope.funcion.operacion.codigoSeguridad;
+                $scope.operacion.dniTitular=$scope.funcion.operacion.dniTitular;
+                $scope.operacion.fechaVencimiento=$scope.funcion.operacion.fechaVencimiento;
+                $scope.operacion.nombreTitular=$scope.funcion.operacion.nombreTitular;
+                $scope.operacion.nroTarjeta=$scope.funcion.operacion.nroTarjeta;
+                
+               
+                $scope.operacion.tarjeta=$scope.funcion.operacion.tarjeta;
+
+                $scope.operacion.estado="Retirado";
+                console.log($scope.operacion);
+                Operaciones.modificarTarjeta($scope.operacion)
+                .then(function(datos){})
+                .catch(function(e){
+                  console.log(e);
+                });  
+                Datos.cargar($scope.operacion);
+              }
+              if(stri == 'compra'){
+                $scope.operacion.funcion=$scope.funcion;
+                 $scope.operacion.banco=$scope.funcion.operacion.banco;
+                $scope.operacion.codigoSeguridad=$scope.funcion.operacion.codigoSeguridad;
+                $scope.operacion.dniTitular=$scope.funcion.operacion.dniTitular;
+                $scope.operacion.fechaVencimiento=$scope.funcion.operacion.fechaVencimiento;
+                $scope.operacion.nombreTitular=$scope.funcion.operacion.nombreTitular;
+                $scope.operacion.nroTarjeta=$scope.funcion.operacion.nroTarjeta;
+
+                if($scope.funcion.operacion.promociones!=null){                  
+                  $scope.operacion.promociones=$scope.funcion.operacion.promociones;
+                }               
+               
+                $scope.operacion.tarjeta=$scope.funcion.operacion.tarjeta;
+
+                $scope.operacion.estado="Retirado";
+                Operaciones.modificarCompra($scope.operacion)
+                .then(function(datos){})
+                .catch(function(e){
+                  console.log(e);
+                });  
+                Datos.cargar($scope.operacion);
+
+              }
+              if(stri == 'efectivo'){
+                 $scope.operacion.estado="Retirado";
+                   $scope.operacion.funcion=$scope.funcion;
+                  if($scope.funcion.operacion.promociones!=null){                  
+                  $scope.operacion.promociones=$scope.funcion.operacion.promociones;
+                }
+                Operaciones.modificarEfectivo($scope.operacion)
+                   .then(function(datos){})
+                .catch(function(e){
+                  console.log(e);
+                });  
+                Datos.cargar($scope.operacion);
+
+
+              }
+           }
+           
+                
         }]) 
 })();

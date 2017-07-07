@@ -37,6 +37,7 @@
                     <p>Funcion: {{operacion.funcion.diaFormateado}} - {{ formatearHora(operacion.funcion) }}</p>
                     <p>Complejo: {{operacion.funcion.complejo.nombre}}</p>
                     <p>Cantidad de Asientos: {{operacion.funcion.cantidadAsientos}}</p>
+                    <p>Precio Total: ${{operacion.funcion.precioTotal}}</p>
                 </div>
             </div>                 
         </div>
@@ -91,15 +92,15 @@
             <div class="panel panel-default">
                 <div class="panel-heading">METODO DE PAGO</div>
                 <div class="panel-body">
-                    <label class="radio-inline"><input type="radio" name="metodoPago" ng-click="operacion.tipo = 'efectivo'">Efectivo</label>
-                    <label class="radio-inline"><input type="radio" name="metodoPago" ng-click="operacion.tipo = 'credito'">Credito</label>
-                    <label class="radio-inline"><input type="radio" name="metodoPago" ng-click="operacion.tipo = 'debito'">Debito</label>
+                    <label class="radio-inline"><input type="radio" name="metodoPago" ng-click="operacion.tipoPago = 'efectivo'">Efectivo</label>
+                    <label class="radio-inline"><input type="radio" name="metodoPago" ng-click="operacion.tipoPago = 'credito'">Credito</label>
+                    <label class="radio-inline"><input type="radio" name="metodoPago" ng-click="operacion.tipoPago = 'debito'">Debito</label>
                 </div>
             </div>
         </div>
     </div>
     <!-- EFECTIVO -->
-    <div class="row" ng-if="operacion != null && operacion.funcion.transaccion.tipoTransaccion == 'reserva' && operacion.tipo == 'efectivo'">
+    <div class="row" ng-if="operacion != null && operacion.funcion.transaccion.tipoTransaccion == 'reserva' && operacion.tipoPago == 'efectivo'">
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">DATOS COMPRA</div>
@@ -122,8 +123,7 @@
                             <div class="col-md-12">
                                 <form class="form-inline">
                                         <div class="form-group centered">                                    
-                                            <input type="button" ng-disabled="form.$invalid" class="btn btn-info" value="Continuar" ng-click="guardar('efectivo')" >
-                                            <input type="button" ng-disabled="form.$invalid" class="btn btn-info" value="Imprimir" ng-click="cargar()" ui-sref="cajeroTicket">
+                                           <input type="button" ng-disabled="form.$invalid" class="btn btn-info" value="Continuar" ng-click="reg('efectivo')" ui-sref="cajeroTicket">
                                             <input type="button" class="btn btn-info" value="Cancelar" ui-sref="cajeroMain">                                                
                                         </div>
                                 </form>
@@ -136,100 +136,103 @@
     </div>
 
     <!-- TARJETAS -->
-    <div class="row">
-        <div class="col-md-12">
-            <div ng-if="operacion != null && operacion.funcion.transaccion.tipoTransaccion == 'reserva' && (operacion.tipo == 'credito' || operacion.tipo == 'debito')">
-            <div class="panel panel-default">
-                <div class="panel-heading">DATOS COMPRA</div>
-                <div class="panel-body">
-                    <form name="form" class="form-horizontal" role="form">
-                    
-                    <div class="form-group" ng-class="{ 'has-error': form.banco.$dirty && form.banco.$error.required }"> 
+    <!-- DEBITO O CREDITO -->
+            <div class="row">
+            <div class="col-md-12">
+                <div ng-if="operacion.tipoPago=='debito'||operacion.tipoPago=='credito'">
+                <div class="panel panel-default">
+                    <div class="panel-heading">DATOS COMPRA</div>
+                    <div class="panel-body">
+                        <form name="form" class="form-horizontal" role="form">
+
+                        <div class="form-group" ng-class="{ 'has-error': form.banco.$dirty && form.banco.$error.required }"> 
                         <label class="control-label col-sm-2" for="banco">Seleccione Banco <span class="require">*</span></label>
-                         <div class="col-sm-10">
-                            <select class="form-control input-sm" ng-options="item.nombre for item in bancos" ng-model="operacion.funcion.operacion.banco" required>
+                            <div class="col-sm-10">
+                            <select class="form-control input-sm" ng-options="item.nombre for item in bancos" ng-model="funcion.operacion.banco" required>
                             </select>
                             <span ng-show="form.banco.$dirty && form.banco.$error.required" class="help-block">Banco es requerido</span>
-                         </div>                        
-                      </div>
+                            </div>                        
+                        </div>
 
-                      <div class="form-group" ng-class="{ 'has-error': form.titular.$dirty && form.titular.$error.required }"> 
+                        <div class="form-group" ng-class="{ 'has-error': form.titular.$dirty && form.titular.$error.required }"> 
                         <label class="control-label col-sm-2" for="tarjeta">Seleccione Tarjeta <span class="require">*</span></label>
-                         <div class="col-sm-10">
-                            <select class="form-control input-sm" id="tarjeta" ng-options="item.nombre for item in tarjetas" ng-model="operacion.funcion.operacion.tarjeta" required>
+                            <div class="col-sm-10">
+                            <select class="form-control input-sm" id="tarjeta" ng-options="item.nombre for item in tarjetas" ng-model="funcion.operacion.tarjeta" required>
                             </select>
                             <span ng-show="form.tarjeta.$dirty && form.tarjeta.$error.required" class="help-block">Tarjeta es requerido</span>
-                         </div>                         
-                      </div>
+                            </div>                            
+                        </div>
 
-                      <div ng-if="operacion.funcion.operacion.banco !=null && operacion.funcion.operacion.tarjeta!=null && !hayPromo">
+                        <div ng-if="funcion.operacion.banco !=null && funcion.operacion.tarjeta!=null && !hayPromo">
 
                         <div class="form-group" ng-class="{ 'has-error': form.promociones.$dirty && form.promociones.$error.required }"> 
-                          <label class="control-label col-sm-2" for="tarjeta">Seleccione Promociones <span class="require">*</span></label>
-                          <div class="col-sm-10">
-                              <select class="form-control input-sm" id="promociones" ng-options="item.nombre for item in promociones | filter :{banco:{nombre:operacion.funcion.operacion.banco.nombre}, tarjeta:{nombre:operacion.funcion.operacion.tarjeta.nombre}}" ng-model="operacion.funcion.operacion.promociones">
+                            <label class="control-label col-sm-2" for="tarjeta">Seleccione Promociones <span class="require">*</span></label>
+                            <div class="col-sm-10">
+                                <select class="form-control input-sm" id="promociones" ng-options="item.nombre for item in promociones | filter :{banco:{nombre:funcion.operacion.banco.nombre}, tarjeta:{nombre:funcion.operacion.tarjeta.nombre}}" ng-model="funcion.operacion.promociones">
                                  <option value="">Sin promoción</option>
-                              </select>
-                              <span ng-show="form.promociones.$dirty && form.promociones.$error.required" class="help-block">Promocion es requerido</span>
-                          </div>                          
+                                </select>
+                                <span ng-show="form.promociones.$dirty && form.promociones.$error.required" class="help-block">Promocion es requerido</span>
+                            </div>                            
                         </div>
-                      </div>
+                        </div>
 
-                       <div class="form-group" ng-class="{ 'has-error': form.titular.$dirty && form.titular.$error.required }">
+                        <div class="form-group" ng-class="{ 'has-error': form.titular.$dirty && form.titular.$error.required }">
                         <label class="control-label col-sm-2" for="titular">Titular</label>
-                         <div class="col-sm-10">
-                           <input type="text" id="titular" class="form-control" ng-model="operacion.funcion.operacion.nombreTitular" required>
+                            <div class="col-sm-10">
+                            <input type="text" id="titular" class="form-control" ng-model="funcion.operacion.nombreTitular" required>
                             <span ng-show="form.titular.$dirty && form.titular.$error.required" class="help-block">Titular es requerido</span>
-                         </div>                      
-                      </div>
+                            </div>                        
+                        </div>
 
-                      <div class="form-group" ng-class="{ 'has-error': form.dni.$dirty && form.dni.$error.required }"> 
+                        <div class="form-group" ng-class="{ 'has-error': form.dni.$dirty && form.dni.$error.required }"> 
                         <label class="control-label col-sm-2" for="dni">Dni</label>
-                         <div class="col-sm-10">
-                        <input type="text" id="dni" class="form-control" ng-model="operacion.funcion.operacion.dniTitular" ng-minlength="8" ng-maxlength="8" required>
-                          <span ng-show="form.dni.$dirty && form.dni.$error.required" class="help-block">dni es requerido</span>
+                            <div class="col-sm-10">
+                        <input type="text" id="dni" class="form-control" ng-model="funcion.operacion.dniTitular" ng-minlength="3" ng-maxlength="8" required>
+                            <span ng-show="form.dni.$dirty && form.dni.$error.required" class="help-block">dni es requerido</span>
                             <span ng-show="userForm.name.$error.minlength" class="help-block">DNI es muy corto.</span>
                             <span ng-show="userForm.name.$error.maxlength" class="help-block">DNI es muy largo.</span>
-                         </div>
-                     </div>
+                            </div>
+                        </div>
+
 
                        <div class="form-group" ng-class="{ 'has-error': form.nroTarjeta.$dirty && form.nroTarjeta.$error.required }"> 
                         <label class="control-label col-sm-2" for="nroTarjeta">Número de tarjeta</label>
                          <div class="col-sm-10">
-                        <input type="text" id="nroTarjeta" class="form-control" ng-model="operacion.funcion.operacion.nroTarjeta" ng-minlength="15" ng-maxlength="16" required>
+                        <input type="text" id="nroTarjeta" class="form-control" ng-model="funcion.operacion.nroTarjeta" ng-minlength="15" ng-maxlength="16" required>
                           <span ng-show="form.nroTarjeta.$dirty && form.nroTarjeta.$error.required" class="help-block">Número de tarjeta es requerido</span>
                             <span ng-show="userForm.name.$error.minlength" class="help-block">Número de tarjeta es muy corto.</span>
                             <span ng-show="userForm.name.$error.maxlength" class="help-block">Número de tarjeta es muy largo.</span>
                          </div>
                      </div>
 
-                      <div class="form-group" ng-class="{ 'has-error': form.vencimiento.$dirty && form.vencimiento.$error.required }"> 
+                         <div class="form-group" ng-class="{ 'has-error': form.vencimiento.$dirty && form.vencimiento.$error.required }"> 
                         <label class="control-label col-sm-2" for="vencimiento">Vencimiento <span class="require">*</span></label>
-                         <div class="col-sm-10">
-                            <select class="form-control input-sm" id="vencimiento" ng-options="item.nombre for item in mes" ng-model="operacion.funcion.operacion.fechaVencimiento.mes" required>
+                        <div class="col-sm-10">
+                            <select class="form-control input-sm" id="vencimientoMes" ng-model="funcion.operacion.fechaVencimiento.mes" required>
+                                <option ng-repeat="x in mes">{{x}}</option>
                             <span ng-show="form.vencimiento.$dirty && form.vencimiento.$error.required" class="help-block">Mes y año es requerido</span>
                             </select> 
                             
-                            <select class="form-control input-sm" id="vencimiento" ng-options="item.nombre for item in year" ng-model="operacion.funcion.operacion.fechaVencimiento.year">
+                            <select class="form-control input-sm" id="vencimientoYear" ng-model="funcion.operacion.fechaVencimiento.year" required>
+                                <option ng-repeat="x in year">{{x}}</option>
                             </select>  
-                         </div>
-                      </div>
-                      
-                        <div class="form-group" ng-class="{ 'has-error': form.codigoSeguridad.$dirty && form.codigoSeguridad.$error.required }" > 
-                          <label class="control-label col-sm-2" for="codigoSeguridad">Codigo de seguridad</label>
-                          <div class="col-sm-10"> 
-                            <input type="text" id="codigoSeguridad" class="form-control" ng-model="operacion.funcion.operacion.codigoSeguridad" required/>
-                            <span ng-show="form.codigoSeguridad.$dirty && form.codigoSeguridad.$error.required" class="help-block">Codigo de Seguridad es requerido</span>
-                          </div>
                         </div>
-
+                    </div>
+                        
+                        <div class="form-group" ng-class="{ 'has-error': form.codigoSeguridad.$dirty && form.codigoSeguridad.$error.required }" > 
+                            <label class="control-label col-sm-2" for="codigoSeguridad">Codigo de seguridad</label>
+                            <div class="col-sm-10"> 
+                            <input type="text" id="codigoSeguridad" class="form-control" ng-model="funcion.operacion.codigoSeguridad" required/>
+                            <span ng-show="form.codigoSeguridad.$dirty && form.codigoSeguridad.$error.required" class="help-block">Codigo de Seguridad es requerido</span>
+                            </div>
+                        </div>
+                        
                          <!--BOTONES-->
                         <div class="row">
                             <div class="col-md-12">
                                 <form class="form-inline">
                                         <div class="form-group centered">                                    
-                                            <input type="button" ng-disabled="form.$invalid" class="btn btn-info" value="Continuar" ng-click="cargar('tarjeta')" >
-                                            <input type="button" ng-disabled="form.$invalid" class="btn btn-info" value="Imprimir" ng-click="cargar()" ui-sref="cajeroTicket">
+                                            <input type="button" ng-disabled="form.$invalid" class="btn btn-info" value="Continuar" ng-click="reg('tarjeta')"  ui-sref="cajeroTicket">
                                             <input type="button" class="btn btn-info" value="Cancelar" ui-sref="cajeroMain">                                                  
                                         </div>
                                 </form>
@@ -251,50 +254,49 @@
                 <div class="panel-body">
                     <form action="" class="form-horizontal">
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="banco">Banco:</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="banco" class="form-control" readonly="readonly" ng-model="operacion.funcion.operacion.banco.nombre">
+                                <label class="control-label col-sm-2" for="banco">Banco:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="banco" class="form-control" readonly="readonly" ng-model="funcion.operacion.banco.nombre">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="tarjeta">Tarjeta:</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="tarjeta" class="form-control" readonly="readonly" ng-model="operacion.funcion.operacion.tarjeta.nombre">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="tarjeta">Tarjeta:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="tarjeta" class="form-control" readonly="readonly" ng-model="funcion.operacion.tarjeta.nombre">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="titular">Titular:</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="titular" class="form-control" readonly="readonly" ng-model="operacion.funcion.operacion.nombreTitular">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="titular">Titular:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="titular" class="form-control" readonly="readonly" ng-model="funcion.operacion.nombreTitular">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="dni">DNI:</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="dni" class="form-control" readonly="readonly" ng-model="operacion.funcion.operacion.dniTitular">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="dni">DNI:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="dni" class="form-control" readonly="readonly" ng-model="funcion.operacion.dniTitular">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="vencimiento">Vencimiento:</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="vencimiento" class="form-control" readonly="readonly" ng-model="operacion.funcion.operacion.fechaVencimiento.mes">
-                                <input type="text" name="vencimiento" class="form-control" readonly="readonly" ng-model="operacion.funcion.operacion.fechaVencimiento.year">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="vencimiento">Vencimiento:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="vencimiento" class="form-control" readonly="readonly" ng-model="funcion.operacion.fechaVencimiento.mes">
+                                    <input type="text" name="vencimiento" class="form-control" readonly="readonly" ng-model="funcion.operacion.fechaVencimiento.year">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="codigoSeguridad">Codigo de Seguridad:</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="codigoSeguridad" class="form-control" readonly="readonly" ng-model="operacion.funcion.operacion.codigoSeguridad">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="codigoSeguridad">Codigo de Seguridad:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="codigoSeguridad" class="form-control" readonly="readonly" ng-model="funcion.operacion.codigoSeguridad">
+                                </div>
                             </div>
-                        </div>
 
                          <!--BOTONES-->
                         <div class="row">
                             <div class="col-md-12">
                                 <form class="form-inline">
                                         <div class="form-group centered">                                    
-                                            <input type="button" ng-disabled="form.$invalid" class="btn btn-info" value="Continuar" ng-click="cargar('compra')" >
-                                            <input type="button" ng-disabled="form.$invalid" class="btn btn-info" value="Imprimir" ng-click="cargar()" ui-sref="cajeroTicket">
+                                            <input type="button" ng-disabled="form.$invalid" class="btn btn-info" value="Continuar" ng-click="reg('compra')" ui-sref="cajeroTicket"  >
                                             <input type="button" class="btn btn-info" value="Cancelar" ui-sref="cajeroMain">                                                  
                                         </div>
                                 </form>

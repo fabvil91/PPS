@@ -142,7 +142,8 @@ router.put('/operaciones/modificarTarjeta',function(req, res, next){
                                 tarjeta: req.body.tarjeta,
                                 banco: req.body.banco,
                                 fechaOperacion: req.body.fechaOperacion,                              
-                                promocion: req.body.promocion                                        
+                                promociones: req.body.promociones, 
+                                funcion: req.body.funcion                                      
                        }}, function (err, result){
            if (err) {
                res.json({rta : err});
