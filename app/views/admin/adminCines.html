@@ -22,7 +22,7 @@
         </div>
         
 
-            <!-- BANCOS -->
+            
                 <div class = "col-md-9">
                     <div class="panel panel-default margin-top">
                         <div class="panel-body">
@@ -39,35 +39,21 @@
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
+								     
                                 <tbody> 
-                                    <tr>
-                                        <th>Cinemar Temperleyr</th>
-                                        <th>8:00</th>
-                                        <th>23:59</th>
-                                        <th>20</th>
-                                        <th>10</th>
-                                        <th>45</th>
-                                        
-                                        <th>
-                                            <button class="btn btn-info btn-sm" ng-click="modificar(cines)">
+                                    <tr ng-repeat="complejo in complejos track by $index">
+                                        <td>{{complejo.nombre}}</td>
+										<td>{{complejo.horaApertura}}</td>
+										<td>{{complejo.horaCierre}}</td>
+										<td>{{complejo.duracionPublicidad}}</td>
+										<td>{{complejo.duracionFunciones}}</td>
+										<td>{{complejo.duracionTolerancia}}</td>
+                                        <td>
+                                            <button class="btn btn-info btn-sm" ng-click="modificar(complejo)">
                                             Editar</button>
-                                            <button class="btn btn-danger btn-sm" ng-click="borrar(cines)">
+                                            <button class="btn btn-danger btn-sm" ng-click="borrar(complejo)">
                                             Eliminar</button>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <th>Cinemar Avellaneda</th>
-                                        <th>10:00</th>
-                                        <th>01:59</th>
-                                        <th>15</th>
-                                        <th>10</th>
-                                        <th>40</th>
-                                        <th>
-                                            <button class="btn btn-info btn-sm" ng-click="modificar(cines)">
-                                            Editar</button>
-                                            <button class="btn btn-danger btn-sm" ng-click="borrar(cines)">
-                                            Eliminar</button>
-                                        </th>
+                                        </td>
                                     </tr>
                                     
                                 </tbody>                    

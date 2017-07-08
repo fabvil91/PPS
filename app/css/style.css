@@ -219,4 +219,8 @@ height: 50px;
    padding: 2px; 
 }
 
+.cinemarHeader{
+    cursor:pointer !important;
+}
+
 

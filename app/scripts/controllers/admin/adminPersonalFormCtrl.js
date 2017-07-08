@@ -1,28 +1,28 @@
 (function(){
 	'use strict';
 	angular.module('cine')
-	.controller('adminPersonalFormCtrl', ['$rootScope','$scope','Datos','$sce','Personal','$location',function($rootScope,$scope,Datos,$sce,Personal,$location){									
-        $scope.personal = {};
+	.controller('adminPersonalFormCtrl', ['$rootScope','$scope','Datos','$sce','TiposUsuario','$location',function($rootScope,$scope,Datos,$sce,TiposUsuario,$location){									
+         $scope.persona = {};
 
-       Personal.listado()
+       TiposUsuario.listadoPersonal()
 	    .then(function(datos){
 	     console.log(datos);
-	     $scope.personal = datos; 
+	     $scope.tipoUsuario = datos; 
 
-	    if(Datos.listado() == null){
-	     console.log('alta ' + Datos.listado());
+	    if(Datos.listadoPersonal() == null){
+	     console.log('alta ' + Datos.listadoPersonal());
 	     $scope.cargar = cargar;
 	    	    	  	     
-	    // function cargar() {   
-	     	//console.log($scope.bancos);
+	     function cargar() {   
+	     	console.log($scope.persona);
 
-	     	//var pelicula = $scope.peliculas.filter(function(element){
-			//return (element._id === $scope.slide.pelicula._id);
-			//});
+	     	var tipoUsuario = $scope.tipoUsuario.filter(function(element){
+			return (element._id === $scope.persona.tipoUsuario._id);
+			});
 
-	    	//$scope.slide.pelicula = pelicula[0];
+	    	$scope.persona.tipoUsuario = tipoUsuario[0];
 
-	       Personal.alta($scope.personal)
+	       TiposUsuario.altaPersonal($scope.persona)
 	       .then(function(datos){
 	        console.log(datos);
 	       })
@@ -34,22 +34,22 @@
 	     }
 
 	   }else{
-		    console.log('modificar' + Datos.listado());  
+		    console.log('modificar' + Datos.listadoPersonal());  
 		    $scope.cargar = cargar;
 		    
-		    $scope.slide = Datos.listado();
-		    console.log($scope.personal);	    	    	   	    
+		    $scope.persona = Datos.listadoPersonal();
+		    console.log($scope.persona);	    	    	   	    
 		     
-		    //function cargar() {
-		    //	console.log($scope.bancos);	
+		    function cargar() {
+		    	console.log($scope.persona);	
 
-		    //	var pelicula = $scope.peliculas.filter(function(element){
-			//	return (element._id === $scope.slide.pelicula._id);
-			//	});
+		    	var tipoUsuario = $scope.tipoUsuario.filter(function(element){
+				return (element._id === $scope.persona.tipoUsuario._id);
+				});
 
-		    //	$scope.slide.pelicula = pelicula[0];
+		    	$scope.persona.tipoUsuario = tipoUsuario[0];
 
-		       Personal.modificar($scope.personal)
+		       Slides.modificarPersonal($scope.persona)
 		        .then(function(datos){
 		         console.log(datos);
 		        })
@@ -69,5 +69,4 @@
 	   })
     }])
 })();
-
 

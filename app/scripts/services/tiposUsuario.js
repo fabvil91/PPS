@@ -3,17 +3,31 @@ angular
   .service('TiposUsuario', ['$http', function($http){
 
     this.listado = listado;
+	this.listadoPersonal = listadoPersonal;
     this.tiposUsuarioPorNombre = tiposUsuarioPorNombre;
     this.articuloPrecioMayor = articuloPrecioMayor;
     this.articuloPorProveedor = articuloPorProveedor;
     this.articuloPorIndice = articuloPorIndice;
     this.alta = alta;
+	this.altaPersonal = altaPersonal;
     this.modificar = modificar;
+	this.modificarPersonal = modificarPersonal;
     this.borrar = borrar;
+	this.borrarPersonal = borrarPersonal;
     this.Create = Create;
 
     function listado () {
       return $http.get('http://localhost:3333/tiposUsuario/getAll')
+      .then(function(rta){
+        return rta.data;
+      })
+      .catch(function(e){
+        return e;
+      })
+    }
+	
+	function listadoPersonal () {
+      return $http.get('http://localhost:3333/personal/getAll')
       .then(function(rta){
         return rta.data;
       })
@@ -76,10 +90,39 @@ angular
         return e;
       })
     }
+	
+	
+    function altaPersonal(item){
+      return $http({
+            url: 'http://localhost:3333/personal/insertar',
+            method: "POST",
+            data: item,
+            headers: {'Content-Type': 'application/json'}})
+      .then(function(rta){
+        return rta.data;
+      })
+      .catch(function(e){
+        return e;
+      })
+    }
 
     function modificar(item){
       return $http({
-            url: 'http://localhost:3333/modificar',
+            url: 'http://localhost:3333/usuarios/modificar',
+            method: "PUT",
+            data: item,
+            headers: {'Content-Type': 'application/json'}})
+      .then(function(rta){
+        return rta.data;
+      })
+      .catch(function(e){
+        return e;
+      })
+    }
+	
+	function modificarPersonal(item){
+      return $http({
+            url: 'http://localhost:3333/personal/modificar',
             method: "PUT",
             data: item,
             headers: {'Content-Type': 'application/json'}})
@@ -93,7 +136,21 @@ angular
 
     function borrar(item){
       return $http({
-            url: 'http://localhost:3333/eliminar',
+            url: 'http://localhost:3333/usuarios/eliminar',
+            method: "DELETE",
+            data: item,
+            headers: {'Content-Type': 'application/json'}})
+      .then(function(rta){
+        return rta.data;
+      })
+      .catch(function(e){
+        return e;
+      })
+    }
+	
+	function borrarPersonal(item){
+      return $http({
+            url: 'http://localhost:3333/personal/eliminar',
             method: "DELETE",
             data: item,
             headers: {'Content-Type': 'application/json'}})
