@@ -210,7 +210,21 @@
         url:'/adminPersonalForm',
         controller: 'adminPersonalFormCtrl',              
         templateUrl:'views/admin/adminPersonalForm.html'
-        })      
+      })   
+      $stateProvider
+        .state('adminIdiomas',
+        {
+        url:'/adminIdiomas',
+        controller: 'adminIdiomasCtrl',              
+        templateUrl:'views/admin/adminIdiomas.html'
+        })    
+      $stateProvider
+        .state('adminIdiomasForm',
+        {
+        url:'/adminIdiomasForm',
+        controller: 'adminIdiomasFormCtrl',              
+        templateUrl:'views/admin/adminIdiomasForm.html'
+        })     
       $stateProvider
         .state('adminPrecios',
         {
@@ -287,7 +301,21 @@
         url:'/adminTarjetaForm',              
         controller: 'adminTarjetaFormCtrl',
         templateUrl:'views/admin/adminTarjetaForm.html'
-        })      
+      })  
+       $stateProvider
+        .state('adminFormatos',
+        {
+        url:'/adminFormatos',              
+        controller: 'adminFormatosCtrl',
+        templateUrl:'views/admin/adminFormatos.html'
+        })
+      $stateProvider
+        .state('adminFormatosForm',
+        {
+        url:'/adminFormatosForm',              
+        controller: 'adminFormatosFormCtrl',
+        templateUrl:'views/admin/adminFormatosForm.html'
+        })          
       $stateProvider
         .state('empleadoFunciones',
         {
@@ -458,7 +486,8 @@
                 var restrictedPage = $.inArray($location.path(), ['/adminMain', 
                 '/promosVigentes','/quienesSomos','/contactanos','/prohibida',
                 '/adminBancos','/adminCines','/adminCuenta','/adminConfiguracionGeneral','/adminPersonal','/adminPrecios','/adminPromociones','/adminSalaNueva','/adminSalas','/adminTarjeta','/adminSlide',
-                '/adminSlideForm','/adminPromocionesForm','/adminBancosForm','/adminCinesForm','/adminPersonalForm','/adminPreciosForm','/adminTarjetaForm']) === -1;
+                '/adminSlideForm','/adminPromocionesForm','/adminBancosForm','/adminCinesForm','/adminPersonalForm','/adminPreciosForm','/adminTarjetaForm',
+                '/adminIdiomas','/adminIdiomasForm','/adminFormatos','/adminFormatosForm']) === -1;
               }
 
               if($rootScope.globals.currentUser.tipoUsuario == 'Empleado'){
