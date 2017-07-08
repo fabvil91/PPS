@@ -100,8 +100,7 @@
                   operacion.funcion.sala.asientos.forEach(function(fila){
                     fila.forEach(function(columna){
                       if(columna.booked==false&&columna.checked==true){
-                        console.log(columna.id);
-                        columna.checked=false;
+                                                columna.checked=false;
                       }
                     });
                   });
@@ -111,7 +110,6 @@
                  .then(function(datos){ 
                     var funciones = datos;
                     funciones.forEach(function(item){
-                      console.log(item._id,operacion.funcion._id);
                       if(item._id==operacion.funcion._id){
 
                         item.sala=operacion.funcion.sala;

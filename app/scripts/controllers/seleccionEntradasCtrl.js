@@ -2,26 +2,26 @@
 	'use strict';
 	angular.module('cine')
 	.controller('seleccionEntradasCtrl', ['$rootScope','$scope','Datos','$sce','Precios','Promociones','Usuarios',function($rootScope,$scope,Datos,$sce,Precios,Promociones,Usuarios){							
-		$scope.filtro = {};	 	
+		$scope.filtro = {};	 
+		
 	
 		 Precios.listado()
 	     .then(function(datos){
+			 console.log("PRECIOS TRAIDOS");
 	     	console.log(datos);
 	        $scope.precios = datos;
 
 	         Promociones.listado()
 		     .then(function(datos){
+				 console.log("PROMOCIONES TRAIDAS");
 		     	console.log(datos);
 		        $scope.promociones = datos;
 					Usuarios.usuarioPorNombreUsuario($rootScope.globals.currentUser.username)
                     .then(function(datos){
                     $scope.usuario=datos[0]; 
-                    console.log($scope.usuario);
                         Usuarios.usuarioPorNombreUsuario($scope.usuario.username)
                         .then(function(datos){ 
                             $scope.usuario=datos[0]; 
-                            console.log("actual user:");
-                            console.log($scope.usuario);
 							$scope.transaccion = {}
 							$scope.entradas = [];
 							$scope.total = 0;
@@ -29,40 +29,28 @@
 							$scope.hideCuenta=false;
 							$scope.descuento=false;
 							$scope.promocion={};
+							$scope.promoDia=null;						
 
 							$scope.funcion = Datos.listado();
 							//trae entradas+precio que concida con el complejo y formato de funcion
 							$scope.preciosFiltrados = $scope.precios.filter(function(element){
 									return (element.complejo.nombre === $scope.funcion.complejo.nombre && element.formato.nombre === $scope.funcion.formato.nombre);
 							});
-
+							
 							(function(){
 								//carga solo la primera promocion que sea del dia actual
 								var promocion = null;
 								for (var i = $scope.promociones.length - 1; i >= 0; i--) {
-									if ($scope.promociones[i].diaSemana == new Date($scope.funcion.dia).getDay()){
-										promocion = $scope.promociones[i];
+									if ($scope.promociones[i].diaSemana == new Date().getDay()){
+										
+										promocion = $scope.promociones[i];										
 										break;
 									}
 								}
+								console.log("PROMO");
 								console.log(promocion);
 								$scope.promocion = promocion;
-								for (var i = $scope.preciosFiltrados.length - 1; i >= 0; i--) {
-									$scope.preciosFiltrados[i].cantidad = 0;
-									$scope.preciosFiltrados[i].subtotal = 0;
-
-									if(promocion != null && ($scope.preciosFiltrados[i].tipo == promocion.tipoEntrada || promocion.tipoEntrada=="Todas")){
-										
-										if(promocion.tipoDescuento=="Porcentaje"){
-											$scope.preciosFiltrados[i].descuento = $scope.preciosFiltrados[i].monto * (promocion.porcentaje / 100);
-											$scope.preciosFiltrados[i].monto=$scope.preciosFiltrados[i].monto-$scope.preciosFiltrados[i].descuento;
-										}
-
-										
-									}
-								}
-								console.log("Precios Filtrados");
-								console.log($scope.preciosFiltrados);
+								
 							})();
 
 							$scope.formatearHora = function(funcion){        	
@@ -76,6 +64,28 @@
 							$scope.noUsarCuenta=function(){								
 									$scope.descuento=false;	
 									$scope.hideCuenta=true;
+							}
+							$scope.usarPromo=function(){
+								$scope.promoDia=true;
+								for (var i = $scope.preciosFiltrados.length - 1; i >= 0; i--) {
+									$scope.preciosFiltrados[i].cantidad = 0;
+									$scope.preciosFiltrados[i].subtotal = 0;
+
+									if($scope.promocion != null && ($scope.preciosFiltrados[i].tipo == $scope.promocion.tipoEntrada || $scope.promocion.tipoEntrada=="Todas")){
+										
+										if($scope.promocion.tipoDescuento=="Porcentaje"){
+											$scope.preciosFiltrados[i].descuento = $scope.preciosFiltrados[i].monto * ($scope.promocion.porcentaje / 100);
+											$scope.preciosFiltrados[i].monto=$scope.preciosFiltrados[i].monto-$scope.preciosFiltrados[i].descuento;
+										}
+
+										
+									}
+								}
+								console.log("Precios Filtrados");
+								console.log($scope.preciosFiltrados);
+							}
+							$scope.noUsarPromo=function(){
+								$scope.promoDia=false;
 							}
 			     })
 		     .catch(function(e){
@@ -158,7 +168,7 @@
         	funcion.entradas = $scope.preciosFiltrados;
         	funcion.transaccion = $scope.transaccion;
 			funcion.precioTotal=$scope.total;
-			if($scope.promocion!=null){
+			if($scope.promoDia==true){
 				funcion.promocion=$scope.promocion;				
 			}
 			console.log($scope.usuario);

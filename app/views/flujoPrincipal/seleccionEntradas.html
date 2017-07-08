@@ -53,6 +53,24 @@
             </div>
             </div>
         </div> 
+         <div class="row" ng-show="promocion!=null&&promoDia==null">
+            <div class="container">
+            <div class="col-sx-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Cuenta Corriente</div>
+                    <div class="panel-body text-center">
+                        <p>{{promocion.nombre}} es hoy! {{promocion.descripcion}}!</p>
+                        <p>Si utiliza esta promocion, no podra utilizar promociones de tarjeta.</p>
+                        <p>¿Desea utilizarla?</p>
+                        <div class="row">                        
+                            <button type="button" class="btn btn-primary" ng-click="usarPromo()">Aceptar</button>                            
+                            <button type="button" class="btn btn-primary" ng-click="noUsarPromo()">Rechazar</button>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div> 
         <div>
             <form class="entradas"> 
                 <div>
