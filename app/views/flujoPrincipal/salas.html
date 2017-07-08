@@ -61,7 +61,7 @@
               <div class="sala panel-body ">
                 <div class="pantalla center-block"> 
                   Pantalla
-                </div>
+                </div> 
                 <div class="tabla">
                   <ol class="filas" ng-repeat="filas in funcion.sala.asientos">
                     <li class="columna" ng-repeat="columna in filas">
@@ -73,7 +73,7 @@
                       <label class="asiento seleccionado pasillo" ng-if="columna.pasillo && columna.checked" ng-click="seleccionar(columna)"> {{columna.id}} </label>                                
                       <label class="asiento seleccionado" ng-if="!columna.pasillo && columna.checked" ng-click="seleccionar(columna)"> {{columna.id}} </label>                                       
                     </li>
-                  </ol>
+                  </ol> 
                 </div>
               </div>
             </div>

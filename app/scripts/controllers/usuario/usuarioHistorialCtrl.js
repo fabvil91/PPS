@@ -38,7 +38,9 @@
                   $scope.operaciones.forEach(function(element){
                     $scope.fechas.push({
                       formateado:element.funcion.diaFormateado,
-                      dia:element.funcion.diaTime
+                      dia:element.funcion.diaTime,
+                      show:true,
+                      showString:"Ocultar"
                     });
                   });
                   
@@ -186,7 +188,6 @@
                     $scope.ifCompra=false;
                     $scope.ifFechas=false;
                   }
-                  console.log($scope.ifNoRetirada);
                 }
 
 
@@ -203,7 +204,76 @@
         })
         .catch(function(e){
             console.log(e);
-        });     
+        });   
+
+        $scope.toggle = function(c){
+          if(c.show==true){
+            c.show=false;
+            c.showString="Mostrar";
+          }else{
+            c.show=true;
+            c.showString="Ocultar";
+          }
+
+        }  
+
+        $scope.hayOperacion = function(fecha){
+
+          var operaciones=[];
+          
+          //TODO
+          if($scope.ifRetirada==false&&$scope.ifCompra==false&&$scope.ifNoRetirada==false&&$scope.ifReserva==false){
+            $scope.operaciones.forEach(function(item){
+              if(item.funcion.diaTime==fecha.dia){
+                operaciones.push("yes");
+              }
+            });
+          }
+          //FILTROS
+          //COMPRA
+          if($scope.ifRetirada==true&&$scope.ifCompra==false&&$scope.ifNoRetirada==true&&$scope.ifReserva==true){
+            $scope.operaciones.forEach(function(item){
+              if(item.funcion.diaTime==fecha.dia&&item.estado=='Pagado'){          
+                operaciones.push("yes");
+              }
+            });
+          }
+          //RESERVA
+          if($scope.ifRetirada==true&&$scope.ifCompra==true&&$scope.ifNoRetirada==true&&$scope.ifReserva==false){
+            $scope.operaciones.forEach(function(item){
+              if(item.funcion.diaTime==fecha.dia&&item.estado=='Reservado'){          
+                operaciones.push("yes");
+              }
+            });
+          }
+          
+          //NORETIRADAS
+          if($scope.ifRetirada==true&&$scope.ifCompra==true&&$scope.ifNoRetirada==false&&$scope.ifReserva==true){
+            $scope.operaciones.forEach(function(item){
+              if(item.funcion.diaTime==fecha.dia&&item.estado=='ReservaVencida'){          
+                operaciones.push("yes");
+              }
+            });
+          }
+          
+          //RETIRADAS
+          if($scope.ifRetirada==false&&$scope.ifCompra==true&&$scope.ifNoRetirada==true&&$scope.ifReserva==true){
+            $scope.operaciones.forEach(function(item){
+              if(item.funcion.diaTime==fecha.dia&&item.estado=='Retirado'){          
+                operaciones.push("yes");
+              }
+            });
+          }
+        
+        //EVALUACION
+          if(operaciones.length==0){
+            return false;
+          }else{
+            return true;
+          }
+         
+
+        }
 	 
     }])
 })();

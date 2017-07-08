@@ -3,13 +3,17 @@ padding: 0;
 margin: 0;
 }
 
+#black{
+    background-color: black;
+}
+
 html, body {
 height: 100%;
 }
 
 #container {
 min-height: 100%;
-background-color: #DDD;
+background-color: whitesmoke;
 border-left: 2px solid #666;
 border-right: 2px solid #666;
 /*width: 676px;*/
@@ -28,10 +32,7 @@ text-align: center;
 height: 40px;
 padding-top: 10px;
 margin: -50px auto 0 auto;
-}
-
-#clearfooter {
-height: 50px;
+display:block;
 }
 
 .img-poster {
@@ -43,12 +44,30 @@ height: 50px;
      background-color: #00438E;
      color:azure;
 }
-
+.movies{
+    padding:5px;
+}
 .movie{
     height: 250pt;
     width: 160pt;
     border: 2px solid #00438E;
     border-radius: 5px;
+    position: relative;
+}
+
+.overlay{
+     position: absolute;
+    float: left;
+   position: absolute;
+   left: 0px;
+   top: 0px;
+   z-index: 1000;
+   background-color: #00438E;
+   padding: 5px;
+   color: #FFFFFF;
+   font-weight: bold;
+   display:block;
+    width:100%
 }
 
 #movie-title{
@@ -90,7 +109,7 @@ height: 50px;
 
 .btn{
     background-color: #7BB9FF;
-    color: black;
+    color: white;
     border: solid #00438E 1px;
 }
 .btn:hover{
@@ -128,26 +147,56 @@ height: 50px;
 }
 
 .panel-heading{
-    text-align: center;
+    text-align: center !important;
+    background-color: #00438E !important;
+    color: white !important;
 }
 
 .panel-body{
     margin: 0px;
 }
-
+.deepBlue{
+     background-color: #00438E !important;
+     width:100%;
+}
 .footer-content{
     padding: 20px;
-    display: inline-flex;
-    background-color: #00438E;
+    display: flex;
+    background-color: #00438E !important;
+    width: 100%;
+
 
 }
 
+#label-white{
+    color:white;
+    font: 20px arial, sans-serif;    
+
+}
+#h-white{
+    color:white;
+    font: 30px arial, sans-serif;    
+}
+#back-white{
+    background-color:white;
+}
+.col-center-block {
+    float: none !important;
+    
+    margin: 0 auto;
+    text-align: center;
+    background-color: #00438E !important;
+    /* margin-left: auto; margin-right: auto; */
+}
+
 .foot-section{
+     display: table-cell;
     padding: 20px 5px 20px 5px;
     width: 150pt;
     height: 190pt;
-    background-color: #fff3dd;
+    background-color: #fff3dd !important;
     margin: 0px 20px;
+   
 
 }
 
@@ -223,4 +272,109 @@ height: 50px;
     cursor:pointer !important;
 }
 
+.historial-Compra{
 
+    border-color:#008e3d !important;
+}
+.historial-Compra .panel-heading{
+    background-color: #008e3d !important;
+    color: white !important;
+}
+.historial-Compra .btn{
+     border-color:#008e3d !important;
+     background-color: #0cb756 !important;
+}
+.historial-Compra .btn:hover{
+     border-color:#008e3d !important;
+     background-color:#008e3d !important;
+}
+
+.historial-Vencida{
+
+    border-color:#8e0e00 !important;
+}
+.historial-Vencida .btn{
+     border-color:#8e0e00 !important;
+     background-color: #8e0e00 !important;
+}
+.historial-Vencida .btn:hover{
+     border-color:#8e0e00 !important;
+     background-color:#540c05 !important;
+}
+.historial-Vencida .panel-heading{
+    background-color: #8e0e00 !important;
+    color: white !important;
+}
+.historial-Retirada{
+
+    border-color:#97a7af !important;
+}
+.historial-Retirada .panel-heading{
+    background-color: #97a7af !important;
+    color: white !important;
+}
+.historial-Retirada .btn{
+     border-color:#97a7af !important;
+     background-color: #97a7af !important;
+}
+.historial-Retirada .btn:hover{
+     border-color:#97a7af !important;
+     background-color:#586268 !important;
+}
+
+.historial-fecha{
+    background-color: #7BB9FF;
+    border-radius: 4px;
+    padding: 2px;
+    
+}
+.historial-fecha .btn{
+     border-color:#00438E ;
+    background-color: #1367c4; 
+    font-size: 10px; 
+        float: right!important;
+    
+}
+.historial-fecha .btn:hover{
+     border-color:#00438E ;
+    background-color: #00438E;    
+}
+
+.nav-Reserva .btn{
+    border-color:#00438E ;
+    background-color: #1367c4; 
+}
+.nav-Reserva .btn:hover{
+    border-color:#00438E ;
+    background-color: #00438E;    
+}
+
+.nav-Compra .btn{
+     border-color:#008e3d !important;
+     background-color: #0cb756 !important;
+}
+.nav-Compra .btn:hover{
+     border-color:#008e3d !important;
+     background-color:#008e3d !important;
+}
+.nav-Retirada .btn{
+     border-color:#97a7af !important;
+     background-color: #97a7af !important;
+}
+.nav-Retirada .btn:hover{
+     border-color:#97a7af !important;
+     background-color:#586268 !important;
+}
+
+.nav-Vencida .btn{
+     border-color:#8e0e00 !important;
+     background-color: #8e0e00 !important;
+}
+.nav-Vencida .btn:hover{
+     border-color:#8e0e00 !important;
+     background-color:#540c05 !important;
+}
+.nav-Vencida .btn:active{
+     border-color:#8e0e00 !important;
+     background-color:#540c05 !important;
+}

@@ -29,10 +29,10 @@
                         <div class="container">
                             <ul class="nav navbar-nav">
                                 <li ui-sref="adminPromociones"><a href="#">Promociones</a></li>
-                                <li ui-sref="adminTarjetas"><a href="#">Tarjetas</a></li>
+                                <li ui-sref="adminTarjeta"><a href="#">Tarjetas</a></li>
                                 <li ui-sref="adminBancos" class="active"><a href="#">Bancos</a></li>
                             </ul>
-                        </div>
+                        </div> 
                     </nav>
                 </div>                    
             </div>
@@ -46,8 +46,6 @@
                         <form name="form" ng-submit="cargar()" novalidate>
 
                        <!-- Nombre -->
-                        <fieldset>
-                        <legend>-Nombre</legend>
                         <div class="form-group" ng-class="{ 'has-error' : form.nombre.$invalid && !form.nombre.$pristine }">
                             <label>Nombre</label>
                             <input type="text" name="nombre" class="form-control" ng-model="banco.nombre" ng-minlength="3" ng-maxlength="15" required>
@@ -55,7 +53,6 @@
                             <p ng-show="form.nombre.$error.minlength" class="help-block">Nombre es muy corto.</p>
                             <p ng-show="form.nombre.$error.maxlength" class="help-block">Nombre es muy largo.</p>
                         </div>
-                        </fieldset>
                         
                         <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">Cargar</button>
                         <button class="btn btn-primary" ui-sref="adminBancos">Cancelar</button>

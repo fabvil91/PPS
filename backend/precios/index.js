@@ -12,18 +12,6 @@ router.get('/precios/getAll',function(req, res,next){
     	})
 	});
 
-router.get('/articulos/name/:name', (req, res, next) => {
-    console.log(req.params.name);
-    req.db.collection('articulos')
-    .find({name:req.params.name})
-    .toArray((err, data) => {
-    	if (err)
-        	console.log(err);  
-        res.json(data);
-    });
-});
-
-
 
 router.post('/precios/insertar',function(req, res, next){
 		console.log(req.body);
@@ -31,7 +19,9 @@ router.post('/precios/insertar',function(req, res, next){
         req.db.collection('precios')        
         .insert({complejo: req.body.complejo,
 			     formato: req.body.formato,
+                 tipo: req.body.tipo,
 			     monto: req.body.monto
+
                 }, function (err, result){
            if (err) {
                res.json({rta : err});
@@ -50,6 +40,7 @@ router.put('/precios/modificar',function(req, res, next){
         req.db.collection('precios')        
         .update({_id: id}, {$set: {complejo: req.body.complejo,
         						   formato: req.body.formato,
+                                   tipo:req.body.tipo,
         						   monto: req.body.monto
         						  }}, function (err, result){
            if (err) {

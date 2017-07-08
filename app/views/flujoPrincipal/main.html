@@ -1,71 +1,77 @@
   <!-- CAROUSEL -->
-  <div ng-controller="mainCtrl">
-        <div id="slides_control">
-            <div class="col-sm-12">
-             <carousel interval="myInterval">
-                <slide ng-repeat="slide in slides" active="slide.active" ng-click="cargarSlide(slide)" ui-sref="detallePelicula">
-                 <img class="img-responsive center-block"  ng-src="{{slide.imageUrl}}" >
-                <div class="carousel-caption">
-                        <h4>{{slide.nombre}}</h4>
-                        <h4>{{slide.descripcion}}</h4>
-                </div>
-                </slide>
-             </carousel>        
-            </div>          
-        </div>
+  <div ng-controller="mainCtrl" id="black">
+      <div class="container" style="width=100%">
+            <div id="slides_control">
+                <div class="col-sm-12">
+                <carousel interval="myInterval">
+                    <slide ng-repeat="slide in slides" active="slide.active" ng-click="cargarSlide(slide)" ui-sref="detallePelicula">
+                    <img class="img-responsive center-block"  ng-src="{{slide.imageUrl}}" >
+                    <div class="carousel-caption">
+                            <h4>{{slide.nombre}}</h4>
+                            <h4>{{slide.descripcion}}</h4>
+                    </div>
+                    </slide>
+                </carousel>        
+                </div>          
+            </div>
+      </div>
     <!-- BREAK -->
    
-    <div class="row">
+    <div class="row ">
         <div class="col-sm-12 break"></div>   
     </div>
-    
+
+       
         <!-- FILTROS -->
-        <div class="row panel panel-default">
+         <div class="container deepBlue">
             <div class="col-sm-2"></div>
-            <form>
+            <div class="col-sm-8">
+          
             <!-- COMPLEJO -->
-            <div class="col-sm-10 panel-heading">
-                <div class="col-xs-3 form-group">
-                    <label for="selComplejo">Complejo: </label>                   
-                     <select class="form-control" id="selComplejo" ng-model="filtro.complejo" ng-options="x._id as x.nombre for x in complejos" ng-change="loguear()">            
-                     </select> 
-                </div>
-      
-            <!-- FORMATO  -->                                
-                <div class="col-xs-1 form-group">
-                    <label for="selFormato">Formato: </label>                   
-                    <select class="form-control" id="selFormato" ng-model="filtro.formato" ng-options="x._id as x.nombre for x in formatos" >        
-                    </select> 
-                </div>
-
-            <!-- IDIOMA -->                
-                 <div class="col-xs-2 form-group">
-                    <label for="selIdioma">Idioma: </label>                   
-                     <select class="form-control" id="selIdioma" ng-model="filtro.idioma" ng-options="x._id as x.nombre for x in idiomas" >        
-                     </select> 
-                 </div>
-
-            <!-- DIA -->      
-                <div class="col-xs-2 form-group">
-                    <label for="selDia">Día: </label>                   
-                     <select class="form-control" id="selDia" ng-model="filtro.dia" ng-options="x for x in fechasDias" ng-change="filtrarDia()">        
-                     </select> 
-                 </div>
-
-            <!-- TODO -->
-                <div class="col-xs-2 form-group">
-                    <label for="btngroup-todo" style="color:transparent">todo</label>
-                    <div class="btngroup" id="btngroup-todo">
-                        <button class="btn btn-primary filter-button" data-filter="todo" ng-click="limpiarFiltro()">Ver Todo</button>
+       
+                     <form>
+                    <div class="col-md-3 form-group">
+                        <label id="label-white" for="selComplejo">Complejo: </label>                   
+                        <select class="form-control" id="selComplejo" ng-model="filtro.complejo" ng-options="x._id as x.nombre for x in complejos" ng-change="loguear()">            
+                        </select> 
                     </div>
-                </div>
-            </div>
-            </form>
+        
+                <!-- FORMATO  -->                                
+                    <div class="col-md-2 form-group">
+                        <label id="label-white" for="selFormato">Formato: </label>                   
+                        <select class="form-control" id="selFormato" ng-model="filtro.formato" ng-options="x._id as x.nombre for x in formatos" >        
+                        </select> 
+                    </div>
+
+                <!-- IDIOMA -->                
+                    <div class="col-md-2 form-group">
+                        <label id="label-white" for="selIdioma">Idioma: </label>                   
+                        <select class="form-control" id="selIdioma" ng-model="filtro.idioma" ng-options="x._id as x.nombre for x in idiomas" >        
+                        </select> 
+                    </div>
+
+                <!-- DIA -->      
+                    <div class="col-md-2 form-group">
+                        <label id="label-white" for="selDia">Día: </label>                   
+                        <select class="form-control" id="selDia" ng-model="filtro.dia" ng-options="x for x in fechasDias" ng-change="filtrarDia()">        
+                        </select> 
+                    </div>
+
+                <!-- TODO -->
+                    <div class="col-md-3 form-group">
+                        <label id="label-white" for="btngroup-todo" style="color:transparent">todo</label>
+                        <div class="btngroup" id="btngroup-todo">
+                            <button class="btn btn-primary filter-button" data-filter="todo" ng-click="limpiarFiltro()">Ver Todo</button>
+                        </div>
+                    </div>                    
+                    </form>
+           </div>
             <div class="col-sm-2"></div>
+        
         </div>
  
     <!-- LISTA DE PELICULAS -->
-        <div class="row">
+        <div class="row" id="back-white">
            <div class="col-sm-2"></div>
            <div class="col-sm-8 panel panel-default">                                                                                                                              
                  <div class="panel-body">                                                            
@@ -89,15 +95,16 @@
         <div class="row">
             <div class="col-sm-12 break"></div>   
         </div>
-
         <!-- MAS VISTAS -->
-        <div class="row">
+        <div class="container deepBlue">                
+                <div class="row text-center">
+                    <h2 id="h-white">Las Más Vistas</h2>
+                </div>
+        </div>
+        <div class="row" id="back-white">
             <div class="col-sm-2"></div>
             <div class="col-sm-8 panel panel-default">               
-                <div class="panel-heading">
-                    <h2>Las Más Vistas</h2>
-                </div>
-                 <div class="panel-body">
+                <div class="panel-body">
                      <!-- PELICULAS -->
                     <ul class="list-inline">
                         <span ng-show="peliculasActivas.length === 0">No hay funciones disponibles</span>
@@ -120,38 +127,25 @@
             <div class="col-sm-12 break"></div>   
         </div>
          <!-- PROXIMAMENTE -->
-        <div class="row">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-8 panel panel-default">
-               
-                <div class="panel-heading">
-                    <h2>Próximos Estrenos</h2>
+         <div class="container deepBlue">                
+                <div class="row text-center">
+                    <h2 id="h-white">Proximos Estrenos</h2>
                 </div>
-                 <div class="panel-body">
+        </div>
+       <div class="row" id="back-white">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8 panel panel-default">               
+                <div class="panel-body">
                      <!-- PELICULAS -->
                     <ul class="list-inline">
-                        <li>
+                        <span ng-show="estrenos.length === 0">No hay funciones disponibles</span>
+                        <li class="movies" ng-repeat="pelicula in estrenos | orderBy:'fechaEstreno' ">
                             <div class="movie text-center">
-                                <a href="#">
-                                    <img src="images/peliculas/BeautyAndTheBeast.jpg" alt="poster" class="img-thumbnail img-poster">
-                                    <p>Bella y la Bestia</p>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="movie text-center">
-                                <a href="#">
-                                    <img src="images/peliculas/Logan.jpg" alt="poster" class="img-thumbnail img-poster">
-                                    <p>Logan</p>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="movie text-center">
-                                <a href="#">
-                                    <img src="images/peliculas/StarWars.jpg" alt="poster" class="img-thumbnail img-poster">
-                                    <p>Star Wars</p>
-
+                                
+                                <a href="#" ng-click="cargar(pelicula.funciones[0])" ui-sref="detallePelicula">
+                                    <div class="overlay">{{pelicula.mes}}</div>
+                                    <img ng-src="{{pelicula.imageUrl}}" alt="poster"  class="img-thumbnail img-poster">                                   
+                                    <p>{{pelicula.nombre}}</p>
                                 </a>
                             </div>
                         </li>
@@ -159,5 +153,11 @@
                 </div>
             </div>
             <div class="col-sm-2"></div>
-        </div>       
+        </div>
+        <!-- BREAK -->
+   
+        <div class="row">
+            <div class="col-sm-12 break"></div>   
+        </div>
     </div>
+  </div>

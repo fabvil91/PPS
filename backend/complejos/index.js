@@ -24,28 +24,6 @@ router.get('/complejos/id/:id', (req, res, next) => {
     });
 });
 
-router.get('/articulos/precio/:precio', (req, res, next) => {
-     console.log(req.params.precio);
-    req.db.collection('articulos')
-    .find({precio:{$gt:parseInt(req.params.precio)}})
-    .toArray((err, data) => {
-    	if (err)
-        	console.log(err); 
-        res.json(data);
-    });
-});
-
-router.get('/articulos/proveedor/:proveedor', (req, res, next) => {
-    console.log(req.params.proveedor);
-    req.db.collection('articulos')
-    .find({'proveedor.email':req.params.proveedor})
-    .toArray((err, data) => {
-    	if (err)
-        	console.log(err);  
-        res.json(data);
-    });
-});
-
 router.post('/complejos/insertar',function(req, res, next){
 		console.log(req.body);
 
@@ -54,8 +32,8 @@ router.post('/complejos/insertar',function(req, res, next){
         		 horaApertura: new Date(req.body.horaApertura),
         		 horaCierre: new Date(req.body.horaCierre),
         		 duracionPublicidad: req.body.duracionPublicidad,
-        		 duracionFunciones: req.body.duracionFunciones,
-        		 duracionTolerancia: req.body.duracionTolerancia
+        		 duracionEntreFunciones: req.body.duracionEntreFunciones,
+        		 duracionToleranciaUltimaFuncion: req.body.duracionToleranciaUltimaFuncion
 			    }, function (err, result){
            if (err) {
                res.json({rta : err});
@@ -76,8 +54,8 @@ router.put('/complejos/modificar',function(req, res, next){
         						   horaApertura: new Date(req.body.horaApertura),
         						   horaCierre: new Date(req.body.horaCierre),
         						   duracionPublicidad: req.body.duracionPublicidad,
-        						   duracionFunciones: req.body.duracionFunciones,
-        						   duracionTolerancia: req.body.duracionTolerancia
+        						   duracionEntreFunciones: req.body.duracionEntreFunciones,
+        						   duracionToleranciaUltimaFuncion: req.body.duracionToleranciaUltimaFuncion
         						   }}, function (err, result){
            if (err) {
                res.json({rta : err});
@@ -122,33 +100,5 @@ router.delete('/complejos/eliminar',function(req, res, next){
         });  
 	});
 
-router.get('/indices', function(req, res){
-  req.db.collection('articulos')
-  .createIndex( { name: "text",
-                  'proveedor.email': "text"                   
-                }, 
-                { weights: { 
-                name: 10,                              
-                'proveedor.email': 1}}, function (err, result){
-                if (err) {
-                    res.json({rta : err});
-                }
-                 else {
-                    res.json({rta : "OK"});
-                }} 
-            );
-});
-
-router.get('/articulos/indices/:texto', (req, res, next) => {
-
-    req.db.collection('articulos')
-    .find({$text : {$search: req.params.texto}},
-          {score : {$meta : "textScore"}})
-    .sort({score : {$meta: "textScore"}}) 
-    .toArray((err, data) => {
-    	console.log(data);
-        res.json(data);
-    });
-});
 
 module.exports = router;

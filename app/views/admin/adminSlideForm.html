@@ -26,7 +26,7 @@
                         <form name="form" ng-submit="cargar()" novalidate>
 
                                 <!-- Pelicula -->
-                                <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
+                                <div class="form-group" ng-class="{ 'has-error' : form.pelicula.$invalid && !form.pelicula.$pristine }">
                                     <label>Pelicula</label>
                                     <select ng-model="slide.pelicula._id" ng-options="x._id as x.nombre for x in peliculas">  
                                     <option value="">Seleccione</option>           

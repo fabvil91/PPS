@@ -149,6 +149,25 @@
 										peli.funciones=funcionesPeli;									
 									});
 
+									//PROXIMOS ESTRENOS
+									$scope.estrenos = peliculas.filter(function(item){
+										return item.proximamente==true;
+									});
+									console.log($scope.estrenos);
+									var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+									"Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+									];
+
+									
+									$scope.estrenos.forEach(function(pelicula){
+										var fecha = new Date(pelicula.fechaEstreno);
+										if(fecha.getFullYear()!=new Date().getFullYear()){
+											pelicula.mes=fecha.getFullYear();
+										}else{
+										pelicula.mes= meses[fecha.getMonth()];
+										}										
+									});
+
 									
 
 								 })

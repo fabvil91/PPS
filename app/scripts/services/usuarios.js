@@ -7,7 +7,9 @@ angular
     this.usuarioPorEmail = usuarioPorEmail;
    
     this.alta = alta;
+     this.altaPersonal = altaPersonal;
     this.modificar = modificar;
+      this.modificarUsuario = modificarUsuario;
     this.modificarPersonales=modificarPersonales;
     this.modificarTarjeta=modificarTarjeta;
     this.borrar = borrar;
@@ -61,10 +63,36 @@ angular
         return e;
       })
     }
+    function altaPersonal(item){
+      return $http({
+            url: 'http://localhost:3333/usuarios/insertarPersonal',
+            method: "POST",
+            data: item,
+            headers: {'Content-Type': 'application/json'}})
+      .then(function(rta){
+        return rta.data;
+      })
+      .catch(function(e){
+        return e;
+      })
+    }
 
     function modificar(item){
       return $http({
             url: 'http://localhost:3333/usuarios/modificar',
+            method: "PUT",
+            data: item,
+            headers: {'Content-Type': 'application/json'}})
+      .then(function(rta){
+        return rta.data;
+      })
+      .catch(function(e){
+        return e;
+      })
+    }
+     function modificarUsuario(item){
+      return $http({
+            url: 'http://localhost:3333/usuarios/modificarUsuario',
             method: "PUT",
             data: item,
             headers: {'Content-Type': 'application/json'}})

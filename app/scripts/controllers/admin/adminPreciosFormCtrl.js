@@ -1,13 +1,18 @@
 (function(){
 	'use strict';
 	angular.module('cine')
-	.controller('adminPreciosFormCtrl', ['$rootScope','$scope','Datos','$sce','Complejos','Precios','$location',function($rootScope,$scope,Datos,$sce,Complejos,Precios,$location){									
+	.controller('adminPreciosFormCtrl', ['$rootScope','$scope','Datos','$sce','Complejos','Formatos','Precios','$location',
+	function($rootScope,$scope,Datos,$sce,Complejos,Formatos,Precios,$location){									
         $scope.precio = {};
-
+		$scope.tipos=["Entrada General","Niño"];
        Complejos.listado()
 	    .then(function(datos){
 	     console.log(datos);
 	     $scope.complejos = datos; 
+		  Formatos.listado()
+	    .then(function(datos){
+	     console.log(datos);
+	     $scope.formatos = datos; 
 
 	    if(Datos.listado() == null){
 	     console.log('alta ' + Datos.listado());
@@ -16,54 +21,64 @@
 	     function cargar() {   
 	     	console.log($scope.precio);
 
-	     	var complejo = $scope.peliculas.filter(function(element){
+	     	var complejo = $scope.complejos.filter(function(element){
 			return (element._id === $scope.precio.complejo._id);
+		});
+		var formato = $scope.formatos.filter(function(element){
+			return (element._id === $scope.precio.formato._id);
 			});
 
 	    	$scope.precio.complejo = complejo[0];
+			$scope.precio.formato = formato[0];
 
-	       Slides.alta($scope.precio)
+	       Precios.alta($scope.precio)
 	       .then(function(datos){
 	        console.log(datos);
+	    	$location.path('adminPrecios');
 	       })
 	       .catch(function(e){
 	        console.log(e);
 	       });
-	         	    
-	    	$location.path('adminPrecios');
 	     }
 
 	   }else{
 		    console.log('modificar' + Datos.listado());  
 		    $scope.cargar = cargar;
 		    
-		    $scope.slide = Datos.listado();
+		    $scope.precio = Datos.listado();
 		    console.log($scope.precio);	    	    	   	    
 		     
 		    function cargar() {
 		    	console.log($scope.precio);	
 
-		    	var complejos = $scope.complejos.filter(function(element){
-				return (element._id === $scope.precio.complejo._id);
+		    	var complejo = $scope.complejos.filter(function(element){
+			return (element._id === $scope.precio.complejo._id);
+			});
+			var formato = $scope.formatos.filter(function(element){
+				return (element._id === $scope.precio.formato._id);
 				});
 
-		    	$scope.precio.complejo = complejo[0];
+	    	$scope.precio.complejo = complejo[0];
+			$scope.precio.formato = formato[0];
 
-		       Slides.modificar($scope.precio)
+		       Precios.modificar($scope.precio)
 		        .then(function(datos){
 		         console.log(datos);
+		         $location.path('adminPrecios');
 		        })
 		        .catch(function(e){
 		         console.log(e);
 		       });
 
 		       Datos.limpiar(); 
-		     
-		       $location.path('adminPrecios');
 		    }
 	   }
 
 	   })
+	   .catch(function(e){
+	      console.log(e);
+	   })
+	    })
 	   .catch(function(e){
 	      console.log(e);
 	   })

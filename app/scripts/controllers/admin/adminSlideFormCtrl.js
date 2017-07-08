@@ -3,10 +3,11 @@
 	angular.module('cine')
 	.controller('adminSlideFormCtrl', ['$rootScope','$scope','Datos','$sce','Peliculas','Slides','$location',function($rootScope,$scope,Datos,$sce,Peliculas,Slides,$location){									
         $scope.slide = {};
+	
 
        Peliculas.listado()
 	    .then(function(datos){
-	     console.log(datos);
+	     console.log(datos); 
 	     $scope.peliculas = datos; 
 
 	    if(Datos.listado() == null){
@@ -24,7 +25,7 @@
 
 	       Slides.alta($scope.slide)
 	       .then(function(datos){
-	        console.log(datos);
+	        console.log(datos); 
 	       })
 	       .catch(function(e){
 	        console.log(e);
