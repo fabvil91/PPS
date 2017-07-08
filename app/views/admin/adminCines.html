@@ -19,7 +19,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> 
         
 
             
@@ -43,11 +43,11 @@
                                 <tbody> 
                                     <tr ng-repeat="complejo in complejos track by $index">
                                         <td>{{complejo.nombre}}</td>
-										<td>{{complejo.horaApertura}}</td>
-										<td>{{complejo.horaCierre}}</td>
+										<td>{{formatearHora(complejo.horaApertura)}}</td>
+										<td>{{formatearHora(complejo.horaCierre)}}</td>
 										<td>{{complejo.duracionPublicidad}}</td>
-										<td>{{complejo.duracionFunciones}}</td>
-										<td>{{complejo.duracionTolerancia}}</td>
+										<td>{{complejo.duracionEntreFunciones}}</td>
+										<td>{{complejo.duracionToleranciaUltimaFuncion}}</td>
                                         <td>
                                             <button class="btn btn-info btn-sm" ng-click="modificar(complejo)">
                                             Editar</button>

@@ -38,6 +38,24 @@
      Datos.cargar(null);
      $location.path('adminCinesForm');
     }	
+
+    $scope.formatearHora=function(fecha){
+      var f = new Date(fecha);
+      if(f.getHours()>9){        
+        var hora = f.getHours();
+      }else{
+        var hora = "0" + f.getHours();
+      }
+      if(f.getMinutes()>9){
+        var min =f.getMinutes();
+      }
+      else{
+        var min = "0"+ f.getMinutes();
+      }
+      
+
+      return hora+":"+min;
+    }
    	       		         	         
     }])
 })();

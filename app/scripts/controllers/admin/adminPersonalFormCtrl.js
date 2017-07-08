@@ -1,68 +1,89 @@
 (function(){
 	'use strict';
 	angular.module('cine')
-	.controller('adminPersonalFormCtrl', ['$rootScope','$scope','Datos','$sce','TiposUsuario','$location',function($rootScope,$scope,Datos,$sce,TiposUsuario,$location){									
+	.controller('adminPersonalFormCtrl', ['$rootScope','$scope','Datos','$sce','TiposUsuario','Usuarios','Complejos','$location',
+	function($rootScope,$scope,Datos,$sce,TiposUsuario,Usuarios,Complejos,$location){									
          $scope.persona = {};
 
-       TiposUsuario.listadoPersonal()
+       TiposUsuario.listado()
 	    .then(function(datos){
 	     console.log(datos);
-	     $scope.tipoUsuario = datos; 
+	     $scope.tipoUsuario = datos.filter(function(item){
+			 if(item.nombre!="Usuario"&&item.nombre!="Admin"){
+				 return item;
+			 }
+		 }); 
+		  Complejos.listado()
+	    .then(function(datos){
+	     console.log(datos);
+		 $scope.complejos=datos;
 
-	    if(Datos.listadoPersonal() == null){
-	     console.log('alta ' + Datos.listadoPersonal());
-	     $scope.cargar = cargar;
-	    	    	  	     
-	     function cargar() {   
-	     	console.log($scope.persona);
+			if(Datos.listado() == null){
+			console.log('alta ' + Datos.listado());
+			$scope.cargar = cargar;
+								
+			function cargar() {   
+				console.log($scope.persona);
 
-	     	var tipoUsuario = $scope.tipoUsuario.filter(function(element){
-			return (element._id === $scope.persona.tipoUsuario._id);
+				var tipoUsuario = $scope.tipoUsuario.filter(function(element){
+				return (element._id === $scope.persona.tipo._id);
 			});
+				var complejo = $scope.complejos.filter(function(element){
+				return (element._id === $scope.persona.complejo._id);
+				});
+				$scope.persona.complejo=complejo[0];
+				$scope.persona.tipo = tipoUsuario[0];
+				console.log($scope.persona);
+	
+			Usuarios.altaPersonal($scope.persona)
+			.then(function(datos){
+				console.log(datos);	         	    
+				$location.path('adminPersonal');
+			})
+			.catch(function(e){
+				console.log(e);
+			});
+			}
 
-	    	$scope.persona.tipoUsuario = tipoUsuario[0];
+		}else{
+				console.log('modificar' + Datos.listado());  
+				$scope.cargar = cargar;
+				
+				$scope.persona = Datos.listado();
+				console.log($scope.persona);	    	    	   	    
+				
+				function cargar() {
+					console.log($scope.persona);	
 
-	       TiposUsuario.altaPersonal($scope.persona)
-	       .then(function(datos){
-	        console.log(datos);
-	       })
-	       .catch(function(e){
-	        console.log(e);
-	       });
-	         	    
-	    	$location.path('adminPersonal');
-	     }
+					var tipoUsuario = $scope.tipoUsuario.filter(function(element){
+					return (element._id === $scope.persona.tipo._id);
+					});
 
-	   }else{
-		    console.log('modificar' + Datos.listadoPersonal());  
-		    $scope.cargar = cargar;
-		    
-		    $scope.persona = Datos.listadoPersonal();
-		    console.log($scope.persona);	    	    	   	    
-		     
-		    function cargar() {
-		    	console.log($scope.persona);	
+					$scope.persona.tipo = tipoUsuario[0];
+					var complejo = $scope.complejos.filter(function(element){
+					return (element._id === $scope.persona.complejo._id);
+					});
+					$scope.persona.complejo=complejo[0];
+					console.log($scope.persona);
 
-		    	var tipoUsuario = $scope.tipoUsuario.filter(function(element){
-				return (element._id === $scope.persona.tipoUsuario._id);
+				Usuarios.modificarUsuario($scope.persona)
+					.then(function(datos){
+					console.log(datos);
+					$location.path('adminPersonal');
+					})
+					.catch(function(e){
+					console.log(e);
 				});
 
-		    	$scope.persona.tipoUsuario = tipoUsuario[0];
+				Datos.limpiar(); 
+				
+				}
+		}
 
-		       Slides.modificarPersonal($scope.persona)
-		        .then(function(datos){
-		         console.log(datos);
-		        })
-		        .catch(function(e){
-		         console.log(e);
-		       });
-
-		       Datos.limpiar(); 
-		     
-		       $location.path('adminPersonal');
-		    }
-	   }
-
+	   })
+	   .catch(function(e){
+	      console.log(e);
+	   })
 	   })
 	   .catch(function(e){
 	      console.log(e);

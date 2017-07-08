@@ -27,40 +27,43 @@
                        
                         
                         <!-- Complejo -->
-                        <fieldset>
-                        <legend>Complejo</legend>
-                        <div class="form-group" ng-class="{ 'has-error' : form.complejo.$invalid && !form.complejo.$pristine }">
-                            <label>Complejo</label>
-                            <input type="text" name="complejo" class="form-control" ng-model="precio.complejo" ng-minlength="3" ng-maxlength="15" required>
-                            <p ng-show="form.complejo.$invalid && !form.complejo.$pristine" class="help-block">El complejo es requerido</p>
-                            <p ng-show="form.complejo.$error.minlength" class="help-block">Complejo es muy corto.</p>
-                            <p ng-show="form.complejo.$error.maxlength" class="help-block">Complejo es muy largo.</p>
-                        </div>
-                        </fieldset>
+                    
+                         <div class="form-group" ng-class="{ 'has-error' : form.complejo.$invalid && !form.complejo.$pristine }">
+                                    <label>Complejo:</label>
+                                    <select ng-model="precio.complejo._id" ng-options="x._id as x.nombre for x in complejos">  
+                                    <option value="">Seleccione</option>           
+                                    </select>            
+                        </div>  
 
                         <!-- Formato -->
-                        <fieldset>
-                        <legend>Formato</legend>
+                      
                         <div class="form-group" ng-class="{ 'has-error' : form.formato.$invalid && !form.formato.$pristine }">
-                            <label>Formato</label>
-                            <input type="text" name="formato" class="form-control" ng-model="precio.formato" ng-minlength="3" ng-maxlength="100" required>
-                            <p ng-show="form.formato.$invalid && !form.formato.$pristine" class="help-block">El formato es requerida</p>
-                            <p ng-show="form.formato.$error.minlength" class="help-block">Formato es muy corto.</p>
-                            <p ng-show="form.formato.$error.maxlength" class="help-block">Formato es muy largo.</p>
-                        </div>
-                        </fieldset>
+                                    <label>Formato:</label>
+                                    <select ng-model="precio.formato._id" ng-options="x._id as x.nombre for x in formatos">  
+                                    <option value="">Seleccione</option>           
+                                    </select>            
+                        </div>  
+                         <!-- Tipo Entradas -->
+                      
+                          <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
+                                    <label>Tipo Entrada:</label>
+                                    <select ng-model="precio.tipo">  
+                                    <option ng-repeat="x in tipos">{{x}}</option>          
+                                    </select>            
+                                </div>
 
                          <!-- Monto -->
-                        <fieldset>
-                        <legend>Monto</legend>
+                        
                         <div class="form-group" ng-class="{ 'has-error' : form.monto.$invalid && !form.monto.$pristine }">
-                            <label>Monto</label>
-                            <input type="text" name="monto" class="form-control" ng-model="precio.monto" ng-minlength="3" ng-maxlength="100" required>
+                            <label>Monto:</label>
+                         
+                                <input type="number" name="monto" class="form-control" ng-model="precio.monto" ng-min="0"  required>
                             <p ng-show="form.monto.$invalid && !form.monto.$pristine" class="help-block">El Monto es requerida</p>
-                            <p ng-show="form.monto.$error.minlength" class="help-block">Monto es muy corto.</p>
-                            <p ng-show="form.monto.$error.maxlength" class="help-block">Monto es muy largo.</p>
+                            <p ng-show="form.monto.$error.min" class="help-block">Monto debe ser positvo.</p>
+                    
+                            
+                           
                         </div>
-                        </fieldset>
 
                         <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">Cargar</button>
                         <button class="btn btn-primary" ui-sref="adminPrecios">Cancelar</button>

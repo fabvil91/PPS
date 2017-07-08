@@ -1,4 +1,4 @@
-var express = require('express');
+var express = require('express'); 
 var router = express.Router();
 
 router.get('/usuarios/getAll',function(req, res,next){		
@@ -42,13 +42,53 @@ router.post('/usuarios/insertar',function(req, res, next){
         .insert({username: req.body.username,
                  password: req.body.password,
                  email: req.body.email,
-                 tipo: req.body.tipoUsuario,
+                 tipo: req.body.tipo,
                  datosPersonales:{
                      nombre:req.body.datosPersonales.nombre,
                      apellido:req.body.datosPersonales.apellido,
                      telefono:req.body.datosPersonales.telefono
                  }         		 
         		}, function (err, result){
+           if (err) {
+               res.json({rta : err});
+            }
+            else {
+               res.json({rta : "OK"});
+            }
+        });  
+	});
+
+router.post('/usuarios/insertarPersonal',function(req, res, next){
+		console.log(req.body);
+
+        req.db.collection('usuarios')        
+        .insert({username: req.body.username,
+                 password: req.body.password,
+                 email: req.body.email,
+                 tipo: req.body.tipo,
+                 complejo:req.body.complejo
+        		}, function (err, result){
+           if (err) {
+               res.json({rta : err});
+            }
+            else {
+               res.json({rta : "OK"});
+            }
+        });  
+	});
+    router.put('/usuarios/modificarUsuario',function(req, res, next){
+		console.log(req.body);
+		var id = new require('mongodb').ObjectID(req.body._id);
+		console.log(id);
+
+        req.db.collection('usuarios')        
+        .update({_id: id}, {$set: {
+                 username: req.body.username,
+                 password: req.body.password,
+                 email:req.body.email,
+                 tipo:req.body.tipo,
+                 complejo:req.body.complejo
+        						   }}, function (err, result){
            if (err) {
                res.json({rta : err});
             }

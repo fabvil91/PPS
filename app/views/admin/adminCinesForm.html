@@ -27,8 +27,7 @@
                         <form name="form" ng-submit="cargar()" novalidate>
 
                        <!-- Nombre -->
-                        <fieldset>
-                        <legend>Nombre</legend>
+                       
                         <div class="form-group" ng-class="{ 'has-error' : form.nombre.$invalid && !form.nombre.$pristine }">
                             <label>Nombre</label>
                             <input type="text" name="nombre" class="form-control" ng-model="complejo.nombre" ng-minlength="3" ng-maxlength="15" required>
@@ -36,67 +35,51 @@
                             <p ng-show="form.nombre.$error.minlength" class="help-block">Nombre es muy corto.</p>
                             <p ng-show="form.nombre.$error.maxlength" class="help-block">Nombre es muy largo.</p>
                         </div>
-                        </fieldset>
                         <!-- Hora de Apertura -->
-                        <fieldset>
-                        <legend>Hora de Apertura</legend>
+                       
                         <div class="form-group" ng-class="{ 'has-error' : form.horaApertura.$invalid && !form.horaApertura.$pristine }">
                             <label>Hora de Apertura</label>
-                            <input type="text" name="horaApertura" class="form-control" ng-model="complejo.horaApertura" ng-minlength="3" ng-maxlength="100" required>
+                            <input type="text" name="horaApertura" class="form-control" placeholder= "00:00" ng-model="horaApertura" pattern="([01]?[0-9]{2}|2[0-3]{2}):[0-5]{1}[0-9]{1}" required>
                             <p ng-show="form.horaApertura.$invalid && !form.horaApertura.$pristine" class="help-block">La horaApertura es requerida</p>
-                            <p ng-show="form.horaApertura.$error.minlength" class="help-block">Hora de Apertura es muy corto.</p>
-                            <p ng-show="form.horaApertura.$error.maxlength" class="help-block">Hora de Apertura es muy largo.</p>
                         </div>
-                        </fieldset>
 
                          <!-- Hora de Cierre -->
-                        <fieldset>
-                        <legend>Hora de Cierre</legend>
+                      
                         <div class="form-group" ng-class="{ 'has-error' : form.horaCierre.$invalid && !form.horaCierre.$pristine }">
                             <label>Hora de Cierre</label>
-                            <input type="text" name="horaCierre" class="form-control" ng-model="complejo.horaCierre" ng-minlength="3" ng-maxlength="100" required>
+                            <input type="text" name="horaCierre" class="form-control" placeholder="00:00" ng-model="horaCierre" pattern="([01]?[0-9]{2}|2[0-3]{2}):[0-5]{1}[0-9]{1}" required>
                             <p ng-show="form.horaCierre.$invalid && !form.horaCierre.$pristine" class="help-block">La hora de Cierre es requerida</p>
-                            <p ng-show="form.horaCierre.$error.minlength" class="help-block">Hora de Cierre es muy corto.</p>
-                            <p ng-show="form.horaCierre.$error.maxlength" class="help-block">Hora de Cierre es muy largo.</p>
                         </div>
-                        </fieldset>
 
                          <!-- Duracion Publicidad -->
-                        <fieldset>
-                        <legend>Duracion Publicidad</legend>
+                     
                         <div class="form-group" ng-class="{ 'has-error' : form.duracionPublicidad.$invalid && !form.duracionPublicidad.$pristine }">
-                            <label>Duracion Publicidad</label>
-                            <input type="text" name="duracionPublicidad" class="form-control" ng-model="complejo.duracionPublicidad" ng-minlength="3" ng-maxlength="100" required>
+                            <label>Duracion Publicidad (minutos)</label>
+                            <input type="number" name="duracionPublicidad" class="form-control" ng-model="complejo.duracionPublicidad" ng-min="1" ng-max="60" required>
                             <p ng-show="form.duracionPublicidad.$invalid && !form.duracionPublicidad.$pristine" class="help-block">La Duracion Publicidad es requerido</p>
-                            <p ng-show="form.duracionPublicidad.$error.minlength" class="help-block">Duracion Publicidad es muy corto.</p>
-                            <p ng-show="form.duracionPublicidad.$error.maxlength" class="help-block">Duracion Publicidad es muy largo.</p>
+                  <p ng-show="form.duracionTolerancia.$error.min" class="help-block">Duracion debe ser mayor.</p>
+                            <p ng-show="form.duracionTolerancia.$error.max" class="help-block">Duracion debe ser menor.</p>
                         </div>
-                         </fieldset>
 
                           <!-- Duracion entre Funciones -->
-                        <fieldset>
-                        <legend>Duracion entre Funciones</legend>
+                     
                         <div class="form-group" ng-class="{ 'has-error' : form.duracionFunciones.$invalid && !form.duracionFunciones.$pristine }">
-                            <label>Duracion entre Funciones</label>
-                            <input type="text" name="duracionFunciones" class="form-control" ng-model="complejo.duracionFunciones" ng-minlength="3" ng-maxlength="100" required>
+                            <label>Duracion entre Funciones (minutos)</label>
+                            <input type="number" name="duracionFunciones" class="form-control" ng-model="complejo.duracionEntreFunciones" ng-min="1" ng-max="60" required>
                             <p ng-show="form.duracionFunciones.$invalid && !form.duracionFunciones.$pristine" class="help-block">La Duracion entre Funciones es requerido</p>
-                            <p ng-show="form.duracionFunciones.$error.minlength" class="help-block">Duracion entre Funciones es muy corto.</p>
-                            <p ng-show="form.duracionFunciones.$error.maxlength" class="help-block">Duracion entre Funciones es muy largo.</p>
+                        <p ng-show="form.duracionTolerancia.$error.min" class="help-block">Duracion debe ser mayor.</p>
+                            <p ng-show="form.duracionTolerancia.$error.max" class="help-block">Duracion debe ser menor.</p>
                         </div>
-                         </fieldset>
 
                          <!-- Duracion Tolerancia Ultima Funcion -->
-                        <fieldset>
-                        <legend>Duracion Tolerancia Ultima Funcion</legend>
+                       
                         <div class="form-group" ng-class="{ 'has-error' : form.duracionTolerancia.$invalid && !form.duracionTolerancia.$pristine }">
-                            <label>Duracion Tolerancia Ultima Funcion</label>
-                            <input type="text" name="duracionTolerancia" class="form-control" ng-model="complejo.duracionTolerancia" ng-minlength="3" ng-maxlength="100" required>
+                            <label>Duracion Tolerancia Ultima Funcion (minutos)</label>
+                            <input type="number" name="duracionTolerancia" class="form-control" ng-model="complejo.duracionToleranciaUltimaFuncion" ng-min="1" ng-max="120" required>
                             <p ng-show="form.duracionTolerancia.$invalid && !form.duracionTolerancia.$pristine" class="help-block">La Duracion Tolerancia Ultima Funcion es requerido</p>
-                            <p ng-show="form.duracionTolerancia.$error.minlength" class="help-block">Duracion Tolerancia Ultima Funcion es muy corto.</p>
-                            <p ng-show="form.duracionTolerancia.$error.maxlength" class="help-block">Duracion Tolerancia Ultima Funcion es muy largo.</p>
+                            <p ng-show="form.duracionTolerancia.$error.min" class="help-block">Duracion debe ser mayor.</p>
+                            <p ng-show="form.duracionTolerancia.$error.max" class="help-block">Duracion debe ser menor.</p>
                         </div>
-                         </fieldset>
-
                                                    
                         <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">Cargar</button>
                         <button class="btn btn-primary" ui-sref="adminCines">Cancelar</button>

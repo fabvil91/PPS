@@ -20,7 +20,7 @@
                 </div>
             </div>
         </div>
-        
+         
 
             <!-- BANCOS -->
                 <div class = "col-md-9">
@@ -33,16 +33,18 @@
                                         <th>Nombre</th>
                                         <th>Email</th>
                                         <th>Password</th>
-                                        <th>Tipo de Usuario</th>
+                                        <th>Tipo</th>
+                                        <th>Complejo</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody> 
                                    <tr ng-repeat="persona in personal track by $index">
-                                        <td>{{persona.nombre}}</td>
+                                        <td>{{persona.username}}</td>
 										<td>{{persona.email}}</td>
 										<td>{{persona.password}}</td>
-										<td>{{persona.tipoUsuario}}</td>
+										<td>{{persona.tipo.nombre}}</td>
+                                        <td>{{persona.complejo.nombre}}</td>
 										
                                         <td>
                                             <button class="btn btn-info btn-sm" ng-click="modificar(persona)">

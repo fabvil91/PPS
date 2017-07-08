@@ -19,7 +19,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> 
         
 
             <!-- PRECIOS -->
@@ -32,14 +32,16 @@
                                     <tr>
                                         <th>Complejo</th>
                                         <th>Formato</th>
+                                        <th>Tipo</th>
                                         <th>Monto</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody> 
                                    <tr ng-repeat="precio in precios track by $index">
-                                        <td>{{precio.complejo}}</td>
-										<td>{{precio.formato}}</td>
+                                        <td>{{precio.complejo.nombre}}</td>
+										<td>{{precio.formato.nombre}}</td>
+                                        <td>{{precio.tipo}}</td>
 										<td>{{precio.monto}}</td>
 										
                                         <td>
