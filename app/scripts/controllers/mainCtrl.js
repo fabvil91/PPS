@@ -166,7 +166,7 @@
 										}else{
 										pelicula.mes= meses[fecha.getMonth()];
 										}										
-									});
+									}); 
 
 									
 

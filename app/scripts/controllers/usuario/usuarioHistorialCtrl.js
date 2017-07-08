@@ -96,6 +96,7 @@
                   }
                   operacion.estado="Cancelado";
                   
+                  //falta llamar a Funciones y modificar la sala de ahi
                   operacion.funcion.sala.asientos.forEach(function(fila){
                     fila.forEach(function(columna){
                       if(columna.booked==false&&columna.checked==true){

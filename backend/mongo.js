@@ -84,8 +84,7 @@ MongoClient.connect('mongodb://localhost:27017/pps', (err, db) =>
       						
       						db.collection('operaciones')        
 							        .update({_id: operaciones[i]._id}, {$set: {
-							                              estado: operaciones[i].estado,           
-							                              montoDeuda: 5//operaciones[i].montoDeuda         
+							                              estado: operaciones[i].estado        
 							                       }}, function (err, result){
 							           if (err) {
 							               console.log(err);
@@ -102,7 +101,7 @@ MongoClient.connect('mongodb://localhost:27017/pps', (err, db) =>
       						db.collection('operaciones')        
 							        .update({_id: operaciones[i]._id}, {$set: {
 							                              estado: operaciones[i].estado,           
-							                              montoDeuda: 5//operaciones[i].montoDeuda         
+														  montoDeuda: operaciones[i].funcion.precioTotal//-(operaciones[i].funcion.precioTotal*PORCENTAJE)        
 							                       }}, function (err, result){
 							           if (err) {
 							               console.log(err);
