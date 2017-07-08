@@ -177,7 +177,8 @@
                         </div>  
                         <div class="text-center links">
                             <h3>Ingresá a tu Historial de Compras</h3>
-                            <a href="#">Historial</a>
+                            <a href="#" ng-if="nombreUser && tipoUser == 'Usuario'" ui-sref='usuarioHistorial' class="btn btn-info" role="button">Historial</a>
+                            <a href="#" ng-if="!nombreUser" ui-sref="login" class="btn btn-info" role="button">Ingresar</a>
                         </div>
                     </div>
                 </div>

@@ -272,4 +272,109 @@ display:block;
     cursor:pointer !important;
 }
 
+.historial-Compra{
 
+    border-color:#008e3d !important;
+}
+.historial-Compra .panel-heading{
+    background-color: #008e3d !important;
+    color: white !important;
+}
+.historial-Compra .btn{
+     border-color:#008e3d !important;
+     background-color: #0cb756 !important;
+}
+.historial-Compra .btn:hover{
+     border-color:#008e3d !important;
+     background-color:#008e3d !important;
+}
+
+.historial-Vencida{
+
+    border-color:#8e0e00 !important;
+}
+.historial-Vencida .btn{
+     border-color:#8e0e00 !important;
+     background-color: #8e0e00 !important;
+}
+.historial-Vencida .btn:hover{
+     border-color:#8e0e00 !important;
+     background-color:#540c05 !important;
+}
+.historial-Vencida .panel-heading{
+    background-color: #8e0e00 !important;
+    color: white !important;
+}
+.historial-Retirada{
+
+    border-color:#97a7af !important;
+}
+.historial-Retirada .panel-heading{
+    background-color: #97a7af !important;
+    color: white !important;
+}
+.historial-Retirada .btn{
+     border-color:#97a7af !important;
+     background-color: #97a7af !important;
+}
+.historial-Retirada .btn:hover{
+     border-color:#97a7af !important;
+     background-color:#586268 !important;
+}
+
+.historial-fecha{
+    background-color: #7BB9FF;
+    border-radius: 4px;
+    padding: 2px;
+    
+}
+.historial-fecha .btn{
+     border-color:#00438E ;
+    background-color: #1367c4; 
+    font-size: 10px; 
+        float: right!important;
+    
+}
+.historial-fecha .btn:hover{
+     border-color:#00438E ;
+    background-color: #00438E;    
+}
+
+.nav-Reserva .btn{
+    border-color:#00438E ;
+    background-color: #1367c4; 
+}
+.nav-Reserva .btn:hover{
+    border-color:#00438E ;
+    background-color: #00438E;    
+}
+
+.nav-Compra .btn{
+     border-color:#008e3d !important;
+     background-color: #0cb756 !important;
+}
+.nav-Compra .btn:hover{
+     border-color:#008e3d !important;
+     background-color:#008e3d !important;
+}
+.nav-Retirada .btn{
+     border-color:#97a7af !important;
+     background-color: #97a7af !important;
+}
+.nav-Retirada .btn:hover{
+     border-color:#97a7af !important;
+     background-color:#586268 !important;
+}
+
+.nav-Vencida .btn{
+     border-color:#8e0e00 !important;
+     background-color: #8e0e00 !important;
+}
+.nav-Vencida .btn:hover{
+     border-color:#8e0e00 !important;
+     background-color:#540c05 !important;
+}
+.nav-Vencida .btn:active{
+     border-color:#8e0e00 !important;
+     background-color:#540c05 !important;
+}
