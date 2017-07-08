@@ -106,17 +106,19 @@
                     });
                   });
 
-                  var funcionMod;
+                  var funcionMod=null;
                  Funciones.listado()
                  .then(function(datos){ 
                     var funciones = datos;
                     funciones.forEach(function(item){
+                      console.log(item._id,operacion.funcion._id);
                       if(item._id==operacion.funcion._id){
+
                         item.sala=operacion.funcion.sala;
                         funcionMod=item;
                       }
                     });
-
+                    console.log(funcionMod);
                     if(funcionMod!=null){
                     Funciones.modificarSala(funcionMod);
                     }
@@ -126,7 +128,7 @@
                     console.log(e);
                 });
 
-                  Operaciones.modificarCompra(operacion);
+                 Operaciones.modificarCompra(operacion);
                   $scope.recargarFechas();
                   $scope.reloadPage();
                   
