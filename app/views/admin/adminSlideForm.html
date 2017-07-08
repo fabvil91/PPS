@@ -37,7 +37,6 @@
                                 
                                 <!-- Titulo -->
                               
-                                <legend>Titulo</legend>
                                 <div class="form-group" ng-class="{ 'has-error' : form.titulo.$invalid && !form.titulo.$pristine }">
                                     <label>Titulo</label>
                                     <input type="text" name="titulo" class="form-control" ng-model="slide.nombre" ng-minlength="3" ng-maxlength="15" required>
@@ -48,7 +47,7 @@
                         
                                 <!-- Descripcion -->
                     
-                                <legend>Descripcion</legend>
+                               
                                 <div class="form-group" ng-class="{ 'has-error' : form.descripcion.$invalid && !form.descripcion.$pristine }">
                                     <label>Descripcion</label>
                                     <input type="text" name="descripcion" class="form-control" ng-model="slide.descripcion" ng-minlength="3" ng-maxlength="100" required>
@@ -59,7 +58,7 @@
                    
                                 <!-- ImagenUrl -->
               
-                                <legend>ImagenUrl</legend>
+                              
                                 <div class="form-group" ng-class="{ 'has-error' : form.imagenUrl.$invalid && !form.imagenUrl.$pristine }">
                                     <label>ImagenUrl</label>
                                     <input type="text" name="imagenUrl" class="form-control" ng-model="slide.imageUrl" ng-minlength="3" ng-maxlength="100" required>
