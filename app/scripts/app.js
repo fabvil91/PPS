@@ -57,6 +57,13 @@
         url:'/promosVigentes',              
         controller: 'promosVigentesCtrl',
         templateUrl:'views/flujoPrincipal/promosVigentes.html'
+      })
+       $stateProvider
+        .state('detalleProximo',
+        {
+        url:'/detalleProximo',              
+        controller: 'detalleProximoCtrl',
+        templateUrl:'views/flujoPrincipal/detalleProximo.html'
         })
       $stateProvider
         .state('quienesSomos',
@@ -478,7 +485,7 @@
             if(loggedIn){
               if($rootScope.globals.currentUser.tipoUsuario == 'Usuario'){
                 var restrictedPage = $.inArray($location.path(), ['/main', '/login','/registro','/detallePelicula','/seleccionEntradas','/salas','/datosOperacionCompra','/finalizarOperacion',
-                  '/promosVigentes','/quienesSomos','/contactanos','/prohibida', 
+                  '/promosVigentes','/quienesSomos','/contactanos','/prohibida','/detalleProximo',
                   '/usuarioBorrar','/usuarioCuenta','/usuarioFinalizarPago','/usuarioHistorial','/usuarioMain','/usuarioReservaVencida','/usuarioTarjeta','/usuarioImprimir']) === -1;
               }
               //Agregar los distintos tipos de usuario
@@ -510,7 +517,7 @@
             }else{
               console.log('no logueado, path: ' + $location.path());
               //si no estas logeado y vas a una que no sea main,etc => // $location.path('/login');
-                 var restrictedPage = $.inArray($location.path(), ['/main', '/login','/olvidoContrasenia','/registro','/promosVigentes','/quienesSomos','/contactanos','/prohibida','/detallePelicula']) === -1;
+                 var restrictedPage = $.inArray($location.path(), ['/main','/detalleProximo', '/login','/olvidoContrasenia','/registro','/promosVigentes','/quienesSomos','/contactanos','/prohibida','/detallePelicula']) === -1;
                    if (restrictedPage) {                    
                     console.log("Pagina prohibida: " + $location.path());                   
                     $state.go('login');                      

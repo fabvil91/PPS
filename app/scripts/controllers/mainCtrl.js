@@ -225,6 +225,10 @@
 			Datos.cargar(funcion);
 		}
 
+		$scope.cargarPelicula=function(pelicula){
+			Datos.cargar(pelicula);
+		}
+
 		$scope.cargarSlide = function(slide){
 			console.log(slide);																						
 			Datos.cargar(slide);
