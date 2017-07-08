@@ -62,6 +62,87 @@ MongoClient.connect('mongodb://localhost:27017/pps', (err, db) =>
 		console.log('Servidor iniciado..');
 	})
 
+	// Cada dia a las 23 55 PM (no esta cambiado para poder probar, pero deberia ser: 0 55 23 * * *):
+	cron.schedule('0 55 23 * * *', function(){
+		function addMinutes(date, minutes) {
+		    return new Date(date.getTime() + minutes*60000);
+		}
+
+		db
+		.collection('operaciones')
+		.find()
+    	.toArray((err, operaciones) => {
+      		if (err){
+        		console.log(err);     	
+      		}else{
+      			console.log(operaciones);
+      			var opVencidas = [];
+      			for (var i = 0; i < operaciones.length; i++) {
+      				if(new Date().getTime() > (addMinutes(new Date(operaciones[i].funcion.hora),30).getTime()) ){
+      					if(operaciones[i].estado == 'Pagado'){
+      						operaciones[i].estado = 'Cancelado';
+      						
+      						db.collection('operaciones')        
+							        .update({_id: operaciones[i]._id}, {$set: {
+							                              estado: operaciones[i].estado,           
+							                              montoDeuda: 5//operaciones[i].montoDeuda         
+							                       }}, function (err, result){
+							           if (err) {
+							               console.log(err);
+							            }
+							            else {
+							               console.log("OK");
+							            }
+							        }); 
+
+      					}else if(operaciones[i].estado == 'Reservado'){
+      						operaciones[i].estado = 'ReservaVencida';
+      						opVencidas.push(operaciones[i]);
+
+      						db.collection('operaciones')        
+							        .update({_id: operaciones[i]._id}, {$set: {
+							                              estado: operaciones[i].estado,           
+							                              montoDeuda: 5//operaciones[i].montoDeuda         
+							                       }}, function (err, result){
+							           if (err) {
+							               console.log(err);
+							            }
+							            else {
+							               console.log("OK");
+							            }
+							        }); 
+      					}
+      				}
+      			}
+
+      			for (var i = 0; i < opVencidas.length; i++) {      				
+      				db.collection('usuarios')
+				    .find({username:opVencidas[i].usuario.username})
+				    .toArray((err, data) => {
+				    	if (err){
+				        	console.log(err);  
+				    	}else{
+				        	console.log(data);
+
+				        	db.collection('usuarios')        
+					        .update({_id: data[0]._id}, {$set: {
+					                 						listaNegra: true
+					                                   }},{upsert:true}, function (err, result){
+					           if (err) {
+					               console.log(err);
+					            }
+					            else {
+					               console.log("OK");
+					            }
+					        });  
+				        }
+				    });
+      			}
+      		}
+     	
+    	}) 
+	})
+
 	// Cada jueves a las 2 AM (no esta cambiado para poder probar, pero deberia ser: 0 0 2 * * 4):
 	cron.schedule('0 26 0 * * *', function(){ 
 		/* Filtra arrays por sala */

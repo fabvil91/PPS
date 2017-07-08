@@ -42,9 +42,12 @@
                               <option value="">Seleccione</option>           
                             </select>            
                         </div> 
-                                                                                         
+                        <div ng-if="funcion.salaOcupada != null && funcion.salaOcupada" class="alert alert-danger">La sala ya está ocupada en la próxima semana</div>
+                        <div ng-if="funcion.sala2DError != null && funcion.sala2DError" class="alert alert-danger">Una sala 2D sólo admite películas en formato 2D</div>
+                        <div ng-if="funcion.sala3DError != null && funcion.sala3DError" class="alert alert-danger">Una sala 3D sólo admite películas en formato 2D y 3D</div>
+                        <div ng-if="funcion.obligatorio != null && funcion.obligatorio" class="alert alert-danger">Llene los datos necesarios</div>                                                                                  
                         <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">Cargar</button>
-                        <button class="btn btn-primary" ui-sref="adminSlide">Cancelar</button>
+                        <button class="btn btn-primary" ui-sref="empleadoFunciones">Cancelar</button>
                     </form>
 
                     </div>

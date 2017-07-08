@@ -137,10 +137,12 @@
                                             formato: funcion.formato,
                                             complejo: funcion.complejo,
                                             idioma: funcion.idioma,
-                                            dia: proximaSemana[i],
+                                            dia: new Date(proximaSemana[i].getFullYear(),proximaSemana[i].getMonth(),proximaSemana[i].getDate(),
+                                                           0,0,0,0),
                                             hora: new Date(proximaSemana[i].getFullYear(),proximaSemana[i].getMonth(),proximaSemana[i].getDate(),
                                                            horarios[j].getHours(),horarios[j].getMinutes(),horarios[j].getSeconds(),0),//horarios[j]
-                                            sala: datos[0]
+                                            sala: datos[0],
+                                            fechaCreacion: new Date()
                                           });  
                                         }
                                     }

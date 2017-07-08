@@ -183,7 +183,23 @@ router.delete('/usuarios/eliminar',function(req, res, next){
         });  
 	});
 
+router.put('/usuarios/modificarListaNegra',function(req, res, next){
+        console.log(req.body);
+        var id = new require('mongodb').ObjectID(req.body._id);
+        console.log(id);
 
+        req.db.collection('usuarios')        
+        .update({_id: id}, {$set: {
+                 listaNegra: req.body.listaNegra
+                                   }},{upsert:true}, function (err, result){
+           if (err) {
+               res.json({rta : err});
+            }
+            else {
+               res.json({rta : "OK"});
+            }
+        });  
+    });
 
 
 module.exports = router;

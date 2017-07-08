@@ -56,6 +56,7 @@ router.post('/funciones/insertar',function(req, res, next){
             		 dia: new Date(req.body.dia),
             		 hora: new Date(req.body.hora),
                  sala: req.body.sala,
+                 fechaCreacion: new Date(req.body.fechaCreacion)
         		}, function (err, result){
            if (err) {
                res.json({rta : err});

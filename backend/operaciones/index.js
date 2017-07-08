@@ -201,4 +201,23 @@ router.get('/articulos/indices/:texto', (req, res, next) => {
     });
 });
 
+router.put('/operaciones/modificarEstadoMonto',function(req, res, next){
+    console.log(req.body);
+    var id = new require('mongodb').ObjectID(req.body._id);
+    console.log(id);
+
+        req.db.collection('operaciones')        
+        .update({_id: id}, {$set: {
+                              estado: req.body.estado,           
+                              montoDeuda: req.body.montoDeuda         
+                       }}, function (err, result){
+           if (err) {
+               res.json({rta : err});
+            }
+            else {
+               res.json({rta : "OK"});
+            }
+        });  
+  });
+
 module.exports = router;

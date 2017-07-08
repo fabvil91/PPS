@@ -9,8 +9,8 @@ angular
     function generar(pelicula, complejo) {
       console.log(complejo);
       var horarios = [];
-      var horaAcumulada = complejo.horaApertura; //new Date(2017,6,07,9,0,0,0);
-      var horaCierre = complejo.horaCierre; //new Date(2017,6,07,23,40,0,0);
+      var horaAcumulada = new Date(complejo.horaApertura); //new Date(2017,6,07,9,0,0,0);
+      var horaCierre = new Date(complejo.horaCierre); //new Date(2017,6,07,23,40,0,0);
 
       while(addMinutes(horaAcumulada,complejo.duracionPublicidad+pelicula.duracion).getTime() <= addMinutes(horaCierre,complejo.duracionToleranciaUltimaFuncion).getTime()){
         horarios.push(horaAcumulada);

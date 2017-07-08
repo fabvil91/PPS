@@ -1,10 +1,18 @@
 (function(){
 	'use strict';
 	angular.module('cine')
-	.controller('empleadoFuncionesCtrl', ['$rootScope','$scope','Datos','$sce','Funciones','$timeout','$location',function($rootScope,$scope,Datos,$sce,Funciones,$timeout,$location){
-								       
+	.controller('empleadoFuncionesCtrl', ['$rootScope','$scope','Datos','$sce','Funciones','$timeout','$location','$state',
+    function($rootScope,$scope,Datos,$sce,Funciones,$timeout,$location,$state){
+	
+    function addMinutes(date, minutes) {
+      return new Date(date.getTime() + minutes*60000);
+    }
+
    Datos.limpiar();
 
+   //$state.reload();
+  
+  function list() {
 	 Funciones.listado()
      .then(function(datos){
      	console.log(datos);
@@ -13,9 +21,12 @@
      .catch(function(e){
        console.log(e);
      })
-
+    }
+    $timeout(list, 100);
     
    	 $scope.borrar = function borrar(item) {
+      if(new Date().getTime() <= addMinutes(new Date(item.fechaCreacion),1).getTime()) {
+
        Funciones.borrar(item)
        .then(function(datos){
         console.log(item);
@@ -25,6 +36,9 @@
        .catch(function(e){
          console.log(e);
        });
+      }else{
+        item.error = true;
+      } 
     }
 
     /*$scope.modificar = function modificar(item) {

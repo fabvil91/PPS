@@ -53,6 +53,7 @@
                                         <td>
                                             <!--<button class="btn btn-info btn-sm" ng-click="modificar(slide)">Editar</button>-->
                                             <button class="btn btn-danger btn-sm" ng-click="borrar(funcion)">Eliminar</button>
+                                            <div ng-if="funcion.error != null && funcion.error" class="alert alert-danger">No es posible eliminar</div>
                                         </td>
                                     </tr>                                                                       
                                 </tbody>                    

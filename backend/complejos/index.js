@@ -75,7 +75,7 @@ router.put('/complejos/modificar',function(req, res, next){
         .update({_id: id}, {$set: {nombre: req.body.nombre, 
         						   horaApertura: new Date(req.body.horaApertura),
         						   horaCierre: new Date(req.body.horaCierre),
-        						   duracionPublicidad: req.body.duracionPublicidad
+        						   duracionPublicidad: req.body.duracionPublicidad,
         						   duracionFunciones: req.body.duracionFunciones,
         						   duracionTolerancia: req.body.duracionTolerancia
         						   }}, function (err, result){
