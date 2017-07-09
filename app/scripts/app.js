@@ -194,7 +194,7 @@
         .state('adminConfiguracionGeneral',
         {
         url:'/adminConfiguracionGeneral',              
-        //controller: '',
+        controller: 'adminConfiguracionGeneralCtrl',
         templateUrl:'views/admin/adminConfiguracionGeneral.html'
         })  
       $stateProvider

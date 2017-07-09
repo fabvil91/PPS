@@ -19,6 +19,7 @@ var mail = require('./mail');
 var cron = require('node-cron');
 var salas = require('./salas');
 var notificaciones = require('./notificaciones');
+var constantesM = require('./constantes');
 
 var bodyParser = require('body-parser');
 var cors = require('cors');
@@ -57,6 +58,7 @@ MongoClient.connect('mongodb://localhost:27017/pps', (err, db) =>
 	app.use('/',mail);
 	app.use('/',salas);
 	app.use('/',notificaciones);
+	app.use('/',constantesM);
 
 	app.listen(3333, ()=> {
 		console.log('Servidor iniciado..');
