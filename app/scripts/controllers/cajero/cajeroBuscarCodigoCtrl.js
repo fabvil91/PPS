@@ -45,13 +45,23 @@
                               
                
                $scope.buscar = function(codigo){
-
+                function addMinutes(date, minutes) {
+                    return new Date(date.getTime() + minutes*60000);
+                }
+                
                 Operaciones.operacionPorCodigo(codigo)
                 .then(function(datos){
                   console.log(datos);
                   if(datos.length != 0){
                    if(datos[0].funcion.complejo._id == $rootScope.globals.currentUser.complejo._id){
                     if(datos[0].estado == 'Pagado' || datos[0].estado == 'Reservado'){
+
+                      if(datos[0].estado == 'Reservado' && (new Date().getTime() > (addMinutes(new Date(datos[0].funcion.hora),30).getTime())) ){
+                          console.log(datos[0].estado);
+                          $scope.errorEstado = true;
+                          $scope.operacion = null;
+                      }else{
+
                        $scope.errorEstado = false;
                        $scope.error = false;
                        $scope.errorComplejo = null;
@@ -138,7 +148,7 @@
                       $scope.cargar = function(){                                                                        
                           Datos.cargar($scope.operacion);
                       }
-
+                     }
                     }else{
                       console.log(datos[0].estado);
                       $scope.errorEstado = true;
