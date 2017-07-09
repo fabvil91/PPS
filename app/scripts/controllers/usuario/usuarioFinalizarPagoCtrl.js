@@ -47,7 +47,26 @@
                                         if($scope.operacion.estado=="Reservado"){
                                             $scope.operacion.estado="Pagado";
                                         }
-                                         Operaciones.modificarTarjeta($scope.operacion);
+                                        $scope.usuario.listaNegra=false;
+                                        $scope.operacion.montoDeuda=0;
+                                        
+                                         Operaciones.modificarEstadoMonto($scope.operacion)
+                                          .then(function(datos){
+                                            console.log(datos);
+                                            Usuarios.modificarListaNegra($scope.usuario)
+                                              .then(function(datos){
+                                                console.log(datos);
+                                                $location.path('usuarioHistorial');
+                                                })
+                                            .catch(function(e){
+                                            console.log(e);
+                                            })   
+                                              })
+                                        .catch(function(e){
+                                        console.log(e);
+                                        })   
+                                         
+
                                     };
 
                                 })

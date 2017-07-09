@@ -255,7 +255,7 @@ display:block;
 
 #slides_control {
   position:absolute;
-  width: 500px;
+  width: 500px; 
   left:50%;
   top:20px;
   margin-left:-200px;
