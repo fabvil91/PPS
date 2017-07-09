@@ -64,7 +64,7 @@ angular
 
     function alta(item){
       return $http({
-            url: 'http://localhost:3333/slides/insertar',
+            url: 'http://localhost:3333/peliculas/insertar',
             method: "POST",
             data: item,
             headers: {'Content-Type': 'application/json'}})
@@ -78,7 +78,7 @@ angular
 
     function modificar(item){
       return $http({
-            url: 'http://localhost:3333/slides/modificar',
+            url: 'http://localhost:3333/peliculas/modificar',
             method: "PUT",
             data: item,
             headers: {'Content-Type': 'application/json'}})
@@ -106,7 +106,7 @@ angular
 
     function borrar(item){
       return $http({
-            url: 'http://localhost:3333/slides/eliminar',
+            url: 'http://localhost:3333/peliculas/eliminar',
             method: "DELETE",
             data: item,
             headers: {'Content-Type': 'application/json'}})

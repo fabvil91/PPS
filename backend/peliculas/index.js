@@ -45,17 +45,26 @@ router.get('/articulos/proveedor/:proveedor', (req, res, next) => {
     });
 });
 
-router.post('/insertar',function(req, res, next){
+router.post('/peliculas/insertar',function(req, res, next){
 		console.log(req.body);
 
-        req.db.collection('articulos')        
-        .insert({name: req.body.name, 
-        		 peso: req.body.peso,
-        		 precio: req.body.precio,
-        		 fecha: new Date(req.body.fecha),
-        		 tipo: req.body.tipo,
-        		 proveedor: {email: req.body.email}
-        		}, function (err, result){
+        req.db.collection('peliculas')        
+        .insert({nombre: req.body.nombre, 
+        		 imageUrl: req.body.imageUrl,
+        		 trailerUrl: req.body.trailerUrl,
+        		 fechaEstreno: new Date(req.body.fechaEstreno),
+        		 descripcion: req.body.descripcion,
+        		 genero:  req.body.genero,
+             duracion:  req.body.duracion,
+             tituloOriginal:  req.body.tituloOriginal,
+             director:  req.body.director,
+             calificacion:  req.body.calificacion,
+             estado:  req.body.estado,
+             semanasActiva: req.body.semanasActiva,
+             formato:  req.body.formato,
+             idioma:  req.body.idioma
+            }
+        		, function (err, result){
            if (err) {
                res.json({rta : err});
             }
@@ -72,7 +81,20 @@ router.put('/peliculas/modificar',function(req, res, next){
 
         req.db.collection('peliculas')        
         .update({_id: id}, {$set: {
-                                   fechaEstreno: new Date(req.body.fechaEstreno)                                            
+                                   nombre: req.body.nombre, 
+                                   imageUrl: req.body.imageUrl,
+                                   trailerUrl: req.body.trailerUrl,
+                                   fechaEstreno: new Date(req.body.fechaEstreno),
+                                   descripcion: req.body.descripcion,
+                                   genero:  req.body.genero,
+                                   duracion:  req.body.duracion,
+                                   tituloOriginal:  req.body.tituloOriginal,
+                                   director:  req.body.director,
+                                   calificacion:  req.body.calificacion,
+                                   estado:  req.body.estado,
+                                   semanasActiva: req.body.semanasActiva,
+                                   formato:  req.body.formato,
+                                   idioma:  req.body.idioma                                            
                                    }}, function (err, result){
            if (err) {
                res.json({rta : err});
@@ -101,12 +123,12 @@ router.put('/peliculas/modificarSemanas',function(req, res, next){
         });  
     });
 
-router.delete('/eliminar',function(req, res, next){
+router.delete('/peliculas/eliminar',function(req, res, next){
 		console.log(req.body);
 		var id = new require('mongodb').ObjectID(req.body._id);
 		console.log(id);
 
-        req.db.collection('articulos')        
+        req.db.collection('peliculas')        
         .remove({_id: id}, function (err, result){
            if (err) {
                res.json({rta : err});

@@ -362,9 +362,16 @@
         .state('empleadoPeliculas',
         {
         url:'/empleadoPeliculas',              
-        //controller: 'cajeroFinalizarCtrl',
+        controller: 'empleadoPeliculasCtrl',
         templateUrl:'views/empleado/empleadoPeliculas.html'
-        }) 
+        })
+      $stateProvider
+        .state('empleadoPeliculasForm',
+        {
+        url:'/empleadoPeliculasForm',              
+        controller: 'empleadoPeliculasFormCtrl',
+        templateUrl:'views/empleado/empleadoPeliculasForm.html'
+        })    
       $stateProvider
         .state('usuarioBorrar',
         {
@@ -500,7 +507,7 @@
               if($rootScope.globals.currentUser.tipoUsuario == 'Empleado'){
                 var restrictedPage = $.inArray($location.path(), ['/empleadoMain',
                 '/promosVigentes','/quienesSomos','/contactanos','/prohibida','/empleadoCuenta',
-                '/empleadoFunciones','/empleadoFuncionesForm','/empleadoNotificaciones','/empleadoPeliculas']) === -1;
+                '/empleadoFunciones','/empleadoFuncionesForm','/empleadoNotificaciones','/empleadoPeliculas','/empleadoPeliculasForm']) === -1;
               }
               
               if($rootScope.globals.currentUser.tipoUsuario == 'Cajero'){

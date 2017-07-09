@@ -17,64 +17,78 @@
     <div class="row">
         <div class="col-md-12">
 
-            <button type="button" class="btn btn-primary">Nuevo</button>
+            <button type="button" class="btn btn-primary" ng-click="alta()">Nuevo</button>
 
             <table class="table table-condensed"> 
                 <thead>
                     <tr>                    
                         <th>Nombre</th>
                         <th>Genero</th>
-                        <th>Sintesis</th>
+                        <th>Descripción</th>
                         <th>Fecha Estreno</th>
                         <th>Duracion</th>
                         <th>Cant. Sem. Act.</th>
                         <th>Formato</th>
                         <th>Idioma</th>
                         <th>URL Imagen</th>
+                        <th>URL Trailer</th>
                         <th>Titulo Original</th>
                         <th>Director</th>
                         <th>Calif.</th>
+                        <th>Estado</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody> 
-                    <tr>                    
-                        <td>Logan</td>
-                        <td>Accion</td>
-                        <td>Un Superheroe que...</td>
-                        <td>20/02/2017</td>
-                        <td>80</td>
-                        <td>4</td>
-                        <td>2D - 3D</td>
-                        <td>Subtitulado - Español</td>
-                        <td>10.255.10/logan.jpeg</td>
-                        <td></td>
-                        <td>George</td> 
-                        <td>P13</td> 
-                        <td>
-                        <button class="btn btn-info btn-sm">Editar</button>
-                        <button class="btn btn-danger btn-sm">Eliminar</button>
-                        </td>
-                    </tr>
-                    <tr>                    
-                        <td>La Llegada</td>
-                        <td>Ciencia Ficcion</td>
-                        <td>llegan los alienigenas</td>
-                        <td>05/01/2017</td>
-                        <td>100</td>
-                        <td>3</td>
-                        <td>2D</td>
-                        <td>Subtitulado</td>
-                        <td>10.255.10/llegada.jpeg</td>
-                        <td>Arrival</td>
-                        <td>Loth</td> 
-                        <td>P13</td> 
-                        <td>
-                        <button class="btn btn-info btn-sm">Editar</button>
-                        <button class="btn btn-danger btn-sm">Eliminar</button>
-                        </td>
-                    </tr>                               
-                </tbody>                    
+               <tbody>  
+                                    <tr ng-repeat="pelicula in peliculas track by $index">
+                                         <td>
+                                          {{pelicula.nombre}}
+                                        </td>                                       
+                                        <td>
+                                          {{pelicula.genero}}
+                                        </td>
+                                         <td>
+                                          {{pelicula.descripcion}}
+                                        </td>
+                                         <td>
+                                          {{pelicula.fechaEstreno}}
+                                        </td>   
+                                        <td>
+                                          {{pelicula.duracion}}
+                                        </td> 
+                                        <td>
+                                          {{pelicula.semanasActiva}}
+                                        </td>
+                                        <td>
+                                          {{pelicula.formato.nombre}}
+                                        </td> 
+                                        <td>
+                                          {{pelicula.idioma.nombre}}
+                                        </td> 
+                                        <td>
+                                          {{pelicula.imageUrl}}
+                                        </td> 
+                                        <td>
+                                          {{pelicula.trailerUrl}}
+                                        </td> 
+                                        <td>
+                                          {{pelicula.tituloOriginal}}
+                                        </td> 
+                                        <td>
+                                          {{pelicula.director}}
+                                        </td> 
+                                        <td>
+                                          {{pelicula.calificacion}}
+                                        </td> 
+                                        <td>
+                                          {{pelicula.estado}}
+                                        </td>                                       
+                                        <td>
+                                            <button class="btn btn-info btn-sm" ng-click="modificar(pelicula)">Editar</button>
+                                            <button class="btn btn-danger btn-sm" ng-click="borrar(pelicula)">Eliminar</button>                                            
+                                        </td>
+                                    </tr>                                                                       
+                                </tbody>                 
             </table>
         </div>
     </div>
