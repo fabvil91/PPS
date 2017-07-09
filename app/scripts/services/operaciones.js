@@ -4,15 +4,13 @@ angular
 
     this.listado = listado;
     this.operacionPorCodigo = operacionPorCodigo;
-    this.operacionPorCodigoUser = operacionPorCodigoUser;
-    this.articuloPrecioMayor = articuloPrecioMayor;
-    this.articuloPorProveedor = articuloPorProveedor;
-    this.articuloPorIndice = articuloPorIndice;
     this.alta = alta;
     this.modificar = modificar;
+    this.operacionPorCodigoUser=operacionPorCodigoUser;
     this.modificarEfectivo = modificarEfectivo;
     this.modificarCompra = modificarCompra; 
     this.modificarTarjeta = modificarTarjeta;
+    this.modificarEstadoMonto=modificarEstadoMonto;
     this.borrar = borrar;
 
     function listado () {
@@ -45,35 +43,6 @@ angular
       })
     }
 
-    function articuloPrecioMayor(texto) {
-      return $http.get('http://localhost:3333/articulos/precio/'+texto)
-      .then(function(rta){
-        return rta.data;
-      })
-      .catch(function(e){
-        return e;
-      })
-    }
-
-    function articuloPorProveedor(texto) {
-      return $http.get('http://localhost:3333/articulos/proveedor/'+texto)
-      .then(function(rta){
-        return rta.data;
-      })
-      .catch(function(e){
-        return e;
-      })
-    }
-
-    function articuloPorIndice(texto) {
-      return $http.get('http://localhost:3333/articulos/indices/'+texto)
-      .then(function(rta){
-        return rta.data;
-      })
-      .catch(function(e){
-        return e;
-      })
-    }
 
     function alta(item){
       return $http({
@@ -106,6 +75,19 @@ angular
      function modificarEfectivo(item){
       return $http({
             url: 'http://localhost:3333/operaciones/modificarEfectivo',
+            method: "PUT",
+            data: item,
+            headers: {'Content-Type': 'application/json'}})
+      .then(function(rta){
+        return rta.data;
+      })
+      .catch(function(e){
+        return e;
+      })
+    }
+       function modificarEstadoMonto(item){
+      return $http({
+            url: 'http://localhost:3333/operaciones/modificarEstadoMonto',
             method: "PUT",
             data: item,
             headers: {'Content-Type': 'application/json'}})

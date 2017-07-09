@@ -114,7 +114,7 @@ MongoClient.connect('mongodb://localhost:27017/pps', (err, db) =>
 														  montoDeuda: operaciones[i].funcion.precioTotal*(constantes[0].porcentajeListaNegra/100)      
 							                       }}, function (err, result){
 							           if (err) {
-							               console.log(err);
+							               console.log(err); 
 							            }
 							            else {
 							               console.log(operaciones[i]);

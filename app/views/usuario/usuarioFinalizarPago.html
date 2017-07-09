@@ -22,6 +22,7 @@
                     <p>Funcion: {{operacion.funcion.diaFormateado}} - {{ formatearHora(operacion.funcion) }}</p>
                     <p>Complejo: {{operacion.funcion.complejo.nombre}}</p>
                     <p>Cantidad de Asientos: {{operacion.funcion.cantidadAsientos}}</p>
+                    <p>Monto Deuda: ${{operacion.montoDeuda}}</p>
                 </div>
             </div>                 
         </div>
@@ -84,7 +85,7 @@
                         <input type="button" class="btn btn-info" value="Imprimir" ng-click="imprimir()" >
                         </div>
                         <div class="col-md-4">
-                        <input type="button" class="btn btn-info" value="Confirmar" ng-click="modificarOperacion()" ui-sref="usuarioHistorial" >
+                        <input type="button" class="btn btn-info" value="Confirmar" ng-click="modificarOperacion()" >
                         </div>
                         <div class="col-md-4">
                         <input type="button" class="btn btn-info" value="Cancelar" ui-sref="usuarioHistorial">      

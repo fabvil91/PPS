@@ -35,6 +35,7 @@
             
         </div>
     </div>
+    <br>
     <!--NO RETIRADAS -->
     <div ng-hide="ifNoRetirada">
         <div class="row">
@@ -56,7 +57,7 @@
                                 <p>{{x.funcion.complejo.nombre}}</p>
                                 <p>Cantidad de Asientos: {{x.funcion.cantidadAsientos}}</p> 
                                 <p>Precio Original: ${{x.funcion.precioTotal}}</p> 
-                                <p>Monto Debido: ${{x.operacion.montoDeuda}}</p> <!--falta generar el campo desde el service de lista negra-->
+                                <p>Monto Debido: ${{x.montoDeuda}}</p> <!--falta generar el campo desde el service de lista negra-->
                                 
                                 <div class="form-group pull-right">
                                      <input type="button" class="btn btn-primary" value="Imprimir" ng-click="cargar(x)" ui-sref="usuarioImprimir">

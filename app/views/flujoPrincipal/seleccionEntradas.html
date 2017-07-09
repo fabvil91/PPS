@@ -75,7 +75,11 @@
             <form class="entradas"> 
                 <div>
                     <label class="radio-inline"><input type="radio" name="tipoTransaccion" ng-click="transaccion.tipoTransaccion = 'compra'">Compra</label>
-                    <label class="radio-inline"><input type="radio" name="tipoTransaccion" ng-click="transaccion.tipoTransaccion = 'reserva'">Reserva</label>
+                    <label class="radio-inline"><input type="radio" name="tipoTransaccion" ng-click="transaccion.tipoTransaccion = 'reserva'" ng-disabled="usuario.listaNegra" >Reserva</label>
+                     <div class="alert alert-danger alert-dismissable fade in" ng-if="usuario.listaNegra">
+                        <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Usted esta en Lista Negra</strong>, por lo tanto, no puede realizar reservas.
+                    </div>
                 </div>
                 <div ng-if="cantidadTotal == 6">{{mensaje}}</div>
                 <table class="table ">

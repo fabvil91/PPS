@@ -223,7 +223,7 @@ router.delete('/usuarios/eliminar',function(req, res, next){
         });  
 	});
 
-router.put('/usuarios/modificarListaNegra',function(req, res, next){
+router.put('/usuarios/modificarListaNegra',function(req, res, next){ 
         console.log(req.body);
         var id = new require('mongodb').ObjectID(req.body._id);
         console.log(id);
