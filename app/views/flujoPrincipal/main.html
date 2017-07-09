@@ -81,7 +81,7 @@
                   <li ng-repeat="funcion in funciones | filter:{ formato:{_id:filtro.formato}, idioma:{_id:filtro.idioma}, complejo:{_id: filtro.complejo},diaTime: filtro.diaLocale } | unique:'pelicula.nombre'">
                       <div class="movie text-center">
                         <a href="#" ng-click="cargar(funcion)" ui-sref="detallePelicula">
-                          <img ng-src="{{funcion.pelicula.imageUrl}}" alt="poster"  class="img-thumbnail img-poster">                                   
+                          <img class="img-responsive" ng-src="{{funcion.pelicula.imageUrl}}" alt="poster"  class="img-thumbnail img-poster">                                   
                           <p>{{funcion.pelicula.nombre}}</p>
                         </a>
                       </div>
@@ -111,7 +111,8 @@
                         <li ng-repeat="pelicula in peliculasActivas | orderBy:'-cantEntradas'">
                             <div class="movie text-center">
                                 <a href="#" ng-click="cargar(pelicula.funciones[0])" ui-sref="detallePelicula">
-                                <img ng-src="{{pelicula.imageUrl}}" alt="poster"  class="img-thumbnail img-poster">                                   
+                                   
+                                <img class="img-responsive" ng-src="{{pelicula.imageUrl}}" alt="poster"  class="img-thumbnail img-poster">                                   
                                 <p>{{pelicula.nombre}}</p>
                                 </a>
                             </div>
@@ -142,9 +143,9 @@
                         <li class="movies" ng-repeat="pelicula in estrenos | orderBy:'fechaEstreno' ">
                             <div class="movie text-center">
                                 
-                                <a href="#" ng-click="cargar(pelicula.funciones[0])" ui-sref="detallePelicula">
+                                <a href="#" ng-click="cargarPelicula(pelicula)" ui-sref="detalleProximo">
                                     <div class="overlay">{{pelicula.mes}}</div>
-                                    <img ng-src="{{pelicula.imageUrl}}" alt="poster"  class="img-thumbnail img-poster">                                   
+                                    <img class="img-responsive" ng-src="{{pelicula.imageUrl}}" alt="poster"  class="img-thumbnail img-poster">                                   
                                     <p>{{pelicula.nombre}}</p>
                                 </a>
                             </div>

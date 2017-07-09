@@ -43,7 +43,7 @@
 						
 						/* Suma dias a una fecha */
 						Date.prototype.addDays = function(days) {
-				        var dat = new Date(this.valueOf())
+				        var dat = new Date(this.valueOf()) 
 				        dat.setDate(dat.getDate() + days);
 				        return dat;
 				   		}
@@ -129,15 +129,7 @@
 	       console.log(e);
 	     })
 
-		$scope.tab = 1;
-
-        $scope.setTab = function (tabId) {        	
-            $scope.tab = tabId;
-        };
-
-        $scope.isSet = function (tabId) {        	        	
-            return $scope.tab === tabId;
-        };
+	
 
         $scope.formatear = function(funcion){        	
         	return funcion.replace(/,/g, " > ");
@@ -147,6 +139,19 @@
         	var fecha = new Date(funcion.hora);
         	return fecha.getHours() + ":" + (fecha.getMinutes() == "0"? "00" : fecha.getMinutes());
         }
+
+		$scope.panelString={nombre:"Sinopsis"};
+
+		$scope.switch=function(v){
+			console.log("BEFORE",$scope.panelString);
+			if(v=="Sinopsis"){
+				$scope.panelString.nombre="Ficha Técnica";
+			}else{
+				$scope.panelString.nombre="Sinopsis";			
+			}
+			
+			console.log("AFTER",$scope.panelString);
+		}
 
         $scope.cargar = function(funcion){
         	console.log(funcion);        	      	

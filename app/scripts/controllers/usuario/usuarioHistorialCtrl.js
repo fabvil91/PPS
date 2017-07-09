@@ -100,23 +100,23 @@
                   operacion.funcion.sala.asientos.forEach(function(fila){
                     fila.forEach(function(columna){
                       if(columna.booked==false&&columna.checked==true){
-                        console.log(columna.id);
-                        columna.checked=false;
+                                                columna.checked=false;
                       }
                     });
                   });
 
-                  var funcionMod;
+                  var funcionMod=null;
                  Funciones.listado()
                  .then(function(datos){ 
                     var funciones = datos;
                     funciones.forEach(function(item){
                       if(item._id==operacion.funcion._id){
+
                         item.sala=operacion.funcion.sala;
                         funcionMod=item;
                       }
                     });
-
+                    console.log(funcionMod);
                     if(funcionMod!=null){
                     Funciones.modificarSala(funcionMod);
                     }
@@ -126,7 +126,7 @@
                     console.log(e);
                 });
 
-                  Operaciones.modificarCompra(operacion);
+                 Operaciones.modificarCompra(operacion);
                   $scope.recargarFechas();
                   $scope.reloadPage();
                   

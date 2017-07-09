@@ -1,0 +1,53 @@
+   <!-- BREAK -->   
+    <div class="row">
+      <div class="col-sm-12 break"></div>   
+    </div>
+
+    <div class="container">
+        <div class="row" style="padding-top: 100px;">
+            <div class="col-xs-1 col-md-3"></div>
+            <div class="col-xs-10 col-md-6">
+                <div class="container-fluid">
+                <!--Video-->
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" ng-src="{{pelicula.trailerUrl | trusted}}" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="movie text-center">                        
+                        <img class="img-responsive" ng-src="{{pelicula.imageUrl}}" alt="poster" class="img-thumbnail img-poster">                                   
+                        <p>{{pelicula.nombre}}</p>                        
+                        </div>
+                    </div>
+
+                    <div class="col-md-7">
+                    
+                                    
+                        <div class="btn-group">
+                            <button type="button" ng-click="switch('f')"  class="btn btn-primary">Sinopsis</button>
+                            <button type="button" ng-click="switch('Sinopsis')" class="btn btn-primary">Ficha Técnica</button>
+                        </div>
+                        <div class="panel panel-default">                                       
+                            
+                            <div class="panel-body" ng-show="panelString.nombre=='Sinopsis'">{{pelicula.descripcion}}</div>
+                            <div class="panel-body" ng-show="panelString.nombre=='Ficha Técnica'">
+                                <ul>
+                                    <li>Título Original: {{pelicula.tituloOriginal}}</li>
+                                    <li>Género: {{pelicula.genero}}</li>
+                                    <li>Director: {{pelicula.director}}</li>
+                                    <li>Calificación: {{pelicula.calificacion}}</li>
+                                    <li>Duración: {{pelicula.duracion}} minutos</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>            
+                </div>
+                </div>
+               
+            </div>
+            <div class="col-xs-1 col-md-3"></div>
+        </div>
+    </div>
+    

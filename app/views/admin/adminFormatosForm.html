@@ -5,59 +5,43 @@
             <div class="panel panel-default margin-top">
                 <div class="panel-body">
                     <ul class="nav nav-pills nav-stacked">
-                        <li role="presentation" ui-sref="adminPersonal"><a href="#">Gestionar Personal</a></li>
+                            <li role="presentation" ui-sref="adminPersonal"><a href="#">Gestionar Personal</a></li>
                         <li role="presentation" ui-sref="adminCines"><a href="#">Gestionar Cines</a></li>
                         <li role="presentation" ui-sref="adminPrecios"><a href="#">Gestionar Precios</a></li>
-                        <li role="presentation" ui-sref="adminPromociones" class="active"><a href="#">Gestionar Promociones</a></li> 
+                        <li role="presentation" ui-sref="adminPromociones" ><a href="#">Gestionar Promociones</a></li> 
                         <li role="presentation" ui-sref="adminSalas"><a href="#">Gestionar Salas</a></li> 
                         <li role="presentation" ui-sref="adminSlide"><a href="#">Gestionar Slides</a></li>
-                        <li role="presentation" ui-sref="adminIdiomas"><a href="#">Gestionar Idiomas</a></li>
-                        <li role="presentation" ui-sref="adminFormatos"><a href="#">Gestionar Formatos</a></li>
-                        <br>
+                        <li role="presentation" ui-sref="adminIdiomas" ><a href="#">Gestionar Idiomas</a></li>
+                        <li role="presentation" ui-sref="adminFormatos" class="active"><a href="#">Gestionar Formatos</a></li>
+                        <br> 
                         <br>
                         <br> 
                         <li role="presentation" ui-sref="adminConfiguracionGeneral"><a href="#">Configuracion General</a></li>
-                        <li role="presentation" ui-sref="adminCuenta"><a href="#">Mi Cuenta</a></li>          
+                        <li role="presentation" ui-sref="adminCuenta"><a href="#">Mi Cuenta</a></li>            
                     </ul>
                 </div>
             </div>
-        </div>  
+        </div>
 
+ 
 <!--CONTENIDO-->
-        <div class="col-md-9">
-            <div class="row">
-                <div class = "col-md-12">
-                    <nav class="navbar navbar-default">
-                        <div class="container">
-                            <ul class="nav navbar-nav">
-                                <li ui-sref="adminPromociones"><a href="#">Promociones</a></li>
-                                <li ui-sref="adminTarjeta"><a href="#">Tarjetas</a></li>
-                                <li ui-sref="adminBancos" class="active"><a href="#">Bancos</a></li>
-                            </ul>
-                        </div> 
-                    </nav>
-                </div>                    
-            </div>
-		
-                
-				
-				
-				
-				<div class = "col-md-9">
+        
+			
+             <div class = "col-md-9">
                     <div class="panel panel-default margin-top">
                         <form name="form" ng-submit="cargar()" novalidate>
 
-                       <!-- Nombre -->
+                        <!-- Nombre -->
                         <div class="form-group" ng-class="{ 'has-error' : form.nombre.$invalid && !form.nombre.$pristine }">
                             <label>Nombre</label>
-                            <input type="text" name="nombre" class="form-control" ng-model="banco.nombre" ng-minlength="3" ng-maxlength="15" required>
+                            <input type="text" name="nombre" class="form-control" ng-model="formato.nombre" ng-minlength="3" ng-maxlength="15" required>
                             <p ng-show="form.nombre.$invalid && !form.nombre.$pristine" class="help-block">El nombre es requerido</p>
                             <p ng-show="form.nombre.$error.minlength" class="help-block">Nombre es muy corto.</p>
                             <p ng-show="form.nombre.$error.maxlength" class="help-block">Nombre es muy largo.</p>
                         </div>
                         
                         <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">Cargar</button>
-                        <button class="btn btn-primary" ui-sref="adminBancos">Cancelar</button>
+                        <button class="btn btn-primary" ui-sref="adminTarjeta">Cancelar</button>
                     </form>
 
                     </div>

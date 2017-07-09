@@ -3,10 +3,6 @@ angular
   .service('Formatos', ['$http', function($http){
 
     this.listado = listado;
-    this.articuloPorNombre = articuloPorNombre;
-    this.articuloPrecioMayor = articuloPrecioMayor;
-    this.articuloPorProveedor = articuloPorProveedor;
-    this.articuloPorIndice = articuloPorIndice;
     this.alta = alta;
     this.modificar = modificar;
     this.borrar = borrar;
@@ -21,49 +17,9 @@ angular
       })
     }
 
-     function articuloPorNombre(texto) {
-      return $http.get('http://localhost:3333/articulos/name/'+texto)
-      .then(function(rta){
-        return rta.data;
-      })
-      .catch(function(e){
-        return e;
-      })
-    }
-
-    function articuloPrecioMayor(texto) {
-      return $http.get('http://localhost:3333/articulos/precio/'+texto)
-      .then(function(rta){
-        return rta.data;
-      })
-      .catch(function(e){
-        return e;
-      })
-    }
-
-    function articuloPorProveedor(texto) {
-      return $http.get('http://localhost:3333/articulos/proveedor/'+texto)
-      .then(function(rta){
-        return rta.data;
-      })
-      .catch(function(e){
-        return e;
-      })
-    }
-
-    function articuloPorIndice(texto) {
-      return $http.get('http://localhost:3333/articulos/indices/'+texto)
-      .then(function(rta){
-        return rta.data;
-      })
-      .catch(function(e){
-        return e;
-      })
-    }
-
     function alta(item){
       return $http({
-            url: 'http://localhost:3333/insertar',
+            url: 'http://localhost:3333/formatos/insertar',
             method: "POST",
             data: item,
             headers: {'Content-Type': 'application/json'}})
@@ -77,7 +33,7 @@ angular
 
     function modificar(item){
       return $http({
-            url: 'http://localhost:3333/modificar',
+            url: 'http://localhost:3333/formatos/modificar',
             method: "PUT",
             data: item,
             headers: {'Content-Type': 'application/json'}})
@@ -91,7 +47,7 @@ angular
 
     function borrar(item){
       return $http({
-            url: 'http://localhost:3333/eliminar',
+            url: 'http://localhost:3333/formatos/eliminar',
             method: "DELETE",
             data: item,
             headers: {'Content-Type': 'application/json'}})

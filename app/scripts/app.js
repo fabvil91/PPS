@@ -57,6 +57,13 @@
         url:'/promosVigentes',              
         controller: 'promosVigentesCtrl',
         templateUrl:'views/flujoPrincipal/promosVigentes.html'
+      })
+       $stateProvider
+        .state('detalleProximo',
+        {
+        url:'/detalleProximo',              
+        controller: 'detalleProximoCtrl',
+        templateUrl:'views/flujoPrincipal/detalleProximo.html'
         })
       $stateProvider
         .state('quienesSomos',
@@ -210,7 +217,21 @@
         url:'/adminPersonalForm',
         controller: 'adminPersonalFormCtrl',              
         templateUrl:'views/admin/adminPersonalForm.html'
-        })      
+      })   
+      $stateProvider
+        .state('adminIdiomas',
+        {
+        url:'/adminIdiomas',
+        controller: 'adminIdiomasCtrl',              
+        templateUrl:'views/admin/adminIdiomas.html'
+        })    
+      $stateProvider
+        .state('adminIdiomasForm',
+        {
+        url:'/adminIdiomasForm',
+        controller: 'adminIdiomasFormCtrl',              
+        templateUrl:'views/admin/adminIdiomasForm.html'
+        })     
       $stateProvider
         .state('adminPrecios',
         {
@@ -287,7 +308,21 @@
         url:'/adminTarjetaForm',              
         controller: 'adminTarjetaFormCtrl',
         templateUrl:'views/admin/adminTarjetaForm.html'
-        })      
+      })  
+       $stateProvider
+        .state('adminFormatos',
+        {
+        url:'/adminFormatos',              
+        controller: 'adminFormatosCtrl',
+        templateUrl:'views/admin/adminFormatos.html'
+        })
+      $stateProvider
+        .state('adminFormatosForm',
+        {
+        url:'/adminFormatosForm',              
+        controller: 'adminFormatosFormCtrl',
+        templateUrl:'views/admin/adminFormatosForm.html'
+        })          
       $stateProvider
         .state('empleadoFunciones',
         {
@@ -450,7 +485,7 @@
             if(loggedIn){
               if($rootScope.globals.currentUser.tipoUsuario == 'Usuario'){
                 var restrictedPage = $.inArray($location.path(), ['/main', '/login','/registro','/detallePelicula','/seleccionEntradas','/salas','/datosOperacionCompra','/finalizarOperacion',
-                  '/promosVigentes','/quienesSomos','/contactanos','/prohibida', 
+                  '/promosVigentes','/quienesSomos','/contactanos','/prohibida','/detalleProximo',
                   '/usuarioBorrar','/usuarioCuenta','/usuarioFinalizarPago','/usuarioHistorial','/usuarioMain','/usuarioReservaVencida','/usuarioTarjeta','/usuarioImprimir']) === -1;
               }
               //Agregar los distintos tipos de usuario
@@ -458,7 +493,8 @@
                 var restrictedPage = $.inArray($location.path(), ['/adminMain', 
                 '/promosVigentes','/quienesSomos','/contactanos','/prohibida',
                 '/adminBancos','/adminCines','/adminCuenta','/adminConfiguracionGeneral','/adminPersonal','/adminPrecios','/adminPromociones','/adminSalaNueva','/adminSalas','/adminTarjeta','/adminSlide',
-                '/adminSlideForm','/adminPromocionesForm','/adminBancosForm','/adminCinesForm','/adminPersonalForm','/adminPreciosForm','/adminTarjetaForm']) === -1;
+                '/adminSlideForm','/adminPromocionesForm','/adminBancosForm','/adminCinesForm','/adminPersonalForm','/adminPreciosForm','/adminTarjetaForm',
+                '/adminIdiomas','/adminIdiomasForm','/adminFormatos','/adminFormatosForm']) === -1;
               }
 
               if($rootScope.globals.currentUser.tipoUsuario == 'Empleado'){
@@ -481,7 +517,7 @@
             }else{
               console.log('no logueado, path: ' + $location.path());
               //si no estas logeado y vas a una que no sea main,etc => // $location.path('/login');
-                 var restrictedPage = $.inArray($location.path(), ['/main', '/login','/olvidoContrasenia','/registro','/promosVigentes','/quienesSomos','/contactanos','/prohibida','/detallePelicula']) === -1;
+                 var restrictedPage = $.inArray($location.path(), ['/main','/detalleProximo', '/login','/olvidoContrasenia','/registro','/promosVigentes','/quienesSomos','/contactanos','/prohibida','/detallePelicula']) === -1;
                    if (restrictedPage) {                    
                     console.log("Pagina prohibida: " + $location.path());                   
                     $state.go('login');                      

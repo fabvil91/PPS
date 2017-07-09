@@ -17,7 +17,7 @@
      .then(function(datos){
      	console.log(datos);
         $scope.funciones = datos;
-     })
+     }) 
      .catch(function(e){
        console.log(e);
      })
