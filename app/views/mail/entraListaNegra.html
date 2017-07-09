@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+   <table style="font-family: Arial, Helvetica, sans-serif;">
+        <tr>
+               <td align="center" style="background-color: #00438E;" ><h1 style="color:#5BC0DE;">CINEMAR</h1></td>
+        </tr>
+        <tr>
+              <td>
+               <table style="padding:5px">                   
+                   <tr>
+                       <td>
+                           <ul style="list-style: none;">
+                               <li><h3>Ingreso a Lista Negra</h3></li>
+                               <li>req.body.usuario.userName</li>
+                               <li><p>Usted a sido ingresado a Lista Negra. Esto significa que no podra realizar Reservas hasta que salga de ella. Sin embargo, podra seguir realizando compras sin ningun problema.</p></li>
+                                        
+                           </ul>
+
+                        </td>
+                        <td>                           
+                           <ul style="list-style: none;">
+                               <li><h3>Datos de operación vencida:</h3></li>
+                               <li><strong>Pelicula:</strong></li>
+                               <li>req.body.operacion.funcion.pelicula</li>
+                               <li>req.body.operacion.funcion.formato+","+req.body.operacion.funcion.idioma</li>
+                               <li>req.body.operacion.funcion.diaFormateado</li>
+                               <br>
+                               <li><strong>Entradas:</strong></li>    
+                               <li>Cantidad: req.body.operacion.funcion.cantidadAsientos</li>        
+                               <li>Precio total: $req.body.operacion.funcion.precioTotal</li>  
+                               <li><em>Monto Debido:</em> $req.body.operacion.montoDeuda</li>              
+                           </ul>
+                        </td>
+                   </tr>                                         
+               </table>               
+              </td>
+              <td>
+                  <tr align="center">
+                       <td>
+                        <p>Se le retirara de Lista Negra al abonar el monto debido de todas sus reservas vencidas. Puede hacer esto desde su historial.</p>
+                        <button type="button" style="border-color: #00438E;background-color: #1367c4; padding:5pt; border-radius:3pt;"><a style="color:white; text-decoration:none;" href="http://localhost:8123/#!/usuarioHistorial">Historial</a></button><br>
+                                               </td> 
+                       </tr>
+              </td>
+        </tr>
+        <tr>
+               <td style="background-color: #00438E;"><br><br><br></td>
+        </tr>
+    </table>
+ 
+
+</body>
+</html>
