@@ -62,7 +62,7 @@ MongoClient.connect('mongodb://localhost:27017/pps', (err, db) =>
 		console.log('Servidor iniciado..');
 	})
 
-	// Cada dia a las 23 55 PM (no esta cambiado para poder probar, pero deberia ser: 0 55 23 * * *):
+	// Cada dia a las 23 40 PM (no esta cambiado para poder probar, pero deberia ser: 0 40 23 * * *):
 	cron.schedule('0 12 20 * * *', function(){
 		function addMinutes(date, minutes) {
 		    return new Date(date.getTime() + minutes*60000);
@@ -147,6 +147,43 @@ MongoClient.connect('mongodb://localhost:27017/pps', (err, db) =>
     	}) 
     	}
 		})
+	});
+
+	// Cada dia a las 23 50 PM (no esta cambiado para poder probar, pero deberia ser: 0 50 23 * * *):
+	cron.schedule('0 1 16 * * *', function(){
+		/* Verifica si dos dias son iguales */ 
+		Date.prototype.isSameDateAs = function(pDate) {
+		  return (
+		    this.getFullYear() === pDate.getFullYear() &&
+		    this.getMonth() === pDate.getMonth() &&
+		    this.getDate() === pDate.getDate()
+		  );
+		}
+
+		db.collection('funciones')
+		.find({})
+		.toArray((err, data) => {
+		if (err){
+			console.log(err);     	
+		}else{
+			var funciones = data;
+			console.log(funciones);
+			for (var i = 0; i < funciones.length; i++) {
+				if(new Date(funciones[i].dia).isSameDateAs(new Date())){
+					console.log(funciones[i]);
+					db.collection('funciones')        
+			        .remove({_id: funciones[i]._id}, function (err, result){
+			           if (err) {
+			               console.log(err);
+			            }
+			            else {
+			               console.log("OK");
+			            }
+			        }); 
+				}
+			}
+		}
+	})
 	});
 
 	// Cada jueves a las 2 AM (no esta cambiado para poder probar, pero deberia ser: 0 0 2 * * 4):
