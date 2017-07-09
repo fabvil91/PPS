@@ -18,7 +18,7 @@
         <div class="col-md-12">
 
             <button type="button" class="btn btn-primary" ng-click="alta()">Nuevo</button>
-                            <table class="table table-condensed">
+                        <!--    <table class="table table-condensed">
                                 <thead>
                                     <tr>
                                         <th>Pelicula</th>                                       
@@ -50,18 +50,28 @@
                                         <td>
                                           {{funcion.formato.nombre}}
                                         </td>                                      
-                                        <td>
-                                            <!--<button class="btn btn-info btn-sm" ng-click="modificar(slide)">Editar</button>-->
+                                        <td>                                            
                                             <button class="btn btn-danger btn-sm" ng-click="borrar(funcion)">Eliminar</button>
                                             <div ng-if="funcion.error != null && funcion.error" class="alert alert-danger">No es posible eliminar</div>
                                         </td>
                                     </tr>                                                                       
                                 </tbody>                    
-                            </table>
+                            </table> -->
+                    <div class="panel-group">
+                    <div class="panel panel-default" ng-repeat="(key, value) in funciones                     
+                    | groupBy: '[complejo.nombre,pelicula.nombre,sala.nombre,formato.nombre,idioma.nombre,diaFormateado]'">
+                        <div class="panel-heading">
+                            {{ formatear(key) }} 
+                            <button class="btn btn-danger btn-sm" ng-click="borrar(value)">Eliminar</button>
+                            <div ng-if="value.error != null && value.error" class="alert alert-danger">No es posible eliminar</div>                             
+                        </div>
+                        <div class="panel-body">                              
+                            <div ng-repeat="funcion in value" style="display:inline;"> 
+                               {{ formatearHora(funcion) }}
+                            </div> 
+                        </div>
+                    </div>
+                    </div>
         </div>
     </div>
 </div>
-
-
-    
-        
