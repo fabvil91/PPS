@@ -469,6 +469,11 @@
         return new Date(1970, 0, 1).setSeconds(seconds);
     };
   }])
+  .filter('fechaFormat', function(){
+    return function(item){      
+      return (new Date(item)).toLocaleDateString();     
+    }
+  })
   .run(['$rootScope', '$location', '$cookies', '$http','$state',
     function run($rootScope, $location, $cookies, $http,$state) {
         // keep user logged in after page refresh

@@ -23,16 +23,16 @@
                 <thead>
                     <tr>                    
                         <th>Nombre</th>
-                        <th>Genero</th>
+                        <th>Género</th>
                         <th>Descripción</th>
                         <th>Fecha Estreno</th>
-                        <th>Duracion</th>
+                        <th>Duración</th>
                         <th>Cant. Sem. Act.</th>
                         <th>Formato</th>
                         <th>Idioma</th>
                         <th>URL Imagen</th>
                         <th>URL Trailer</th>
-                        <th>Titulo Original</th>
+                        <th>Título Original</th>
                         <th>Director</th>
                         <th>Calif.</th>
                         <th>Estado</th>
@@ -51,7 +51,7 @@
                                           {{pelicula.descripcion}}
                                         </td>
                                          <td>
-                                          {{pelicula.fechaEstreno}}
+                                          {{pelicula.fechaEstreno | fechaFormat}}
                                         </td>   
                                         <td>
                                           {{pelicula.duracion}}
