@@ -5,6 +5,7 @@
 								       
      Datos.limpiar();
  
+  function list() {
 	 Peliculas.listado()
      .then(function(datos){
      	console.log(datos);
@@ -13,7 +14,8 @@
      .catch(function(e){
        console.log(e);
      })
-
+   }
+   $timeout(list, 100);
     
    	 $scope.borrar = function borrar(item) {
       item.estado = "Inactiva";
