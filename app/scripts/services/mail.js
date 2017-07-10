@@ -2,41 +2,19 @@ angular
   .module('cine')
   .service('Mail', ['$http', function($http){
 
-    this.listado = listado;
-    this.usuarioPorNombreUsuario = usuarioPorNombreUsuario;
+
    
     this.enviar = enviar;
     this.enviarContrasenia = enviarContrasenia;
-    this.modificar = modificar;
-    this.modificarPersonales=modificarPersonales;
-    this.modificarTarjeta=modificarTarjeta;
-    this.borrar = borrar;
-    this.Create = Create;
-
-    function listado () {
-      return $http.get('http://localhost:3333/usuarios/getAll')
-      .then(function(rta){
-        return rta.data;
-      })
-      .catch(function(e){
-        return e;
-      })
-    }
-
-     function usuarioPorNombreUsuario(texto) {
-      return $http.get('http://localhost:3333/usuarios/username/'+texto)
-      .then(function(rta){
-        console.log(rta);
-        return rta.data;
-      })
-      .catch(function(e){
-        return e;
-      })
-    }
+    this.enviarCancelarOperacion=enviarCancelarOperacion;
+    this.enviarCompra=enviarCompra;
+    this.enviarEntraListaNegra=enviarEntraListaNegra;
+    this.enviarReserva=enviarReserva;
+    this.enviarSaleListaNegra=enviarSaleListaNegra;
 
     function enviar(item){
       return $http({
-            url: 'http://localhost:3333/mail/enviar',
+            url: 'http://localhost:3333/mail/enviarContactanos',
             method: "POST",
             data: item,
             headers: {'Content-Type': 'application/json'}})
@@ -61,11 +39,10 @@ angular
         return e;
       })
     }
-
-    function modificar(item){
+    function enviarCancelarOperacion(item){
       return $http({
-            url: 'http://localhost:3333/usuarios/modificar',
-            method: "PUT",
+            url: 'http://localhost:3333/mail/enviarCancelarOperacion',
+            method: "POST",
             data: item,
             headers: {'Content-Type': 'application/json'}})
       .then(function(rta){
@@ -75,10 +52,10 @@ angular
         return e;
       })
     }
-    function modificarPersonales(item){
+      function enviarCompra(item){
       return $http({
-            url: 'http://localhost:3333/usuarios/modificarPersonales',
-            method: "PUT",
+            url: 'http://localhost:3333/mail/enviarCompra',
+            method: "POST",
             data: item,
             headers: {'Content-Type': 'application/json'}})
       .then(function(rta){
@@ -88,24 +65,10 @@ angular
         return e;
       })
     }
-    function modificarTarjeta(item){
+     function enviarEntraListaNegra(item){
       return $http({
-            url: 'http://localhost:3333/usuarios/modificarTarjeta',
-            method: "PUT",
-            data: item,
-            headers: {'Content-Type': 'application/json'}})
-      .then(function(rta){
-        return rta.data;
-      })
-      .catch(function(e){
-        return e;
-      })
-    }
-
-    function borrar(item){
-      return $http({
-            url: 'http://localhost:3333/usuarios/eliminar',
-            method: "DELETE",
+            url: 'http://localhost:3333/mail/enviarEntraListaNegra',
+            method: "POST",
             data: item,
             headers: {'Content-Type': 'application/json'}})
       .then(function(rta){
@@ -116,26 +79,34 @@ angular
       })
     }
 
-    function Create(user) {
-          
-      return usuarioPorNombreUsuario(user.username)
-                    .then(function (duplicateUser) {
-                        if (duplicateUser.data) {
-                            console.log("duplicateUser");
-                            return { success: false, message: 'Nombre de usuario "' + user.username + '" ya fue registrado' };
-                        } else {
+     function enviarReserva(item){
+      return $http({
+            url: 'http://localhost:3333/mail/enviarReserva',
+            method: "POST",
+            data: item,
+            headers: {'Content-Type': 'application/json'}})
+      .then(function(rta){
+        return rta.data;
+      })
+      .catch(function(e){
+        return e;
+      })
+    }
+      function enviarSaleListaNegra(item){
+      return $http({
+            url: 'http://localhost:3333/mail/enviarSaleListaNegra',
+            method: "POST",
+            data: item,
+            headers: {'Content-Type': 'application/json'}})
+      .then(function(rta){
+        return rta.data;
+      })
+      .catch(function(e){
+        return e;
+      })
+    }
 
-                           return alta(user)
-                            .then(function(rta){
-                              console.log(rta);
-                              return { success: true };
-                            })
-                        }
-                    })
-                    .catch(function(e){
-                        console.log(e);
-                       return e;
-                    })
-   }
+
+
 
 }]);

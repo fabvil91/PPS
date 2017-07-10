@@ -76,7 +76,7 @@ router.post('/mail/enviarContrasenia',function(req, res,next){
     });
 
     
-router.post('/mail/enviar',function(req, res,next){		
+router.post('/mail/enviarContactanos',function(req, res,next){		
 		
         // Create the transporter with the required configuration for Gmail        
         var transporter = nodemailer.createTransport({
@@ -116,6 +116,205 @@ router.post('/mail/enviar',function(req, res,next){
 
 	});
 
+    router.post('/mail/enviarCancelarOperacion',function(req, res,next){		
+		
+        // Create the transporter with the required configuration for Gmail        
+        var transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 465,
+            secure: true, // use SSL
+            auth: {
+                user: 'cinemarcomplejos@gmail.com',
+                pass: '2017pps2017'
+            }
+        });
 
+        // setup e-mail data
+        var mailOptions = {
+            from: '"Cinemar " <cinemarcomplejos@gmail.com>', // sender address (who sends)
+            to: req.body.usuario.email, // list of receivers (who receives)
+            subject: req.body.asunto, // Subject line          
+            html:   '<table style="font-family: Arial, Helvetica, sans-serif;"><tr><td align="center" style="background-color: #00438E;" ><h1 style="color:#5BC0DE;">CINEMAR</h1></td></tr><tr><td><table style="padding:5px"><tr><td><ul style="list-style: none;">'+
+    '<li><h3>Ha cancelado una '+req.body.operacion.funcion.transaccion.tipoTransaccion+'</h3></li>'+
+    '<li>'+req.body.usuario.userName+'</li>'+
+    '<li><p>Su '+req.body.operacion.funcion.transaccion.tipoTransaccion+' ha sido cancelada exitosamente.</p></li></ul></td><td><ul style="list-style: none;">'+
+    '<li><h3>Datos de '+req.body.operacion.funcion.transaccion.tipoTransaccion+':</h3></li><li><strong>Pelicula:</strong></li>'+
+    '<li>'+req.body.operacion.funcion.pelicula+'</li>'+
+    '<li>'+req.body.operacion.funcion.formato+","+req.body.operacion.funcion.idioma+'</li>'+
+    '<li>'+req.body.operacion.funcion.diaFormateado+'</li><br><li><strong>Entradas:</strong></li>'+   
+    '<li>Cantidad: '+req.body.operacion.funcion.cantidadAsientos+'</li>'+        
+    '<li>Precio total: $'+req.body.operacion.funcion.precioTotal+'</li></ul></td>'+
+    '</tr></table></td></tr><tr><td style="background-color: #00438E;"><br><br><br></td></tr></table>'
+        };
+
+        // send mail with defined transport object
+        transporter.sendMail(mailOptions, function(error, info){
+            if(error){
+                res.json(console.log(error));
+            }
+
+            res.json('Message sent: ' + info.response);
+        });
+
+	});
+router.post('/mail/enviarCompra',function(req, res,next){		
+		
+        // Create the transporter with the required configuration for Gmail        
+        var transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 465,
+            secure: true, // use SSL
+            auth: {
+                user: 'cinemarcomplejos@gmail.com',
+                pass: '2017pps2017'
+            }
+        });
+
+        // setup e-mail data
+        var mailOptions = {
+            from: '"Cinemar " <cinemarcomplejos@gmail.com>', // sender address (who sends)
+            to: req.body.usuario.email, // list of receivers (who receives)
+            subject: req.body.asunto, // Subject line          
+            html:   '<table style="font-family: Arial, Helvetica, sans-serif;"><tr><td align="center" style="background-color: #00438E;" ><h1 style="color:#5BC0DE;">CINEMAR</h1></td></tr><tr><td><table style="padding:5px"><tr><td><ul style="list-style: none;"><li><h3>Ha realizado una Compra</h3></li>'+
+    '<li>'+req.body.usuario.userName+'</li><li><p>Su Compra ha sido confirmada.</p></li><li><p>Sus entradas deberan ser retiradas antes del '+req.body.dia+' a las'+req.body.hora+'.<br>Pasado este tiempo, se lo considerara una cancelación y no podra retirarlas.</p></li></ul></td>'+
+    '<td><ul style="list-style: none;"><li><h3>Datos de Compra:</h3></li><li><strong>Pelicula:</strong></li>'+
+                               '<li>'+req.body.operacion.funcion.pelicula+'</li>'+
+                               '<li>'+req.body.operacion.funcion.formato+','+req.body.operacion.funcion.idioma+'</li>'+
+                               '<li>'+req.body.operacion.funcion.diaFormateado+'</li>'+
+                               '<br><li><strong>Entradas:</strong></li>'+ 
+                               '<li>Cantidad: '+req.body.operacion.funcion.cantidadAsientos+'</li>'+        
+                               '<li>Precio total: $'+req.body.operacion.funcion.precioTotal+'</li>'+           
+    '</ul></td></tr></table></td></tr><tr><td style="background-color: #00438E;"><br><br><br></td></tr></table>'
+        };
+
+        // send mail with defined transport object
+        transporter.sendMail(mailOptions, function(error, info){
+            if(error){
+                res.json(console.log(error));
+            }
+
+            res.json('Message sent: ' + info.response);
+        });
+
+	});
+router.post('/mail/enviarEntraListaNegra',function(req, res,next){		
+		
+        // Create the transporter with the required configuration for Gmail        
+        var transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 465,
+            secure: true, // use SSL
+            auth: {
+                user: 'cinemarcomplejos@gmail.com',
+                pass: '2017pps2017'
+            }
+        });
+
+        // setup e-mail data
+        var mailOptions = {
+            from: '"Cinemar " <cinemarcomplejos@gmail.com>', // sender address (who sends)
+            to: req.body.usuario.email, // list of receivers (who receives)
+            subject: req.body.asunto, // Subject line          
+            html:   '<table style="font-family: Arial, Helvetica, sans-serif;"><tr><td align="center" style="background-color: #00438E;" ><h1 style="color:#5BC0DE;">CINEMAR</h1></td></tr><tr><td><table style="padding:5px"><tr><td><ul style="list-style: none;"><li><h3>Ingreso a Lista Negra</h3></li>'+
+'<li>'+req.body.usuario.userName+'</li><li><p>Usted a sido ingresado a Lista Negra. Esto significa que no podra realizar Reservas hasta que salga de ella. Sin embargo, podra seguir realizando compras sin ningun problema.</p></li>'+      
+'</ul></td><td><ul style="list-style: none;"><li><h3>Datos de operación vencida:</h3></li><li><strong>Pelicula:</strong></li>'+
+'<li>'+req.body.operacion.funcion.pelicula+'</li>'+
+'<li>'+req.body.operacion.funcion.formato+','+req.body.operacion.funcion.idioma+'</li>'+
+'<li>'+req.body.operacion.funcion.diaFormateado+'</li><br><li><strong>Entradas:</strong></li>'+    
+'<li>Cantidad: '+req.body.operacion.funcion.cantidadAsientos+'</li>'+        
+'<li>Precio total: $'+req.body.operacion.funcion.precioTotal+'</li>'+  
+'<li><em>Monto Debido:</em> $'+req.body.operacion.montoDeuda+'</li>'+              
+'</ul></td></tr></table></td></tr><tr><td style="background-color: #00438E;"><br><br><br></td></tr></table>'
+        };
+
+        // send mail with defined transport object
+        transporter.sendMail(mailOptions, function(error, info){
+            if(error){
+                res.json(console.log(error));
+            }
+
+            res.json('Message sent: ' + info.response);
+        });
+
+	});
+    router.post('/mail/enviarReserva',function(req, res,next){		
+		var user = req.body.usuario;
+        var operacion = req.body.operacion;
+        // Create the transporter with the required configuration for Gmail        
+        var transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 465,
+            secure: true, // use SSL
+            auth: {
+                user: 'cinemarcomplejos@gmail.com',
+                pass: '2017pps2017'
+            }
+        });
+
+        // setup e-mail data
+        var mailOptions = {
+            from: '"Cinemar " <cinemarcomplejos@gmail.com>', // sender address (who sends)
+            to: user.email, // list of receivers (who receives)
+            subject: req.body.asunto, // Subject line          
+            html:  
+'<table style="font-family: Arial, Helvetica, sans-serif;"><tr><td align="center" style="background-color: #00438E;" ><h1 style="color:#5BC0DE;">CINEMAR</h1></td></tr><tr><td><table style="padding:5px"><tr><td><ul style="list-style: none;"><li><h3>Ha realizado una Reserva</h3></li>'+
+'<li>'+user.userName+'</li>'+
+'<li><p>Su Reserva ha sido confirmada.</p></li><li><p>Sus entradas deberan ser retiradas antes del '+req.body.dia+' a las '+operacion.funcion.hora+'. <br>De lo contrario, usted sera ingresado a Lista Negra<br> y no podra realizar nuevas reservas hasta abonar lo debido.<br>(%'+req.body.porcentajeListaNegra+' del precio total de la reserva.)</p></li>'+
+
+'</ul></td><td><ul style="list-style: none;"><li><h3>Datos de Reserva:</h3></li><li><strong>Pelicula:</strong></li>'+
+'<li>'+operacion.funcion.pelicula+'</li>'+
+'<li>'+operacion.funcion.formato+','+operacion.funcion.idioma+'</li>'+
+'<li>'+operacion.funcion.diaFormateado+'</li><br><li><strong>Entradas:</strong></li>'+  
+'<li>Cantidad: '+operacion.funcion.cantidadAsientos+'</li>'+     
+'<li>Precio total: $'+operacion.funcion.precioTotal+'</li>'+         
+'</ul></td></tr></table></td></tr><tr><td style="background-color: #00438E;"><br><br><br></td></tr></table>'
+
+
+        };
+
+        // send mail with defined transport object
+        transporter.sendMail(mailOptions, function(error, info){
+            if(error){
+                res.json(console.log(error));
+            }
+
+            res.json('Message sent: ' + info.response);
+        });
+
+	});
+    router.post('/mail/enviarSaleListaNegra',function(req, res,next){		
+		
+        // Create the transporter with the required configuration for Gmail        
+        var transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 465,
+            secure: true, // use SSL
+            auth: {
+                user: 'cinemarcomplejos@gmail.com',
+                pass: '2017pps2017'
+            }
+        });
+
+        // setup e-mail data
+        var mailOptions = {
+            from: '"Cinemar " <cinemarcomplejos@gmail.com>', // sender address (who sends)
+            to: req.body.usuario.email, // list of receivers (who receives)
+            subject: req.body.asunto, // Subject line          
+            html:   '<table style="font-family: Arial, Helvetica, sans-serif;"><tr><td align="center" style="background-color: #00438E;" ><h1 style="color:#5BC0DE;">CINEMAR</h1></td></tr><tr><td><table style="padding:5px"><tr><td><h3>Lista Negra</h3>'+
+'<p>'+req.body.usuario.userName+'</p>'+
+'<p>Usted a sido salido de Lista Negra. Podra realizar reservas normalmente.</p></td></tr></table></td></tr><tr><td style="background-color: #00438E;"><br><br><br></td></tr></table>'
+ 
+        };
+
+        // send mail with defined transport object
+        transporter.sendMail(mailOptions, function(error, info){
+            if(error){
+                res.json(console.log(error));
+            }
+
+            res.json('Message sent: ' + info.response);
+        });
+
+	});
 
 module.exports = router;

@@ -3,8 +3,8 @@
  
     angular
         .module('cine')
-        .controller('usuarioFinalizarPagoCtrl', ['$scope','$location','Datos','$rootScope','Tarjetas','Bancos','Usuarios','Operaciones', '$window',
-        function ($scope,$location,Datos,$rootScope,Tarjetas,Bancos,Usuarios,Operaciones,$window) {
+        .controller('usuarioFinalizarPagoCtrl', ['$scope','$location','Datos','$rootScope','Tarjetas','Bancos','Usuarios','Operaciones', '$window', 'Mail',
+        function ($scope,$location,Datos,$rootScope,Tarjetas,Bancos,Usuarios,Operaciones,$window,Mail) {
         
                 $scope.operacion = Datos.listado();
     
@@ -53,14 +53,31 @@
                                          Operaciones.modificarEstadoMonto($scope.operacion)
                                           .then(function(datos){
                                             console.log(datos);
-                                            Usuarios.modificarListaNegra($scope.usuario)
-                                              .then(function(datos){
-                                                console.log(datos);
-                                                $location.path('usuarioHistorial');
-                                                })
-                                            .catch(function(e){
-                                            console.log(e);
-                                            })   
+                                            if($scope.operacion.estado=="Retirado"){
+                                                var item = {};
+                                                item.usuario=$scope.usuario;
+                                                item.operacion=$scope.operacion;
+                                                console.log("!!!!!!!ITEM!!!!!!!!!!!!!");
+                                                console.log(item);
+                                                Mail.enviarSaleListaNegra(item); 
+                                                Usuarios.modificarListaNegra($scope.usuario)
+                                                .then(function(datos){
+                                                    console.log(datos);
+                                                    $location.path('usuarioHistorial');
+                                                    })
+                                                    .catch(function(e){
+                                                    console.log(e);
+                                                    }) 
+                                            }
+                                            if($scope.operacion.estado=="Pagado"){
+                                                 var item = {};
+                                                item.usuario=$scope.usuario;
+                                                item.operacion=$scope.operacion;
+                                                console.log("!!!!!!!ITEM!!!!!!!!!!!!!");
+                                                console.log(item);
+                                                Mail.enviarCompra(item); 
+                                            }
+                                              
                                               })
                                         .catch(function(e){
                                         console.log(e);
