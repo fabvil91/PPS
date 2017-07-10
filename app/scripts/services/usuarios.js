@@ -191,7 +191,8 @@ angular
           
       return usuarioPorNombreUsuario(user.username)
                     .then(function (duplicateUser) {
-                        if (duplicateUser.data) {
+                        console.log(duplicateUser);
+                        if (duplicateUser.length != 0) {
                             console.log("duplicateUser");
                             return { success: false, message: 'Nombre de usuario "' + user.username + '" ya fue registrado' };
                         } else {
