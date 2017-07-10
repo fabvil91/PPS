@@ -1,9 +1,9 @@
 (function(){
 	'use strict';
 	angular.module('cine')
-	.controller('empleadoFuncionesCtrl', ['$rootScope','$scope','Datos','$sce','Funciones','$timeout','$location','$state',
-    function($rootScope,$scope,Datos,$sce,Funciones,$timeout,$location,$state){
-	 
+	.controller('empleadoFuncionesCtrl', ['$rootScope','$scope','Datos','$sce','Funciones','$timeout','$location','$state','$window',
+    function($rootScope,$scope,Datos,$sce,Funciones,$timeout,$location,$state,$window){
+	  $scope.reloadPage = function(){$window.location.reload();}
     $scope.dias = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
 
     function addMinutes(date, minutes) {
@@ -37,7 +37,7 @@
        console.log(e);
      })
     }
-    $timeout(list, 100);
+    $timeout(list, 200);
     
    	 $scope.borrar = function borrar(item) {
       console.log(item);
@@ -65,13 +65,14 @@
            .then(function(datos){
             console.log(datos);
 
-            var pos = $scope.funciones.indexOf(funcionesABorrar[i]);
-            $scope.funciones.splice(pos, 1);
+            //var pos = $scope.funciones.indexOf(funcionesABorrar[i]);
+            //$scope.funciones.splice(pos, 1);
            })
            .catch(function(e){
              console.log(e);
            });
-      }   
+      }
+      $timeout($scope.reloadPage, 200);   
     }
 
     $scope.formatear = function(funcion){         
@@ -80,7 +81,7 @@
 
     $scope.formatearHora = function(funcion){          
       var fecha = new Date(funcion.hora);
-      return fecha.getHours() + ":" + (fecha.getMinutes() == "0"? "00" : fecha.getMinutes());
+      return fecha.getHours() + ":" + (fecha.getMinutes() == "0"? "00" : fecha.getMinutes() < 10? "0"+fecha.getMinutes() : fecha.getMinutes());
     } 
 
      $scope.alta = function alta() {      
