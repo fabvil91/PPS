@@ -2,16 +2,25 @@
 	'use strict';
 	angular
 	.module('cine')
-	.controller('finalizarOperacionCtrl', ['$scope','Datos', '$rootScope', '$window','Usuarios','Operaciones','Funciones', 
-	function($scope,Datos,$rootScope,$window,Usuarios,Operaciones,Funciones){		
+	.controller('finalizarOperacionCtrl', ['$scope','Datos', '$rootScope', '$window','Usuarios','Operaciones','Funciones','Constantes','Mail', 
+	function($scope,Datos,$rootScope,$window,Usuarios,Operaciones,Funciones,Constantes,Mail){		
 		$scope.funcion = Datos.listado();			
 		
 		$scope.imprimir=function(){
 			$window.print();
 		};
 		
-		$scope.formatearHora = function(funcion){        	
+		$scope.formatearHora = function(funcion){
+		
 			var fecha = new Date(funcion.hora);
+			
+			return fecha.getHours() + ":" + (fecha.getMinutes() == "0"? "00" : fecha.getMinutes());
+		}
+		$scope.formatearHoraMail = function(funcion){ 
+			var diff=30;        	       	
+			var fecha = new Date(funcion.hora);
+			fecha = new Date(fecha.getTime() + diff*60000);
+			
 			return fecha.getHours() + ":" + (fecha.getMinutes() == "0"? "00" : fecha.getMinutes());
 		}
 
@@ -107,6 +116,7 @@
 			}
 			console.log(operacion); 
 
+
 			Operaciones.alta(operacion)
 	       .then(function(datos){
 	        console.log(datos);
@@ -128,10 +138,37 @@
 		       .then(function(datos){
 		        console.log(datos);
 		         })
+
+				 
 		       .catch(function(e){
 		        console.log(e);
 		       }); 
+			   //manda Mail
+			    var item = {};
+                   item.usuario=user;
+                   item.operacion=operacion;
+				   item.hora=$scope.formatearHoraMail(operacion.funcion);
+			
+			if(operacion.funcion.transaccion.tipoTransaccion=="reserva"){
+				Constantes.listado()
+				.then(function(datos){
+		        console.log(datos);
+					item.porcentajeListaNegra=datos[0].porcentajeListaNegra;
+					console.log("!!!!!!!ITEM!!!!!!!!!!!!!");
+                    console.log(item);
+					Mail.enviarReserva(item);
 
+		         })
+		       .catch(function(e){
+		        console.log(e);
+		       }); 
+                    
+			}
+			if(operacion.funcion.transaccion.tipoTransaccion=="compra"){
+				console.log("!!!!!!!ITEM!!!!!!!!!!!!!");
+                console.log(item);
+				Mail.enviarCompra(item); 
+			}
 	       })
 	       .catch(function(e){
 	        console.log(e);
