@@ -61,7 +61,8 @@
                     <div class="col-md-3 form-group">
                         <label id="label-white" for="btngroup-todo" style="color:transparent">todo</label>
                         <div class="btngroup" id="btngroup-todo">
-                            <button class="btn btn-primary filter-button" data-filter="todo" ng-click="limpiarFiltro()">Ver Todo</button>
+                            <!--<button class="btn btn-primary filter-button" data-filter="todo" ng-click="limpiarFiltro()">Ver Todo</button>-->
+                            <button class="btn btn-primary filter-button" data-filter="todo" ng-click="buscarFunciones()">Buscar funciones</button>
                         </div>
                     </div>                    
                     </form>
@@ -73,12 +74,15 @@
     <!-- LISTA DE PELICULAS -->
         <div class="row" id="back-white">
            <div class="col-sm-2"></div>
-           <div class="col-sm-8 panel panel-default">                                                                                                                              
+
+           <div class="col-sm-8 panel panel-default">
+                <div ng-if="funciones.length != 0">                                                                                                         
                  <div class="panel-body">                                                            
                   <!-- PELICULAS-->
                   <ul class="list-inline">
-                  <span ng-show="funciones.length === 0">No hay funciones disponibles</span>
-                  <li ng-repeat="funcion in funciones | filter:{ formato:{_id:filtro.formato}, idioma:{_id:filtro.idioma}, complejo:{_id: filtro.complejo},diaTime: filtro.diaLocale } | unique:'pelicula.nombre'">
+               <!--   <span ng-show="funciones.length === 0">No hay funciones disponibles</span>
+                  <li ng-repeat="funcion in funciones | filter:{ formato:{_id:filtro.formato}, idioma:{_id:filtro.idioma}, complejo:{_id: filtro.complejo},diaTime: filtro.diaLocale } | unique:'pelicula.nombre'">-->
+                  <li ng-repeat="funcion in funciones | filter:{ diaTime: filtro.diaLocale } | unique:'pelicula.nombre'"> 
                       <div class="movie text-center">
                         <a href="#" ng-click="cargar(funcion)" ui-sref="detallePelicula">
                           <img class="img-responsive" ng-src="{{funcion.pelicula.imageUrl}}" alt="poster"  class="img-thumbnail img-poster">                                   
@@ -87,7 +91,9 @@
                       </div>
                   </li>
                   </ul>                   
-                </div>            
+                </div>    
+             </div>  
+             <div ng-if="funciones.length==0">Utilice los filtros para buscar funciones y presione el botón</div>         
             <div class="col-sm-2"></div>
         </div>
 
@@ -110,8 +116,7 @@
                         <span ng-show="peliculasActivas.length === 0">No hay funciones disponibles</span>
                         <li ng-repeat="pelicula in peliculasActivas | orderBy:'-cantEntradas'">
                             <div class="movie text-center">
-                                <a href="#" ng-click="cargar(pelicula.funciones[0])" ui-sref="detallePelicula">
-                                   
+                                <a href="#" ng-click="cargarMas(pelicula)" ui-sref="detallePelicula">                                  
                                 <img class="img-responsive" ng-src="{{pelicula.imageUrl}}" alt="poster"  class="img-thumbnail img-poster">                                   
                                 <p>{{pelicula.nombre}}</p>
                                 </a>
@@ -130,7 +135,7 @@
          <!-- PROXIMAMENTE -->
          <div class="container deepBlue">                
                 <div class="row text-center">
-                    <h2 id="h-white">Proximos Estrenos</h2>
+                    <h2 id="h-white">Próximos Estrenos</h2>
                 </div>
         </div>
        <div class="row" id="back-white">

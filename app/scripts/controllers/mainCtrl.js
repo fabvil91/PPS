@@ -3,7 +3,7 @@
 	angular.module('cine')
 	.controller('mainCtrl', ['$rootScope','$scope','Datos','Complejos','Formatos','Idiomas','Slides','Funciones','Peliculas','Operaciones',function($rootScope,$scope,Datos,Complejos,Formatos,Idiomas,Slides,Funciones,Peliculas,Operaciones){		
 		 $scope.filtro = {};
-
+		 $scope.funciones = [];
 		 $scope.myInterval = 3000;
 
 		 Complejos.listado()
@@ -25,27 +25,7 @@
 				    .then(function(datos){
 				     	console.log(datos);
 				        $scope.slides = datos;
-
-				        Funciones.listado()
-					     .then(function(datos){
-					     	console.log(datos);
-
-					        $scope.funciones = datos;
-					        /* Filtramos solo las funciones desde la fecha actual */
-					        (function(){						
-							var funcionesDesdeAhora = [];
-
-							for (var i = $scope.funciones.length - 1; i >= 0; i--) {				
-								$scope.funciones[i].diaTime = new Date($scope.funciones[i].dia).getTime();
-
-								if(new Date($scope.funciones[i].hora).getTime() >= new Date().getTime()){
-									funcionesDesdeAhora.push($scope.funciones[i]);
-								}
-							}
-							$scope.funciones = funcionesDesdeAhora;
-							console.log($scope.funciones);			
-							})();
-							
+				       							
 							/* Suma dias a una fecha */
 							Date.prototype.addDays = function(days) {
 					        var dat = new Date(this.valueOf())
@@ -80,7 +60,6 @@
 								}						
 							})(); 
 
-
 							//MAS VISTAS
 							Peliculas.listado()
 							.then(function(datos){
@@ -90,10 +69,7 @@
 								$scope.peliculasActivas = peliculas.filter(function(item){
 									return item.estado=="Activa";
 								});
-								
-
-
-								
+																
 								console.log("PELICULAS ACTIVAS");
 								console.log($scope.peliculasActivas);
 
@@ -139,15 +115,18 @@
 									$scope.peliculasActivas=$scope.peliculasActivas.slice(0,cantPeliculas);
 
 									//Carga funciones de la pelicula, para poder pasarselo a detallePelicula
-									$scope.peliculasActivas.forEach(function(peli){
-										var funcionesPeli = [];
-										$scope.funciones.forEach(function(item){
-											if(item.pelicula._id==peli._id){
-												funcionesPeli.push(item);
-											}
-										});	
-										peli.funciones=funcionesPeli;									
-									});
+								//	if($scope.funciones != null){
+								//	$scope.peliculasActivas.forEach(function(peli){
+									//	var funcionesPeli = [];
+									//	$scope.funciones.forEach(function(item){
+									//		if(item.pelicula._id==peli._id){
+									//			funcionesPeli.push(item);
+									//		}
+									//	});	
+										//peli.funciones=funcionesPeli;									
+											
+								//	});
+								//	}
 
 									//PROXIMOS ESTRENOS
 									$scope.estrenos = peliculas.filter(function(item){
@@ -166,11 +145,8 @@
 										}else{
 										pelicula.mes= meses[fecha.getMonth()];
 										}										
-									}); 
-
-									
-
-								 })
+									}); 									
+						  })
 					     .catch(function(e){
 					       console.log(e);
 					     });
@@ -178,7 +154,6 @@
 					     .catch(function(e){
 					       console.log(e);
 					     });
-
 					     })
 					     .catch(function(e){
 					       console.log(e);
@@ -195,10 +170,33 @@
 		    .catch(function(e){
 		       console.log(e);
 		    })
-	     })
-	     .catch(function(e){
-	       console.log(e);
-	     })
+	     
+	     $scope.buscarFunciones = function(){
+	     				console.log($scope.filtro);     
+					    Funciones.listadoFiltradoMain($scope.filtro)
+					    .then(function(datos){
+					     	console.log(datos);
+
+					        $scope.funciones = datos;
+					        /* Filtramos solo las funciones desde la fecha actual */
+					       						
+							var funcionesDesdeAhora = [];
+
+							for (var i = $scope.funciones.length - 1; i >= 0; i--) {				
+								$scope.funciones[i].diaTime = new Date($scope.funciones[i].dia).getTime();
+
+								if(new Date($scope.funciones[i].hora).getTime() >= new Date().getTime()){
+									funcionesDesdeAhora.push($scope.funciones[i]);
+								}
+							}
+							$scope.funciones = funcionesDesdeAhora;
+							console.log($scope.funciones);			
+							
+			  })
+		     .catch(function(e){
+		       console.log(e);
+		     })
+	     }
 	
 		$scope.filtrarDia = function(){									
 			var indice = $scope.fechasDias.indexOf($scope.filtro.dia);			
@@ -223,6 +221,17 @@
 			
 			console.log(funcion);
 			Datos.cargar(funcion);
+		}
+
+		$scope.cargarMas = function(pelicula){
+			/*console.log($scope.filtro);													
+			$scope.filtro.formato == null ? funcion.filtroFormato = false : funcion.filtroFormato = true;
+			$scope.filtro.idioma == null ? funcion.filtroIdioma = false : funcion.filtroIdioma = true;
+			$scope.filtro.complejo == null ? funcion.filtroComplejo = false : funcion.filtroComplejo = true;
+			$scope.filtro.diaLocale == null ? funcion.filtroDia = false : funcion.filtroDia = true;*/
+			
+			console.log(pelicula);
+			Datos.cargar(pelicula);
 		}
 
 		$scope.cargarPelicula=function(pelicula){

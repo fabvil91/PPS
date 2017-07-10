@@ -4,6 +4,7 @@ angular
 
     this.listado = listado;
     this.listadoFiltrado = listadoFiltrado;
+    this.listadoFiltradoMain = listadoFiltradoMain;
     this.alta = alta;
     this.modificar = modificar;
     this.modificarSala = modificarSala;
@@ -24,6 +25,20 @@ angular
     function listadoFiltrado(item){
       return $http({
             url: 'http://localhost:3333/funciones/filtrar',
+            method: "POST",
+            data: item,
+            headers: {'Content-Type': 'application/json'}})
+      .then(function(rta){
+        return rta.data;
+      })
+      .catch(function(e){
+        return e;
+      })
+    }
+
+    function listadoFiltradoMain(item){
+      return $http({
+            url: 'http://localhost:3333/funciones/filtrarMain',
             method: "POST",
             data: item,
             headers: {'Content-Type': 'application/json'}})
