@@ -84,13 +84,13 @@
                                 <div class="form-group" ng-if="promocion.tipoPromocion=='Tarjeta'" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
                                     <label>Banco</label>
                                     <select ng-model="promocion.banco">  
-                                    <option ng-repeat="x.nombre in bancos">{{x}}</option> 
+                                    <option ng-repeat="x in bancos">{{x.nombre}}</option> 
                                     </select>            
                                 </div>  
                                 <div class="form-group" ng-if="promocion.tipoPromocion=='Tarjeta'" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
                                     <label>Tarjeta</label>
                                     <select ng-model="promocion.tarjeta">  
-                                    <option ng-repeat="x.nombre in tarjetas">{{x}}</option> 
+                                    <option ng-repeat="x in tarjetas">{{x.nombre}}</option> 
                                     </select>            
                                 </div> 
                               
