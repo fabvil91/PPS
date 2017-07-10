@@ -5,10 +5,10 @@
         <nav class="navbar navbar-default">
             <div class="container">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">1. Entradas</a></li>
-                    <li class="active"><a href="#">2. Ubicaciones</a></li>
-                    <li ><a href="#">3. Pago</a></li> 
-                    <li><a href="#">4. Confirmacion</a></li>
+                    <li><a >1. Entradas</a></li>
+                    <li class="active"><a >2. Ubicaciones</a></li>
+                    <li ><a>3. Pago</a></li> 
+                    <li><a>4. Confirmacion</a></li>
                 </ul>
             </div>
         </nav>
@@ -47,10 +47,7 @@
                   </div>
               <div style="color:red;">{{countDownLeft | secondsToDateTime | date:'HH:mm:ss'}}</div>
               </div>
-              <div class="pull-right">
-                      <input type="button" class="btn btn-info" value="Cancelar" ui-sref="main">
-                      <input type="button" class="btn btn-info" value="Continuar" ng-if="contarSeleccionados() == funcion.cantidadAsientos" ng-click="cargar(funcion)">                      
-                </div>
+              
           </div>
       </div> 
       
@@ -78,7 +75,11 @@
               </div>
             </div>
           </div>
-        
+        <div class="pull-right">
+          <input type="button" class="btn btn-info" value="Continuar" ng-if="contarSeleccionados() == funcion.cantidadAsientos" ng-click="cargar(funcion)">                      
+          <input type="button" class="btn btn-info" value="Cancelar" ui-sref="main">
+        </div>
+        <br>
 
   
    </div>

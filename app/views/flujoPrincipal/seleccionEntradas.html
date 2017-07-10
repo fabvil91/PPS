@@ -4,11 +4,11 @@
     <div class = "col-md-8">
         <nav class="navbar navbar-default">
             <div class="container">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">1. Entradas</a></li>
-                    <li><a href="#">2. Ubicaciones</a></li>
-                    <li><a href="#">3. Pago</a></li> 
-                    <li><a href="#">4. Confirmacion</a></li>
+                <ul class="nav navbar-nav" >
+                    <li class="active"><a >1. Entradas</a></li>
+                    <li  ><a >2. Ubicaciones</a></li>
+                    <li  ><a >3. Pago</a></li> 
+                    <li  ><a >4. Confirmacion</a></li>
                 </ul>
             </div>
         </nav> 
@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="row" ng-hide="usuario.cuentaCorriente==null || usuario.cuentaCorriente==0 || hideCuenta">
-            <div class="container">
+            <div class="container-fluid">
             <div class="col-sx-6">
                 <div class="panel panel-primary">
                     <div class="panel-heading">Cuenta Corriente</div>
@@ -54,10 +54,10 @@
             </div>
         </div> 
          <div class="row" ng-show="promocion!=null&&promoDia==null">
-            <div class="container">
+            <div class="container-fluid">
             <div class="col-sx-6">
                 <div class="panel panel-primary">
-                    <div class="panel-heading">Cuenta Corriente</div>
+                    <div class="panel-heading">Promo</div>
                     <div class="panel-body text-center">
                         <p>{{promocion.nombre}} es hoy! {{promocion.descripcion}}!</p>
                         <p>Si utiliza esta promocion, no podra utilizar promociones de tarjeta.</p>
@@ -105,20 +105,28 @@
                             <td>
                                 <p>$ {{precios.subtotal}}</p>
                             </td> 
-                        </tr>                       
+                        </tr>    
                     </tbody>
                 </table>
-                <div class="form-group form-inline centered">
-                    <label for="total">Total:</label>
-                    <input type="text" name="total" class="form-control" ng-model="total" disabled>
-                
-                    <input type="button" class="btn btn-info" value="Cancelar" ui-sref="main">
-              
-                    <input type="button" class="btn btn-info" value="Continuar" ng-hide="transaccion.tipoTransaccion==null || cantidadTotal == 0" ui-sref="salas" ng-click="cargar(funcion)">
-               </div>
+
+                        <div class="form-group " >
+                            <div class="form-inline"style="float:left">
+                            <label for="total">Total:</label>
+                            <input type="text" name="total" class="form-control" ng-model="total" disabled>
+                            </div>
+                            <div class="form-inline" style="float:right">
+                               
+                            <input type="button" class="btn btn-info" value="Continuar" ng-hide="transaccion.tipoTransaccion==null || cantidadTotal == 0" ui-sref="salas" ng-click="cargar(funcion)">
+                            <input type="button" class="btn btn-info" value="Cancelar" ui-sref="main">       
+                            </div>
+                        
+                        </div>
+                   
+               
                 
             </form>
         </div>
+        <br>
     </div>
     <div class="col-sx-1 col-md-2">
     </div>

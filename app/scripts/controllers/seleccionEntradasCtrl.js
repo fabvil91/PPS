@@ -28,7 +28,7 @@
 							$scope.cantidadTotal = 0;
 							$scope.hideCuenta=false;
 							$scope.descuento=false;
-							$scope.promocion={};
+							$scope.promocion={}; 
 							$scope.promoDia=null;						
 
 							$scope.funcion = Datos.listado();

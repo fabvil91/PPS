@@ -18,7 +18,8 @@
 					$scope.entradas = [];
 					$scope.total = 0;
 					$scope.cantidadTotal = 0;
-					$scope.promocion={};
+					$scope.promocion={};					
+					$scope.promoDia=null;	
 
 					$scope.funcion = Datos.listado();
 
@@ -26,31 +27,28 @@
 						return (element.complejo.nombre === $scope.funcion.complejo.nombre && element.formato.nombre === $scope.funcion.formato.nombre);
 					});
 
-					(function(){
-						var promocion = null;
-						for (var i = $scope.promociones.length - 1; i >= 0; i--) {
-							if ($scope.promociones[i].diaSemana == new Date($scope.funcion.dia).getDay()){
-								promocion = $scope.promociones[i];
-								break;
+					$scope.usarPromo=function(){
+								$scope.promoDia=true;
+								for (var i = $scope.preciosFiltrados.length - 1; i >= 0; i--) {
+									$scope.preciosFiltrados[i].cantidad = 0;
+									$scope.preciosFiltrados[i].subtotal = 0;
+
+									if($scope.promocion != null && ($scope.preciosFiltrados[i].tipo == $scope.promocion.tipoEntrada || $scope.promocion.tipoEntrada=="Todas")){
+										
+										if($scope.promocion.tipoDescuento=="Porcentaje"){
+											$scope.preciosFiltrados[i].descuento = $scope.preciosFiltrados[i].monto * ($scope.promocion.porcentaje / 100);
+											$scope.preciosFiltrados[i].monto=$scope.preciosFiltrados[i].monto-$scope.preciosFiltrados[i].descuento;
+										}
+
+										
+									}
+								}
+								console.log("Precios Filtrados");
+								console.log($scope.preciosFiltrados);
 							}
-						}
-						console.log(promocion);
-						for (var i = $scope.preciosFiltrados.length - 1; i >= 0; i--) {
-							$scope.preciosFiltrados[i].cantidad = 0;
-							$scope.preciosFiltrados[i].subtotal = 0;
-
-							if($scope.preciosFiltrados[i].tipo == 'Entrada General' && promocion != null){
-								$scope.preciosFiltrados[i].tipoOriginal = 'Entrada General';
-								$scope.preciosFiltrados[i].tipo = promocion.nombre;
-
-								$scope.preciosFiltrados[i].montoOriginal = $scope.preciosFiltrados[i].monto;
-								$scope.preciosFiltrados[i].monto = $scope.preciosFiltrados[i].monto * (promocion.porcentaje / 100);
-
-								$scope.preciosFiltrados[i].promocion = promocion;
+							$scope.noUsarPromo=function(){
+								$scope.promoDia=false;
 							}
-						}
-						console.log($scope.preciosFiltrados);
-					})();
 
 					$scope.formatearHora = function(funcion){        	
 			        	var fecha = new Date(funcion.hora);

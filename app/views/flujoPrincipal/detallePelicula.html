@@ -86,8 +86,8 @@
                               <!--       <a href="#" ui-sref="salas" ng-click="cargar(funcion)">   -->
                                <ul class="list-inline">
                                    <li ng-repeat="funcion in value" class="pill-container">    
-                                       <div class="blue-pill text-center">
-                                            <a href="#"  ng-click="cargar(funcion)" ui-sref="seleccionEntradas"> 
+                                       <div class="blue-pill text-center" ng-click="cargar(funcion)" ui-sref="seleccionEntradas">
+                                            <a href="#"  > 
                                             {{ formatearHora(funcion) }}</a> 
                                        </div>
                                    </li>

@@ -24,10 +24,10 @@
     <nav class="navbar navbar-default">
         <div class="container">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">1. Entradas</a></li>
-                <li><a href="#">2. Ubicaciones</a></li>
-                <li><a href="#">3. Pago</a></li> 
-                <li><a href="#">4. Confirmacion</a></li>
+                <li class="active "><a >1. Entradas</a></li>
+                <li><a >2. Ubicaciones</a></li>
+                <li><a >3. Pago</a></li> 
+                <li><a >4. Confirmacion</a></li>
             </ul>
         </div>
     </nav>
@@ -42,7 +42,7 @@
     <div class="col-sx-1 col-md-2">
     </div>
     <div class="col-sx-10 col-md-8 container white">
-    
+     
         <div class="detallesFuncion">
             <p>Pelicula: {{funcion.pelicula.nombre}} - {{funcion.idioma.nombre}}</p>
             <p>Funcion: {{funcion.diaFormateado}} -  {{ formatearHora(funcion) }}</p>
@@ -53,6 +53,24 @@
             <p>Seleccione la cantidad y el tipo de tickets a comprar.</p>
             <p>Usted puede comprar un maximo de 6 tickets por transaccion.</p>
             <p>El ticket Niño se considera para niños de 3 a 12 años.</p>
+        </div> 
+        <div class="row" ng-show="promocion!=null&&promoDia==null">
+            <div class="container-fluid">
+            <div class="col-sx-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Promo</div>
+                    <div class="panel-body text-center">
+                        <p>{{promocion.nombre}} es hoy! {{promocion.descripcion}}!</p>
+                        <p>Si utiliza esta promocion, no podra utilizar promociones de tarjeta.</p>
+                        <p>¿Desea utilizarla?</p>
+                        <div class="row">                        
+                            <button type="button" class="btn btn-primary" ng-click="usarPromo()">Aceptar</button>                            
+                            <button type="button" class="btn btn-primary" ng-click="noUsarPromo()">Rechazar</button>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
         </div> 
         <div>
             <form class="entradas">
