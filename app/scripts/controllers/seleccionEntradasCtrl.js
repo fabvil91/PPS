@@ -36,6 +36,11 @@
 							$scope.preciosFiltrados = $scope.precios.filter(function(element){
 									return (element.complejo.nombre === $scope.funcion.complejo.nombre && element.formato.nombre === $scope.funcion.formato.nombre);
 							});
+
+							for (var i = 0; i < $scope.preciosFiltrados.length; i++) {
+									$scope.preciosFiltrados[i].cantidad = 0;
+									$scope.preciosFiltrados[i].subtotal = 0;
+							}
 							
 							(function(){
 								//carga solo la primera promocion que sea del dia actual
@@ -104,7 +109,8 @@
 		       console.log(e);
 		     })
 		
-		$scope.agregarEntrada = function(precio){	
+		$scope.agregarEntrada = function(precio){
+		console.log(precio);
 			if($scope.cantidadTotal == 6){		
 				$scope.mensaje = "Puede seleccionar un máximo de 6 entradas"
 			}else{	

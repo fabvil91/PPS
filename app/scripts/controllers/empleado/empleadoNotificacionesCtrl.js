@@ -149,7 +149,7 @@
                                     console.log(funcionesProximas);
 
                                     for (var i = 0; i < funcionesProximas.length; i++) {
-                                        if(i == 3) break;                                        
+                                        //if(i == 3) break;                                        
                                          Funciones.alta(funcionesProximas[i])
                                         .then(function(datos){
                                             console.log(datos);
