@@ -78,11 +78,16 @@
                         <div class="panel-heading">
                             {{ formatear(key) }}  
                         </div>
-                        <div class="panel-body" >
+                        <div class="panel-body "  >
                               <!--       <a href="#" ui-sref="salas" ng-click="cargar(funcion)">   -->
-                            <a href="#" ng-repeat="funcion in value" ng-click="cargar(funcion)" ui-sref="seleccionEntradas"> 
-                               {{ formatearHora(funcion) }}
-                            </a> 
+                               <ul class="list-inline">
+                                   <li ng-repeat="funcion in value" class="pill-container">    
+                                       <div class="blue-pill text-center">
+                                            <a href="#"  ng-click="cargar(funcion)" ui-sref="seleccionEntradas"> 
+                                            {{ formatearHora(funcion) }}</a> 
+                                       </div>
+                                   </li>
+                               </ul>
                         </div>
                     </div>
                 </div>

@@ -379,3 +379,31 @@ display:block;
      border-color:#8e0e00 !important;
      background-color:#540c05 !important;
 }
+
+.blue-pill{
+  background-color: #7BB9FF;
+    border-color:#1367c4;
+    border-style: solid;
+    border-width: 1pt;
+  padding:4px 10px 4px 4px;
+  text-align: center;
+  border-radius: 3px;
+  
+}
+
+.blue-pill:hover{
+  background-color: #1367c4;
+  padding:4px 10px 4px 4px;
+  text-align: center;
+  border-radius: 3px;
+
+  
+}
+.pill-container{
+    padding: 3px;
+}
+
+.blue-pill > a{
+    color:white;
+    text-decoration: none;
+}
