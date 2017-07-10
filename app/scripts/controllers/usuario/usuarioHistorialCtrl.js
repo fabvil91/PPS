@@ -60,6 +60,7 @@
                 var porcentajeDeuda = 0.6; //donde lo guarda desde configuracion de administrador?
 
                 //Operaciones No retiradas (estado == Reservado && fechaActual > funcion.hora+30' )
+                
                 $scope.noRetiradas = $scope.operaciones.filter(function(element){
                   return (element.estado === "ReservaVencida");
                 });
@@ -80,6 +81,25 @@
                   return (element.estado === "Retirado" || element.estado==="Cancelado");
                 });
 
+
+                if($scope.noRetiradas.length==0){
+                  if($scope.usuario.listaNegra){
+                    $scope.usuario.listaNegra=false;
+                      var item = {};                  
+                      item.usuario=$scope.usuario;
+                      console.log("!!!!!!!ITEM!!!!!!!!!!!!!");
+                      console.log(item);
+                      Usuarios.modificarListaNegra($scope.usuario)
+                      .then(function(datos){ 
+                          Mail.enviarSaleListaNegra(item); 
+                        })
+                      .catch(function(e){
+                          console.log(e);
+                      });
+
+                }}
+                
+               
                 
                
 
@@ -285,6 +305,8 @@
          
 
         }
+
+         
 	 
     }])
 })();

@@ -5,7 +5,13 @@
         .module('cine')
         .controller('usuarioFinalizarPagoCtrl', ['$scope','$location','Datos','$rootScope','Tarjetas','Bancos','Usuarios','Operaciones', '$window', 'Mail',
         function ($scope,$location,Datos,$rootScope,Tarjetas,Bancos,Usuarios,Operaciones,$window,Mail) {
-        
+        $scope.formatearHoraMail = function(funcion){ 
+			var diff=30;        	       	
+			var fecha = new Date(funcion.hora);
+			fecha = new Date(fecha.getTime() + diff*60000);
+			
+			return fecha.getHours() + ":" + (fecha.getMinutes() == "0"? "00" : fecha.getMinutes());
+		}
                 $scope.operacion = Datos.listado();
     
 
@@ -47,35 +53,33 @@
                                         if($scope.operacion.estado=="Reservado"){
                                             $scope.operacion.estado="Pagado";
                                         }
-                                        $scope.usuario.listaNegra=false;
                                         $scope.operacion.montoDeuda=0;
                                         
                                          Operaciones.modificarEstadoMonto($scope.operacion)
                                           .then(function(datos){
                                             console.log(datos);
+                                            //deberia hacer mail + modificarListaNegra solo cuando no hay reservasvencidas restantes, mover a historial
                                             if($scope.operacion.estado=="Retirado"){
                                                 var item = {};
                                                 item.usuario=$scope.usuario;
                                                 item.operacion=$scope.operacion;
+                                                item.hora=$scope.formatearHoraMail($scope.operacion.funcion);
                                                 console.log("!!!!!!!ITEM!!!!!!!!!!!!!");
                                                 console.log(item);
-                                                Mail.enviarSaleListaNegra(item); 
-                                                Usuarios.modificarListaNegra($scope.usuario)
-                                                .then(function(datos){
-                                                    console.log(datos);
+                                                Mail.enviarPagoReservaVencida(item); 
+                                               
                                                     $location.path('usuarioHistorial');
-                                                    })
-                                                    .catch(function(e){
-                                                    console.log(e);
-                                                    }) 
+                                                   
                                             }
                                             if($scope.operacion.estado=="Pagado"){
                                                  var item = {};
                                                 item.usuario=$scope.usuario;
                                                 item.operacion=$scope.operacion;
+                                                item.hora=$scope.formatearHoraMail($scope.operacion.funcion);
                                                 console.log("!!!!!!!ITEM!!!!!!!!!!!!!");
                                                 console.log(item);
                                                 Mail.enviarCompra(item); 
+                                                 $location.path('usuarioHistorial');
                                             }
                                               
                                               })

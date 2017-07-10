@@ -10,8 +10,17 @@
 			$window.print();
 		};
 		
-		$scope.formatearHora = function(funcion){        	
+		$scope.formatearHora = function(funcion){
+		
 			var fecha = new Date(funcion.hora);
+			
+			return fecha.getHours() + ":" + (fecha.getMinutes() == "0"? "00" : fecha.getMinutes());
+		}
+		$scope.formatearHoraMail = function(funcion){ 
+			var diff=30;        	       	
+			var fecha = new Date(funcion.hora);
+			fecha = new Date(fecha.getTime() + diff*60000);
+			
 			return fecha.getHours() + ":" + (fecha.getMinutes() == "0"? "00" : fecha.getMinutes());
 		}
 
@@ -138,6 +147,8 @@
 			    var item = {};
                    item.usuario=user;
                    item.operacion=operacion;
+				   item.hora=$scope.formatearHoraMail(operacion.funcion);
+			
 			if(operacion.funcion.transaccion.tipoTransaccion=="reserva"){
 				Constantes.listado()
 				.then(function(datos){

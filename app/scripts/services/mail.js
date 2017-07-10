@@ -11,6 +11,7 @@ angular
     this.enviarEntraListaNegra=enviarEntraListaNegra;
     this.enviarReserva=enviarReserva;
     this.enviarSaleListaNegra=enviarSaleListaNegra;
+    this.enviarPagoReservaVencida=enviarPagoReservaVencida;
 
     function enviar(item){
       return $http({
@@ -29,6 +30,19 @@ angular
      function enviarContrasenia(item){
       return $http({
             url: 'http://localhost:3333/mail/enviarContrasenia',
+            method: "POST",
+            data: item,
+            headers: {'Content-Type': 'application/json'}})
+      .then(function(rta){
+        return rta.data;
+      })
+      .catch(function(e){
+        return e;
+      })
+    }
+     function enviarPagoReservaVencida(item){
+      return $http({
+            url: 'http://localhost:3333/mail/enviarPagoReservaVencida',
             method: "POST",
             data: item,
             headers: {'Content-Type': 'application/json'}})
