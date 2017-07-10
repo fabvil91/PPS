@@ -13,6 +13,30 @@ router.get('/funciones/getAll',function(req, res,next){
     	})
 	});
 
+router.post('/funciones/filtrar',function(req, res,next){
+    console.log(req.body)  
+    var idPeli = new require('mongodb').ObjectID(req.body.pelicula._id); 
+    var idFormato = new require('mongodb').ObjectID(req.body.formato); 
+    var idIdioma = new require('mongodb').ObjectID(req.body.idioma); 
+    var idComplejo = new require('mongodb').ObjectID(req.body.complejo); 
+
+    req.db
+    .collection('funciones')
+    .find({'pelicula._id':idPeli.toString(),
+            'formato._id':idFormato.toString(),
+            'idioma._id':idIdioma.toString(),
+            'complejo._id':idComplejo.toString()
+            //diaTime: req.body.diaLocale
+          })
+      .toArray((err, data) => {
+          if (err)
+            console.log(err);
+      console.log(data);             
+      res.json(data);
+      })
+   
+  });
+
 router.post('/funciones/insertar',function(req, res, next){
 		console.log(req.body);
 
@@ -24,7 +48,8 @@ router.post('/funciones/insertar',function(req, res, next){
             		 dia: new Date(req.body.dia),
             		 hora: new Date(req.body.hora),
                  sala: req.body.sala,
-                 fechaCreacion: new Date(req.body.fechaCreacion)
+                 fechaCreacion: new Date(req.body.fechaCreacion),
+                 diaTime: req.body.diaTime
         		}, function (err, result){
            if (err) {
                res.json({rta : err});

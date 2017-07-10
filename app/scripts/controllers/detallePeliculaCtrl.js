@@ -21,26 +21,6 @@
 			     	console.log(datos);
 			        $scope.idiomas = datos;
 
-			          Funciones.listado()
-				     .then(function(datos){
-				     	console.log(datos);
-
-				        $scope.funciones = datos;
-						/* Filtramos solo las funciones desde la fecha actual */
-						(function(){						
-							var funcionesDesdeAhora = [];
-
-							for (var i = $scope.funciones.length - 1; i >= 0; i--) {				
-								$scope.funciones[i].diaTime = new Date($scope.funciones[i].dia).getTime();
-
-								if(new Date($scope.funciones[i].hora).getTime() >= new Date().getTime()){
-									funcionesDesdeAhora.push($scope.funciones[i]);
-								}
-							}
-							$scope.funciones = funcionesDesdeAhora;
-							console.log($scope.funciones);							
-						})();
-						
 						/* Suma dias a una fecha */
 						Date.prototype.addDays = function(days) {
 				        var dat = new Date(this.valueOf()) 
@@ -53,7 +33,8 @@
 				      	var dateArray = new Array();
 				      	var currentDate = startDate;
 				      	while (currentDate <= stopDate) {
-				        	dateArray.push(currentDate)
+				      		currentDate.setHours(0,0,0,0);
+				        	dateArray.push(currentDate);
 				        	currentDate = currentDate.addDays(1);
 				      	}
 				      	return dateArray;
@@ -104,22 +85,11 @@
 							$scope.filtro.complejo = Datos.listado().complejo._id;
 						}
 
-						/* Generamos campo nuevo con dia formateado en la funcion */
-						(function(){
-							for (var i = 0; i < $scope.funciones.length; i++ ) {	   
-							  var funciones = $scope.funciones;
-				       		  funciones[i].diaFormateado = $scope.dias[new Date(funciones[i].dia).getDay()] + " - " + new Date(funciones[i].dia).getDate() + "/" + (new Date(funciones[i].dia).getMonth()+1);       		  
-							}
-							console.log($scope.funciones);	
-						})();					
+											
 			  		})
 				    .catch(function(e){
 				      console.log(e);
-				    });
-			     })
-			     .catch(function(e){
-			       console.log(e);
-			     })
+				    });			    
 		     })
 		     .catch(function(e){
 		       console.log(e);
@@ -129,7 +99,38 @@
 	       console.log(e);
 	     })
 
-	
+		$scope.buscarFunciones = function(){
+					      	console.log($scope.filtro);     
+					     	Funciones.listadoFiltrado($scope.filtro)
+						     .then(function(datos){
+						     	console.log(datos);
+
+							        $scope.funciones = datos;
+									/* Filtramos solo las funciones desde la fecha actual */											
+									var funcionesDesdeAhora = [];
+
+									for (var i = $scope.funciones.length - 1; i >= 0; i--) {				
+										$scope.funciones[i].diaTime = new Date($scope.funciones[i].dia).getTime();
+
+										if(new Date($scope.funciones[i].hora).getTime() >= new Date().getTime()){
+											funcionesDesdeAhora.push($scope.funciones[i]);
+										}
+									}
+									$scope.funciones = funcionesDesdeAhora;
+									console.log($scope.funciones);							
+								
+
+									/* Generamos campo nuevo con dia formateado en la funcion */						
+									for (var i = 0; i < $scope.funciones.length; i++ ) {	   
+									  var funciones = $scope.funciones;
+						       		  funciones[i].diaFormateado = $scope.dias[new Date(funciones[i].dia).getDay()] + " - " + new Date(funciones[i].dia).getDate() + "/" + (new Date(funciones[i].dia).getMonth()+1);       		  
+									}
+									console.log($scope.funciones);						
+								 })
+					     .catch(function(e){
+					       console.log(e);
+					     })
+						}
 
         $scope.formatear = function(funcion){        	
         	return funcion.replace(/,/g, " > ");

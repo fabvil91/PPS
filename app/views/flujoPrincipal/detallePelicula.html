@@ -55,26 +55,30 @@
             <div class="form-group">
                 <label for="selIdioma">Idioma: </label>                   
                 <select class="form-control" id="selIdioma" ng-model="filtro.idioma" ng-options="x._id as x.nombre for x in idiomas"></select> 
+            </div>            
+            <!--Complejo-->
+            <div class="form-group">
+                <label for="selComplejo">Complejo: </label>                   
+                <select class="form-control" id="selComplejo" ng-model="filtro.complejo" ng-options="x._id as x.nombre for x in complejos"></select> 
             </div>
             <!--Dia-->
             <div class="form-group">
                 <label for="selDia">Día: </label>                   
                 <select class="form-control" id="selDia" ng-model="filtro.diaNombre" ng-options="x for x in fechasDias" ng-change="filtrarDia()"></select> 
             </div>
-            <!--Complejo-->
+            <!--Buscar-->
             <div class="form-group">
-                <label for="selComplejo">Complejo: </label>                   
-                <select class="form-control" id="selComplejo" ng-model="filtro.complejo" ng-options="x._id as x.nombre for x in complejos"></select> 
+                <button class="btn btn-primary filter-button" ng-click="buscarFunciones()">Ver funciones</button>
             </div>
 
-            <div>
-                
-             
+            <div ng-if="funciones.length != 0">                             
                 <div class="panel-group">
-                    <div class="panel panel-default" ng-repeat="(key, value) in funciones 
+                <!--   <div class="panel panel-default" ng-repeat="(key, value) in funciones 
                     | filter: { formato:{_id:filtro.formato}, idioma:{_id:filtro.idioma}, complejo:{_id: filtro.complejo},diaTime: filtro.diaLocale,pelicula:{nombre: filtro.pelicula.nombre} }
+                    | groupBy: '[complejo.nombre,formato.nombre,idioma.nombre,diaFormateado]'"> -->
+                <div class="panel panel-default" ng-repeat="(key, value) in funciones 
+                    | filter: {diaTime: filtro.diaLocale}
                     | groupBy: '[complejo.nombre,formato.nombre,idioma.nombre,diaFormateado]'">
-
                         <div class="panel-heading">
                             {{ formatear(key) }}  
                         </div>
@@ -92,6 +96,7 @@
                     </div>
                 </div>
             </div>
+            <div ng-if="funciones.length==0">Utilice los filtros para buscar funciones y presione el botón</div>
         </div>
         <div class="col-md-1"></div>
-    </div>    
+    </div>

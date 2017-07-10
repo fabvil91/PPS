@@ -3,6 +3,7 @@ angular
   .service('Funciones', ['$http', function($http){
 
     this.listado = listado;
+    this.listadoFiltrado = listadoFiltrado;
     this.alta = alta;
     this.modificar = modificar;
     this.modificarSala = modificarSala;
@@ -11,6 +12,21 @@ angular
 
     function listado () {
       return $http.get('http://localhost:3333/funciones/getAll')
+      .then(function(rta){
+        return rta.data;
+      })
+      .catch(function(e){
+        return e;
+      })
+    }
+
+
+    function listadoFiltrado(item){
+      return $http({
+            url: 'http://localhost:3333/funciones/filtrar',
+            method: "POST",
+            data: item,
+            headers: {'Content-Type': 'application/json'}})
       .then(function(rta){
         return rta.data;
       })

@@ -152,7 +152,7 @@
                                         for (var j = 0; j < horarios.length; j++) {
                                         funcionesProximas.push({
                                             pelicula: pelicula,
-                                            formato: sala.formato,
+                                            formato: pelicula.formato,
                                             complejo: sala.complejo,
                                             idioma: pelicula.idioma,
                                             dia: new Date(proximaSemana[i].getFullYear(),proximaSemana[i].getMonth(),proximaSemana[i].getDate(),
@@ -160,7 +160,9 @@
                                             hora: new Date(proximaSemana[i].getFullYear(),proximaSemana[i].getMonth(),proximaSemana[i].getDate(),
                                                            horarios[j].getHours(),horarios[j].getMinutes(),horarios[j].getSeconds(),0),//horarios[j]
                                             sala: sala,
-                                            fechaCreacion: new Date()
+                                            fechaCreacion: new Date(),
+                                            diaTime: new Date(proximaSemana[i].getFullYear(),proximaSemana[i].getMonth(),proximaSemana[i].getDate(),
+                                                           0,0,0,0).getTime()
                                           });  
                                         }
                                     }
