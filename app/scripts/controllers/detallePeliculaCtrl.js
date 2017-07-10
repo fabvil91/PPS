@@ -70,21 +70,26 @@
 						}
 						
 						/* Cargamos en los filtros lo seleccionado en la pantalla anterior (main) */
-						$scope.filtro.pelicula = Datos.listado().pelicula;
-						if(Datos.listado().filtroDia){			
-							$scope.filtro.diaNombre = $scope.dias[new Date(Datos.listado().dia).getDay()] + " - " + new Date(Datos.listado().dia).getDate() + "/" + (new Date(Datos.listado().dia).getMonth()+1);
-							$scope.filtro.diaLocale = new Date(Datos.listado().dia).getTime();
+						if(Datos.listado().pelicula != null){
+							console.log("Viene del Main");
+							$scope.filtro.pelicula = Datos.listado().pelicula;
+							if(Datos.listado().filtroDia){			
+								$scope.filtro.diaNombre = $scope.dias[new Date(Datos.listado().dia).getDay()] + " - " + new Date(Datos.listado().dia).getDate() + "/" + (new Date(Datos.listado().dia).getMonth()+1);
+								$scope.filtro.diaLocale = new Date(Datos.listado().dia).getTime();
+							}
+							if(Datos.listado().filtroFormato){																
+								$scope.filtro.formato = Datos.listado().formato._id;							
+							}
+							if(Datos.listado().filtroIdioma){			
+								$scope.filtro.idioma = Datos.listado().idioma._id;
+							}
+							if(Datos.listado().filtroComplejo){										
+								$scope.filtro.complejo = Datos.listado().complejo._id;
+							}
+						}else{
+							console.log("Viene del Main-Mas Vistas");
+							$scope.filtro.pelicula = Datos.listado();
 						}
-						if(Datos.listado().filtroFormato){																
-							$scope.filtro.formato = Datos.listado().formato._id;							
-						}
-						if(Datos.listado().filtroIdioma){			
-							$scope.filtro.idioma = Datos.listado().idioma._id;
-						}
-						if(Datos.listado().filtroComplejo){										
-							$scope.filtro.complejo = Datos.listado().complejo._id;
-						}
-
 											
 			  		})
 				    .catch(function(e){

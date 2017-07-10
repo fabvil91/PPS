@@ -115,17 +115,18 @@
 									$scope.peliculasActivas=$scope.peliculasActivas.slice(0,cantPeliculas);
 
 									//Carga funciones de la pelicula, para poder pasarselo a detallePelicula
-									if($scope.funciones != null){
-									$scope.peliculasActivas.forEach(function(peli){
-										var funcionesPeli = [];
-										$scope.funciones.forEach(function(item){
-											if(item.pelicula._id==peli._id){
-												funcionesPeli.push(item);
-											}
-										});	
-										peli.funciones=funcionesPeli;									
-									});
-									}
+								//	if($scope.funciones != null){
+								//	$scope.peliculasActivas.forEach(function(peli){
+									//	var funcionesPeli = [];
+									//	$scope.funciones.forEach(function(item){
+									//		if(item.pelicula._id==peli._id){
+									//			funcionesPeli.push(item);
+									//		}
+									//	});	
+										//peli.funciones=funcionesPeli;									
+											
+								//	});
+								//	}
 
 									//PROXIMOS ESTRENOS
 									$scope.estrenos = peliculas.filter(function(item){
@@ -220,6 +221,17 @@
 			
 			console.log(funcion);
 			Datos.cargar(funcion);
+		}
+
+		$scope.cargarMas = function(pelicula){
+			/*console.log($scope.filtro);													
+			$scope.filtro.formato == null ? funcion.filtroFormato = false : funcion.filtroFormato = true;
+			$scope.filtro.idioma == null ? funcion.filtroIdioma = false : funcion.filtroIdioma = true;
+			$scope.filtro.complejo == null ? funcion.filtroComplejo = false : funcion.filtroComplejo = true;
+			$scope.filtro.diaLocale == null ? funcion.filtroDia = false : funcion.filtroDia = true;*/
+			
+			console.log(pelicula);
+			Datos.cargar(pelicula);
 		}
 
 		$scope.cargarPelicula=function(pelicula){

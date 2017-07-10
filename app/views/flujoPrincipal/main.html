@@ -116,8 +116,7 @@
                         <span ng-show="peliculasActivas.length === 0">No hay funciones disponibles</span>
                         <li ng-repeat="pelicula in peliculasActivas | orderBy:'-cantEntradas'">
                             <div class="movie text-center">
-                                <a href="#" ng-click="cargar(pelicula.funciones[0])" ui-sref="detallePelicula">
-                                   
+                                <a href="#" ng-click="cargarMas(pelicula)" ui-sref="detallePelicula">                                  
                                 <img class="img-responsive" ng-src="{{pelicula.imageUrl}}" alt="poster"  class="img-thumbnail img-poster">                                   
                                 <p>{{pelicula.nombre}}</p>
                                 </a>
