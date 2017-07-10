@@ -133,7 +133,7 @@ router.post('/mail/enviarContactanos',function(req, res,next){
         var mailOptions = {
             from: '"Cinemar " <cinemarcomplejos@gmail.com>', // sender address (who sends)
             to: req.body.usuario.email, // list of receivers (who receives)
-            subject: req.body.asunto, // Subject line          
+            subject: "Ha cancelado una "+req.body.operacion.funcion.transaccion.tipoTransaccion, // Subject line          
             html:   '<table style="font-family: Arial, Helvetica, sans-serif;"><tr><td align="center" style="background-color: #00438E;" ><h1 style="color:#5BC0DE;">CINEMAR</h1></td></tr><tr><td><table style="padding:5px"><tr><td><ul style="list-style: none;">'+
     '<li><h3>Ha cancelado una '+req.body.operacion.funcion.transaccion.tipoTransaccion+'</h3></li>'+
     '<li>'+req.body.usuario.username +'</li>'+
@@ -175,7 +175,7 @@ router.post('/mail/enviarCompra',function(req, res,next){
             from: '"Cinemar " <cinemarcomplejos@gmail.com>', // sender address (who sends)
             to: req.body.usuario.email, // list of receivers (who receives)
 
-            subject: req.body.asunto, // Subject line          
+            subject: "Ha realizado una compra." // Subject line          
             html:   '<table style="font-family: Arial, Helvetica, sans-serif;"><tr><td align="center" style="background-color: #00438E;" ><h1 style="color:#5BC0DE;">CINEMAR</h1></td></tr><tr><td><table style="padding:5px"><tr><td><ul style="list-style: none;"><li><h3>Ha realizado una Compra</h3></li>'+
     '<li>'+req.body.usuario.username +'</li><li><p>Su Compra ha sido confirmada.</p></li><li><p>Sus entradas deberan ser retiradas antes del '+req.body.operacion.funcion.diaFormateado+' a las '+req.body.hora+'.<br>Pasado este tiempo, se lo considerara una cancelación y no podra retirarlas.</p></li></ul></td>'+
     '<td><ul style="list-style: none;"><li><h3>Datos de Compra:</h3></li><li><strong>Pelicula:</strong></li>'+
@@ -216,7 +216,7 @@ router.post('/mail/enviarCompra',function(req, res,next){
             from: '"Cinemar " <cinemarcomplejos@gmail.com>', // sender address (who sends)
             to: req.body.usuario.email, // list of receivers (who receives)
 
-            subject: req.body.asunto, // Subject line          
+            subject: "Pago de Reserva Vencida", // Subject line          
             html:   '<table style="font-family: Arial, Helvetica, sans-serif;"><tr><td align="center" style="background-color: #00438E;" ><h1 style="color:#5BC0DE;">CINEMAR</h1></td></tr><tr><td><table style="padding:5px"><tr><td><ul style="list-style: none;">'+
     '</li><li><h3>Ha pagado por una Reserva Vencida</h3></li>'+
                                '<li>'+req.body.usuario.username+'</li>'+
@@ -258,7 +258,7 @@ router.post('/mail/enviarEntraListaNegra',function(req, res,next){
         var mailOptions = {
             from: '"Cinemar " <cinemarcomplejos@gmail.com>', // sender address (who sends)
             to: req.body.usuario.email, // list of receivers (who receives)
-            subject: req.body.asunto, // Subject line          
+            subject: "Lista Negra", // Subject line          
             html:   '<table style="font-family: Arial, Helvetica, sans-serif;"><tr><td align="center" style="background-color: #00438E;" ><h1 style="color:#5BC0DE;">CINEMAR</h1></td></tr><tr><td><table style="padding:5px"><tr><td><ul style="list-style: none;"><li><h3>Ingreso a Lista Negra</h3></li>'+
 '<li>'+req.body.usuario.username +'</li><li><p>Usted a sido ingresado a Lista Negra. Esto significa que no podra realizar Reservas hasta que salga de ella. Sin embargo, podra seguir realizando compras sin ningun problema.</p></li>'+      
 '</ul></td><td><ul style="list-style: none;"><li><h3>Datos de operación vencida:</h3></li><li><strong>Pelicula:</strong></li>'+
@@ -299,7 +299,7 @@ router.post('/mail/enviarEntraListaNegra',function(req, res,next){
         var mailOptions = {
             from: '"Cinemar " <cinemarcomplejos@gmail.com>', // sender address (who sends)
             to: req.body.usuario.email, // list of receivers (who receives)
-            subject: req.body.asunto, // Subject line          
+            subject: "Ha realizado una reserva.", // Subject line          
             html:  
 '<table style="font-family: Arial, Helvetica, sans-serif;"><tr><td align="center" style="background-color: #00438E;" ><h1 style="color:#5BC0DE;">CINEMAR</h1></td></tr><tr><td><table style="padding:5px"><tr><td><ul style="list-style: none;"><li><h3>Ha realizado una Reserva</h3></li>'+
 '<li>'+req.body.usuario.username +'</li>'+
@@ -343,7 +343,7 @@ router.post('/mail/enviarEntraListaNegra',function(req, res,next){
         var mailOptions = {
             from: '"Cinemar " <cinemarcomplejos@gmail.com>', // sender address (who sends)
             to: req.body.usuario.email, // list of receivers (who receives)
-            subject: req.body.asunto, // Subject line          
+            subject: "Lista Negra", // Subject line          
             html:   '<table style="font-family: Arial, Helvetica, sans-serif;"><tr><td align="center" style="background-color: #00438E;" ><h1 style="color:#5BC0DE;">CINEMAR</h1></td></tr><tr><td><table style="padding:5px"><tr><td><h3>Lista Negra</h3>'+
 '<p>'+req.body.usuario.username +'</p>'+
 '<p>Usted a sido salido de Lista Negra. Podra realizar reservas normalmente.</p></td></tr></table></td></tr><tr><td style="background-color: #00438E;"><br><br><br></td></tr></table>'
