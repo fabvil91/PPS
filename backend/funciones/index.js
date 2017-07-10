@@ -36,9 +36,9 @@ router.post('/funciones/insertar',function(req, res, next){
 	});
 
 router.put('/funciones/modificar',function(req, res, next){
-		console.log(req.body);
+	
 		var id = new require('mongodb').ObjectID(req.body._id);
-		console.log(id);
+	
 
         req.db.collection('funciones')        
         .update({_id: id}, {$set: {
@@ -57,9 +57,9 @@ router.put('/funciones/modificar',function(req, res, next){
     
 
 router.put('/funciones/modificarSala',function(req, res, next){
-    console.log(req.body);
+ 
     var id = new require('mongodb').ObjectID(req.body._id);
-    console.log(id);
+  
 
         req.db.collection('funciones')        
         .update({_id: id}, {$set: {                     
@@ -75,9 +75,9 @@ router.put('/funciones/modificarSala',function(req, res, next){
   });
 
 router.put('/funciones/modificarComplejo',function(req, res, next){
-    console.log(req.body);
+ 
     var id = new require('mongodb').ObjectID(req.body._id);
-    console.log(id);
+
 
         req.db.collection('funciones')        
         .update({_id: id}, {$set: {                     
@@ -93,9 +93,9 @@ router.put('/funciones/modificarComplejo',function(req, res, next){
   });
 
 router.delete('/funciones/eliminar',function(req, res, next){
-		console.log(req.body);
+	
 		var id = new require('mongodb').ObjectID(req.body._id);
-		console.log(id);
+
 
         req.db.collection('funciones')        
         .remove({_id: id}, function (err, result){
@@ -132,7 +132,7 @@ router.get('/articulos/indices/:texto', (req, res, next) => {
           {score : {$meta : "textScore"}})
     .sort({score : {$meta: "textScore"}}) 
     .toArray((err, data) => {
-    	console.log(data);
+    
         res.json(data);
     });
 });

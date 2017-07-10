@@ -43,7 +43,7 @@
 
        Peliculas.listado()
 	    .then(function(datos){
-	     console.log(datos);
+	    
 	     $scope.peliculas = datos;
 
 	     //Buscamos las peliculas activas		  					
@@ -51,22 +51,21 @@
                                return (element.estado == 'Activa' && 
                                		   new Date(element.fechaEstreno).addDays(7 * element.semanasActiva).addDays(-1).isGreaterOrEqualAs(new Date()));
                             });
-	     console.log($scope.peliculas);
-	     
+	   
 	     for (var i = 0; i < $scope.peliculas.length; i++) {
 	     	$scope.peliculas[i].formateada = $scope.peliculas[i].nombre + " - " + $scope.peliculas[i].formato.nombre + " - " + $scope.peliculas[i].idioma.nombre;
 	     }
 
 	     	SalasService.listado()
 		    .then(function(datos){
-		     console.log(datos);
+		    
 		     $scope.salas = datos;
 
 		     //Buscamos las salas del complejo del empleado		  					
 		     $scope.salas = $scope.salas.filter(function(element){
 	                               return (element.complejo.nombre == $rootScope.globals.currentUser.complejo.nombre);
 	                            });
-		     console.log($scope.salas);
+		    
 		     
 		     for (var i = 0; i < $scope.salas.length; i++) {
 		     	$scope.salas[i].formateada = $scope.salas[i].nombre + " - " + $scope.salas[i].formato.nombre + " - " + $scope.salas[i].complejo.nombre;
@@ -79,7 +78,7 @@
 		     			$scope.proximosJueves.push(proximasSemanas[i]);
 		     		}
 		     	}
-		     	console.log($scope.proximosJueves);
+		     	
 		     	var semana = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
 		     	$scope.dias = [];
 				for (var i = 0; i < $scope.proximosJueves.length; i++ ) {	   
@@ -87,7 +86,7 @@
 				}						
 							    	  	     
 			    $scope.cargar = function() {
-			    	console.log($scope.funcion);
+			    
 			    	if(!$scope.funcion.pelicula || !$scope.funcion.sala || !$scope.funcion.dia){
 			    		$scope.funcion.obligatorio = true;
 			    	}else{
@@ -96,38 +95,37 @@
 					return (element._id === $scope.funcion.pelicula._id);
 					});				     	
 			     	pelicula = pelicula[0];
-			     	console.log(pelicula);
+			     
 
 					var sala = $scope.salas.filter(function(element){
 					return (element._id === $scope.funcion.sala._id);
 					});						
 					sala = sala[0];
-					console.log(sala);
+				
 
 					var indice = $scope.dias.indexOf($scope.funcion.dia);			
 					var dia = $scope.proximosJueves[indice];
-					console.log(dia);
+					
 					if(sala.formato.nombre == '2D' && pelicula.formato.nombre != '2D'){
-						console.log("sala 2d peli no 2d");
+						
                         $scope.funcion.sala2DError = true;
 					}else if(sala.formato.nombre == '3D' && pelicula.formato.nombre != '2D' && pelicula.formato.nombre != '3D'){
-						console.log("sala 3d peli no 2d ni 3d");
+						
                         $scope.funcion.sala3DError = true;
 					}else{	
 			     		/* Generamos horarios en base a pelicula y complejos */                        
-                        console.log(Horarios.generar(pelicula, sala.complejo));
+                       
                         var horarios = Horarios.generar(pelicula, sala.complejo);
                         /* Generamos proxima semana de funciones */
                         var limiteInf = new Date(dia);                                
                         var limiteSup = limiteInf.addDays(7);
                         var proximaSemana = getDates(limiteInf,limiteSup.addDays(-1));
-                        console.log(proximaSemana);
 
                         var funciones = [];
 
                         Funciones.listado()
                         .then(function(datos){
-                        console.log(datos);
+                       
                             /* Determinamos si la sala, en la semana proxima, tiene funciones asignadas */
                             funciones = datos.filter(function(element){
                                return (element.complejo.nombre == sala.complejo.nombre);
@@ -166,19 +164,19 @@
                                           });  
                                         }
                                     }
-                                    console.log(funcionesProximas);
+                                   
 
                                     for (var i = 0; i < funcionesProximas.length; i++) {
                                         //if(i == 3) break;                                        
                                          Funciones.alta(funcionesProximas[i])
                                         .then(function(datos){
-                                            console.log(datos);                                                                                        
+                                                                                                                             
                                         })
                                         .catch(function(e){
                                            console.log(e);
                                         });
                                     }
-                                    $location.path('/empleadoFunciones');                                   
+                                   $location.path('/empleadoFunciones');                                    
                                 }                               
                         })                                                
                         .catch(function(e){
