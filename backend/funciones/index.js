@@ -14,7 +14,7 @@ router.get('/funciones/getAll',function(req, res,next){
 	});
 
 router.post('/funciones/filtrar',function(req, res,next){
-    console.log(req.body)  
+    console.log(req.body);  
     var idPeli = new require('mongodb').ObjectID(req.body.pelicula._id); 
     var idFormato = new require('mongodb').ObjectID(req.body.formato); 
     var idIdioma = new require('mongodb').ObjectID(req.body.idioma); 
@@ -35,6 +35,29 @@ router.post('/funciones/filtrar',function(req, res,next){
       res.json(data);
       })
    
+  });
+
+router.post('/funciones/filtrarMain',function(req, res,next){
+    console.log(req.body);      
+    var idFormato = new require('mongodb').ObjectID(req.body.formato); 
+    var idIdioma = new require('mongodb').ObjectID(req.body.idioma); 
+    var idComplejo = new require('mongodb').ObjectID(req.body.complejo); 
+
+    req.db
+    .collection('funciones')
+     .find({
+            'formato._id':idFormato.toString(),
+            'idioma._id':idIdioma.toString(),
+            'complejo._id':idComplejo.toString()
+            //diaTime: req.body.diaLocale
+          })
+      .toArray((err, data) => {
+          if (err)
+            console.log(err);
+      console.log(data);             
+      res.json(data);
+      })  
+               
   });
 
 router.post('/funciones/insertar',function(req, res, next){
