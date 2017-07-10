@@ -62,8 +62,7 @@
                     | groupBy: '[complejo.nombre,pelicula.nombre,sala.nombre,formato.nombre,idioma.nombre,diaFormateado]'">
                         <div class="panel-heading">
                             {{ formatear(key) }} 
-                            <button class="btn btn-danger btn-sm" ng-click="borrar(value)">Eliminar</button>
-                            <div ng-if="value.error != null && value.error" class="alert alert-danger">No es posible eliminar</div>                             
+                            <button class="btn btn-danger btn-sm" ng-click="borrar(value)">Eliminar</button>                                                        
                         </div>
                         <div class="panel-body">                              
                             <div ng-repeat="funcion in value" style="display:inline;"> 

@@ -52,8 +52,7 @@
           funcion = funcion[0];          
           funcionesABorrar.push(funcion);
          
-        }else{
-          //item.error = true;
+        }else{          
           funcionesABorrar = [];
           alert("Ya no es posible eliminar las funciones");
           break;
