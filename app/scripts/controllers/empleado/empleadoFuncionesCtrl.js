@@ -20,6 +20,12 @@
      	console.log(datos);
         $scope.funciones = datos;
 
+        //Buscamos las funciones del complejo del empleado                
+        $scope.funciones = $scope.funciones.filter(function(element){
+                                 return (element.complejo.nombre == $rootScope.globals.currentUser.complejo.nombre);
+                              });
+        console.log($scope.funciones);
+
         /* Generamos campo nuevo con dia formateado en la funcion */        
         for (var i = 0; i < $scope.funciones.length; i++ ) {     
           var funciones = $scope.funciones;
@@ -35,22 +41,37 @@
     
    	 $scope.borrar = function borrar(item) {
       console.log(item);
-      for (var i = 0; i < item.length; i++) {        
-        if(new Date().getTime() <= addMinutes(new Date(item[0].fechaCreacion),1).getTime()) {
+      var funcionesABorrar = [];
 
-         Funciones.borrar(item[0])
-         .then(function(datos){
-          console.log(item[0]);
-          var pos = $scope.funciones.indexOf(item[0]);
-          $scope.funciones.splice(pos, 1);
-         })
-         .catch(function(e){
-           console.log(e);
-         });
+      for (var i = 0; i < item.length; i++) {        
+        if(new Date().getTime() <= addMinutes(new Date(item[i].fechaCreacion),1).getTime()) {
+
+          var funcion = $scope.funciones.filter(function(element){
+          return (element._id === item[i]._id);
+          });             
+          funcion = funcion[0];          
+          funcionesABorrar.push(funcion);
+         
         }else{
-          item.error = true;
+          //item.error = true;
+          funcionesABorrar = [];
+          alert("Ya no es posible eliminar las funciones");
           break;
         }
+      }
+
+      console.log(funcionesABorrar);
+      for (var i = 0; i < funcionesABorrar.length; i++) {
+           Funciones.borrar(funcionesABorrar[i])
+           .then(function(datos){
+            console.log(datos);
+
+            var pos = $scope.funciones.indexOf(funcionesABorrar[i]);
+            $scope.funciones.splice(pos, 1);
+           })
+           .catch(function(e){
+             console.log(e);
+           });
       }   
     }
 
