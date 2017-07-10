@@ -17,21 +17,20 @@
   function list() {
 	 Funciones.listado()
      .then(function(datos){
-     	console.log(datos);
+     
         $scope.funciones = datos;
 
         //Buscamos las funciones del complejo del empleado                
         $scope.funciones = $scope.funciones.filter(function(element){
                                  return (element.complejo.nombre == $rootScope.globals.currentUser.complejo.nombre);
                               });
-        console.log($scope.funciones);
-
+      
         /* Generamos campo nuevo con dia formateado en la funcion */        
         for (var i = 0; i < $scope.funciones.length; i++ ) {     
           var funciones = $scope.funciones;
           funciones[i].diaFormateado = $scope.dias[new Date(funciones[i].dia).getDay()] + " - " + new Date(funciones[i].dia).getDate() + "/" + (new Date(funciones[i].dia).getMonth()+1);             
         }
-        console.log($scope.funciones);         
+             
      }) 
      .catch(function(e){
        console.log(e);
@@ -40,7 +39,7 @@
     $timeout(list, 200);
     
    	 $scope.borrar = function borrar(item) {
-      console.log(item);
+    
       var funcionesABorrar = [];
 
       for (var i = 0; i < item.length; i++) {        
@@ -59,11 +58,11 @@
         }
       }
 
-      console.log(funcionesABorrar);
+     
       for (var i = 0; i < funcionesABorrar.length; i++) {
            Funciones.borrar(funcionesABorrar[i])
            .then(function(datos){
-            console.log(datos);
+           
 
             //var pos = $scope.funciones.indexOf(funcionesABorrar[i]);
             //$scope.funciones.splice(pos, 1);
