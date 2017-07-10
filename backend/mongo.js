@@ -32,7 +32,7 @@ app.use(bodyParser.urlencoded({extend:false}));
 app.use(bodyParser.json());
 app.use(cors());
 
-MongoClient.connect('mongodb://localhost:27017/pps', (err, db) =>
+MongoClient.connect('mongodb://127.0.0.1:27017/pps', (err, db) =>
 {
 	if(err)
 		throw err;

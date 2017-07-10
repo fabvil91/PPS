@@ -23,7 +23,7 @@ angular
         return rta.data;
       })
       .catch(function(e){
-        return e;
+        Console.log(e);
       })
     }
 
@@ -37,7 +37,7 @@ angular
         return rta.data;
       })
       .catch(function(e){
-        return e;
+        Console.log(e);
       })
     }
      function enviarPagoReservaVencida(item){
@@ -50,7 +50,7 @@ angular
         return rta.data;
       })
       .catch(function(e){
-        return e;
+        Console.log(e);
       })
     }
     function enviarCancelarOperacion(item){
@@ -63,7 +63,7 @@ angular
         return rta.data;
       })
       .catch(function(e){
-        return e;
+        Console.log(e);
       })
     }
       function enviarCompra(item){
@@ -76,7 +76,7 @@ angular
         return rta.data;
       })
       .catch(function(e){
-        return e;
+        Console.log(e);
       })
     }
      function enviarEntraListaNegra(item){
@@ -89,7 +89,7 @@ angular
         return rta.data;
       })
       .catch(function(e){
-        return e;
+        Console.log(e);
       })
     }
 
@@ -103,7 +103,7 @@ angular
         return rta.data;
       })
       .catch(function(e){
-        return e;
+        Console.log(e);
       })
     }
       function enviarSaleListaNegra(item){
@@ -116,7 +116,7 @@ angular
         return rta.data;
       })
       .catch(function(e){
-        return e;
+        Console.log(e);
       })
     }
 
