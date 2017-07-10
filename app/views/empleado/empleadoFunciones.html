@@ -15,50 +15,61 @@
     </div>
             
     <div class="row">
+        <!-- FILTROS -->
+         <div class="container deepBlue">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+          
+            <!-- COMPLEJO -->
+       
+                     <form>
+                    <div class="col-md-3 form-group">
+                        <label id="label-white" for="selComplejo">Complejo: </label>                   
+                        <select class="form-control" id="selComplejo" ng-model="filtro.complejo" ng-options="x._id as x.nombre for x in complejos" ng-change="loguear()">            
+                        </select> 
+                    </div>
+        
+                <!-- FORMATO  -->                                
+                    <div class="col-md-2 form-group">
+                        <label id="label-white" for="selFormato">Formato: </label>                   
+                        <select class="form-control" id="selFormato" ng-model="filtro.formato" ng-options="x._id as x.nombre for x in formatos" >        
+                        </select> 
+                    </div>
+
+                <!-- IDIOMA -->                
+                    <div class="col-md-2 form-group">
+                        <label id="label-white" for="selIdioma">Idioma: </label>                   
+                        <select class="form-control" id="selIdioma" ng-model="filtro.idioma" ng-options="x._id as x.nombre for x in idiomas" >        
+                        </select> 
+                    </div>
+
+                <!-- DIA -->      
+                    <div class="col-md-2 form-group">
+                        <label id="label-white" for="selDia">Día: </label>                   
+                        <select class="form-control" id="selDia" ng-model="filtro.dia" ng-options="x for x in fechasDias" ng-change="filtrarDia()">        
+                        </select> 
+                    </div>
+
+                <!-- TODO -->
+                    <div class="col-md-3 form-group">
+                        <label id="label-white" for="btngroup-todo" style="color:transparent">todo</label>
+                        <div class="btngroup" id="btngroup-todo">
+                            <!--<button class="btn btn-primary filter-button" data-filter="todo" ng-click="limpiarFiltro()">Ver Todo</button>-->
+                            <button class="btn btn-primary filter-button" data-filter="todo" ng-click="buscarFunciones()">Buscar funciones</button>
+                        </div>
+                    </div>                    
+                    </form>
+           </div>
+            <div class="col-sm-2"></div>
+        
+        </div>
         <div class="col-md-12">
 
-            <button type="button" class="btn btn-primary" ng-click="alta()">Nuevo</button>
-                        <!--    <table class="table table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th>Pelicula</th>                                       
-                                        <th>Sala</th>
-                                        <th>Día</th>
-                                        <th>Horario</th>
-                                        <th>Complejo</th>
-                                        <th>Formato</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>  
-                                    <tr ng-repeat="funcion in funciones track by $index">
-                                         <td>
-                                          {{funcion.pelicula.nombre}}
-                                        </td>                                       
-                                        <td>
-                                          {{funcion.sala.nombre}}
-                                        </td>
-                                         <td>
-                                          {{funcion.dia}}
-                                        </td>
-                                         <td>
-                                          {{funcion.hora}}
-                                        </td>   
-                                        <td>
-                                          {{funcion.complejo.nombre}}
-                                        </td> 
-                                        <td>
-                                          {{funcion.formato.nombre}}
-                                        </td>                                      
-                                        <td>                                            
-                                            <button class="btn btn-danger btn-sm" ng-click="borrar(funcion)">Eliminar</button>
-                                            <div ng-if="funcion.error != null && funcion.error" class="alert alert-danger">No es posible eliminar</div>
-                                        </td>
-                                    </tr>                                                                       
-                                </tbody>                    
-                            </table> -->
+            <button type="button" class="btn btn-primary" ng-click="alta()">Nuevo</button>                       
+                <div ng-if="funciones.length != 0">
                     <div class="panel-group">
-                    <div class="panel panel-default" ng-repeat="(key, value) in funciones                     
+                    <div class="panel panel-default" ng-repeat="(key, value) in funciones 
+                    | filter:{ diaTime: filtro.diaLocale }                    
                     | groupBy: '[complejo.nombre,pelicula.nombre,sala.nombre,formato.nombre,idioma.nombre,diaFormateado]'">
                         <div class="panel-heading">
                             {{ formatear(key) }} 
@@ -71,6 +82,8 @@
                         </div>
                     </div>
                     </div>
+                </div>
+                <div ng-if="funciones.length==0">Utilice los filtros para buscar funciones y presione el botón</div>         
         </div>
     </div>
 </div>
