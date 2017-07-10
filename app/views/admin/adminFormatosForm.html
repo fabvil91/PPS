@@ -34,14 +34,14 @@
                         <!-- Nombre -->
                         <div class="form-group" ng-class="{ 'has-error' : form.nombre.$invalid && !form.nombre.$pristine }">
                             <label>Nombre</label>
-                            <input type="text" name="nombre" class="form-control" ng-model="formato.nombre" ng-minlength="3" ng-maxlength="15" required>
+                            <input type="text" name="nombre" class="form-control" ng-model="formato.nombre" ng-minlength="2" ng-maxlength="15" required>
                             <p ng-show="form.nombre.$invalid && !form.nombre.$pristine" class="help-block">El nombre es requerido</p>
                             <p ng-show="form.nombre.$error.minlength" class="help-block">Nombre es muy corto.</p>
                             <p ng-show="form.nombre.$error.maxlength" class="help-block">Nombre es muy largo.</p>
                         </div>
                         
                         <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">Cargar</button>
-                        <button class="btn btn-primary" ui-sref="adminTarjeta">Cancelar</button>
+                        <button class="btn btn-primary" ui-sref="adminFormatos">Cancelar</button>
                     </form>
 
                     </div>
