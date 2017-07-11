@@ -86,6 +86,11 @@
 							if(Datos.listado().filtroComplejo){										
 								$scope.filtro.complejo = Datos.listado().complejo._id;
 							}
+
+							if(Datos.listado().filtroDia && Datos.listado().filtroFormato && Datos.listado().filtroIdioma && Datos.listado().filtroComplejo){
+								console.log("Eligio todos los filtros");
+								$scope.buscarFunciones();
+							}
 						}else{
 							console.log("Viene del Main-Mas Vistas");
 							$scope.filtro.pelicula = Datos.listado();
@@ -141,10 +146,15 @@
         	return funcion.replace(/,/g, " > ");
         }
 
-         $scope.formatearHora = function(funcion){        	
+      /*   $scope.formatearHora = function(funcion){        	
         	var fecha = new Date(funcion.hora);
         	return fecha.getHours() + ":" + (fecha.getMinutes() == "0"? "00" : fecha.getMinutes());
-        }
+        }*/
+
+        $scope.formatearHora = function(funcion){          
+	      var fecha = new Date(funcion.hora);
+	      return fecha.getHours() + ":" + (fecha.getMinutes() == "0"? "00" : fecha.getMinutes() < 10? "0"+fecha.getMinutes() : fecha.getMinutes());
+	    } 
 
 		$scope.panelString={nombre:"Sinopsis"};
 
