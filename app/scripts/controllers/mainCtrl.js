@@ -1,7 +1,8 @@
 (function(){
 	'use strict';
 	angular.module('cine')
-	.controller('mainCtrl', ['$rootScope','$scope','Datos','Complejos','Formatos','Idiomas','Slides','Funciones','Peliculas','Operaciones',function($rootScope,$scope,Datos,Complejos,Formatos,Idiomas,Slides,Funciones,Peliculas,Operaciones){		
+	.controller('mainCtrl', ['$rootScope','$scope','Datos','Complejos','Formatos','Idiomas','Slides','Funciones','Peliculas','Operaciones','Constantes',
+	function($rootScope,$scope,Datos,Complejos,Formatos,Idiomas,Slides,Funciones,Peliculas,Operaciones,Constantes){		
 		 $scope.filtro = {};
 		 $scope.funciones = [];
 		 $scope.myInterval = 3000;
@@ -63,8 +64,10 @@
 							//MAS VISTAS
 							Peliculas.listado()
 							.then(function(datos){
-								var peliculas = datos;
-								var cantPeliculas=2;
+								var peliculas = datos;								
+								Constantes.listado()
+								.then(function(datos){
+								var cantPeliculas=datos[0].cantidadPeliculasMasVistas;
 								//Trae peliculas en estado Activa
 								$scope.peliculasActivas = peliculas.filter(function(item){
 									return item.estado=="Activa";
@@ -151,6 +154,10 @@
 					       console.log(e);
 					     });
 						 })
+					     .catch(function(e){
+					       console.log(e);
+					     });
+						  })
 					     .catch(function(e){
 					       console.log(e);
 					     });

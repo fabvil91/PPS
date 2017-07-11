@@ -44,14 +44,14 @@
 
                                 <div class="form-group" ng-class="{ 'has-error' : form.nombre.$invalid && !form.nombre.$pristine }">
                                     <label>Nombre</label>
-                                    <input type="text" name="nombre" class="form-control" ng-model="promocion.nombre" ng-minlength="3" ng-maxlength="25" required>
+                                    <input type="text" name="nombre" class="form-control" ng-model="promocion.nombre" ng-minlength="3" ng-maxlength="180" required>
                                     <p ng-show="form.nombre.$invalid && !form.nombre.$pristine" class="help-block">El nombre es requerido</p>
                                     <p ng-show="form.nombre.$error.minlength" class="help-block">Nombre es muy corto.</p>
                                     <p ng-show="form.nombre.$error.maxlength" class="help-block">Nombre es muy largo.</p>
                                 </div>
                                  <div class="form-group" ng-class="{ 'has-error' : form.descripcion.$invalid && !form.descripcion.$pristine }">
                                     <label>Descripcion</label>
-                                    <input type="text" name="descripcion" class="form-control" ng-model="promocion.descripcion" ng-minlength="3" ng-maxlength="30" required>
+                                    <input type="text" name="descripcion" class="form-control" ng-model="promocion.descripcion" ng-minlength="3" ng-maxlength="180" required>
                                     <p ng-show="form.descripcion.$invalid && !form.descripcion.$pristine" class="help-block">La descripcion es requerida</p>
                                     <p ng-show="form.descripcion.$error.minlength" class="help-block">La descripcion es muy corta.</p>
                                     <p ng-show="form.descripcion.$error.maxlength" class="help-block">La descripcion es muy larga.</p>
