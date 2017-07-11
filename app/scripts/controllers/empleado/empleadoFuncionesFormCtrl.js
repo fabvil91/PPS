@@ -43,15 +43,14 @@
 
        Peliculas.listado()
 	    .then(function(datos){
-	    
-	     $scope.peliculas = datos;
-
+	    console.log(datos);	    
 	     //Buscamos las peliculas activas		  					
-	     $scope.peliculas = $scope.peliculas.filter(function(element){
-                               return (element.estado == 'Activa' && 
-                               		   new Date(element.fechaEstreno).addDays(7 * element.semanasActiva).addDays(-1).isGreaterOrEqualAs(new Date()));
+	     $scope.peliculas = datos.filter(function(element){
+                            /*   return (element.estado == 'Activa' && 
+                                       new Date(element.fechaEstreno).addDays(7 * element.semanasActiva).addDays(-1).isGreaterOrEqualAs(new Date()));*/
+                                          return (element.estado == 'Activa');
                             });
-	   
+         console.log($scope.peliculas);
 	     for (var i = 0; i < $scope.peliculas.length; i++) {
 	     	$scope.peliculas[i].formateada = $scope.peliculas[i].nombre + " - " + $scope.peliculas[i].formato.nombre + " - " + $scope.peliculas[i].idioma.nombre;
 	     }

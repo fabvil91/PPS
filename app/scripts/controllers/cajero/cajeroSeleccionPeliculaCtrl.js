@@ -4,12 +4,13 @@
 	.controller('cajeroSeleccionPeliculaCtrl', ['$rootScope','$scope','Datos','$sce','Salas','Complejos','Formatos','Idiomas','Slides','Funciones',function($rootScope,$scope,Datos,$sce,Salas,
 		Complejos,Formatos,Idiomas,Slides,Funciones){	
 	
-		$scope.filtro = {};
-	
 		 Complejos.listado()
 	     .then(function(datos){
 	     	console.log(datos);
 	        $scope.complejos = datos;
+
+	        $scope.filtro = {};
+			$scope.filtro.complejo = $rootScope.globals.currentUser.complejo._id;
 
 	         Formatos.listado()
 		     .then(function(datos){
@@ -21,7 +22,7 @@
 			     	console.log(datos);
 			        $scope.idiomas = datos;
 
-			          Funciones.listado()
+			          Funciones.listadoFiltradoCajero($scope.filtro)
 				     .then(function(datos){
 				     	console.log(datos);
 
@@ -121,10 +122,14 @@
         	return funcion.replace(/,/g, " > ");
         }
 
-         $scope.formatearHora = function(funcion){        	
+       /*  $scope.formatearHora = function(funcion){        	
         	var fecha = new Date(funcion.hora);
         	return fecha.getHours() + ":" + (fecha.getMinutes() == "0"? "00" : fecha.getMinutes());
-        }
+        }*/
+        $scope.formatearHora = function(funcion){          
+	      var fecha = new Date(funcion.hora);
+	      return fecha.getHours() + ":" + (fecha.getMinutes() == "0"? "00" : fecha.getMinutes() < 10? "0"+fecha.getMinutes() : fecha.getMinutes());
+	    } 
 
         $scope.cargarPelicula = function(pelicula){
         	console.log(pelicula);
