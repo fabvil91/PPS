@@ -35,24 +35,24 @@
                                                 tipoPago:''
                                             };
                                             $scope.hayPromo = false;
-                                            for (var i = $scope.funcion.entradas.length - 1; i >= 0; i--) {
-                                                if($scope.funcion.entradas[i].promocion && $scope.funcion.entradas[i].cantidad > 0){
-                                                    $scope.hayPromo = true;
-                                                    break;
-                                                }
+                                            if($scope.funcion.promocion!=null && $scope.funcion.promocion.tipoPromocion=="Dia"){
+                                                    $scope.hayPromo=true;
                                             }
                                             console.log($scope.hayPromo);
-                                             $scope.calcularDescuento=function(funcion){
-                                                    if(funcion.operacion.promociones!=null){
+                                              $scope.calcularDescuento=function(funcion){
+                                                    if($scope.hayPromo==false){
                                                         
                                                         //Promociones Porcentaje
                                                         if(funcion.operacion.promociones.tipoDescuento=="Porcentaje"){ 
+                                                            console.log("Porcentaje");
                                                             //aplica descuento a valor de entrada
                                                             //Por cada entrada se fija si coincide el tipo de entrada, o si la promocion aplica a Todas                           
                                                                 funcion.entradas.forEach(function(element) {
-                                                                    if(element.tipo==funcion.operacion.promociones.tipoEntradas || funcion.operacion.promociones.tipoEntradas=="Todas"){
+
+                                                                    if(element.tipo==funcion.operacion.promociones.tipoEntrada || funcion.operacion.promociones.tipoEntrada=="Todas"){
                                                                         element.monto=element.monto-element.monto*(funcion.operacion.promociones.porcentaje/100);
                                                                         element.subtotal=element.monto*element.cantidad;
+                                                                        console.log(element.subtotal);
                                                                     }                                    
                                                                 });  
 
@@ -60,7 +60,7 @@
                                                         //Promociones 2x1
                                                         if(funcion.operacion.promociones.tipoDescuento=="2x1"){
                                                             funcion.entradas.forEach(function(element) {
-                                                                    if(element.tipo==funcion.operacion.promociones.tipoEntradas || funcion.operacion.promociones.tipoEntradas=="Todas"){
+                                                                    if(element.tipo==funcion.operacion.promociones.tipoEntrada || funcion.operacion.promociones.tipoEntrada=="Todas"){
                                                                         if(element.cantidad!=1){
                                                                             if(element.cantidad%2==0){
                                                                                 console.log("PAR");
@@ -74,6 +74,7 @@
                                                                     }
                                                             });
                                                         }
+
                                                         //recalcula precioTotal
                                                         funcion.precioTotal=0;
                                                         funcion.entradas.forEach(function(element) {
@@ -82,7 +83,6 @@
                                                         
 
                                                     }
-                                             }
 
                                             var entradas = [];
                                                 for (var i = $scope.funcion.entradas.length - 1; i >= 0; i--) {
@@ -91,7 +91,8 @@
                                                     }
                                                 }
                                             $scope.funcion.entradas = entradas; 
-                                            console.log($scope.funcion.entradas);                                           
+                                            console.log($scope.funcion.entradas);   
+                                              }                                        
                                   })
                              .catch(function(e){
                               console.log(e);

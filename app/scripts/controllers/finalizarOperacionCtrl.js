@@ -114,8 +114,9 @@
 				usuario: usuario,
 				promocion: promo }
 			}
-			console.log(operacion); 
+			console.log(operacion);
 
+			
 
 			Operaciones.alta(operacion)
 	       .then(function(datos){
@@ -129,6 +130,45 @@
 	         	 		}
 	         	 	}
 	         	 }
+
+				   Usuarios.usuarioPorNombreUsuario($rootScope.globals.currentUser.username)
+				.then(function(datos){
+					$scope.usuario=datos[0];
+				    //descuento de cuenta corriente MOVER A FINALIZAR OPERACION
+					console.log(funcion.descuentoCuentaCorriente);
+					console.log($scope.usuario.cuentaCorriente);
+					console.log(funcion.precioTotal);
+					if($scope.funcion.descuentoCuentaCorriente==true){
+
+						if($scope.usuario.cuentaCorriente<= $scope.funcion.precioTotal){
+							$scope.funcion.precioTotal= $scope.funcion.precioTotal-$scope.usuario.cuentaCorriente;
+							$scope.usuario.cuentaCorriente=0;
+							Usuarios.modificarCuentaCorriente($scope.usuario)
+							.then(function(datos){
+								console.log(datos);
+								})
+								.catch(function(e){
+								console.log(e);
+							})
+
+						}else{
+							
+							$scope.usuario.cuentaCorriente=$scope.usuario.cuentaCorriente- $scope.funcion.precioTotal;
+							$scope.funcion.precioTotal=0;
+							Usuarios.modificarCuentaCorriente($scope.usuario)
+							.then(function(datos){
+								console.log(datos);
+								})
+								.catch(function(e){
+								console.log(e);
+							})
+						}
+					} 
+					})
+								.catch(function(e){
+								console.log(e);
+							})
+
 	         console.log($scope.funcion.sala);	 
 
 	         	Funciones.modificarSala({

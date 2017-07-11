@@ -126,36 +126,7 @@
                                                         
 
                                                     }
-                                                    //descuento de cuenta corriente MOVER A FINALIZAR OPERACION
-                                                    console.log(funcion.descuentoCuentaCorriente);
-                                                    console.log($scope.usuario.cuentaCorriente);
-                                                    console.log(funcion.precioTotal);
-                                                    if(funcion.descuentoCuentaCorriente==true){
-
-                                                        if($scope.usuario.cuentaCorriente<= funcion.precioTotal){
-                                                            funcion.precioTotal= funcion.precioTotal-$scope.usuario.cuentaCorriente;
-                                                            $scope.usuario.cuentaCorriente=0;
-                                                            Usuarios.modificarCuentaCorriente($scope.usuario)
-                                                            .then(function(datos){
-                                                                console.log(datos);
-                                                                })
-                                                                .catch(function(e){
-                                                                console.log(e);
-                                                            })
-
-                                                        }else{
-                                                            
-                                                            $scope.usuario.cuentaCorriente=$scope.usuario.cuentaCorriente- funcion.precioTotal;
-                                                            funcion.precioTotal=0;
-                                                            Usuarios.modificarCuentaCorriente($scope.usuario)
-                                                            .then(function(datos){
-                                                                console.log(datos);
-                                                                })
-                                                                .catch(function(e){
-                                                                console.log(e);
-                                                            })
-                                                        }
-                                                    }
+                                                  
                                                 }              
                                   })
                              .catch(function(e){

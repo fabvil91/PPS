@@ -46,13 +46,15 @@
 								//carga solo la primera promocion que sea del dia actual
 								var promocion = null;
 								for (var i = $scope.promociones.length - 1; i >= 0; i--) {
-									if ($scope.promociones[i].diaSemana == new Date().getDay()){
+									console.log($scope.promociones[i].diaSemana,$scope.promociones[i].diaSemana);
+										console.log(new Date($scope.funcion.dia).getDay());
+									if ($scope.promociones[i].diaSemana == new Date($scope.funcion.dia).getDay()){
 										
 										promocion = $scope.promociones[i];										
 										break;
 									}
 								}
-								console.log("PROMO");
+								console.log("PROMO"); 
 								console.log(promocion);
 								$scope.promocion = promocion;
 								
@@ -68,7 +70,7 @@
 							}
 							$scope.noUsarCuenta=function(){								
 									$scope.descuento=false;	
-									$scope.hideCuenta=true;
+									$scope.hideCuenta=true; 
 							}
 							$scope.usarPromo=function(){
 								$scope.promoDia=true;

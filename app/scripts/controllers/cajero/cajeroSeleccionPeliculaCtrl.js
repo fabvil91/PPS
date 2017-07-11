@@ -27,7 +27,7 @@
 				     	console.log(datos);
 
 				        $scope.funciones = datos;
-						/* Filtramos solo las funciones desde la fecha actual */
+						// Filtramos solo las funciones desde la fecha actual 
 						(function(){						
 							var funcionesDesdeAhora = [];
 
@@ -75,9 +75,9 @@
 				       		  $scope.fechasDias.push($scope.dias[$scope.fechas[i].getDay()] + " - " + $scope.fechas[i].getDate() + "/" + ($scope.fechas[i].getMonth()+1)); 
 							}						
 						})();  
-																														
-						/* Generamos campo nuevo con dia formateado en la funcion */
-						(function(){
+														 																
+						// Generamos campo nuevo con dia formateado en la funcion 
+					(function(){
 							for (var i = 0; i < $scope.funciones.length; i++ ) {	   
 							  var funciones = $scope.funciones;
 				       		  funciones[i].diaFormateado = $scope.dias[new Date(funciones[i].dia).getDay()] + " - " + new Date(funciones[i].dia).getDate() + "/" + (new Date(funciones[i].dia).getMonth()+1);       		  
@@ -87,7 +87,7 @@
 						
 						$scope.filtro.complejo = $rootScope.globals.currentUser.complejo._id;
 
-					/*	$scope.filtro.pelicula = Datos.listado().pelicula;
+						$scope.filtro.pelicula = Datos.listado().pelicula;
 						if(Datos.listado().filtroDia){			
 							$scope.filtro.diaNombre = $scope.dias[new Date(Datos.listado().dia).getDay()] + " - " + new Date(Datos.listado().dia).getDate() + "/" + (new Date(Datos.listado().dia).getMonth()+1);
 							$scope.filtro.diaLocale = new Date(Datos.listado().dia).getTime();
@@ -100,7 +100,7 @@
 						}
 																
 						
-						console.log($scope.filtro.complejo);*/					
+						console.log($scope.filtro.complejo);					
 			  		})
 				    .catch(function(e){
 				      console.log(e);
@@ -152,5 +152,6 @@
         	//console.log(Salas.crear(2,4));        	
 			Datos.cargar(funcion);
         }
+		
     }])
 })();

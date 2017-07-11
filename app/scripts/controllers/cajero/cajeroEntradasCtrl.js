@@ -26,6 +26,10 @@
 					$scope.preciosFiltrados = $scope.precios.filter(function(element){
 						return (element.complejo.nombre === $scope.funcion.complejo.nombre && element.formato.nombre === $scope.funcion.formato.nombre);
 					});
+					for (var i = 0; i < $scope.preciosFiltrados.length; i++) {
+									$scope.preciosFiltrados[i].cantidad = 0;
+									$scope.preciosFiltrados[i].subtotal = 0;
+							}
 
 					(function(){
 						var promocion = null;
@@ -36,27 +40,38 @@
 							}
 						}
 						console.log(promocion);
-						for (var i = $scope.preciosFiltrados.length - 1; i >= 0; i--) {
-							$scope.preciosFiltrados[i].cantidad = 0;
-							$scope.preciosFiltrados[i].subtotal = 0;
-
-							if($scope.preciosFiltrados[i].tipo == 'Entrada General' && promocion != null){
-								$scope.preciosFiltrados[i].tipoOriginal = 'Entrada General';
-								$scope.preciosFiltrados[i].tipo = promocion.nombre;
-
-								$scope.preciosFiltrados[i].montoOriginal = $scope.preciosFiltrados[i].monto;
-								$scope.preciosFiltrados[i].monto = $scope.preciosFiltrados[i].monto * (promocion.porcentaje / 100);
-
-								$scope.preciosFiltrados[i].promocion = promocion;
-							}
-						}
-						console.log($scope.preciosFiltrados);
+						$scope.promocion=promocion;
+						
+						
 					})();
 
 					$scope.formatearHora = function(funcion){        	
 			        	var fecha = new Date(funcion.hora);
 			        	return fecha.getHours() + ":" + (fecha.getMinutes() == "0"? "00" : fecha.getMinutes());
 			        }
+					$scope.usarPromo=function(){
+						$scope.promoDia=true;
+						for (var i = $scope.preciosFiltrados.length - 1; i >= 0; i--) {
+							$scope.preciosFiltrados[i].cantidad = 0;
+							$scope.preciosFiltrados[i].subtotal = 0;
+
+							if($scope.promocion != null && ($scope.preciosFiltrados[i].tipo == $scope.promocion.tipoEntrada || $scope.promocion.tipoEntrada=="Todas")){
+								
+								if($scope.promocion.tipoDescuento=="Porcentaje"){
+									$scope.preciosFiltrados[i].descuento = $scope.preciosFiltrados[i].monto * ($scope.promocion.porcentaje / 100);
+									$scope.preciosFiltrados[i].monto=$scope.preciosFiltrados[i].monto-$scope.preciosFiltrados[i].descuento;
+								}
+
+								
+							}
+						}
+						console.log("Precios Filtrados");
+						console.log($scope.preciosFiltrados);
+					}
+					$scope.noUsarPromo=function(){
+								$scope.promoDia=false;
+								
+							}
 			     })
 		     .catch(function(e){
 		       console.log(e);
@@ -127,13 +142,13 @@
         	funcion.transaccion = $scope.transaccion;
         	console.log(funcion);
 			funcion.precioTotal=$scope.total;
-			if($scope.promocion!=null){
-				funcion.promocion=$scope.promocion;				
+			if($scope.promoDia==true){
+				funcion.promocion=$scope.promocion;	
+				funcion.precioTotal=$scope.calcularDescuento(funcion);			
 			}
 			console.log($scope.usuario);
 			
-				funcion.precioTotal=$scope.calcularDescuento(funcion);
-				funcion.descuentoCuentaCorriente=$scope.descuento;
+			
         	
 			Datos.cargar(funcion);
         }					

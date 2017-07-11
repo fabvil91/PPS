@@ -42,7 +42,7 @@
                         </div>
                         <div class="form-group" ng-class="{ 'has-error' : form.descripcion.$invalid && !form.descripcion.$pristine }">
                                     <label>Descripción</label>
-                                    <input type="text" name="descripcion" class="form-control" ng-model="pelicula.descripcion" ng-minlength="3" ng-maxlength="80" required>
+                                    <input type="text" name="descripcion" class="form-control" ng-model="pelicula.descripcion" ng-minlength="3" ng-maxlength="1000" required>
                                     <p ng-show="form.descripcion.$invalid && !form.descripcion.$pristine" class="help-block">La descripción es requerida</p>
                                     <p ng-show="form.descripcion.$error.minlength" class="help-block">Descripción es muy corto.</p>
                                     <p ng-show="form.descripcion.$error.maxlength" class="help-block">Descripción es muy largo.</p>
@@ -84,7 +84,7 @@
                         </div>
                         <div class="form-group" ng-class="{ 'has-error' : form.calificacion.$invalid && !form.calificacion.$pristine }">
                                     <label>Calificación</label>
-                                    <input type="text" name="calificacion" class="form-control" ng-model="pelicula.calificacion" ng-minlength="3" ng-maxlength="30" required>
+                                    <input type="text" name="calificacion" class="form-control" ng-model="pelicula.calificacion" ng-minlength="1" ng-maxlength="30" required>
                                     <p ng-show="form.calificacion.$invalid && !form.calificacion.$pristine" class="help-block">La calificación es requerida</p>
                                     <p ng-show="form.calificacion.$error.minlength" class="help-block">Calificación es muy corto.</p>
                                     <p ng-show="form.calificacion.$error.maxlength" class="help-block">Calificación es muy largo.</p>
