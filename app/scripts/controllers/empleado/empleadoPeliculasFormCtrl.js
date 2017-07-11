@@ -20,9 +20,12 @@
         }
         return dateArray;
         }
-
-        $scope.pelicula = {};
+        
 		$scope.estados = ["Activa", "Inactiva"];
+		$scope.proximos = ["Si", "No"];
+		$scope.pelicula = {
+			proximamente: $scope.proximos[1]
+		};
 		
 		 Idiomas.listado()
 	     .then(function(datos){

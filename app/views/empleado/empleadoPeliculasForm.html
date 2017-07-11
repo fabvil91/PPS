@@ -21,35 +21,35 @@
 
                         <div class="form-group" ng-class="{ 'has-error' : form.nombre.$invalid && !form.nombre.$pristine }">
                                     <label>Título</label>
-                                    <input type="text" name="nombre" class="form-control" ng-model="pelicula.nombre" ng-minlength="3" ng-maxlength="30" required>
+                                    <input type="text" name="nombre" class="form-control" ng-model="pelicula.nombre" ng-minlength="3" ng-maxlength="50" required>
                                     <p ng-show="form.nombre.$invalid && !form.nombre.$pristine" class="help-block">El nombre es requerido</p>
                                     <p ng-show="form.nombre.$error.minlength" class="help-block">Nombre es muy corto.</p>
                                     <p ng-show="form.nombre.$error.maxlength" class="help-block">Nombre es muy largo.</p>
                         </div>
                         <div class="form-group" ng-class="{ 'has-error' : form.imageUrl.$invalid && !form.imageUrl.$pristine }">
                                     <label>Image url</label>
-                                    <input type="text" name="imageUrl" class="form-control" ng-model="pelicula.imageUrl" ng-minlength="3" ng-maxlength="40" required>
+                                    <input type="text" name="imageUrl" class="form-control" ng-model="pelicula.imageUrl" ng-minlength="3" ng-maxlength="150" required>
                                     <p ng-show="form.imageUrl.$invalid && !form.imageUrl.$pristine" class="help-block">El image url es requerido</p>
                                     <p ng-show="form.imageUrl.$error.minlength" class="help-block">Image url es muy corto.</p>
                                     <p ng-show="form.imageUrl.$error.maxlength" class="help-block">Image url es muy largo.</p>
                         </div>
                         <div class="form-group" ng-class="{ 'has-error' : form.trailerUrl.$invalid && !form.trailerUrl.$pristine }">
                                     <label>Trailer url</label>
-                                    <input type="text" name="trailerUrl" class="form-control" ng-model="pelicula.trailerUrl" ng-minlength="3" ng-maxlength="40" required>
+                                    <input type="text" name="trailerUrl" class="form-control" ng-model="pelicula.trailerUrl" ng-minlength="3" ng-maxlength="150" required>
                                     <p ng-show="form.trailerUrl.$invalid && !form.trailerUrl.$pristine" class="help-block">El trailer url es requerido</p>
                                     <p ng-show="form.trailerUrl.$error.minlength" class="help-block">Trailer url es muy corto.</p>
                                     <p ng-show="form.trailerUrl.$error.maxlength" class="help-block">Trailer url es muy largo.</p>
                         </div>
                         <div class="form-group" ng-class="{ 'has-error' : form.descripcion.$invalid && !form.descripcion.$pristine }">
                                     <label>Descripción</label>
-                                    <input type="text" name="descripcion" class="form-control" ng-model="pelicula.descripcion" ng-minlength="3" ng-maxlength="15" required>
+                                    <input type="text" name="descripcion" class="form-control" ng-model="pelicula.descripcion" ng-minlength="3" ng-maxlength="80" required>
                                     <p ng-show="form.descripcion.$invalid && !form.descripcion.$pristine" class="help-block">La descripción es requerida</p>
                                     <p ng-show="form.descripcion.$error.minlength" class="help-block">Descripción es muy corto.</p>
                                     <p ng-show="form.descripcion.$error.maxlength" class="help-block">Descripción es muy largo.</p>
                         </div>
                         <div class="form-group" ng-class="{ 'has-error' : form.genero.$invalid && !form.genero.$pristine }">
                                     <label>Género</label>
-                                    <input type="text" name="genero" class="form-control" ng-model="pelicula.genero" ng-minlength="3" ng-maxlength="15" required>
+                                    <input type="text" name="genero" class="form-control" ng-model="pelicula.genero" ng-minlength="3" ng-maxlength="30" required>
                                     <p ng-show="form.genero.$invalid && !form.genero.$pristine" class="help-block">El género es requerido</p>
                                     <p ng-show="form.genero.$error.minlength" class="help-block">Género es muy corto.</p>
                                     <p ng-show="form.genero.$error.maxlength" class="help-block">Género es muy largo.</p>
@@ -70,90 +70,102 @@
                         </div>
                         <div class="form-group" ng-class="{ 'has-error' : form.tituloOriginal.$invalid && !form.tituloOriginal.$pristine }">
                                     <label>Titulo original</label>
-                                    <input type="text" name="tituloOriginal" class="form-control" ng-model="pelicula.tituloOriginal" ng-minlength="3" ng-maxlength="15" required>
+                                    <input type="text" name="tituloOriginal" class="form-control" ng-model="pelicula.tituloOriginal" ng-minlength="3" ng-maxlength="50" required>
                                     <p ng-show="form.tituloOriginal.$invalid && !form.tituloOriginal.$pristine" class="help-block">El titulo original es requerido</p>
                                     <p ng-show="form.tituloOriginal.$error.minlength" class="help-block">Titulo original es muy corto.</p>
                                     <p ng-show="form.tituloOriginal.$error.maxlength" class="help-block">Titulo original es muy largo.</p>
                         </div>
                         <div class="form-group" ng-class="{ 'has-error' : form.director.$invalid && !form.director.$pristine }">
                                     <label>Director</label>
-                                    <input type="text" name="director" class="form-control" ng-model="pelicula.director" ng-minlength="3" ng-maxlength="15" required>
+                                    <input type="text" name="director" class="form-control" ng-model="pelicula.director" ng-minlength="3" ng-maxlength="50" required>
                                     <p ng-show="form.director.$invalid && !form.director.$pristine" class="help-block">El director es requerido</p>
                                     <p ng-show="form.director.$error.minlength" class="help-block">Director es muy corto.</p>
                                     <p ng-show="form.director.$error.maxlength" class="help-block">Director es muy largo.</p>
                         </div>
                         <div class="form-group" ng-class="{ 'has-error' : form.calificacion.$invalid && !form.calificacion.$pristine }">
                                     <label>Calificación</label>
-                                    <input type="text" name="calificacion" class="form-control" ng-model="pelicula.calificacion" ng-minlength="3" ng-maxlength="15" required>
+                                    <input type="text" name="calificacion" class="form-control" ng-model="pelicula.calificacion" ng-minlength="3" ng-maxlength="30" required>
                                     <p ng-show="form.calificacion.$invalid && !form.calificacion.$pristine" class="help-block">La calificación es requerida</p>
                                     <p ng-show="form.calificacion.$error.minlength" class="help-block">Calificación es muy corto.</p>
                                     <p ng-show="form.calificacion.$error.maxlength" class="help-block">Calificación es muy largo.</p>
                         </div>
                        
                         <div ng-if="!pelicula.nombre">
-                        <!-- Formatos -->
-                        <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
-                            <label>Formatos</label>
-                            <select ng-model="pelicula.formato._id" ng-options="x._id as x.nombre for x in formatos">  
-                              <option value="">Seleccione</option>           
-                            </select>            
-                        </div>  
+                            <!-- Formatos -->
+                            <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
+                                <label>Formatos</label>
+                                <select ng-model="pelicula.formato._id" ng-options="x._id as x.nombre for x in formatos">  
+                                  <option value="">Seleccione</option>           
+                                </select>            
+                            </div>  
 
-                        <!-- Idiomas -->
-                        <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
-                            <label>Idiomas</label>
-                            <select ng-model="pelicula.idioma._id" ng-options="x._id as x.nombre for x in idiomas">  
-                              <option value="">Seleccione</option>           
-                            </select>            
-                        </div> 
+                            <!-- Idiomas -->
+                            <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
+                                <label>Idiomas</label>
+                                <select ng-model="pelicula.idioma._id" ng-options="x._id as x.nombre for x in idiomas">  
+                                  <option value="">Seleccione</option>           
+                                </select>            
+                            </div> 
 
-                        <!-- Estados -->
-                        <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
-                            <label>Estados</label>
-                            <select ng-model="pelicula.estado" ng-options="x for x in estados">  
-                              <option value="">Seleccione</option>           
-                            </select>            
-                        </div> 
+                            <!-- Estados -->
+                            <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
+                                <label>Estados</label>
+                                <select ng-model="pelicula.estado" ng-options="x for x in estados">  
+                                  <option value="">Seleccione</option>           
+                                </select>            
+                            </div> 
 
-                        <!-- Fecha de Estreno -->
-                        <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
-                            <label>Fecha de Estreno</label>
-                            <select ng-model="pelicula.fechaEstrenoFormat" ng-options="x for x in dias">  
-                              <option value="">Seleccione</option>           
-                            </select>            
-                        </div> 
+                            <!-- Fecha de Estreno -->
+                            <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
+                                <label>Fecha de Estreno</label>
+                                <select ng-model="pelicula.fechaEstrenoFormat" ng-options="x for x in dias">  
+                                  <option value="">Seleccione</option>           
+                                </select>            
+                            </div>
+                            <!-- Proximamente -->
+                            <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
+                                <label>Próximo estreno</label>
+                                <select ng-model="pelicula.proximamente" ng-options="x for x in proximos">                                               
+                                </select>            
+                            </div> 
                         </div>
 
                         <div ng-if="pelicula.nombre">
-                        <!-- Formatos -->
-                        <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
-                            <label>Formatos</label>
-                            <select ng-model="pelicula.formato._id" ng-options="x._id as x.nombre for x in formatos">                                          
-                            </select>            
-                        </div>  
+                            <!-- Formatos -->
+                            <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
+                                <label>Formatos</label>
+                                <select ng-model="pelicula.formato._id" ng-options="x._id as x.nombre for x in formatos">                                          
+                                </select>            
+                            </div>  
 
-                        <!-- Idiomas -->
-                        <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
-                            <label>Idiomas</label>
-                            <select ng-model="pelicula.idioma._id" ng-options="x._id as x.nombre for x in idiomas">                                           
-                            </select>            
-                        </div> 
+                            <!-- Idiomas -->
+                            <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
+                                <label>Idiomas</label>
+                                <select ng-model="pelicula.idioma._id" ng-options="x._id as x.nombre for x in idiomas">                                           
+                                </select>            
+                            </div> 
 
-                        <!-- Estados -->
-                        <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
-                            <label>Estados</label>
-                            <select ng-model="pelicula.estado" ng-options="x for x in estados">                                           
-                            </select>            
-                        </div> 
+                            <!-- Estados -->
+                            <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
+                                <label>Estados</label>
+                                <select ng-model="pelicula.estado" ng-options="x for x in estados">                                           
+                                </select>            
+                            </div> 
 
-                        <!-- Fecha de Estreno -->
-                        <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
-                            <label>Fecha de Estreno</label>
-                            <select ng-model="pelicula.fechaEstrenoFormat" ng-options="x for x in dias">                                           
-                            </select>            
-                        </div> 
+                            <!-- Fecha de Estreno -->
+                            <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
+                                <label>Fecha de Estreno</label>
+                                <select ng-model="pelicula.fechaEstrenoFormat" ng-options="x for x in dias">                                           
+                                </select>            
+                            </div>
+
+                            <!-- Proximamente -->
+                            <div class="form-group" ng-class="{ 'has-error' : form.tipo.$invalid && !form.tipo.$pristine }">
+                                <label>Próximo estreno</label>
+                                <select ng-model="pelicula.proximamente" ng-options="x for x in proximos">                                               
+                                </select>            
+                            </div>                                                        
                         </div>
-
                         <div ng-if="pelicula.obligatorio != null && pelicula.obligatorio" class="alert alert-danger">Llene los datos necesarios</div>                                                                                 
                         <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">Cargar</button>
                         <button class="btn btn-primary" ui-sref="empleadoPeliculas">Cancelar</button>

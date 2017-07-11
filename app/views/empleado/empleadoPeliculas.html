@@ -36,6 +36,7 @@
                         <th>Director</th>
                         <th>Calif.</th>
                         <th>Estado</th>
+                        <th>Próx. estr.</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -82,7 +83,10 @@
                                         </td> 
                                         <td>
                                           {{pelicula.estado}}
-                                        </td>                                       
+                                        </td> 
+                                        <td>
+                                          {{pelicula.proximamente}}
+                                        </td>                                      
                                         <td>
                                             <button class="btn btn-info btn-sm" ng-click="modificar(pelicula)">Editar</button>
                                             <button class="btn btn-danger btn-sm" ng-click="borrar(pelicula)">Eliminar</button>                                            

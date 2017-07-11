@@ -15,7 +15,7 @@
        console.log(e);
      })
    }
-   $timeout(list, 100);
+   $timeout(list, 200);
     
    	 $scope.borrar = function borrar(item) {
       item.estado = "Inactiva";

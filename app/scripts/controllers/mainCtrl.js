@@ -130,7 +130,7 @@
 
 									//PROXIMOS ESTRENOS
 									$scope.estrenos = peliculas.filter(function(item){
-										return item.proximamente==true;
+										return item.proximamente=='Si';
 									});
 									console.log($scope.estrenos);
 									var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",

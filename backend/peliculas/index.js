@@ -62,7 +62,8 @@ router.post('/peliculas/insertar',function(req, res, next){
              estado:  req.body.estado,
              semanasActiva: req.body.semanasActiva,
              formato:  req.body.formato,
-             idioma:  req.body.idioma
+             idioma:  req.body.idioma,
+             proximamente: req.body.proximamente
             }
         		, function (err, result){
            if (err) {
@@ -94,7 +95,8 @@ router.put('/peliculas/modificar',function(req, res, next){
                                    estado:  req.body.estado,
                                    semanasActiva: req.body.semanasActiva,
                                    formato:  req.body.formato,
-                                   idioma:  req.body.idioma                                            
+                                   idioma:  req.body.idioma,
+                                   proximamente: req.body.proximamente                                           
                                    }}, function (err, result){
            if (err) {
                res.json({rta : err});
