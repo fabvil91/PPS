@@ -60,6 +60,25 @@ router.post('/funciones/filtrarMain',function(req, res,next){
                
   });
 
+router.post('/funciones/filtrarCajero',function(req, res,next){
+    console.log(req.body);         
+    var idComplejo = new require('mongodb').ObjectID(req.body.complejo); 
+
+    req.db
+    .collection('funciones')
+     .find({            
+            'complejo._id':idComplejo.toString()
+            //diaTime: req.body.diaLocale
+          })
+      .toArray((err, data) => {
+          if (err)
+            console.log(err);
+      console.log(data);             
+      res.json(data);
+      })  
+               
+  });
+
 router.post('/funciones/insertar',function(req, res, next){
 		console.log(req.body);
 

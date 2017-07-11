@@ -4,7 +4,8 @@ angular
 
     this.listado = listado;
     this.listadoFiltrado = listadoFiltrado;
-    this.listadoFiltradoMain = listadoFiltradoMain;
+    this.listadoFiltradoMain = listadoFiltradoMain;    
+    this.listadoFiltradoCajero = listadoFiltradoCajero;
     this.alta = alta;
     this.modificar = modificar;
     this.modificarSala = modificarSala;
@@ -50,6 +51,19 @@ angular
       })
     }
 
+    function listadoFiltradoCajero(item){
+      return $http({
+            url: 'http://localhost:3333/funciones/filtrarCajero',
+            method: "POST",
+            data: item,
+            headers: {'Content-Type': 'application/json'}})
+      .then(function(rta){
+        return rta.data;
+      })
+      .catch(function(e){
+        return e;
+      })
+    }
 
     function alta(item){
       return $http({

@@ -10,49 +10,8 @@
                 </div>
             </nav>
         </div>
-    </div>
-    <!-- CLIENTES 
-        <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">TIPO DE CLIENTE</div>
-                <div class="panel-body">
-                    <label class="radio-inline"><input type="radio" name="tipoCliente" ng-click="">Registrado</label>
-                    <label class="radio-inline"><input type="radio" name="tipoCliente" ng-click="">No Registrado</label>
-                </div>
-            </div>
-        </div>
-        </div>
-        CLIENTE REGISTRADO
-        <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">CLIENTE</div>
-                <div class="panel-body">
-                    <form class="form-horizontal">
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="nombre">Nombre de Usuario:</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="nombre" class="form-control"  ng-model="">
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="pass">Contraseña:</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="pass" class="form-control"  ng-model="">
-                            </div>
-                        </div>
-                        <div class="form-group col-sm-10">
-                            <input type="button" class="btn btn-info" value="Ingresar" ui-sref="main"> 
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        </div>
-        -->
-        <!-- PELICULAS -->
+    </div>   
+    <!-- PELICULAS -->
     <div class="row">
         <div class="col-md-12">
             <nav class="navbar navbar-default">
@@ -65,7 +24,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ng-repeat="(key, value) in funciones | filter: {complejo:{_id: filtro.complejo}} | groupBy: 'pelicula.nombre'">
+                            <tr ng-repeat="(key, value) in funciones | groupBy: 'pelicula.nombre'">
                               <td><a href="" ng-click="cargarPelicula(key)">{{key}}</a></td>
                             </tr>
                             </tbody>
@@ -103,7 +62,7 @@
                         <div>                                                    
                             <div class="panel-group">
                                 <div class="panel panel-default" ng-repeat="(key, value) in funciones 
-                                | filter: { formato:{_id:filtro.formato}, idioma:{_id:filtro.idioma}, complejo:{_id:filtro.complejo},diaTime: filtro.diaLocale,pelicula:{nombre: filtro.pelicula.nombre} }
+                                | filter: { formato:{_id:filtro.formato}, idioma:{_id:filtro.idioma},diaTime: filtro.diaLocale,pelicula:{nombre: filtro.pelicula.nombre} }
                                 | groupBy: '[formato.nombre,idioma.nombre,diaFormateado]'">
 
                                     <div class="panel-heading">
