@@ -130,7 +130,7 @@
 			}
 		}
 
-		//Tiene que hacer los cambios en FinalizarOperacion pero no se donde. Preguntar.
+	
 
 		$scope.calcularDescuento=function(funcion){
 			

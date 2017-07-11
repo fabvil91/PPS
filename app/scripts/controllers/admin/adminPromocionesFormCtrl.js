@@ -9,6 +9,7 @@
 		$scope.dia = ["Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"];
 		$scope.tipoPrecios=[];
 		$scope.preciosFiltrados=[];
+		$scope.promocion={};
 
 		
 
@@ -32,13 +33,13 @@
 			$scope.cargar = cargar;
 								
 			function cargar() {   
-				console.log($scope.slide);
+				console.log($scope.promocion);
 				if($scope.promocion.tipoPromocion=="Tarjeta"){
 				var banco = $scope.bancos.filter(function(element){
-				return (element._id === $scope.promocion.banco._id);
+				return (element.nombre === $scope.promocion.banco.nombre);
 			});
 			var tarjeta = $scope.tarjetas.filter(function(element){
-				return (element._id === $scope.promocion.tarjeta._id);
+				return (element.nombre === $scope.promocion.tarjeta.nombre);
 				});
 
 				$scope.promocion.banco = banco[0];
@@ -63,7 +64,7 @@
 						
 				$location.path('adminPromociones');
 			}
-
+			
 		}else{
 				console.log('modificar' + Datos.listado());  
 				$scope.cargar = cargar;
@@ -76,10 +77,10 @@
 
 					if($scope.promocion.tipoPromocion=="Tarjeta"){
 				var banco = $scope.bancos.filter(function(element){
-				return (element._id === $scope.promocion.banco._id);
+				return (element.nombre === $scope.promocion.banco.nombre);
 			});
 			var tarjeta = $scope.tarjetas.filter(function(element){
-				return (element._id === $scope.promocion.tarjeta._id);
+				return (element.nombre === $scope.promocion.tarjeta.nombre);
 				});
 
 				$scope.promocion.banco = banco[0];
