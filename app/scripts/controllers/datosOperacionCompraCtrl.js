@@ -54,13 +54,14 @@
                                                         break;
                                                     }
                                                 }*/
+                                                //se fija si hay promocion Dia
                                                 if($scope.funcion.promocion!=null && $scope.funcion.promocion.tipoPromocion=="Dia"){
                                                     $scope.hayPromo=true;
                                                 }
                                                 console.log($scope.hayPromo);
 
 
-                                                
+                                                //carga datos tarjeta si el usuario tiene una
                                                 if($scope.usuario.datosTarjeta!=null){                                        
                                             
                                                     $scope.funcion.operacion.codigoSeguridad=$scope.usuario.datosTarjeta.codigoSeguridad;
@@ -80,17 +81,21 @@
                                             
                                                 }
 
+                                                //calcula el descuento por promocion, si hay
                                                 $scope.calcularDescuento=function(funcion){
-                                                    if(funcion.operacion.promociones!=null){
+                                                    if($scope.hayPromo==false){
                                                         
                                                         //Promociones Porcentaje
                                                         if(funcion.operacion.promociones.tipoDescuento=="Porcentaje"){ 
+                                                            console.log("Porcentaje");
                                                             //aplica descuento a valor de entrada
                                                             //Por cada entrada se fija si coincide el tipo de entrada, o si la promocion aplica a Todas                           
                                                                 funcion.entradas.forEach(function(element) {
+
                                                                     if(element.tipo==funcion.operacion.promociones.tipoEntrada || funcion.operacion.promociones.tipoEntrada=="Todas"){
                                                                         element.monto=element.monto-element.monto*(funcion.operacion.promociones.porcentaje/100);
                                                                         element.subtotal=element.monto*element.cantidad;
+                                                                        console.log(element.subtotal);
                                                                     }                                    
                                                                 });  
 
@@ -112,6 +117,7 @@
                                                                     }
                                                             });
                                                         }
+
                                                         //recalcula precioTotal
                                                         funcion.precioTotal=0;
                                                         funcion.entradas.forEach(function(element) {
@@ -120,7 +126,7 @@
                                                         
 
                                                     }
-                                                    //descuento de cuenta corriente
+                                                    //descuento de cuenta corriente MOVER A FINALIZAR OPERACION
                                                     console.log(funcion.descuentoCuentaCorriente);
                                                     console.log($scope.usuario.cuentaCorriente);
                                                     console.log(funcion.precioTotal);

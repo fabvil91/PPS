@@ -23,23 +23,28 @@
             </div>
         </div>
         <div class="col-md-9">
-        <form name="form" role="form">
-             <div class="form-group" ng-class="{ 'has-error' : form.porcentaje.$invalid && !form.porcentaje.$pristine }">
-                <label>Porcentaje salir de la Lista Negra</label>
-                <input type="number" name="porcentaje" class="form-control" ng-model="constantes.porcentajeListaNegra" ng-min="1" ng-max="100" required>
-                <p ng-show="form.porcentaje.$invalid && !form.porcentaje.$pristine" class="help-block">El porcentaje es requerido</p>
-                <p ng-show="form.porcentaje.$error.min" class="help-block">El porcentaje debe ser mayor.</p>
-                <p ng-show="form.porcentaje.$error.max" class="help-block">El porcentaje debe ser menor.</p>
-             </div>
-            <div class="form-group" ng-class="{ 'has-error' : form.cantidad.$invalid && !form.cantidad.$pristine }">
-                <label>Cantidad Películas en sección Más Vistas</label>
-                <input type="number" name="cantidad" class="form-control" ng-model="constantes.cantidadPeliculasMasVistas" ng-min="1" ng-max="20" required>
-                <p ng-show="form.cantidad.$invalid && !form.cantidad.$pristine" class="help-block">La cantidad es requerida</p>
-                <p ng-show="form.cantidad.$error.min" class="help-block">La cantidad debe ser mayor.</p>
-                <p ng-show="form.cantidad.$error.max" class="help-block">La cantidad debe ser menor.</p>
+             <div class="panel panel-default margin-top">
+                <div class="panel-body">
+                    <form name="form" role="form">
+                        <div class="form-group" ng-class="{ 'has-error' : form.porcentaje.$invalid && !form.porcentaje.$pristine }">
+                            <label>Porcentaje salir de la Lista Negra</label>
+                            <input type="number" name="porcentaje" class="form-control" ng-model="constantes.porcentajeListaNegra" ng-min="1" ng-max="100" required>
+                            <p ng-show="form.porcentaje.$invalid && !form.porcentaje.$pristine" class="help-block">El porcentaje es requerido</p>
+                            <p ng-show="form.porcentaje.$error.min" class="help-block">El porcentaje debe ser mayor.</p>
+                            <p ng-show="form.porcentaje.$error.max" class="help-block">El porcentaje debe ser menor.</p>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : form.cantidad.$invalid && !form.cantidad.$pristine }">
+                            <label>Cantidad Películas en sección Más Vistas</label>
+                            <input type="number" name="cantidad" class="form-control" ng-model="constantes.cantidadPeliculasMasVistas" ng-min="1" ng-max="20" required>
+                            <p ng-show="form.cantidad.$invalid && !form.cantidad.$pristine" class="help-block">La cantidad es requerida</p>
+                            <p ng-show="form.cantidad.$error.min" class="help-block">La cantidad debe ser mayor.</p>
+                            <p ng-show="form.cantidad.$error.max" class="help-block">La cantidad debe ser menor.</p>
+                        </div>
+                        <input type="button" class="btn btn-info" value="Modificar" ng-disabled="form.$invalid" ng-click="modificar()">  
+                    </form>
+                </div>
             </div>
-            <input type="button" class="btn btn-info" value="Modificar" ng-disabled="form.$invalid" ng-click="modificar()">  
-        </form>
+            
         </div>   
     </div>
 </div>
